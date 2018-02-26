@@ -36,8 +36,6 @@
 	    {
 
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
-			echo json_encode($_REQUEST);
-			echo $code;exit;
 			//获取code信息
 			$params = array(
 
@@ -48,6 +46,9 @@
 			);
 
 	    	$codes = $this -> model -> my_find($params);
+
+			echo json_encode($codes);
+			echo $code;exit;
 			if (!$codes) {
 				$this -> _back('code数据获取失败');
 			}
