@@ -51,7 +51,7 @@
 				//查询
 				$params = array(
 
-					'table_name' => 'admins',
+					'table_name' => 'telegram.admins',
 
 					'where' => "mobile = '{$username}' AND password = '{$password}' AND is_del = 0 AND status = 0"
 				);
@@ -71,7 +71,7 @@
 					//更新相关登录信息
 					$params = array(
 
-						'table_name' => 'admins',
+						'table_name' => 'telegram.admins',
 
 						'where' => "id = {$admin_find['id']}",
 

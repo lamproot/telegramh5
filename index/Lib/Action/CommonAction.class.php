@@ -48,7 +48,7 @@
 			// 	// //查询商户
 			// 	// $params = array(
             //     //
-			// 	// 	'table_name' => 'member',
+			// 	// 	'table_name' => 'telegram.member',
 			// 	// 	'where' => "status = 1 AND uid = ".MEMBER_ID
 			// 	// );
             //     //
@@ -414,7 +414,7 @@
 	function get_market_ratio(){
 		$params = array(
 
-			'table_name' => 'bonus_rule',
+			'table_name' => 'telegram.bonus_rule',
 
 			'where' => "category = 'marketcash' AND `key` = 0"
 		);

@@ -44,7 +44,7 @@
 				//查询商户
 				$params = array(
 
-					'table_name' => 'auth',
+					'table_name' => 'telegram.auth',
 
 					'where' => "name = '".$_SESSION['Rongzi']['admin']['type_str']."'"
 				);

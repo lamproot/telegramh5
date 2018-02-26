@@ -48,7 +48,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_command',
+	    		'table_name' => 'telegram.chat_command',
 
 	    		'order' => 'id desc',
 
@@ -90,7 +90,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_command',
+	    			'table_name' => 'telegram.chat_command',
 
 	    			'data' => $data
 	    		);
@@ -133,7 +133,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_command',
+	    		'table_name' => 'telegram.chat_command',
 
 	    		'where' => "id = {$id} AND is_del = 0"
 	    	);
@@ -158,7 +158,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_command',
+	    			'table_name' => 'telegram.chat_command',
 
 	    			'where' => "id = {$id}",
 
@@ -202,7 +202,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_command',
+	    		'table_name' => 'telegram.chat_command',
 
 	    		'where' => "id = {$id} AND is_del = 0",
 
@@ -252,7 +252,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_command',
+	    		'table_name' => 'telegram.chat_command',
 
 	    		'where' => "id = {$id} AND is_del = 0 AND status = {$type}",
 

@@ -39,7 +39,7 @@
 			//获取code信息
 			$params = array(
 
-				'table_name' => 'codes',
+				'table_name' => 'telegram.codes',
 
 				'where' => "1"
 
@@ -53,7 +53,7 @@
 			//获取机器人信息
 			$params = array(
 
-				'table_name' => 'chat_bot',
+				'table_name' => 'telegram.chat_bot',
 
 				'where' => "chat_id = {$codes['chat_id']}"
 
@@ -67,7 +67,7 @@
 			//获取活动信息
 			$params = array(
 
-				'table_name' => 'group_activity',
+				'table_name' => 'telegram.group_activity',
 
 				'where' => "chat_id = {$codes['chat_id']}"
 
@@ -102,7 +102,7 @@
 		   //获取code信息
 		   $params = array(
 
-			   'table_name' => 'codes',
+			   'table_name' => 'telegram.codes',
 
 			   'where' => "code = '{$code}'"
 
@@ -116,7 +116,7 @@
 		   //获取机器人信息
 		   $params = array(
 
-			   'table_name' => 'chat_bot',
+			   'table_name' => 'telegram.chat_bot',
 
 			   'where' => "chat_id = {$codes['chat_id']}"
 
@@ -130,7 +130,7 @@
 		   //获取活动信息
 		   $params = array(
 
-			   'table_name' => 'group_activity',
+			   'table_name' => 'telegram.group_activity',
 
 			   'where' => "chat_id = {$codes['chat_id']}"
 
@@ -144,7 +144,7 @@
 		   //获取成功邀请人数
 		   $params = array(
 
-			   'table_name' => 'codes',
+			   'table_name' => 'telegram.codes',
 
 			   'where' => "parent_code = '{$code}'"
 

@@ -81,7 +81,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'bonus_count',
+    		'table_name' => 'telegram.bonus_count',
 
     		'where' => $where,
 
@@ -128,7 +128,7 @@ class FinancesAction extends CommonAction {
 
         $params = array(
 
-            'table_name' => 'bonus_count',
+            'table_name' => 'telegram.bonus_count',
 
             'where' => $where,
 
@@ -177,7 +177,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'bonus_count',
+    		'table_name' => 'telegram.bonus_count',
 
     		'where' => "id = {$id}"
     	);
@@ -195,7 +195,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'bonus_detail',
+    		'table_name' => 'telegram.bonus_detail',
 
     		'where' => "touserid = {$count_find['touserid']} AND createdate >= {$that_day} AND createdate <= {$tomorrow}"
     	);
@@ -246,7 +246,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'money_change',
+    		'table_name' => 'telegram.money_change',
 
     		'where' => $where,
 
@@ -278,7 +278,7 @@ class FinancesAction extends CommonAction {
         //导出筛选数据
         $params = array(
 
-            'table_name' => 'money_change',
+            'table_name' => 'telegram.money_change',
 
             'where' => "1",
 
@@ -379,7 +379,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'transfer',
+    		'table_name' => 'telegram.transfer',
 
     		'where' => $where,
 
@@ -416,7 +416,7 @@ class FinancesAction extends CommonAction {
             //查询目标用户
             $params = array(
 
-                'table_name' => 'member',
+                'table_name' => 'telegram.member',
 
                 'where' => "usernumber = {$usernumber}"
             );
@@ -426,7 +426,7 @@ class FinancesAction extends CommonAction {
     		//查戎子用户
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "usernumber = 1"
     		);
@@ -441,7 +441,7 @@ class FinancesAction extends CommonAction {
     		//查询当前登陆者
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "uid = {$_SESSION['Rongzi']['admin']['id']}"
     		);
@@ -546,7 +546,7 @@ class FinancesAction extends CommonAction {
 
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "usernumber = {$usernumber}",
 
@@ -584,7 +584,7 @@ class FinancesAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'money_change',
+				'table_name' => 'telegram.money_change',
 
 				'data' => $money_change_data
 			);
@@ -596,7 +596,7 @@ class FinancesAction extends CommonAction {
                 //扣除戎子账户
                 $params = array(
 
-                    'table_name' => 'member',
+                    'table_name' => 'telegram.member',
 
                     'where' => "usernumber = 1",
 
@@ -637,7 +637,7 @@ class FinancesAction extends CommonAction {
                 //存入流水
                 $params = array(
 
-                    'table_name' => 'money_change',
+                    'table_name' => 'telegram.money_change',
 
                     'data' => $money_change_data
                 );
@@ -678,7 +678,7 @@ class FinancesAction extends CommonAction {
     		//查询目标用户
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "usernumber = {$usernumber}"
     		);
@@ -693,7 +693,7 @@ class FinancesAction extends CommonAction {
     		//查询当前登陆者
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "uid = {$_SESSION['Rongzi']['admin']['id']}"
     		);
@@ -762,7 +762,7 @@ class FinancesAction extends CommonAction {
 
     		$params = array(
 
-    			'table_name' => 'member',
+    			'table_name' => 'telegram.member',
 
     			'where' => "usernumber = {$usernumber}",
 
@@ -800,7 +800,7 @@ class FinancesAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'money_change',
+				'table_name' => 'telegram.money_change',
 
 				'data' => $money_change_data
 			);
@@ -859,7 +859,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'money_change',
+    		'table_name' => 'telegram.money_change',
 
     		'where' => $where." AND changetype = 1",
 
@@ -911,7 +911,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'withdrawal',
+    		'table_name' => 'telegram.withdrawal',
 
     		'where' => $where ." AND status = 1",
 
@@ -944,7 +944,7 @@ class FinancesAction extends CommonAction {
     	//查询这个提现申请
     	$params = array(
 
-    		'table_name' => 'withdrawal',
+    		'table_name' => 'telegram.withdrawal',
 
     		'where' => "id = {$id} AND status = 1"
     	);
@@ -959,7 +959,7 @@ class FinancesAction extends CommonAction {
     	//查询这个人
     	$params = array(
 
-    		'table_name' => 'member',
+    		'table_name' => 'telegram.member',
 
     		'where' => "usernumber = {$cash_find['usernumber']}"
     	);
@@ -988,7 +988,7 @@ class FinancesAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'withdrawal',
+    		'table_name' => 'telegram.withdrawal',
 
     		'where' => "id = {$id}",
 
@@ -1011,7 +1011,7 @@ class FinancesAction extends CommonAction {
 
 	    		$params = array(
 
-	    			'table_name' => 'member',
+	    			'table_name' => 'telegram.member',
 
 	    			'where' => "uid = {$member_find['uid']}",
 
@@ -1054,7 +1054,7 @@ class FinancesAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'money_change',
+				'table_name' => 'telegram.money_change',
 
 				'data' => $money_change_data
 			);
@@ -1090,7 +1090,7 @@ class FinancesAction extends CommonAction {
         //查询这个提现申请
         $params = array(
 
-            'table_name' => 'withdrawal',
+            'table_name' => 'telegram.withdrawal',
 
             'where' => "id IN ('{$id}') AND status = 1"
         );
@@ -1109,7 +1109,7 @@ class FinancesAction extends CommonAction {
             //查询这个人
             $params = array(
 
-                'table_name' => 'member',
+                'table_name' => 'telegram.member',
 
                 'where' => "usernumber = {$cash_find['usernumber']}"
             );
@@ -1138,7 +1138,7 @@ class FinancesAction extends CommonAction {
 
             $params = array(
 
-                'table_name' => 'withdrawal',
+                'table_name' => 'telegram.withdrawal',
 
                 'where' => "id = {$cash_find['id']}",
 
@@ -1163,7 +1163,7 @@ class FinancesAction extends CommonAction {
 
                     $params = array(
 
-                        'table_name' => 'member',
+                        'table_name' => 'telegram.member',
 
                         'where' => "uid = {$member_find['uid']}",
 
@@ -1206,7 +1206,7 @@ class FinancesAction extends CommonAction {
                 //存入流水
                 $params = array(
 
-                    'table_name' => 'money_change',
+                    'table_name' => 'telegram.money_change',
 
                     'data' => $money_change_data
                 );
@@ -1261,7 +1261,7 @@ class FinancesAction extends CommonAction {
 
         $params = array(
 
-            'table_name' => 'withdrawal',
+            'table_name' => 'telegram.withdrawal',
 
             'where' => $where ." AND (status = 0 OR status = 2)",
 
@@ -1289,7 +1289,7 @@ class FinancesAction extends CommonAction {
     // {
     // 	$params = array(
 
-    // 		'table_name' => 'withdrawal',
+    // 		'table_name' => 'telegram.withdrawal',
 
     // 		'where' => "status = 0 OR status = 2",
 

@@ -64,7 +64,7 @@
 			// chat_id eth code parent_code status ctrated_at
 			$params = array(
 
-				'table_name' => 'codes',
+				'table_name' => 'telegram.codes',
 
 				'where' => "chat_id = {$_POST['chat_id']} AND eth = '{$_POST['wallet']}'"
 
@@ -83,7 +83,7 @@
 
 				$params = array(
 
-					'table_name' => 'codes',
+					'table_name' => 'telegram.codes',
 
 					'data' => $data
 				);

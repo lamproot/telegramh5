@@ -56,7 +56,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'group_activity',
+	    			'table_name' => 'telegram.group_activity',
 
 	    			'where' => "chat_id = {$_POST['chat_id']}",
 
@@ -77,7 +77,7 @@
 
 	    	$group_params = array(
 
-	    		'table_name' => 'group_activity',
+	    		'table_name' => 'telegram.group_activity',
 
 	    		'order' => 'id desc',
 
@@ -93,7 +93,7 @@
 
 				$params = array(
 
-		    		'table_name' => 'group_activity',
+		    		'table_name' => 'telegram.group_activity',
 
 		    		'data' => $data
 		    	);
@@ -139,7 +139,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_bot',
+	    			'table_name' => 'telegram.chat_bot',
 
 	    			'data' => $data
 	    		);
@@ -183,7 +183,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_bot',
+	    		'table_name' => 'telegram.chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0"
 	    	);
@@ -209,7 +209,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_bot',
+	    			'table_name' => 'telegram.chat_bot',
 
 	    			'where' => "id = {$id}",
 
@@ -253,7 +253,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_bot',
+	    		'table_name' => 'telegram.chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0",
 
@@ -303,7 +303,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_bot',
+	    		'table_name' => 'telegram.chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0 AND status = {$type}",
 

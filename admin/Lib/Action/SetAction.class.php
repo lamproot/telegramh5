@@ -47,7 +47,7 @@
 			//获取奖金相关设置数据
 	    	$params = array(
 
-	    		'table_name' => 'bonus_rule',
+	    		'table_name' => 'telegram.bonus_rule',
 
 	    		'where' => "1"
     		);
@@ -71,7 +71,7 @@
 				//获取奖金相关设置数据
 		    	$params = array(
 
-		    		'table_name' => 'bonus_rule',
+		    		'table_name' => 'telegram.bonus_rule',
 
 		    		'where' => "id = ". $key,
 

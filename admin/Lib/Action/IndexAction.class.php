@@ -25,7 +25,7 @@ class IndexAction extends CommonAction {
         //获取会员总数
         $params = array(
 
-            'table_name' => 'member',
+            'table_name' => 'telegram.member',
 
             'where' => "1 AND uid != 1"
         );
@@ -36,7 +36,7 @@ class IndexAction extends CommonAction {
         //获取今日会员新增数
         $params = array(
 
-            'table_name' => 'member',
+            'table_name' => 'telegram.member',
 
             'where' => " uid != 1 AND reg_time >= ".strtotime(date("Y-m-d", time()))." AND reg_time <= ". (strtotime(date("Y-m-d", time())) + 24 * 60 * 60)
         );
@@ -47,7 +47,7 @@ class IndexAction extends CommonAction {
         //money_change changetype = 1
         $params = array(
 
-            'table_name' => 'money_change',
+            'table_name' => 'telegram.money_change',
 
             'where' => "changetype = 1"
         );
@@ -57,7 +57,7 @@ class IndexAction extends CommonAction {
         //获取提现申请
         $params = array(
 
-            'table_name' => 'withdrawal',
+            'table_name' => 'telegram.withdrawal',
 
             'where' => "1"
         );
@@ -67,7 +67,7 @@ class IndexAction extends CommonAction {
         //获取公司财务
         $params = array(
 
-            'table_name' => 'finance',
+            'table_name' => 'telegram.finance',
 
             'where' => "id = 1"
         );
