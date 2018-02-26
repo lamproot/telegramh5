@@ -46,9 +46,6 @@
 			);
 
 	    	$codes = $this -> model -> my_find($params);
-
-			echo json_encode($codes);
-			echo $code;exit;
 			if (!$codes) {
 				$this -> _back('code数据获取失败');
 			}

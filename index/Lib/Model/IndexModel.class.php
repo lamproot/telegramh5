@@ -25,9 +25,9 @@
 		public function my_find(array $parameter)
 		{
 			$table = M($parameter['table_name']);
-
+        dump($table);exit;
 			$result = $table -> where($parameter['where']) -> find();
-			echo $table->getlastsql();
+			//echo $table->getlastsql();
 			return $result;
 		}
 
