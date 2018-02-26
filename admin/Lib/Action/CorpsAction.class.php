@@ -52,7 +52,7 @@
 			//获取所有用户数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => $where,
 
@@ -91,7 +91,7 @@
 			//获取所有用户数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => $where,
 
@@ -172,7 +172,7 @@
 			//获取用户数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid} AND status = 1"
 
@@ -191,7 +191,7 @@
 			//获取代理商编号数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$member['billcenterid']} AND status = 1"
 
@@ -201,7 +201,7 @@
 
 			//获取拓展人数据
 			$params = array(
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$member['tuijianid']} AND status = 1"
 
@@ -212,7 +212,7 @@
 			//获取位置编号据 parentid
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$member['parentid']} AND status = 1"
 
@@ -252,7 +252,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -288,7 +288,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -324,7 +324,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -360,7 +360,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -396,7 +396,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -408,7 +408,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}"
 			);
@@ -434,7 +434,7 @@
 
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = {$uid}",
 
@@ -470,7 +470,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 
@@ -503,7 +503,7 @@
 			//查询用户资料数据
  			$params = array(
 
- 				'table_name' => 'telegram.member',
+ 				'table_name' => 'member',
 
  				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -553,7 +553,7 @@
 
 				$params = array(
 
- 					'table_name' => 'telegram.member',
+ 					'table_name' => 'member',
 
  					'where' => "uid = {$_POST['uid']} AND usernumber = '{$_POST['usernumber']}'"
 
@@ -578,7 +578,7 @@
 
  			 	$params = array(
 
- 			 		'table_name' => 'telegram.member',
+ 			 		'table_name' => 'member',
 
  			 		'where' => "uid = {$_POST['uid']} AND usernumber = '{$_POST['usernumber']}'",
 
@@ -613,7 +613,7 @@
 			//查询该用户是否符合升级条件
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid} AND status = 1"
 
@@ -633,7 +633,7 @@
 				//获取代理商编号数据
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = 1"
 
@@ -658,7 +658,7 @@
 				//更新代理商编号相应数据
 				$billparams = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = 1",
 
@@ -716,7 +716,7 @@
 						//添加财务明细记录
 						$params = array(
 
-							'table_name' => 'telegram.money_change',
+							'table_name' => 'money_change',
 
 							'data' => $money_change_data
 						);
@@ -745,7 +745,7 @@
 					//查询当前用户在父类的哪个区间
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = {$contact_uid}"
 
@@ -759,7 +759,7 @@
 					//获取父类相关数据
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = {$contact_parent_uid}"
 
@@ -788,7 +788,7 @@
 					//修改父类相关数据
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = {$contact_parent_uid} AND status = 1",
 
@@ -815,7 +815,7 @@
 					//添加业绩增加LOG
 					$params = array(
 
-						'table_name' => 'telegram.achievement_log',
+						'table_name' => 'achievement_log',
 
 						'data' => $achievementdata
 
@@ -838,7 +838,7 @@
 			//写入数据库
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}",
 

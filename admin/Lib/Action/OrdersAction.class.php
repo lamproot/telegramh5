@@ -81,7 +81,7 @@ class OrdersAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 1",
 
@@ -116,7 +116,7 @@ class OrdersAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => "is_del = 0 AND id = {$id}"
     	);
@@ -130,7 +130,7 @@ class OrdersAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.order_items',
+    		'table_name' => 'order_items',
 
     		'where' => "order_id = {$id}"
     	);
@@ -149,7 +149,7 @@ class OrdersAction extends CommonAction {
 
     		$params = array(
 
-    			'table_name' => 'telegram.orders',
+    			'table_name' => 'orders',
 
     			'where' => "id = {$id}",
 
@@ -205,7 +205,7 @@ class OrdersAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 2",
 
@@ -251,7 +251,7 @@ class OrdersAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 3",
 

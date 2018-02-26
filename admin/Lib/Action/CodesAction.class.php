@@ -60,7 +60,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.codes',
+	    		'table_name' => 'codes',
 
 	    		'order' => 'id desc',
 
@@ -73,7 +73,7 @@
 
 				$params = array(
 
-		    		'table_name' => 'telegram.codes',
+		    		'table_name' => 'codes',
 
 		    		'order' => 'id desc',
 
@@ -106,7 +106,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.codes',
+	    		'table_name' => 'codes',
 
 	    		'order' => 'id desc',
 
@@ -119,7 +119,7 @@
             //
 			// 	$params = array(
             //
-		    // 		'table_name' => 'telegram.codes',
+		    // 		'table_name' => 'codes',
             //
 		    // 		'order' => 'id desc',
             //
@@ -162,7 +162,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'telegram.codes',
+	    			'table_name' => 'codes',
 
 	    			'data' => $data
 	    		);
@@ -205,7 +205,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.codes',
+	    		'table_name' => 'codes',
 
 	    		'where' => "id = {$id} AND is_del = 0"
 	    	);
@@ -230,7 +230,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'telegram.codes',
+	    			'table_name' => 'codes',
 
 	    			'where' => "id = {$id}",
 
@@ -274,7 +274,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.codes',
+	    		'table_name' => 'codes',
 
 	    		'where' => "id = {$id} AND is_del = 0",
 
@@ -324,7 +324,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.codes',
+	    		'table_name' => 'codes',
 
 	    		'where' => "id = {$id} AND is_del = 0 AND status = {$type}",
 

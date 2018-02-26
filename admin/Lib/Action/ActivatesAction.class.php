@@ -49,7 +49,7 @@ class ActivatesAction extends CommonAction {
 		//查询用户资料数据
 		$params = array(
 
-			'table_name' => 'telegram.member',
+			'table_name' => 'member',
 
 			'where' => "status = 0"
 
@@ -110,7 +110,7 @@ class ActivatesAction extends CommonAction {
 		//查询用户资料数据
 		$params = array(
 
-			'table_name' => 'telegram.member',
+			'table_name' => 'member',
 
 			'where' => "active_uid = {$billcenterid}"
 
@@ -172,7 +172,7 @@ class ActivatesAction extends CommonAction {
 		//写入数据库
 		$params = array(
 
-		   'table_name' => 'telegram.member',
+		   'table_name' => 'member',
 
 		   'where' => "uid = {$uid}",
 
@@ -183,7 +183,7 @@ class ActivatesAction extends CommonAction {
 
 		$params = array(
 
-		   'table_name' => 'telegram.member',
+		   'table_name' => 'member',
 
 		   'where' => "uid = {$uid}"
 		);
@@ -205,7 +205,7 @@ class ActivatesAction extends CommonAction {
 		//修改父类相关区间是否被占
 		$params = array(
 
-		  'table_name' => 'telegram.member',
+		  'table_name' => 'member',
 
 		  'where' => "uid = {$member['parentid']}",
 
@@ -242,7 +242,7 @@ class ActivatesAction extends CommonAction {
 		//查询该用户是否符合激活条件
 		$params = array(
 
-			'table_name' => 'telegram.member',
+			'table_name' => 'member',
 
 			'where' => "uid = {$uid} AND status = 0"
 
@@ -279,7 +279,7 @@ class ActivatesAction extends CommonAction {
 			//获取代理商编号数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = 1 AND isbill IN (1,2,3)"
 
@@ -304,7 +304,7 @@ class ActivatesAction extends CommonAction {
 			//更新代理商编号相应数据
 			$billparams = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = 1",
 
@@ -349,7 +349,7 @@ class ActivatesAction extends CommonAction {
 
 				$params = array(
 
-					'table_name' => 'telegram.money_change',
+					'table_name' => 'money_change',
 
 					'data' => $flow_data
 				);
@@ -382,7 +382,7 @@ class ActivatesAction extends CommonAction {
 
 				$params = array(
 
-					'table_name' => 'telegram.money_change',
+					'table_name' => 'money_change',
 
 					'data' => $to_data
 				);
@@ -427,7 +427,7 @@ class ActivatesAction extends CommonAction {
 				//查询当前用户在父类的哪个区间
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$contact_uid}"
 
@@ -441,7 +441,7 @@ class ActivatesAction extends CommonAction {
 				//获取父类相关数据
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$contact_parent_uid}"
 
@@ -470,7 +470,7 @@ class ActivatesAction extends CommonAction {
 				//修改父类相关数据
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$contact_parent_uid} AND status = 1",
 
@@ -497,7 +497,7 @@ class ActivatesAction extends CommonAction {
 				//添加业绩增加LOG
 				$params = array(
 
-					'table_name' => 'telegram.achievement_log',
+					'table_name' => 'achievement_log',
 
 					'data' => $achievementdata
 
@@ -510,7 +510,7 @@ class ActivatesAction extends CommonAction {
 		//写入数据库
 		$params = array(
 
-			'table_name' => 'telegram.member',
+			'table_name' => 'member',
 
 			'where' => "uid = {$uid} AND status = 0",
 
@@ -554,7 +554,7 @@ class ActivatesAction extends CommonAction {
 			//获取代理商编号数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = {$uid}"
 			);
@@ -588,7 +588,7 @@ class ActivatesAction extends CommonAction {
 				//保存代理商金额
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$uid}",
 
@@ -631,7 +631,7 @@ class ActivatesAction extends CommonAction {
 				//添加奖金明细记录
 				$params = array(
 
-					'table_name' => 'telegram.bonus_detail',
+					'table_name' => 'bonus_detail',
 
 					'data' => $bonusdata
 				);
@@ -703,7 +703,7 @@ class ActivatesAction extends CommonAction {
 					//添加财务明细记录
 					$params = array(
 
-						'table_name' => 'telegram.money_change',
+						'table_name' => 'money_change',
 
 						'data' => $money_change_data
 					);
@@ -778,7 +778,7 @@ class ActivatesAction extends CommonAction {
 					//添加财务明细记录
 					$params = array(
 
-						'table_name' => 'telegram.money_change',
+						'table_name' => 'money_change',
 
 						'data' => $money_change_data
 					);
@@ -795,7 +795,7 @@ class ActivatesAction extends CommonAction {
 		//更新代理商编号接点数
 		$params = array(
 
-			'table_name' => 'telegram.member',
+			'table_name' => 'member',
 
 			'where' => "uid = {$uid}",
 
@@ -854,7 +854,7 @@ class ActivatesAction extends CommonAction {
 				//获取代理商编号数据
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$uid}"
 				);
@@ -889,7 +889,7 @@ class ActivatesAction extends CommonAction {
 					//保存代理商编号金额
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = {$uid}",
 
@@ -932,7 +932,7 @@ class ActivatesAction extends CommonAction {
 					//添加奖金明细记录
 					$params = array(
 
-						'table_name' => 'telegram.bonus_detail',
+						'table_name' => 'bonus_detail',
 
 						'data' => $bonusdata
 					);
@@ -1005,7 +1005,7 @@ class ActivatesAction extends CommonAction {
 						//添加财务明细记录
 						$params = array(
 
-							'table_name' => 'telegram.money_change',
+							'table_name' => 'money_change',
 
 							'data' => $money_change_data
 						);
@@ -1080,7 +1080,7 @@ class ActivatesAction extends CommonAction {
 						//添加财务明细记录
 						$params = array(
 
-							'table_name' => 'telegram.money_change',
+							'table_name' => 'money_change',
 
 							'data' => $money_change_data
 						);
@@ -1111,7 +1111,7 @@ class ActivatesAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.bonus_rule',
+			'table_name' => 'bonus_rule',
 
 			'where' => "category = 'userrank' AND `key` = {$userrank}"
 		);
@@ -1135,7 +1135,7 @@ class ActivatesAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.bonus_rule',
+			'table_name' => 'bonus_rule',
 
 			'where' => "category = 'maxcash' AND `key` = {$userrank}"
 		);
@@ -1171,7 +1171,7 @@ class ActivatesAction extends CommonAction {
 		foreach ($expand as $key => $value) {
 
 			// $params = array(
-			// 	'table_name' => 'telegram.member',
+			// 	'table_name' => 'member',
 			//
 			// 	'where' => "uid = {$value}",
 			//
@@ -1188,7 +1188,7 @@ class ActivatesAction extends CommonAction {
 	function save_finance($data){
 
 		$params = array(
-			'table_name' => 'telegram.finance',
+			'table_name' => 'finance',
 
 			'where' => "id = 1",
 
@@ -1206,7 +1206,7 @@ class ActivatesAction extends CommonAction {
 	function add_finance($data){
 
 		$params = array(
-			'table_name' => 'telegram.finance',
+			'table_name' => 'finance',
 
 			'where' => "id = 1",
 
@@ -1224,7 +1224,7 @@ class ActivatesAction extends CommonAction {
 	function get_market_ratio(){
 		$params = array(
 
-			'table_name' => 'telegram.bonus_rule',
+			'table_name' => 'bonus_rule',
 
 			'where' => "category = 'marketcash' AND `key` = 0"
 		);
@@ -1246,7 +1246,7 @@ class ActivatesAction extends CommonAction {
 	function get_expand_ratio($key){
 		$params = array(
 
-			'table_name' => 'telegram.bonus_rule',
+			'table_name' => 'bonus_rule',
 
 			'where' => "category = 'expandcash' AND `key` = {$key}"
 		);
@@ -1290,7 +1290,7 @@ class ActivatesAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.orders',
+			'table_name' => 'orders',
 
 			'data' => $order
 		);
@@ -1359,7 +1359,7 @@ class ActivatesAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.order_items',
+				'table_name' => 'order_items',
 
 				'data' => $order_items
 			);
@@ -1375,7 +1375,7 @@ class ActivatesAction extends CommonAction {
 	function get_product($pro_id){
 		$params = array(
 
-			'table_name' => 'telegram.products',
+			'table_name' => 'products',
 
 			'where' => "id = {$pro_id}"
 		);
@@ -1388,7 +1388,7 @@ class ActivatesAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.user_address',
+			'table_name' => 'user_address',
 
 			'where' => "user_id = {$uid} AND is_default = 1 AND is_del = 0"
 		);

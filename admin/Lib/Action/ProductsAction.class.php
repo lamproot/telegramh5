@@ -47,7 +47,7 @@ class ProductsAction extends CommonAction {
     {
     	$params = array(
 
-    		'table_name' => 'telegram.products',
+    		'table_name' => 'products',
 
     		'where' => "is_del = 0",
 
@@ -103,7 +103,7 @@ class ProductsAction extends CommonAction {
 			//查询是否重复
 			$params = array(
 
-				'table_name' => 'telegram.products',
+				'table_name' => 'products',
 
 				'where' => "products_code = {$data['products_code']} AND is_del = 0"
 			);
@@ -129,7 +129,7 @@ class ProductsAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.products',
+				'table_name' => 'products',
 
 				'data' => $data
 			);
@@ -172,7 +172,7 @@ class ProductsAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.products',
+			'table_name' => 'products',
 
 			'where' => "id = {$id} AND is_del = 0"
 		);
@@ -209,7 +209,7 @@ class ProductsAction extends CommonAction {
 			//查询是否重复
 			$params = array(
 
-				'table_name' => 'telegram.products',
+				'table_name' => 'products',
 
 				'where' => "products_code = {$data['products_code']} AND is_del = 0"
 			);
@@ -229,7 +229,7 @@ class ProductsAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.products',
+				'table_name' => 'products',
 
 				'where' => "id = {$id}",
 
@@ -273,7 +273,7 @@ class ProductsAction extends CommonAction {
 
 		$params = array(
 
-			'table_name' => 'telegram.products',
+			'table_name' => 'products',
 
 			'where' => "id = {$id}",
 

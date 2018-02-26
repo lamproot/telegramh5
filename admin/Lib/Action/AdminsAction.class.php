@@ -45,7 +45,7 @@
 	    	//查询当前登陆的管理员
 	    	$params = array(
 
-	    		'table_name' => 'telegram.admins',
+	    		'table_name' => 'admins',
 
 	    		'where' => "id = {$_SESSION['Rongzi']['admin']['id']}"
     		);
@@ -61,7 +61,7 @@
     			//查询管理员
     			$params = array(
 
-    				'table_name' => 'telegram.admins',
+    				'table_name' => 'admins',
 
     				'where' => "is_del = 0",
 
@@ -102,7 +102,7 @@
 	    	//查询相关权限信息
 	    	$params = array(
 
-	    		'table_name' => 'telegram.auth',
+	    		'table_name' => 'auth',
 
 	    		'where' => "is_del = 0"
 	    	);
@@ -140,7 +140,7 @@
 	    		//写入数据库
 	    		$params = array(
 
-	    			'table_name' => 'telegram.admins',
+	    			'table_name' => 'admins',
 
 	    			'data' => $data
 	    		);
@@ -183,7 +183,7 @@
 	    	//查询相关权限信息
 	    	$params = array(
 
-	    		'table_name' => 'telegram.auth',
+	    		'table_name' => 'auth',
 
 	    		'where' => "is_del = 0"
 	    	);
@@ -214,7 +214,7 @@
 	    		//写入数据库
 	    		$params = array(
 
-	    			'table_name' => 'telegram.admins',
+	    			'table_name' => 'admins',
 
 					'where' => 'id = '. $id,
 
@@ -236,7 +236,7 @@
 			//写入数据库
 			$params = array(
 
-				'table_name' => 'telegram.admins',
+				'table_name' => 'admins',
 
 				'where' => 'id = '. $id
 			);
@@ -271,7 +271,7 @@
 	    		//查询管理员
 	    		$params = array(
 
-	    			'table_name' => 'telegram.admins',
+	    			'table_name' => 'admins',
 
 	    			'where' => "id = {$id} AND is_del = 0"
 	    		);
@@ -293,7 +293,7 @@
 	    			//保存
 	    			$params = array(
 
-	    				'table_name' => 'telegram.admins',
+	    				'table_name' => 'admins',
 
 	    				'where' => "id = {$id}",
 
@@ -345,7 +345,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.admins',
+	    		'table_name' => 'admins',
 
 	    		'where' => "id = {$id}",
 
@@ -379,7 +379,7 @@
 	    	//查询用户名
 	    	$params = array(
 
-	    		'table_name' => 'telegram.admins',
+	    		'table_name' => 'admins',
 
 	    		'where' => "is_del = 0 AND mobile = '{$mobile}'"
 	    	);

@@ -45,7 +45,7 @@
 	    {
 	    	$params = array(
 
-	    		'table_name' => 'telegram.chat_bot',
+	    		'table_name' => 'chat_bot',
 
 	    		'order' => 'id desc',
 
@@ -82,7 +82,7 @@
 				//查询token 是否存在
 				$params = array(
 
-	    			'table_name' => 'telegram.chat_bot',
+	    			'table_name' => 'chat_bot',
 
 	    			'where' => "token = '{$data['token']}'"
 	    		);
@@ -101,7 +101,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'telegram.chat_bot',
+	    			'table_name' => 'chat_bot',
 
 	    			'data' => $data
 	    		);
@@ -148,7 +148,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.chat_bot',
+	    		'table_name' => 'chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0"
 	    	);
@@ -174,7 +174,7 @@
 
 	    		$params = array(
 
-	    			'table_name' => 'telegram.chat_bot',
+	    			'table_name' => 'chat_bot',
 
 	    			'where' => "id = {$id}",
 
@@ -222,7 +222,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.chat_bot',
+	    		'table_name' => 'chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0",
 
@@ -272,7 +272,7 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'telegram.chat_bot',
+	    		'table_name' => 'chat_bot',
 
 	    		'where' => "id = {$id} AND is_del = 0 AND status = {$type}",
 

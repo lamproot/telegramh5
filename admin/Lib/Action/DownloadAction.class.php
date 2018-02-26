@@ -78,7 +78,7 @@ class DownloadAction extends CommonAction {
 //echo $where;exit;
 		$params = array(
 
-			'table_name' => 'telegram.codes',
+			'table_name' => 'codes',
 
 			'order' => 'id desc',
 
@@ -91,7 +91,7 @@ class DownloadAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.codes',
+				'table_name' => 'codes',
 
 				'order' => 'id desc',
 
@@ -138,7 +138,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.bonus_count',
+    		'table_name' => 'bonus_count',
 
     		'where' => "id = {$id}"
     	);
@@ -156,7 +156,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.bonus_detail',
+    		'table_name' => 'bonus_detail',
 
     		'where' => "touserid = {$count_find['touserid']} AND createdate >= {$that_day} AND createdate <= {$tomorrow}"
     	);
@@ -203,7 +203,7 @@ class DownloadAction extends CommonAction {
         //导出筛选数据
         $params = array(
 
-            'table_name' => 'telegram.money_change',
+            'table_name' => 'money_change',
 
             'where' => $where,
 
@@ -337,7 +337,7 @@ class DownloadAction extends CommonAction {
 
         $params = array(
 
-            'table_name' => 'telegram.transfer',
+            'table_name' => 'transfer',
 
             'where' => $where,
 
@@ -398,7 +398,7 @@ class DownloadAction extends CommonAction {
     		//查询目标用户
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "usernumber = {$usernumber}"
     		);
@@ -413,7 +413,7 @@ class DownloadAction extends CommonAction {
     		//查询当前登陆者
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "uid = {$_SESSION['Rongzi']['admin']['id']}"
     		);
@@ -482,7 +482,7 @@ class DownloadAction extends CommonAction {
 
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "usernumber = {$usernumber}",
 
@@ -520,7 +520,7 @@ class DownloadAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'telegram.money_change',
+				'table_name' => 'money_change',
 
 				'data' => $money_change_data
 			);
@@ -563,7 +563,7 @@ class DownloadAction extends CommonAction {
     		//查询目标用户
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "usernumber = {$usernumber}"
     		);
@@ -578,7 +578,7 @@ class DownloadAction extends CommonAction {
     		//查询当前登陆者
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "uid = {$_SESSION['Rongzi']['admin']['id']}"
     		);
@@ -647,7 +647,7 @@ class DownloadAction extends CommonAction {
 
     		$params = array(
 
-    			'table_name' => 'telegram.member',
+    			'table_name' => 'member',
 
     			'where' => "usernumber = {$usernumber}",
 
@@ -685,7 +685,7 @@ class DownloadAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'telegram.money_change',
+				'table_name' => 'money_change',
 
 				'data' => $money_change_data
 			);
@@ -738,7 +738,7 @@ class DownloadAction extends CommonAction {
 
         $params = array(
 
-            'table_name' => 'telegram.money_change',
+            'table_name' => 'money_change',
 
             'where' => $where." AND changetype = 1",
 
@@ -823,7 +823,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.withdrawal',
+    		'table_name' => 'withdrawal',
 
     		'where' => $where ." AND status = 1",
 
@@ -875,7 +875,7 @@ class DownloadAction extends CommonAction {
     	//查询这个提现申请
     	$params = array(
 
-    		'table_name' => 'telegram.withdrawal',
+    		'table_name' => 'withdrawal',
 
     		'where' => "id = {$id} AND status = 1"
     	);
@@ -890,7 +890,7 @@ class DownloadAction extends CommonAction {
     	//查询这个人
     	$params = array(
 
-    		'table_name' => 'telegram.member',
+    		'table_name' => 'member',
 
     		'where' => "usernumber = {$cash_find['usernumber']}"
     	);
@@ -919,7 +919,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.withdrawal',
+    		'table_name' => 'withdrawal',
 
     		'where' => "id = {$id}",
 
@@ -942,7 +942,7 @@ class DownloadAction extends CommonAction {
 
 	    		$params = array(
 
-	    			'table_name' => 'telegram.member',
+	    			'table_name' => 'member',
 
 	    			'where' => "uid = {$member_find['uid']}",
 
@@ -985,7 +985,7 @@ class DownloadAction extends CommonAction {
 			//存入流水
 			$params = array(
 
-				'table_name' => 'telegram.money_change',
+				'table_name' => 'money_change',
 
 				'data' => $money_change_data
 			);
@@ -1036,7 +1036,7 @@ class DownloadAction extends CommonAction {
 
         $params = array(
 
-            'table_name' => 'telegram.withdrawal',
+            'table_name' => 'withdrawal',
 
             'where' => $where." AND (status = 0 OR status = 2)",
 
@@ -1116,7 +1116,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 1",
 
@@ -1147,7 +1147,7 @@ class DownloadAction extends CommonAction {
 			//获取该订单商品列表 order_item_name
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$value['user_id']}' AND status = 1"
 
@@ -1165,7 +1165,7 @@ class DownloadAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.order_items',
+				'table_name' => 'order_items',
 
 				'where' => "order_id = '{$value['id']}'"
 
@@ -1223,7 +1223,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 2",
 
@@ -1254,7 +1254,7 @@ class DownloadAction extends CommonAction {
 			//获取该订单商品列表 order_item_name
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$value['user_id']}' AND status = 1"
 
@@ -1272,7 +1272,7 @@ class DownloadAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.order_items',
+				'table_name' => 'order_items',
 
 				'where' => "order_id = '{$value['id']}'"
 
@@ -1331,7 +1331,7 @@ class DownloadAction extends CommonAction {
 
     	$params = array(
 
-    		'table_name' => 'telegram.orders',
+    		'table_name' => 'orders',
 
     		'where' => $where ." AND is_del = 0 AND status = 2",
 
@@ -1362,7 +1362,7 @@ class DownloadAction extends CommonAction {
 			//获取该订单商品列表 order_item_name
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$value['user_id']}' AND status = 3"
 
@@ -1380,7 +1380,7 @@ class DownloadAction extends CommonAction {
 
 			$params = array(
 
-				'table_name' => 'telegram.order_items',
+				'table_name' => 'order_items',
 
 				'where' => "order_id = '{$value['id']}'"
 
@@ -1416,7 +1416,7 @@ class DownloadAction extends CommonAction {
     // {
     // 	$params = array(
 
-    // 		'table_name' => 'telegram.withdrawal',
+    // 		'table_name' => 'withdrawal',
 
     // 		'where' => "status = 0 OR status = 2",
 

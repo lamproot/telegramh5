@@ -53,7 +53,7 @@
 				//更新用户资料
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$uid} AND status = 1",
 
@@ -73,7 +73,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$uid}' AND status = 1"
 
@@ -130,7 +130,7 @@
 				//更新用户资料
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "uid = {$uid} AND status = 1",
 

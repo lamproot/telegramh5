@@ -39,13 +39,16 @@
 			//获取code信息
 			$params = array(
 
-				'table_name' => 'telegram.codes',
+				'table_name' => 'codes',
 
-				'where' => "1"
+				'where' => "code = '{$code}'"
 
 			);
 
 	    	$codes = $this -> model -> my_find($params);
+
+			echo json_encode($codes);
+			echo $code;exit;
 			if (!$codes) {
 				$this -> _back('code数据获取失败');
 			}
@@ -53,7 +56,7 @@
 			//获取机器人信息
 			$params = array(
 
-				'table_name' => 'telegram.chat_bot',
+				'table_name' => 'chat_bot',
 
 				'where' => "chat_id = {$codes['chat_id']}"
 
@@ -67,7 +70,7 @@
 			//获取活动信息
 			$params = array(
 
-				'table_name' => 'telegram.group_activity',
+				'table_name' => 'group_activity',
 
 				'where' => "chat_id = {$codes['chat_id']}"
 
@@ -102,7 +105,7 @@
 		   //获取code信息
 		   $params = array(
 
-			   'table_name' => 'telegram.codes',
+			   'table_name' => 'codes',
 
 			   'where' => "code = '{$code}'"
 
@@ -116,7 +119,7 @@
 		   //获取机器人信息
 		   $params = array(
 
-			   'table_name' => 'telegram.chat_bot',
+			   'table_name' => 'chat_bot',
 
 			   'where' => "chat_id = {$codes['chat_id']}"
 
@@ -130,7 +133,7 @@
 		   //获取活动信息
 		   $params = array(
 
-			   'table_name' => 'telegram.group_activity',
+			   'table_name' => 'group_activity',
 
 			   'where' => "chat_id = {$codes['chat_id']}"
 
@@ -144,7 +147,7 @@
 		   //获取成功邀请人数
 		   $params = array(
 
-			   'table_name' => 'telegram.codes',
+			   'table_name' => 'codes',
 
 			   'where' => "parent_code = '{$code}'"
 

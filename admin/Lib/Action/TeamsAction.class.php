@@ -48,7 +48,7 @@
 				//查询用户手机号是否注册 查询用户编号是否注册
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'where' => "usernumber = '{$_POST['usernumber']}'"
 
@@ -135,7 +135,7 @@
 				//添加用户资料
 				$params = array(
 
-					'table_name' => 'telegram.member',
+					'table_name' => 'member',
 
 					'data' => $data
 				);
@@ -167,7 +167,7 @@
 
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "uid = '{$_SESSION['Rongzi']['admin']['id']}'"
 
@@ -222,7 +222,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$uid}' AND status = 1"
 
@@ -254,7 +254,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.user_address',
+				'table_name' => 'user_address',
 
 				'data' => $address_data
 
@@ -289,7 +289,7 @@
 			//查询用户资料数据
  			$params = array(
 
- 				'table_name' => 'telegram.member',
+ 				'table_name' => 'member',
 
  				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -323,7 +323,7 @@
  			//查询用户资料数据
   			$params = array(
 
-  				'table_name' => 'telegram.member',
+  				'table_name' => 'member',
 
   				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -357,7 +357,7 @@
 			//查询用户资料数据
    			$params = array(
 
-   				'table_name' => 'telegram.member',
+   				'table_name' => 'member',
 
    				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -393,7 +393,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -425,7 +425,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -474,7 +474,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "usernumber = '{$usernumber}' AND status = 1 AND isbill IN (1,2,3)"
 
@@ -507,7 +507,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "usernumber = '{$usernumber}' AND status = 1 AND isbill IN (1,2,3)"
 
@@ -539,7 +539,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "usernumber = '{$usernumber}' AND status = 1"
 
@@ -585,7 +585,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$uid}'",
 
@@ -641,7 +641,7 @@
 			//更新用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "uid = '{$uid}' AND status = 1",
 
@@ -655,7 +655,7 @@
 
 				// $params = array(
 				//
-				// 	'table_name' => 'telegram.member',
+				// 	'table_name' => 'member',
 				//
 				// 	'where' => "uid = {$uid}",
 				//
@@ -698,7 +698,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "status = 1 AND uid = {$uid}"
 			);
@@ -764,7 +764,7 @@
 					//获取三级下的关系
 					$params = array(
 
-						'table_name' => 'telegram.member',
+						'table_name' => 'member',
 
 						'where' => "status = 1 AND parentid = {$value['uid']} AND parentnumber = '{$value['usernumber']}'"
 					);
@@ -803,7 +803,7 @@
 						//获取四级下的关系
 						$params = array(
 
-							'table_name' => 'telegram.member',
+							'table_name' => 'member',
 
 							'where' => "status = 1 AND parentid = {$cvalue['uid']} AND parentnumber = '{$cvalue['usernumber']}'"
 						);
@@ -980,7 +980,7 @@
 			//查询用户资料数据
 			$params = array(
 
-				'table_name' => 'telegram.achievement_log',
+				'table_name' => 'achievement_log',
 
 				'where' => "uid = '{$uid}' AND created_at > ".strtotime(date('Y-m-d', time()))." AND created_at < ".time()
 
@@ -1036,7 +1036,7 @@
 		{
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "status = 1 AND uid = 1"
 			);
@@ -1047,7 +1047,7 @@
 
 				// $params = array(
 				//
-				// 	'table_name' => 'telegram.member',
+				// 	'table_name' => 'member',
 				//
 				// 	'where' => "status = 1 AND tuijianid = {$value['uid']} AND tuijiannumber = '{$value['usernumber']}'"
 				// );
@@ -1122,7 +1122,7 @@
 
 			$params = array(
 
-				'table_name' => 'telegram.member',
+				'table_name' => 'member',
 
 				'where' => "status = 1 AND tuijianid = {$tuijianid} AND uid != {$tuijianid}"
 			);
@@ -1135,7 +1135,7 @@
 
 				// $params = array(
 				//
-				// 	'table_name' => 'telegram.member',
+				// 	'table_name' => 'member',
 				//
 				// 	'where' => "status = 1 AND tuijianid = {$value['uid']}"
 				// );
