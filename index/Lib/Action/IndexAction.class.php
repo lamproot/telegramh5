@@ -36,6 +36,8 @@
 	    {
 
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
+			echo json_encode($_REQUEST);
+			echo $code;exit;
 			//获取code信息
 			$params = array(
 

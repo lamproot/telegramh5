@@ -48,7 +48,6 @@
 				$username = htmlspecialchars($_POST['username']);
 
 				$password = md5(md5(htmlspecialchars($_POST['password'])));
-
 				//查询
 				$params = array(
 
@@ -81,7 +80,7 @@
 
 					$my_save = $this -> model -> my_save($params);
 
-					redirect(__APP__.'/Corps/index', 0);
+					redirect(__APP__.'/ChatBot/index', 0);
 				}
 				else
 				{
