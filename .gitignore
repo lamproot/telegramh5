@@ -9,5 +9,9 @@ docker/
 config/config.ini
 admin/Config/config.php
 index/Config/config.php
-admin/Runtime
-index/Runtime
+admin/Runtime/
+index/Runtime/
+admin/config/
+index/config/
+admin/runtime/
+index/runtime/
