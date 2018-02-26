@@ -41,7 +41,7 @@
 
 				'table_name' => 'codes',
 
-				'where' => "code = '{$code}'"
+				'where' => "1"
 
 			);
 
