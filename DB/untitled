@@ -1,0 +1,33 @@
+# Dump of table zx_news
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `admin`.`operate_script`;
+
+CREATE TABLE `admin`.`operate_script` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `data` varchar(100) NOT NULL DEFAULT '' COMMENT '执行最后数据 好友生日 服务发布 用户入驻 超级名片完善度未完善的',
+  `lasttime` int(10) NOT NULL DEFAULT 0 COMMENT '最后执行时间',
+  `type` tinyint(10) NOT NULL DEFAULT 0 COMMENT '脚本类型 1-用户生日 2-好友生日 3-发布服务 4-好友入驻(新用户注册) 5-同事入驻 6-完善度不足的用户 7-超级名片被浏览',
+  `content` text NOT NULL DEFAULT '' COMMENT '脚本文案相关',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='运营脚本信息配置';
+
+
+ALTER TABLE ADD isclose tinyint(4) NOT NULL DEFAULT 0 COMMENT ‘是否关闭脚本’;
+
+
+【版本号】
+522a525
+【功能和改动】
+ 1.更新安卓补丁包接口修改
+
+【涉及依赖项】
+无
+
+【配置文件更改】
+   无  
+【上线步骤】
+    测试环境测试完成部署线上环境
+【checklist】
+ 权渤雄
+ 检查功能是否正确

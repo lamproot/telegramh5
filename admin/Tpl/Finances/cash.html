@@ -1,0 +1,223 @@
+<include file="public:header" />
+<link href="__PUBLIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<ol class="breadcrumb">
+			<a href="__URL__"><i class="fa fa-home"></i></a>
+            <li>
+                <a href="__URL__">首页</a>
+            </li>
+            <li>
+                <a>财务管理</a>
+            </li>
+            <li>
+                <strong>提现申请</strong>
+            </li>
+        </ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated">
+	<div class="row">
+        <div class="col-lg-12">
+        	<div class="row">
+                    <div class="col-sm-4 m-b-xs">
+                        <p>
+                            <a type="button" class="btn btn-w-m btn-danger" href="__APP__/Download/cash?start={$_GET['start']}&stop={$_GET['stop']}&usernumber={$_GET['usernumber']}">导出数据</a>
+                        </p>
+                    </div>
+                    <div class="col-sm-8 text-right">
+
+                            <form role="form" class="form-inline" action="" method="get">
+                                <div class="form-group ">
+                                    <input type="start" name="start" placeholder="开始时间" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" value="{$_GET['start']}">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input type="stop" name="stop" placeholder="结束时间" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" value="{$_GET['stop']}">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" placeholder="请输入销费商编码" class="form-control" name="usernumber" value="{$_GET['usernumber']}">
+                                </div>
+
+
+                                <button class="btn btn-white" type="submit" style="margin-top:5px;">搜索</button>
+                            </form>
+                    </div>
+                </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content" style="border:0">
+					<h3 class="text-center">提现申请</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover no-margins table-bordered table-striped">
+                            <thead>
+                                <tr>
+									<th>#</th>
+                                    <th>提现账户编号</th>
+                                    <th>提现账户姓名</th>
+                                    <th>银行账号</th>
+                                    <th>开户银行</th>
+									<th>开户姓名</th>
+									<th>提取金额</th>
+									<th>手续费</th>
+									<th>应到金额</th>
+									<th>申请时间</th>
+									<th>提现操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<foreach name="result['result']" item="item">
+	                                <tr>
+										<td>
+	                                        <input type="checkbox" class="i-checks" name="input[]" value="{$item.id}">
+	                                    </td>
+										<td>{$item.usernumber}</td>
+										<td>{$item.realname}</td>
+										<td>{$item.banknumber}</td>
+										<td>{$item.bankname}</td>
+										<td>{$item.bankholder}</td>
+										<td>￥{$item.money}</td>
+										<td>￥{$item.fee}</td>
+										<td>￥{$item['money'] - $item['fee']}</td>
+										<td>{$item.createtime|date="Y-m-d H:i:s",###}</td>
+										<td><a href="__APP__/Finances/cash_action/id/{$item.id}/type/agreen" class="btn" onclick="return confirm('确认同意吗？')">同意</a><a href="__APP__/Finances/cash_action/id/{$item.id}/type/refuse" class="btn" onclick="return confirm('确认拒绝吗？')">拒绝</a></td>
+	                                </tr>
+	                            </foreach>
+                            </tbody>
+
+
+                        </table>
+                        <if condition="$result['result'] neq ''">
+
+							<a class="btn btn-info chkall" id="check_revsern">全选</a> <a class="btn btn-info ok_all">批量同意</a>
+
+                        </if>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	<div class="row">
+	    <div class="col-sm-12 text-right">
+	        <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+	            <ul class="pagination">
+	                {$result.page}
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+
+</div>
+<include file="public:footer" />
+<!-- iCheck -->
+<script src="__PUBLIC__/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+   $(document).ready(function () {
+	   $('.i-checks').iCheck({
+		   checkboxClass: 'icheckbox_square-green',
+		   radioClass: 'iradio_square-green',
+	   });
+
+
+
+	//    $('.select_all').click(function(){
+	//
+	//    });
+
+	$('.get_billcenternumber').click(function(){
+		var tuijiannumber = $('.tuijiannumber').val();
+
+		$.ajax({
+			url: "__APP__/Teams/get_billcenternumber",
+			type: "get",
+			data: {
+				usernumber: tuijiannumber
+			},
+			success: function (resdata) {
+				resdata = JSON.parse(resdata);
+				if (resdata.success == true) {
+					if(resdata.data == 0){
+						alert("用户代理商编号获取失败,请重新输入用户编号");
+					}else{
+						$('.billcenternumber').val(resdata.data);
+					}
+				} else {
+					alert("用户代理商编号获取错误 请重试");
+				}
+			}
+		});
+	});
+
+
+	$("#check_revsern").click(function(){
+		$('.i-checks').iCheck('check');
+	});
+
+
+
+	$('.ok_all').click(function(){
+		$('.i-checks:checked').each(function(){
+			//alert($(this).val())
+			$.ajax({
+				url: "__APP__/Finances/ajax_cash_action",
+				type: "post",
+				data: {
+					id: $(this).val(),
+					type: 'agreen'
+				},
+				success: function (resdata) {
+
+
+					if (resdata) {
+					} else {
+						console.log(resdata)
+						//alert("用户代理商编号获取错误 请重试");
+					}
+				}
+			});
+
+			$(this).parent().parent().parent().empty()
+		});
+
+		// $.ajax({
+		// 	url: "__APP__/Finances/ajax_cash_action",
+		// 	type: "get",
+		// 	data: {
+		// 		id: $(this).val()
+		// 	},
+		// 	success: function (resdata) {
+		// 		resdata = JSON.parse(resdata);
+		// 		if (resdata.success == true) {
+		// 			if(resdata.data == 0){
+		// 				alert("用户代理商编号获取失败,请重新输入用户编号");
+		// 			}else{
+		// 				$('.billcenternumber').val(resdata.data);
+		// 			}
+		// 		} else {
+		// 			alert("用户代理商编号获取错误 请重试");
+		// 		}
+		// 	}
+		// });
+	});
+
+   });
+</script>
+
+<script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+$('.form_datetime').datetimepicker({
+     language:  'zh-CN',
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+ });
+</script>

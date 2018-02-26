@@ -1,0 +1,13 @@
+idea/*
+*.log
+GPATH
+GRTAGS
+GTAGS
+.DS_Store
+vendor/
+docker/
+config/config.ini
+admin/Config/config.php
+index/Config/config.php
+admin/Runtime
+index/Runtime
