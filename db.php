@@ -1,7 +1,7 @@
 <?php
 //1.建立连接
-        //$connect=mysqli_connect('localhost','root','root','telegram','3306');
-		$connect=mysqli_connect('18.218.250.89','telegram','telegram','telegram','3306');
+        $connect=mysqli_connect('localhost','root','root','telegram','3306');
+	//	$connect=mysqli_connect('18.218.250.89','telegram','telegram','telegram','3306');
     //2.定义sql语句
         $sql='select * from codes';
         mysqli_query($connect,'set names utf8');
