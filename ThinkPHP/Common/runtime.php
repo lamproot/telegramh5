@@ -245,5 +245,6 @@ function build_dir_secure($dirs='') {
 load_runtime_file();
 // 记录加载文件时间
 G('loadTime');
+echo "666";
 // 执行入口
 Think::Start();
