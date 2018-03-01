@@ -105,12 +105,15 @@ function load_runtime_file() {
     echo "444";
     // 检查项目目录结构 如果不存在则自动创建
     if(!is_dir(LIB_PATH)) {
+        echo "LIB_PATH";
         // 创建项目目录结构
         build_app_dir();
     }elseif(!is_dir(CACHE_PATH)){
         // 检查缓存目录
+        echo "CACHE_PATH";
         check_runtime();
     }elseif(APP_DEBUG){
+        echo "APP_DEBUG";
         // 调试模式切换删除编译缓存
         if(is_file(RUNTIME_FILE))   unlink(RUNTIME_FILE);
     }
@@ -124,7 +127,9 @@ function check_runtime() {
         header('Content-Type:text/html; charset=utf-8');
         exit('目录 [ '.RUNTIME_PATH.' ] 不可写！');
     }
+    echo "4444";
     mkdir(CACHE_PATH);  // 模板缓存目录
+    echo "555";
     if(!is_dir(LOG_PATH))   mkdir(LOG_PATH);    // 日志目录
     if(!is_dir(TEMP_PATH))  mkdir(TEMP_PATH);   // 数据缓存目录
     if(!is_dir(DATA_PATH))  mkdir(DATA_PATH);   // 数据文件目录
