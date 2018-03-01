@@ -36,7 +36,7 @@ class App {
         load_ext_file();
         // URL调度
         Dispatcher::dispatch();
-echo "99999";
+
         // 定义当前请求的系统常量
         define('NOW_TIME',      $_SERVER['REQUEST_TIME']);
         define('REQUEST_METHOD',$_SERVER['REQUEST_METHOD']);
@@ -82,7 +82,7 @@ echo "99999";
             define('THEME_PATH',   TMPL_PATH.$group.(THEME_NAME?THEME_NAME.'/':''));
             define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').basename(TMPL_PATH).'/'.$group.(THEME_NAME?THEME_NAME.'/':''));
         }
-echo "1010101010";
+
         C('CACHE_PATH',CACHE_PATH.$group);
         //动态配置 TMPL_EXCEPTION_FILE,改为绝对地址
         C('TMPL_EXCEPTION_FILE',realpath(C('TMPL_EXCEPTION_FILE')));
@@ -197,7 +197,6 @@ echo "1010101010";
     static public function run() {
         // 项目初始化标签
         tag('app_init');
-        echo "88888888";
         App::init();
         // 项目开始标签
         tag('app_begin');

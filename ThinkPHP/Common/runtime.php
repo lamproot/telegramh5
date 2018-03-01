@@ -16,12 +16,11 @@
  * @author   liu21st <liu21st@gmail.com>
  */
 defined('THINK_PATH') or exit();
-echo "THINK_PATH";
 if(version_compare(PHP_VERSION,'5.2.0','<'))  die('require PHP > 5.2.0 !');
 
 //  版本信息
 define('THINK_VERSION', '3.1.3');
-echo "THINK_VERSION";
+
 //   系统信息
 if(version_compare(PHP_VERSION,'5.4.0','<')) {
     ini_set('magic_quotes_runtime',0);
@@ -32,7 +31,7 @@ if(version_compare(PHP_VERSION,'5.4.0','<')) {
 define('IS_CGI',substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
 define('IS_WIN',strstr(PHP_OS, 'WIN') ? 1 : 0 );
 define('IS_CLI',PHP_SAPI=='cli'? 1   :   0);
-echo "IS_CLI";
+
 // 项目名称
 defined('APP_NAME') or define('APP_NAME', basename(dirname($_SERVER['SCRIPT_FILENAME'])));
 
@@ -63,7 +62,7 @@ if(!IS_CLI) {
     define('URL_REWRITE',     2);   //REWRITE模式
     define('URL_COMPAT',      3);   // 兼容模式
 }
-echo "CORE_PATH";
+
 // 路径设置 可在入口文件中重新定义 所有路径常量都必须以/ 结尾
 defined('CORE_PATH')    or define('CORE_PATH',      THINK_PATH.'Lib/'); // 系统核心类库目录
 defined('EXTEND_PATH')  or define('EXTEND_PATH',    THINK_PATH.'Extend/'); // 系统扩展目录
@@ -84,10 +83,9 @@ defined('CACHE_PATH')   or define('CACHE_PATH',     RUNTIME_PATH.'Cache/'); // �
 
 // 为了方便导入第三方类库 设置Vendor目录到include_path
 set_include_path(get_include_path() . PATH_SEPARATOR . VENDOR_PATH);
-echo "xxx";
+
 // 加载运行时所需要的文件 并负责自动目录生成
 function load_runtime_file() {
-    echo "333";
     // 加载系统基础函数库
     require THINK_PATH.'Common/common.php';
     // 读取核心文件列表
@@ -102,18 +100,15 @@ function load_runtime_file() {
     }
     // 加载系统类库别名定义
     alias_import(include THINK_PATH.'Conf/alias.php');
-    echo "444";
+
     // 检查项目目录结构 如果不存在则自动创建
     if(!is_dir(LIB_PATH)) {
-        echo "LIB_PATH";
         // 创建项目目录结构
         build_app_dir();
     }elseif(!is_dir(CACHE_PATH)){
         // 检查缓存目录
-        echo "CACHE_PATH";
         check_runtime();
     }elseif(APP_DEBUG){
-        echo "APP_DEBUG";
         // 调试模式切换删除编译缓存
         if(is_file(RUNTIME_FILE))   unlink(RUNTIME_FILE);
     }
@@ -127,9 +122,7 @@ function check_runtime() {
         header('Content-Type:text/html; charset=utf-8');
         exit('目录 [ '.RUNTIME_PATH.' ] 不可写！');
     }
-    echo "4444";
     mkdir(CACHE_PATH);  // 模板缓存目录
-    echo "555";
     if(!is_dir(LOG_PATH))   mkdir(LOG_PATH);    // 日志目录
     if(!is_dir(TEMP_PATH))  mkdir(TEMP_PATH);   // 数据缓存目录
     if(!is_dir(DATA_PATH))  mkdir(DATA_PATH);   // 数据文件目录
@@ -245,7 +238,5 @@ function build_dir_secure($dirs='') {
 load_runtime_file();
 // 记录加载文件时间
 G('loadTime');
-echo "666";
 // 执行入口
 Think::Start();
-echo "777";

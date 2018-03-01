@@ -86,7 +86,7 @@ class Cache {
      * @param string $key 队列名
      * @return mixed
      */
-    // 
+    //
     protected function queue($key) {
         static $_handler = array(
             'file'  =>  array('F','F'),
@@ -114,7 +114,7 @@ class Cache {
         }
         return $fun[1]($queue_name,$value);
     }
-    
+
     public function __call($method,$args){
         //调用缓存类型自己的方法
         if(method_exists($this->handler, $method)){

@@ -36,7 +36,6 @@ class Think {
         Think::buildApp();         // 预编译项目
         //[/RUNTIME]
         // 运行应用
-        echo "777777";
         App::run();
         return ;
     }
