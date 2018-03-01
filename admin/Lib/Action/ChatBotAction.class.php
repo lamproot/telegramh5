@@ -112,7 +112,7 @@
 	    		{
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://9b97d916.ngrok.io/index.php/Callback/run?t=".time()];
+					$param = ["url" => "https://048dc25f.ngrok.io/callback.php/Callback/run?t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}
@@ -187,7 +187,7 @@
 	    		{
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://9b97d916.ngrok.io/index.php/Callback/run?t=".time()];
+					$param = ["url" => "https://048dc25f.ngrok.io/callback.php/Callback/run?t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}

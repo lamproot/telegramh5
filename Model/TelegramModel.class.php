@@ -36,8 +36,19 @@
             //获取相关TOKEN 数据
             if (isset($param['chat_id'])) {
                 $token = $this->gettoken($param['chat_id']);
-                $url = 'https://api.telegram.org/bot' . $token . '/' . $method;
+                if ($token) {
+                    $url = 'https://api.telegram.org/bot' . $token . '/' . $method;
+                }else{
+                    $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
+                }
             }
+
+            if (isset($_SESSION['token']) && !empty($_SESSION['token'])) {
+                $url = 'https://api.telegram.org/bot' . $_SESSION['token'] . '/' . $method;
+            }
+
+            // $errorModel = new ErrorModel;
+            // $errorModel->sendError (MASTER, '$url ' . $url . 'chat_id' . $param['chat_id']);
 
             /** 初始化变量 */
             // if ($this->token === NULL) {
@@ -57,6 +68,8 @@
                     $errorModel->sendError (MASTER, '尝试调用 ' . $method . " 时出现问题，参数表如下：\n" . print_r ($param, true) . "\n\n返回结果：\n" . print_r ($ret, true));
                 }
             }
+
+            $_SESSION['token'] = "";
 
             /** 返回 */
             return $ret;

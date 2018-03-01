@@ -101,6 +101,25 @@
 		    	$my_add = $this -> model -> my_add($params);
 
 				if ($my_add) {
+					//添加机器人code
+					$botcode_data['from_id'] = 1;
+					$botcode_data['from_username'] = "机器人账号";
+					$botcode_data['eth'] = "0000000000000000";
+					$botcode_data['code'] = $this->short_md5(md5($chat_id."_".$botcode_data['eth']."_telegram"));
+					$botcode_data['status'] = 3;
+					$botcode_data['created_at'] = time();
+					$botcode_data['updated_at'] = time();
+					$botcode_data['chat_id'] = $chat_id;
+
+					$botcode_params = array(
+
+			    		'table_name' => 'codes',
+
+			    		'data' => $botcode_data
+			    	);
+
+			    	$botcode_add = $this -> model -> my_add($botcode_params);
+
 			    	$result = $this -> model -> my_find($group_params);
 				}
 			}
@@ -321,4 +340,16 @@
 	    		$this -> _back('标注失败 请稍后重试');
 	    	}
 	    }
+
+
+
+		/**
+		 * 返回16位md5值
+		 *
+		 * @param string $str 字符串
+		 * @return string $str 返回16位的字符串
+		 */
+		function short_md5($str) {
+			return substr(md5($str), 8, 16);
+		}
 	}

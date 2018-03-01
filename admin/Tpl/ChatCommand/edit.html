@@ -37,9 +37,21 @@
 
                 </div>
                 <div class="ibox-content">
-					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__">
+					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__"  enctype="multipart/form-data">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">*cmd:</label>
+							<label class="col-sm-3 control-label">命令类型:</label>
+							<div class="col-sm-6">
+							    <select class="form-control" name="type">
+                                    <option value="1" <if condition="$result['type'] == 1">selected="selected"</if>>普通回复</option>
+                                    <option value="2" <if condition="$result['type'] == 2">selected="selected"</if>>普通回复(Code码)</option>
+                                    <option value="3" <if condition="$result['type'] == 3">selected="selected"</if>>图片文字回复</option>
+                                    <option value="4" <if condition="$result['type'] == 4">selected="selected"</if>>文件回复</option>
+                                </select>
+                                <p>命令类型 1.普通回复  2.图片文字回复 3.文件回复（gif, pdf and zip files.）</p>
+							</div>
+						</div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">*命令:</label>
                             <div class="col-sm-6">
                                 <input id="cmd" name="cmd" value="{$result['cmd']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                                 <input type="hidden" name="form_key" value="yes" />
@@ -54,12 +66,12 @@
                             </div>
                         </div> -->
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="col-sm-3 control-label">类型:</label>
                             <div class="col-sm-6">
                                 <input id="type" name="type" value="{$result['type']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">回复内容:</label>
@@ -68,6 +80,14 @@
 
                             </div>
                         </div>
+
+                        <div class="form-group">
+							<label class="col-sm-3 control-label">文件(或图片)上传:</label>
+							<div class="col-sm-6">
+								<input id="file" name="file" class="form-control" type="file" value="">
+                                <p>{$result['url']}</p>
+							</div>
+						</div>
 
 
                         <div class="form-group">

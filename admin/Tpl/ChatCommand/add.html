@@ -37,7 +37,19 @@
 
                 </div>
                 <div class="ibox-content">
-					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__">
+					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__"  enctype="multipart/form-data">
+                        <div class="form-group">
+							<label class="col-sm-3 control-label">命令类型:</label>
+							<div class="col-sm-6">
+							    <select class="form-control" name="type">
+                                    <option value="1">普通回复</option>
+                                    <option value="2">普通回复(Code码)</option>
+                                    <option value="3">图片文字回复</option>
+                                    <option value="4">文件回复</option>
+                                </select>
+                                <p>命令类型 1.普通回复  2.图片文字回复 3.文件回复（gif, pdf and zip files.）</p>
+							</div>
+						</div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">*命令:</label>
@@ -45,16 +57,22 @@
                                 <input id="cmd" name="cmd" placeholder="/xxx" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                                 <input type="hidden" name="form_key" value="yes" />
                                 <input type="hidden" name="chat_id" value="{$_GET['chat_id']}" />
-                                <input type="hidden" name="type" value="1" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">回复内容:</label>
                             <div class="col-sm-6">
                                 <textarea name="content" rows="8" cols="80" id="content" name="content" class="form-control" aria-required="true" aria-invalid="true" class="error"></textarea>
-
                             </div>
                         </div>
+
+                        <div class="form-group">
+							<label class="col-sm-3 control-label">文件(或图片)上传:</label>
+							<div class="col-sm-6">
+								<input id="file" name="file" class="form-control" type="file" value="">
+							</div>
+						</div>
+
 <!--
 						<div class="form-group">
 							<label class="col-sm-3 control-label">master_id:</label>

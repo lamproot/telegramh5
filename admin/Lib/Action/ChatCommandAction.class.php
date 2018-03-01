@@ -83,11 +83,46 @@
 	    		$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
 				$data['chat_id'] = isset($_POST['chat_id']) ? htmlspecialchars($_POST['chat_id']) : $this -> _back('请填写chat_id');
 				$data['content'] = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
-				$data['type'] = 1;
+				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
+
+
+				if (intval($data['type']) === 3) {
+					//文件上传处理
+					$logo = $this -> _upload_pic('command');
+
+					if ($logo['status'] == 1)
+					{
+						$data['url'] = $logo['msg'];
+					}
+					elseif ($logo['status'] == 0)
+					{
+						$this -> _back($logo['msg']);
+					}
+
+					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
+				}
+
+				if (intval($data['type']) === 4) {
+					//文件上传处理
+					$logo = $this -> _upload_file('command_file');
+
+					if ($logo['status'] == 1)
+					{
+						$data['url'] = $logo['msg'];
+					}
+					elseif ($logo['status'] == 0)
+					{
+						$this -> _back($logo['msg']);
+					}
+
+					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
+				}
+
+
+
 	    		$data['created_at'] = time();
 	    		$data['updated_at'] = time();
 	    		$data['is_del'] = 0;
-
 	    		$params = array(
 
 	    			'table_name' => 'chat_command',
@@ -152,9 +187,43 @@
 				$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
 				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : $this -> _back('请填写type');
 				$data['content'] = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
-
-
 	    		$data['updated_at'] = time();
+
+				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
+
+
+				if (intval($data['type']) === 3) {
+					//文件上传处理
+					$logo = $this -> _upload_pic('command');
+
+					if ($logo['status'] == 1)
+					{
+						$data['url'] = $logo['msg'];
+					}
+					elseif ($logo['status'] == 0)
+					{
+						$this -> _back($logo['msg']);
+					}
+
+					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
+				}
+
+				if (intval($data['type']) === 4) {
+					//文件上传处理
+					$logo = $this -> _upload_file('command_file');
+
+					if ($logo['status'] == 1)
+					{
+						$data['url'] = $logo['msg'];
+					}
+					elseif ($logo['status'] == 0)
+					{
+						$this -> _back($logo['msg']);
+					}
+
+					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
+				}
+
 
 	    		$params = array(
 
