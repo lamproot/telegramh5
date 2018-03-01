@@ -87,6 +87,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . VENDOR_PATH);
 echo "xxx";
 // 加载运行时所需要的文件 并负责自动目录生成
 function load_runtime_file() {
+    echo "333";
     // 加载系统基础函数库
     require THINK_PATH.'Common/common.php';
     // 读取核心文件列表
@@ -101,7 +102,7 @@ function load_runtime_file() {
     }
     // 加载系统类库别名定义
     alias_import(include THINK_PATH.'Conf/alias.php');
-
+    echo "444";
     // 检查项目目录结构 如果不存在则自动创建
     if(!is_dir(LIB_PATH)) {
         // 创建项目目录结构
