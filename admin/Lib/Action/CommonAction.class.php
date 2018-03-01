@@ -100,9 +100,14 @@
 		{
 
 			import('ORG.Net.UploadFile');
-			$width = '1000,654,600,130';
-			$height = '570,768,400,130';
-			$prefix = 'b_,m_,s_,l_';
+			// $width = '1000,654,600,130';
+			// $height = '570,768,400,130';
+			// $prefix = 'b_,m_,s_,l_';
+
+			$width = '';
+			$height = '';
+			$prefix = '';
+
 	        $upload = new UploadFile(); // 实例化上传类
 	        $upload->maxSize =10000000; // 设置附件上传大小
 	        $upload->savePath = '../Uploads/images/' . $path . '/'; // 设置附件上传目录
@@ -220,15 +225,15 @@
 		*
 		* 返回值：path路径 msg名字  status上传状态
 		*/
-		public function _upload_app($path='others')
+		public function _upload_file($path='others')
 		{
 
 			import('ORG.Net.UploadFile');
 
 	        $upload = new UploadFile(); // 实例化上传类
-	        $upload->maxSize =10000000; // 设置附件上传大小
-	        $upload->savePath = './Uploads/app/' . $path . '/'; // 设置附件上传目录
-	        $upload->allowExts = array('apk', 'ipa'); // 设置附件上传类型
+	        $upload->maxSize =50000000; // 设置附件上传大小
+	        $upload->savePath = '../Uploads/file/' . $path . '/'; // 设置附件上传目录
+	        $upload->allowExts = array('apk', 'ipa', 'zip', 'pdf', 'gif'); // 设置附件上传类型
 	        // $upload->saveRule = 'time';
 	        $upload->uploadReplace = true; //是否存在同名文件是否覆盖
 	        //$upload->thumbRemoveOrigin = true; //上传图片后删除原图片

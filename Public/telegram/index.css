@@ -3,7 +3,8 @@ body {
     font-size: 18px;
     color: #fff;
     min-height: 100vh;
-    background-image: radial-gradient(circle at 5% 8%,  #21d4fd 0%, #b721ff 100%);
+    background-image: radial-gradient(circle at 5% 8%,  #000000 0%, #d47cfd 100%);
+    /* background-image: radial-gradient(circle at 5% 8%,  #21d4fd 0%, #b721ff 100%); */
 }
 a, a:hover, a:active {
     color: #fff;

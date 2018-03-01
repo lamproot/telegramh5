@@ -12,18 +12,34 @@
                 //消息调试
                 // $errorModel = new ErrorModel;
                 // $errorModel->sendError (MASTER, $commandInfo[0]['content']);
-                //type =  1 文字回复  2 code 码回复 3 图片文字回复
-                $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : "";
-                if ($message) {
-                    $this->telegram->sendMessage (
-                        $chat['id'],
-                        $message,
-                        $message_id
-                    );
+                if ($commandInfo && $commandInfo[0] && $commandInfo[0]['type']) {
+
+                    //type =  1 文字回复  2 code 码回复 3 图片文字回复 4 图片文字回复
+                    if ($commandInfo[0]['type'] == 1 || $commandInfo[0]['type'] == 1) {
+                        $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : "";
+                        if ($message) {
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+                        }
+                    }
+
+                    if ($commandInfo[0]['type'] == 3) {
+                        $copyright = $commandInfo[0]['content'] ? $commandInfo[0]['content'] : "";
+                        $url = $commandInfo[0]['url'] ? $commandInfo[0]['url'] : "";
+                        if ($url) {
+                            // $this->telegram->sendMessage (
+                            //     $chat['id'],
+                            //     $message,
+                            //     $message_id
+                            // );
+                            $this->telegram->sendPhoto ($chat['id'], $url, $copyright, $message_id);
+                        }
+                    }
+
                 }
-
-
-
             }
         }
 
