@@ -7,5 +7,6 @@ define('APP_NAME','index');
 	define('APP_PATH','./index/');
 	define('APP_DEBUG',true);
 	echo "1212";
+	print_r($_SERVER) ;
 	require './ThinkPHP/ThinkPHP.php';
 ?>
