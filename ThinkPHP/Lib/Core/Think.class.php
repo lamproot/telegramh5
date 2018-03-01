@@ -36,6 +36,7 @@ class Think {
         Think::buildApp();         // 预编译项目
         //[/RUNTIME]
         // 运行应用
+        echo "777777";
         App::run();
         return ;
     }
@@ -47,7 +48,7 @@ class Think {
      * @return string
      */
     static private function buildApp() {
-        
+
         // 读取运行模式
         if(defined('MODE_NAME')) { // 读取模式的设置
             $mode   = include MODE_PATH.strtolower(MODE_NAME).'.php';
@@ -120,11 +121,11 @@ class Think {
         if(isset($mode['alias'])) {
             $alias = is_array($mode['alias'])?$mode['alias']:include $mode['alias'];
             alias_import($alias);
-            if(!APP_DEBUG) $compile .= 'alias_import('.var_export($alias,true).');';               
+            if(!APP_DEBUG) $compile .= 'alias_import('.var_export($alias,true).');';
         }
-     
+
         // 加载项目别名定义
-        if(is_file(CONF_PATH.'alias.php')){ 
+        if(is_file(CONF_PATH.'alias.php')){
             $alias = include CONF_PATH.'alias.php';
             alias_import($alias);
             if(!APP_DEBUG) $compile .= 'alias_import('.var_export($alias,true).');';
@@ -294,7 +295,7 @@ class Think {
             break;
       }
     }
-    
+
     // 致命错误捕获
     static public function fatalError() {
         // 保存日志记录
@@ -305,7 +306,7 @@ class Think {
               case E_PARSE:
               case E_CORE_ERROR:
               case E_COMPILE_ERROR:
-              case E_USER_ERROR:  
+              case E_USER_ERROR:
                 ob_end_clean();
                 function_exists('halt')?halt($e):exit('ERROR:'.$e['message']);
                 break;

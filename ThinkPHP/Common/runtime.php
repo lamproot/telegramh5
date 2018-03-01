@@ -248,3 +248,4 @@ G('loadTime');
 echo "666";
 // 执行入口
 Think::Start();
+echo "777";

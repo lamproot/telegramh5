@@ -36,7 +36,7 @@ class App {
         load_ext_file();
         // URL调度
         Dispatcher::dispatch();
-
+echo "99999";
         // 定义当前请求的系统常量
         define('NOW_TIME',      $_SERVER['REQUEST_TIME']);
         define('REQUEST_METHOD',$_SERVER['REQUEST_METHOD']);
@@ -47,7 +47,7 @@ class App {
         define('IS_AJAX',       ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[C('VAR_AJAX_SUBMIT')]) || !empty($_GET[C('VAR_AJAX_SUBMIT')])) ? true : false);
 
         // URL调度结束标签
-        tag('url_dispatch');         
+        tag('url_dispatch');
         // 系统变量安全过滤
         if(C('VAR_FILTERS')) {
             $filters    =   explode(',',C('VAR_FILTERS'));
@@ -78,11 +78,11 @@ class App {
         if(1==C('APP_GROUP_MODE')){ // 独立分组模式
             define('THEME_PATH',   BASE_LIB_PATH.basename(TMPL_PATH).'/'.(THEME_NAME?THEME_NAME.'/':''));
             define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').C('APP_GROUP_PATH').'/'.$group.basename(TMPL_PATH).'/'.(THEME_NAME?THEME_NAME.'/':''));
-        }else{ 
+        }else{
             define('THEME_PATH',   TMPL_PATH.$group.(THEME_NAME?THEME_NAME.'/':''));
             define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').basename(TMPL_PATH).'/'.$group.(THEME_NAME?THEME_NAME.'/':''));
-        }        
-
+        }
+echo "1010101010";
         C('CACHE_PATH',CACHE_PATH.$group);
         //动态配置 TMPL_EXCEPTION_FILE,改为绝对地址
         C('TMPL_EXCEPTION_FILE',realpath(C('TMPL_EXCEPTION_FILE')));
@@ -181,7 +181,7 @@ class App {
                 // 操作方法不是Public 抛出异常
                 throw new ReflectionException();
             }
-        } catch (ReflectionException $e) { 
+        } catch (ReflectionException $e) {
             // 方法调用发生异常后 引导到__call方法处理
             $method = new ReflectionMethod($module,'__call');
             $method->invokeArgs($module,array($action,''));
@@ -197,6 +197,7 @@ class App {
     static public function run() {
         // 项目初始化标签
         tag('app_init');
+        echo "88888888";
         App::init();
         // 项目开始标签
         tag('app_begin');
