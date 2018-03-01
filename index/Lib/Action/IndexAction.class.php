@@ -36,10 +36,10 @@
 	    {
 
 			//INSERT INTO `codes` VALUES  ('1', '-1001249040089', '520439802', '0xf6BC0AAc1fdFAf2CCea054F5978350DC9eFc6E83', 'bf3c1eac97f80c7e', '6666', '3', '0', '1518599007', '')
-			// for ($i=520439802; $i < 520440802; $i++) {
-			// 	echo $i;echo "<br>";
-			// }
-			// exit;
+			for ($i=520439802; $i < 520440802; $i++) {
+				echo $i;echo "<br>";
+			}
+			exit;
 
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
 			//获取code信息
