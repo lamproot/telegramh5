@@ -16,11 +16,12 @@
  * @author   liu21st <liu21st@gmail.com>
  */
 defined('THINK_PATH') or exit();
+echo "THINK_PATH";
 if(version_compare(PHP_VERSION,'5.2.0','<'))  die('require PHP > 5.2.0 !');
 
 //  版本信息
 define('THINK_VERSION', '3.1.3');
-
+echo "THINK_VERSION";
 //   系统信息
 if(version_compare(PHP_VERSION,'5.4.0','<')) {
     ini_set('magic_quotes_runtime',0);
@@ -31,7 +32,7 @@ if(version_compare(PHP_VERSION,'5.4.0','<')) {
 define('IS_CGI',substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
 define('IS_WIN',strstr(PHP_OS, 'WIN') ? 1 : 0 );
 define('IS_CLI',PHP_SAPI=='cli'? 1   :   0);
-
+echo "IS_CLI";
 // 项目名称
 defined('APP_NAME') or define('APP_NAME', basename(dirname($_SERVER['SCRIPT_FILENAME'])));
 
@@ -62,7 +63,7 @@ if(!IS_CLI) {
     define('URL_REWRITE',     2);   //REWRITE模式
     define('URL_COMPAT',      3);   // 兼容模式
 }
-
+echo "CORE_PATH";
 // 路径设置 可在入口文件中重新定义 所有路径常量都必须以/ 结尾
 defined('CORE_PATH')    or define('CORE_PATH',      THINK_PATH.'Lib/'); // 系统核心类库目录
 defined('EXTEND_PATH')  or define('EXTEND_PATH',    THINK_PATH.'Extend/'); // 系统扩展目录
@@ -83,7 +84,7 @@ defined('CACHE_PATH')   or define('CACHE_PATH',     RUNTIME_PATH.'Cache/'); // �
 
 // 为了方便导入第三方类库 设置Vendor目录到include_path
 set_include_path(get_include_path() . PATH_SEPARATOR . VENDOR_PATH);
-
+echo "xxx";
 // 加载运行时所需要的文件 并负责自动目录生成
 function load_runtime_file() {
     // 加载系统基础函数库
@@ -153,7 +154,7 @@ function build_runtime_cache($append='') {
     }
     // 系统行为扩展文件统一编译
     $content .= build_tags_cache();
-    
+
     $alias      = include THINK_PATH.'Conf/alias.php';
     $content   .= 'alias_import('.var_export($alias,true).');';
     // 编译框架默认语言包和配置参数
