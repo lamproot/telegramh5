@@ -4,7 +4,6 @@ GPATH
 GRTAGS
 GTAGS
 .DS_Store
-vendor/
 docker/
 config/config.ini
 admin/Config/config.php
