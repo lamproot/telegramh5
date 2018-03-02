@@ -34,6 +34,7 @@ class DbMysqli extends Db{
                 $this->config['params'] =   '';
             }
         }
+        echo json_encode($this->config );exit;
     }
 
     /**
@@ -47,7 +48,7 @@ class DbMysqli extends Db{
             $this->linkID[$linkNum] = new mysqli($config['hostname'],$config['username'],$config['password'],$config['database'],$config['hostport']?intval($config['hostport']):3306);
             if (mysqli_connect_errno()) throw_exception(mysqli_connect_error());
             $dbVersion = $this->linkID[$linkNum]->server_version;
-            
+
             // 设置数据库编码
             $this->linkID[$linkNum]->query("SET NAMES '".C('DB_CHARSET')."'");
             //设置 sql_model
