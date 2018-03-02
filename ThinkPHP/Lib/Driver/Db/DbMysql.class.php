@@ -35,7 +35,6 @@ class DbMysql extends Db{
                 $this->config['params'] =   '';
             }
         }
-        echo json_encode($this->config );exit;
     }
 
     /**
