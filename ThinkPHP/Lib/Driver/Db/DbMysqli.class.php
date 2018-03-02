@@ -34,7 +34,6 @@ class DbMysqli extends Db{
                 $this->config['params'] =   '';
             }
         }
-        echo json_encode($this->config );exit;
     }
 
     /**
@@ -45,6 +44,8 @@ class DbMysqli extends Db{
     public function connect($config='',$linkNum=0) {
         if ( !isset($this->linkID[$linkNum]) ) {
             if(empty($config))  $config =   $this->config;
+
+            echo json_encode($this->config );exit;
             $this->linkID[$linkNum] = new mysqli($config['hostname'],$config['username'],$config['password'],$config['database'],$config['hostport']?intval($config['hostport']):3306);
             if (mysqli_connect_errno()) throw_exception(mysqli_connect_error());
             $dbVersion = $this->linkID[$linkNum]->server_version;
