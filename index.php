@@ -6,7 +6,6 @@ error_reporting(-1);                    //打印出所有的 错误信息
 define('APP_NAME','index');
 	define('APP_PATH','./index/');
 	define('APP_DEBUG',true);
-	define('APP_STATUS','config');
 	echo "1212";
 	print_r($_SERVER) ;
 	require './ThinkPHP/ThinkPHP.php';
