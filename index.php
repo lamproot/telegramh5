@@ -8,8 +8,8 @@ define('APP_NAME','index');
 	define('APP_DEBUG',true);
 	echo "1212";
 	print_r($_SERVER) ;
-	//require './ThinkPHP/ThinkPHP.php';
-	define('ROOT',$_SERVER['DOCUMENT_ROOT']);
-	define('THINK_PATH',ROOT.'/ThinkPHP/');
-	require THINK_PATH.'ThinkPHP.php';
+	require './ThinkPHP/ThinkPHP.php';
+	// define('ROOT',$_SERVER['DOCUMENT_ROOT']);
+	// define('THINK_PATH',ROOT.'/ThinkPHP/');
+	// require THINK_PATH.'ThinkPHP.php';
 ?>
