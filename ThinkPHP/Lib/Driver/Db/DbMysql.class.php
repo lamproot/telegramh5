@@ -47,8 +47,6 @@ class DbMysql extends Db{
             if(empty($config))  $config =   $this->config;
             // 处理不带端口号的socket连接情况
             $host = $config['hostname'].($config['hostport']?":{$config['hostport']}":'');
-
-                        echo json_encode($this->config );exit;
             // 是否长连接
             $pconnect   = !empty($config['params']['persist'])? $config['params']['persist']:$this->pconnect;
             if($pconnect) {
