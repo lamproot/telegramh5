@@ -44,9 +44,9 @@
 			// wallet
 			// code
 			// token
-			// chat_id
-			//获取推广用户CODE是否存在 code and chat_id
-			//进行code加密获取 md5(wallet_(chat_id)_telegram)
+			// chat_bot_id
+			//获取推广用户CODE是否存在 code and chat_bot_id
+			//进行code加密获取 md5(wallet_(chat_bot_id)_telegram)
 			//查询是否已生成codes  生成 跳转数据界面  未生成 生成数据 并跳转数据界面
 			if (empty($_POST['wallet']) || !isset($_POST['wallet'])) {
 				echo json_encode(array("code" => 101, "success" => false));exit;
@@ -56,17 +56,17 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
-			if (empty($_POST['chat_id']) || !isset($_POST['chat_id'])) {
+			if (empty($_POST['chat_bot_id']) || !isset($_POST['chat_bot_id'])) {
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
 
-			// chat_id eth code parent_code status ctrated_at
+			// chat_bot_id eth code parent_code status ctrated_at
 			$params = array(
 
 				'table_name' => 'codes',
 
-				'where' => "chat_id = {$_POST['chat_id']} AND eth = '{$_POST['wallet']}'"
+				'where' => "chat_bot_id = {$_POST['chat_bot_id']} AND eth = '{$_POST['wallet']}'"
 
 			);
 
@@ -74,9 +74,9 @@
 
 			if (!$codes) {
 				//生成Code
-				$code = $data['code'] = $this->short_md5(md5($_POST['chat_id']."_".$_POST['wallet']."_telegram"));
+				$code = $data['code'] = $this->short_md5(md5($_POST['chat_bot_id']."_".$_POST['wallet']."_telegram"));
 				$data['eth'] = $_POST['wallet'];
-				$data['chat_id'] = $_POST['chat_id'];
+				$data['chat_bot_id'] = $_POST['chat_bot_id'];
 				$data['parent_code'] = $_POST['code'];
 				$data['created_at'] = time();
 				$data['status'] = 1;
