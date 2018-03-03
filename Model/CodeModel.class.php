@@ -1,12 +1,12 @@
 <?php
     class CodeModel extends FLModel {
-        function find ($chat_id = NULL, $code = NULL, $status = 1, $limit = 0)
+        function find ($chat_bot_id = NULL, $code = NULL, $status = 1, $limit = 0)
         {
             /** 查询 */
             $where = array (
                 'ORDER' => 'id'
             );
-            $chat_id === NULL ? : $where['AND']['chat_id'] = $chat_id;
+            $chat_bot_id === NULL ? : $where['AND']['chat_bot_id'] = $chat_bot_id;
             $code === NULL ? : $where['AND']['code'] = $code;
             //$status === NULL ? : $where['AND']['status'] = $status;
             if ($limit != 0) {
@@ -16,10 +16,10 @@
             return $ret;
         }
 
-        function updateByCode ($chat_id, $code, $status, $from_id, $from_username)
+        function updateByCode ($chat_bot_id, $code, $status, $from_id, $from_username)
         {
 
-            $where['AND']['chat_id'] = $chat_id;
+            $where['AND']['chat_bot_id'] = $chat_bot_id;
             $where['AND']['code'] = $code;
             $where['AND']['status'] = $status;
 
@@ -31,9 +31,9 @@
             ], $where);
         }
 
-        function updateByFromId ($chat_id, $from_id, $status = -1)
+        function updateByFromId ($chat_bot_id, $from_id, $status = -1)
         {
-            $where['AND']['chat_id'] = $chat_id;
+            $where['AND']['chat_bot_id'] = $chat_bot_id;
             $where['AND']['from_id'] = $from_id;
             $res = $this->db->update ('codes', [
                 'status' => -1,

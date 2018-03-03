@@ -44,7 +44,7 @@
 	    public function index()
 	    {
 
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 
 	    	$params = array(
 
@@ -52,7 +52,7 @@
 
 	    		'order' => 'id desc',
 
-	    		'where' => "is_del = 0 AND chat_id = {$chat_id}"
+	    		'where' => "is_del = 0 AND chat_bot_id = {$chat_bot_id}"
 	    	);
 
 	    	$result = $this -> model -> order_select($params);
@@ -77,14 +77,12 @@
 	    public function add()
 	    {
 	    	$form_key = htmlspecialchars($_POST['form_key']);
-
 	    	if ($form_key == 'yes')
 	    	{
 	    		$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
-				$data['chat_id'] = isset($_POST['chat_id']) ? htmlspecialchars($_POST['chat_id']) : $this -> _back('请填写chat_id');
+				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
 				$data['content'] = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
 				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
-
 
 				if (intval($data['type']) === 3) {
 					//文件上传处理
@@ -119,7 +117,6 @@
 				}
 
 
-
 	    		$data['created_at'] = time();
 	    		$data['updated_at'] = time();
 	    		$data['is_del'] = 0;
@@ -134,7 +131,7 @@
 
 	    		if ($chat_command_add)
 	    		{
-	    			redirect(__APP__.'/ChatCommand/index?chat_id='.$_POST['chat_id'], 0);
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -199,13 +196,8 @@
 					if ($logo['status'] == 1)
 					{
 						$data['url'] = $logo['msg'];
+						$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
 					}
-					elseif ($logo['status'] == 0)
-					{
-						$this -> _back($logo['msg']);
-					}
-
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
 				}
 
 				if (intval($data['type']) === 4) {
@@ -215,13 +207,8 @@
 					if ($logo['status'] == 1)
 					{
 						$data['url'] = $logo['msg'];
+						$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
 					}
-					elseif ($logo['status'] == 0)
-					{
-						$this -> _back($logo['msg']);
-					}
-
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
 				}
 
 
@@ -238,7 +225,7 @@
 
 	    		if ($chat_command_save)
 	    		{
-	    			redirect(__APP__.'/ChatCommand/index?chat_id='.$_POST['chat_id'], 0);
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -264,7 +251,7 @@
 	    public function delete()
 	    {
 	    	$id = isset($_GET['id']) ? intval($_GET['id']) : $this -> _back('错误的参数');
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 
 	    	$data['is_del'] = 1;
 	    	$data['updated_at'] = time();
@@ -282,7 +269,7 @@
 
 	    	if ($chat_command_save)
 	    	{
-	    		redirect(__APP__.'/ChatCommand/index?chat_id='.$chat_id, 0);
+	    		redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$chat_bot_id, 0);
 	    	}
 	    	else
 	    	{

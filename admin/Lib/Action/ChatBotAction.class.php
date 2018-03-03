@@ -110,9 +110,46 @@
 
 	    		if ($chat_bot_add)
 	    		{
+					//添加默认初始化命令
+					$default = [
+						[
+							"cmd" => "/new_member",
+							"type" => 1,
+							"content" => "欢迎你加入 命令如下: /ping 连接 /hitokoto 文字 /bing 图片 /whoami 我是谁 /code Code码处理 /me 我的-Code码"
+						],
+						[
+							"cmd" => "/start",
+							"type" => 1,
+							"content" => "欢迎阅读使用手册 命令如下: /ping 连接 /hitokoto 文字 /bing 图片 /whoami 我是谁 /code Code码处理 /me 我的-Code码"
+						],
+						[
+							"cmd" => "/code",
+							"type" => 2,
+							"content" => "Your code: {{code}}. SUCCESS & DONE! For every friend you invite from now on, you will get 188 SSS from our Airdrop event within a month 你的驗證碼：{{code}}，校驗成功！每邀请一个好友，你将在 1 個月内收到 188 SSS 的空投獎勵。 Your share link （你的分享鏈接）：http://e669306a.ngrok.io//Index/code/{{code}}"
+						]
+					];
+
+					foreach ($default as $key => $value) {
+						$data['cmd'] = $value['cmd'];
+						$data['chat_bot_id'] = $chat_bot_add;
+						$data['content'] = $value['content'];
+						$data['type'] = $value['type'];
+						$data['created_at'] = time();
+						$data['updated_at'] = time();
+						$data['is_del'] = 0;
+						$params = array(
+
+							'table_name' => 'chat_command',
+
+							'data' => $data
+						);
+
+						$this -> model -> my_add($params);
+					}
+
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://048dc25f.ngrok.io/callback.php/Callback/run?t=".time()];
+					$param = ["url" => "https://15244bd4.ngrok.io/callback.php/Callback/run?t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}
@@ -187,7 +224,7 @@
 	    		{
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://048dc25f.ngrok.io/callback.php/Callback/run?t=".time()];
+					$param = ["url" => "https://15244bd4.ngrok.io/callback.php/Callback/run?t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}

@@ -65,9 +65,9 @@ class DownloadAction extends CommonAction {
 
         $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : "" ;
 
-		$chat_id = $_GET['chat_id'];
+		$chat_bot_id = $_GET['chat_bot_id'];
 
-		$where = "chat_id = {$chat_id} AND status = 3";
+		$where = "chat_bot_id = {$chat_bot_id} AND status = 3";
 
         if($start && $stop){
 
@@ -107,7 +107,7 @@ class DownloadAction extends CommonAction {
 
             $xlsCell  = array(
                 array('id','ID'),
-                array('chat_id','群'),
+                array('chat_bot_id','群'),
                 array('from_id','用户ID'),
                 array('from_username','用户名称'),
                 array('eth','钱包'),

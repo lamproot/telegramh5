@@ -43,7 +43,7 @@
 		 */
 	    public function index()
 	    {
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 
 			$form_key = htmlspecialchars($_POST['form_key']);
 
@@ -58,7 +58,7 @@
 
 	    			'table_name' => 'group_activity',
 
-	    			'where' => "chat_id = {$_POST['chat_id']}",
+	    			'where' => "chat_bot_id = {$_POST['chat_bot_id']}",
 
 	    			'data' => $data
 	    		);
@@ -67,7 +67,7 @@
 
 	    		if ($chat_bot_save)
 	    		{
-	    			redirect(__APP__.'/GroupActivity/index?chat_id='.$_POST['chat_id'], 0);
+	    			redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -81,14 +81,14 @@
 
 	    		'order' => 'id desc',
 
-	    		'where' => "chat_id = {$chat_id}"
+	    		'where' => "chat_bot_id = {$chat_bot_id}"
 	    	);
 
 	    	$result = $this -> model -> my_find($group_params);
 
 			if (!$result) {
 				# 新增
-				$data['chat_id'] = $chat_id;
+				$data['chat_bot_id'] = $chat_bot_id;
 				$data['created_at'] = time();
 
 				$params = array(
@@ -105,11 +105,11 @@
 					$botcode_data['from_id'] = 1;
 					$botcode_data['from_username'] = "机器人账号";
 					$botcode_data['eth'] = "0000000000000000";
-					$botcode_data['code'] = $this->short_md5(md5($chat_id."_".$botcode_data['eth']."_telegram"));
+					$botcode_data['code'] = $this->short_md5(md5($chat_bot_id."_".$botcode_data['eth']."_telegram"));
 					$botcode_data['status'] = 3;
 					$botcode_data['created_at'] = time();
 					$botcode_data['updated_at'] = time();
-					$botcode_data['chat_id'] = $chat_id;
+					$botcode_data['chat_bot_id'] = $chat_bot_id;
 
 					$botcode_params = array(
 
@@ -219,7 +219,7 @@
 	    	if ($form_key == 'yes')
 	    	{
 				$data['token'] = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : $this -> _back('请填写token');
-				$data['chat_id'] = isset($_POST['chat_id']) ? htmlspecialchars($_POST['chat_id']) : $this -> _back('请填写chat_id');
+				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
 				$data['master_id'] = isset($_POST['master_id']) ? htmlspecialchars($_POST['master_id']) : $this -> _back('请填写master_id');
 				$data['code_cmd'] = isset($_POST['code_cmd']) ? htmlspecialchars($_POST['code_cmd']) : $this -> _back('请填写code_cmd');
 				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";

@@ -25,8 +25,8 @@ return array(
 	'DB_PREFIX'=>'',
 	'URL_MODEL' => '1',
 	'DB_NAME'=>'telegram',
-	'APP_DEBUG' => true,
-	'SHOW_PAGE_TRACE'=>true,
+	'APP_DEBUG' => false,
+	'SHOW_PAGE_TRACE'=>false,
 	'LOG_RECORD' => true, // 开启日志记录
 	'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR',
 	'LOG_TYPE' =>  'File'

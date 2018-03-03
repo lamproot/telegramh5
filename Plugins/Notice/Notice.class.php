@@ -4,11 +4,14 @@
             // $str = '@' . @$from['username'] . ' 邀请了 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . ' 玩' . "\n";
             // $str .= '欢迎 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . '  玩(ฅ>ω<*ฅ)';
             // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
+            $chatBotModel = new chatBotModel;
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             $command = "/new_member";
             //创建欢迎消息
             $commandModel = new commandModel;
-            $commandInfo = $commandModel->find($chat['id'], $command, 1, 1);
+            $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
 
             //消息调试
             // $errorModel = new ErrorModel;

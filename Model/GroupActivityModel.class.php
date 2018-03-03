@@ -18,10 +18,10 @@
         // }
 
 
-        function getGroupActivityByChatId ($chat_id)
+        function getGroupActivityByChatId ($chat_bot_id)
         {
             return $this->db->get ('group_activity', '*', [
-                'chat_id' => $chat_id
+                'chat_bot_id' => $chat_bot_id
             ]);
         }
     }

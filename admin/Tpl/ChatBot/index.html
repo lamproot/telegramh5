@@ -53,18 +53,17 @@
                                         <td>{$data.id}</td>
 										<td>{$data.name}</td>
     									<td>{$data.token}</td>
-                                        <td>{$data.chat_id}</td>
-										<td>{$data.master_id}</td>
+                                        <td><if condition="$data.chat_id neq ''">{$data.chat_id}<else/><a data-toggle="modal" href="#myModal5">获取chat_id</a></if></td>
+										<td><if condition="$data.master_id neq ''">{$data.master_id}<else/><a  data-toggle="modal" href="#myModal5">获取master_id</a></if></td>
     									<td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
 
                                         <td>
     										<a href="__APP__/ChatBot/edit/id/{$data.id}">编辑</a>
 
 											<if condition="$data.chat_id neq ''">
-												<a href="__APP__/ChatCommand/index/chat_id/{$data.chat_id}">命令设置</a>
-												<a href="__APP__/Codes/index/chat_id/{$data.chat_id}">用户列表</a>
-												<a href="__APP__/GroupActivity/index/chat_id/{$data.chat_id}">活动页面</a>
-
+												<a href="__APP__/ChatCommand/index/chat_bot_id/{$data.id}">命令设置</a>
+												<a href="__APP__/Codes/index/chat_bot_id/{$data.id}">用户列表</a>
+												<a href="__APP__/GroupActivity/index/chat_bot_id/{$data.id}">活动页面</a>
 											</if>
 
 											<a href="__APP__/ChatBot/delete/id/{$data.id}" onclick="return confirm('确认删除吗？')">删除</a>
@@ -81,6 +80,31 @@
         </div>
 
     </div>
+
+	<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+	   <div class="modal-dialog modal-lg">
+		   <div class="modal-content">
+			   <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				   <h4 class="modal-title">如何获取chat_id 和 master_id</h4>
+				   <small class="font-bold">如何获取chat_id 和 master_id
+			   </div>
+			   <div class="modal-body">
+				   <p>
+					   请在机器群里输入以下命令获取 <br>
+					   /whoamiTOKEN 值获取  <br>
+
+					   例子:	/whoami549658118:AAFFZxI3fq_TYISNEEmRh73RY5fOLIF9KCY
+				   </p>
+			   </div>
+
+			   <div class="modal-footer">
+				   <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+				   <button type="button" class="btn btn-primary">保存</button>
+			   </div>
+		   </div>
+	   </div>
+   </div>
 
 	<div class="row">
 	    <div class="col-sm-12 text-right">

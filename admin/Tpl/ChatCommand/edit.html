@@ -56,13 +56,13 @@
                                 <input id="cmd" name="cmd" value="{$result['cmd']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                                 <input type="hidden" name="form_key" value="yes" />
 								<input type="hidden" name="id" value="{$result['id']}" />
-                                <input type="hidden" name="chat_id" value="{$result['chat_id']}" />
+                                <input type="hidden" name="chat_bot_id" value="{$result['chat_bot_id']}" />
                             </div>
                         </div>
                         <!-- <div class="form-group">
                             <label class="col-sm-3 control-label">群聊:</label>
                             <div class="col-sm-6">
-                                <input id="chat_id" name="chat_id" value="{$result['chat_id']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input id="chat_bot_id" name="chat_bot_id" value="{$result['chat_bot_id']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                             </div>
                         </div> -->
 
@@ -135,7 +135,7 @@
                content: {
 				   required: true
 			   },
-			   // chat_id: {
+			   // chat_bot_id: {
 				//    required: true,
 			   // },
 			   // master_id: {

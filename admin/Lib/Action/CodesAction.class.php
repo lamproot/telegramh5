@@ -44,13 +44,13 @@
 	    public function index()
 	    {
 
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 
 			$start = $_GET['start'] ? strtotime($_GET['start']) : "";
 
 	        $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : "" ;
 
-	        $where = "chat_id = {$chat_id} AND status = 3";
+	        $where = "chat_bot_id = {$chat_bot_id} AND status = 3";
 
 	        if($start && $stop){
 
@@ -101,7 +101,7 @@
 	    public function user()
 	    {
 
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 			$parent_code = $_GET['parent_code'];
 
 	    	$params = array(
@@ -110,7 +110,7 @@
 
 	    		'order' => 'id desc',
 
-	    		'where' => "chat_id = {$chat_id} AND parent_code = '{$parent_code}' AND status = 3"
+	    		'where' => "chat_bot_id = {$chat_bot_id} AND parent_code = '{$parent_code}' AND status = 3"
 	    	);
 
 	    	$result = $this -> model -> order_select($params);
@@ -153,7 +153,7 @@
 	    	if ($form_key == 'yes')
 	    	{
 	    		$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
-				$data['chat_id'] = isset($_POST['chat_id']) ? htmlspecialchars($_POST['chat_id']) : $this -> _back('请填写chat_id');
+				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
 				$data['content'] = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
 				$data['type'] = 1;
 	    		$data['created_at'] = time();
@@ -171,7 +171,7 @@
 
 	    		if ($codes_add)
 	    		{
-	    			redirect(__APP__.'/ChatCommand/index?chat_id='.$_POST['chat_id'], 0);
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -241,7 +241,7 @@
 
 	    		if ($codes_save)
 	    		{
-	    			redirect(__APP__.'/ChatCommand/index?chat_id='.$_POST['chat_id'], 0);
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -267,7 +267,7 @@
 	    public function delete()
 	    {
 	    	$id = isset($_GET['id']) ? intval($_GET['id']) : $this -> _back('错误的参数');
-			$chat_id = $_GET['chat_id'];
+			$chat_bot_id = $_GET['chat_bot_id'];
 
 	    	$data['is_del'] = 1;
 	    	$data['updated_at'] = time();
@@ -285,7 +285,7 @@
 
 	    	if ($codes_save)
 	    	{
-	    		redirect(__APP__.'/ChatCommand/index?chat_id='.$chat_id, 0);
+	    		redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$chat_bot_id, 0);
 	    	}
 	    	else
 	    	{

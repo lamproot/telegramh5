@@ -35,9 +35,20 @@
 	    public function code()
 	    {
 			//INSERT INTO `codes` VALUES  ('1', '-1001249040089', '520439802', '0xf6BC0AAc1fdFAf2CCea054F5978350DC9eFc6E83', 'bf3c1eac97f80c7e', '6666', '3', '0', '1518599007', '')
-			// for ($i=520439802; $i < 520440802; $i++) {
-			// 	echo $i;echo "<br>";
+
+			//$this->short_md5(md5($_POST['chat_id']."_".$_POST['wallet']."_telegram"));
+			// for ($i=520439802; $i <= 520440802; $i++) {
+			// 	$data['parent_code'] = $this->short_md5(md5("-1001249040089_"."0xf6BC0AAc1fdFAf2CCea054F5".md5(rand(520439802, 520440802))."_telegram"));
+			// 	$data['uid'] = $i;
+			// 	$data['wallet'] = "0xf6BC0AAc1fdFAf2CCea054F5".md5($i);
+			// 	$data['code'] = $this->short_md5(md5("-1001249040089_".$data['wallet']."_telegram"));
+			// 	//$result[] = $data;
+            //
+			// 	echo "INSERT INTO `codes` (`chat_id`,`from_id`,`eth`,`code`,`parent_code`,`status`,`created_at`,`updated_at`,`from_username`)  VALUES  ('-1001249040089', '{$data['uid']}', '{$data['wallet']}', '{$data['code']}', '{$data['parent_code']}', '3', '0', '".time()."', '');";
+			// 	echo "<br>";
 			// }
+			// exit;
+			// echo json_encode($result);exit;
 			// exit;
 
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
@@ -180,5 +191,15 @@
 		   }else{
 			   $this -> display();
 		   }
+	   }
+
+	   /**
+		* 返回16位md5值
+		*
+		* @param string $str 字符串
+		* @return string $str 返回16位的字符串
+		*/
+	   function short_md5($str) {
+		   return substr(md5($str), 8, 16);
 	   }
 	}
