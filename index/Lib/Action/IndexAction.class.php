@@ -74,7 +74,7 @@
 
 				'table_name' => 'chat_bot',
 
-				'where' => "chat_bot_id = {$codes['chat_bot_id']}"
+				'where' => "id = {$codes['chat_bot_id']}"
 
 			);
 
@@ -137,7 +137,7 @@
 
 			   'table_name' => 'chat_bot',
 
-			   'where' => "chat_bot_id = {$codes['chat_bot_id']}"
+			   'where' => "id = {$codes['chat_bot_id']}"
 
 		   );
 
