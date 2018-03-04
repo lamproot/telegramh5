@@ -6,9 +6,7 @@
             //$search = "/^\//i"; preg_match($search,$command,$result)
             if($command[0] == "/") {
 
-                    $errorModel = new errorModel;
-                    $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true)."$command");
-                $errorModel = new errorModel;
+                    
                 $chatBotModel = new chatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
                 $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true));
