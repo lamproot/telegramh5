@@ -49,12 +49,14 @@
 
     	                require_once APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php';
                         $object[] = $objectNew = new $pluginName ($this->data);
+
+
+
+                        $errorModel->sendError (MASTER, print_r(error_reporting(-1), true));
+                        $errorModel->sendError (MASTER, print_r($objectNew, true));
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
-
-                    $errorModel->sendError (MASTER, print_r(error_reporting(-1), true));
-                    $errorModel->sendError (MASTER, print_r($object, true));
 
     		        foreach ($object as $object_d) {
     		            if (method_exists ($object_d, $this->func)) {
