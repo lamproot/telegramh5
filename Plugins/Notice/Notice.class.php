@@ -26,8 +26,5 @@
             //     );
             // }
         }
-        public function left_member ($left_member, $message_id, $from, $chat, $date) {
-            // $str = '喵喵喵？ @' . $left_member['username'] . ' 被 @' . @$from['username'] . ' 移出了 ' . $chat['title'];
-            // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
-        }
+        
     }
