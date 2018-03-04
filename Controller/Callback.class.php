@@ -39,7 +39,7 @@
 		    if (isset ($this->func)) {
 		        $pluginList = $pluginModel->getinfo (NULL, 1);
                 // $errorModel->sendError (MASTER, print_r($pluginList, true));
-                // $errorModel->sendError (MASTER, "APP_PATH".APP_PATH);
+                 $errorModel->sendError (MASTER, "func".print_r($this->func, true));
 
 		        if (!empty ($pluginList)) {
     		        foreach ($pluginList as $pluginList_d) {
