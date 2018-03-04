@@ -6,15 +6,15 @@
             //$search = "/^\//i"; preg_match($search,$command,$result)
             if($command[0] == "/") {
 
-                $errorModel = new errorModel;
-                $chatBotModel = new chatbotModel;
+                $errorModel = new ErrorModel;
+                $chatBotModel = new ChatbotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
                 $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true));
                 $errorModel->sendError (MASTER, "chatBot".print_r($chatBot, true));
                 $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
                 //查询命令是否有回复
-                $commandModel = new commandModel;
+                $commandModel = new CommandModel;
                 $commandInfo = $commandModel->findall($chat_bot_id, $command, 1, 1);
 
                 if ($commandInfo && $commandInfo[0] && $commandInfo[0]['type']) {
@@ -54,7 +54,7 @@
         public function new_member ($new_member, $message_id, $from, $chat, $date) {
             // $command = "new_member";
             // //创建欢迎消息
-            // $commandModel = new commandModel;
+            // $commandModel = new CommandModel;
             // $commandInfo = $commandModel->find($chat['id'], $command, 1, 1);
             //
             // //消息调试
