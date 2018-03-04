@@ -10,7 +10,7 @@
         <script src="__PUBLIC__/telegram/flexible_css.js"></script>
         <style>@charset "utf-8";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
         <script src="__PUBLIC__/telegram/flexible.js"></script>
-        <link rel="icon" href="http://www.sss.run/static/index//assets/img/logo/logo.ico">
+        <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
         <link rel="stylesheet" href="__PUBLIC__/telegram/ladda-themeless.min.css">
         <link rel="stylesheet" href="__PUBLIC__/telegram/index.css?t=<?php echo time();?>">
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
@@ -44,8 +44,8 @@
 
                     <input type="hidden" name="code" value="{$code}">
                     <input type="hidden" name="token" value="{$chat_bot['token']}">
-                    <input type="hidden" name="chat_id" value="{$chat_bot['chat_id']}">
-
+                    <input type="hidden" name="chat_bot_id" value="{$chat_bot['id']}">
+                    <input type="hidden" name="activity_id" value="{$group_activity['id']}">
                 </div>
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">

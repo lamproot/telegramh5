@@ -40,4 +40,20 @@
                 'update_at' => time()
             ], $where);
         }
+
+        function getCodeByFromId ($chat_bot_id, $from_id, $limit = 0)
+        {
+            /** 查询 */
+            $where = array (
+                'ORDER' => 'id'
+            );
+            $chat_bot_id === NULL ? : $where['AND']['chat_bot_id'] = $chat_bot_id;
+            $from_id === NULL ? : $where['AND']['from_id'] = $from_id;
+            if ($limit != 0) {
+                $where['LIMIT'] = $limit;
+            }
+            $ret = $this->db->select ('codes', '*', $where);
+            return $ret;
+
+        }
     }

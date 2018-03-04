@@ -33,7 +33,16 @@
                 </div>
                 <div class="ibox-content">
 					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__" enctype="multipart/form-data">
-                        <div class="form-group">
+
+						<if condition="$botCode['code'] neq ''">
+							<div class="form-group">
+	                            <label class="col-sm-3 control-label">群活动机器人邀请地址:</label>
+	                            <div class="col-sm-9">
+	                                <a href="http://m.name-technology.fun/Index/code/{$botCode['code']}">http://m.name-technology.fun/Index/code/{$botCode['code']}</a>
+	                            </div>
+	                        </div>
+						</if>
+						<div class="form-group">
                             <label class="col-sm-3 control-label">标题:</label>
                             <div class="col-sm-9">
                                 <input id="title" name="title" value="{$result['title']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
@@ -54,8 +63,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">LOGO:</label>
                             <div class="col-sm-9">
-                                <input id="logo" name="logo" value="{$result['logo']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
-
+                                <input id="logo" name="logo" value="{$result['logo']}" class="form-control" type="file" aria-required="true" aria-invalid="true" class="error">
+								<p>{$result['logo']}</p>
                             </div>
                         </div>
 

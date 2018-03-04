@@ -53,7 +53,14 @@
 
 				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
 				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
+				$logo = $this -> _upload_pic('group_activity');
 
+				if ($logo['status'] == 1)
+				{
+					$data['url'] = $logo['msg'];
+					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
+				}
+				
 	    		$params = array(
 
 	    			'table_name' => 'group_activity',
@@ -105,11 +112,12 @@
 					$botcode_data['from_id'] = 1;
 					$botcode_data['from_username'] = "机器人账号";
 					$botcode_data['eth'] = "0000000000000000";
-					$botcode_data['code'] = $this->short_md5(md5($chat_bot_id."_".$botcode_data['eth']."_telegram"));
+					$botcode_data['code'] = $this->short_md5(md5($my_add."_".$botcode_data['eth']."_telegram"));
 					$botcode_data['status'] = 3;
 					$botcode_data['created_at'] = time();
 					$botcode_data['updated_at'] = time();
 					$botcode_data['chat_bot_id'] = $chat_bot_id;
+					$botcode_data['activity_id'] = $my_add;
 
 					$botcode_params = array(
 
@@ -124,6 +132,42 @@
 				}
 			}
 
+			//机器人活动地址查询
+	    	$botcode_params = array(
+
+	    		'table_name' => 'codes',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "chat_bot_id = {$chat_bot_id} AND from_id = 1 AND status = 3 AND eth = '0000000000000000'"
+	    	);
+
+	    	$botCode = $this -> model -> my_find($botcode_params);
+
+			if (!$botCode) {
+				$botcode_data['from_id'] = 1;
+				$botcode_data['from_username'] = "机器人账号";
+				$botcode_data['eth'] = "0000000000000000";
+				$botcode_data['code'] = $this->short_md5(md5($result['id']."_".$botcode_data['eth']."_telegram"));
+				$botcode_data['status'] = 3;
+				$botcode_data['created_at'] = time();
+				$botcode_data['updated_at'] = time();
+				$botcode_data['chat_bot_id'] = $chat_bot_id;
+				$botcode_data['activity_id'] = $result['id'];
+
+				$botcode_params = array(
+
+					'table_name' => 'codes',
+
+					'data' => $botcode_data
+				);
+
+				$botcode_add = $this -> model -> my_add($botcode_params);
+
+				$botCode = $this -> model -> my_find($botcode_params);
+			}
+
+			$this -> assign('botCode', $botCode);
 	    	$this -> assign('result', $result);
 
 	    	$this -> display();

@@ -125,7 +125,7 @@
 						[
 							"cmd" => "/code",
 							"type" => 2,
-							"content" => "Your code: {{code}}. SUCCESS & DONE! For every friend you invite from now on, you will get 188 SSS from our Airdrop event within a month 你的驗證碼：{{code}}，校驗成功！每邀请一个好友，你将在 1 個月内收到 188 SSS 的空投獎勵。 Your share link （你的分享鏈接）：http://e669306a.ngrok.io//Index/code/{{code}}"
+							"content" => "Your code: {{code}}. SUCCESS & DONE! For every friend you invite from now on, you will get 188 SSS from our Airdrop event within a month 你的驗證碼：{{code}}，校驗成功！每邀请一个好友，你将在 1 個月内收到 188 SSS 的空投獎勵。 Your share link （你的分享鏈接）：http://m.name-technology.fun/Index/code/{{code}}"
 						]
 					];
 

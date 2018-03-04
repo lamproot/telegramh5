@@ -17,7 +17,7 @@
 // );
 return array(
 	//'配置项'=>'配置值'
-	'DB_TYPE'=>'mysqli',
+	'DB_TYPE'=>'mysql',
 	'DB_USER'=>'root',
 	'DB_PWD'=>'root',
 	'DB_HOST'=>'localhost',

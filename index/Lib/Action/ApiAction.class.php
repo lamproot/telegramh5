@@ -25,7 +25,7 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this -> model = D('Index');
+			$this -> model = D('Api');
 		}
 
 	    /**
@@ -60,13 +60,17 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
+			if (empty($_POST['activity_id']) || !isset($_POST['activity_id'])) {
+				echo json_encode(array("code" => 101, "success" => false));exit;
+			}
+
 
 			// chat_bot_id eth code parent_code status ctrated_at
 			$params = array(
 
 				'table_name' => 'codes',
 
-				'where' => "chat_bot_id = {$_POST['chat_bot_id']} AND eth = '{$_POST['wallet']}'"
+				'where' => "activity_id = {$_POST['activity_id']} AND eth = '{$_POST['wallet']}'"
 
 			);
 
@@ -74,21 +78,21 @@
 
 			if (!$codes) {
 				//生成Code
-				$code = $data['code'] = $this->short_md5(md5($_POST['chat_bot_id']."_".$_POST['wallet']."_telegram"));
+				$code = $data['code'] = $this->short_md5(md5($_POST['activity_id']."_".$_POST['wallet']."_telegram"));
 				$data['eth'] = $_POST['wallet'];
 				$data['chat_bot_id'] = $_POST['chat_bot_id'];
 				$data['parent_code'] = $_POST['code'];
 				$data['created_at'] = time();
 				$data['status'] = 1;
-
-				$params = array(
+				$data['activity_id'] = $_POST['activity_id'];
+				$code_params = array(
 
 					'table_name' => 'codes',
 
 					'data' => $data
 				);
 
-				$codeAdd = $this -> model -> my_add($params);
+				$codeAdd = $this -> model -> my_add($code_params);
 				if ($codeAdd) {
 					echo json_encode(array("code" => 0, "success" => true, "code" => $code));exit;
 				}else{

@@ -165,7 +165,7 @@
 
 			   'table_name' => 'codes',
 
-			   'where' => "parent_code = '{$code}'"
+			   'where' => "parent_code = '{$code}' AND status = 3"
 
 		   );
 
