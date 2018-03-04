@@ -53,14 +53,15 @@
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
 
+                    $errorModel->sendError (MASTER, "as");
+                    $errorModel->sendError (MASTER, print_r($object, true));
+
     		        foreach ($object as $object_d) {
     		            if (method_exists ($object_d, $this->func)) {
     		                $GLOBALS['cuPlugin'] = get_class ($object_d);
     		                call_user_func_array (array ($object_d, $this->func), $this->param);
     		            }
     		        }
-                    $errorModel->sendError (MASTER, "as");
-                    $errorModel->sendError (MASTER, print_r($cuPlugin, true));
     		        if (isset ($cuPlugin))
     		            unset ($cuPlugin);
 		        }
