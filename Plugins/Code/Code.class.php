@@ -2,7 +2,7 @@
     class Code extends Base {
         public function command ($command, $param, $message_id, $from, $chat, $date) {
             //查询chat code_cmd 默认 /code
-            $chatBotModel = new chatBotModel;
+            $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
 
             $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
@@ -18,7 +18,7 @@
             if(preg_match($search,$command,$result)) {
                 $code = str_replace($result[0], "", $command);
                 //查询活动是否结束
-                $groupActivityModel = new groupActivityModel;
+                $groupActivityModel = new GroupActivityModel;
                 $groupActivityFind = $groupActivityModel->getGroupActivityByChatId($chat_bot_id);
 
                 //判断活动时间
@@ -38,12 +38,12 @@
                 }
 
                 //查询code 回复数据
-                $commandModel = new commandModel;
+                $commandModel = new CommandModel;
                 $commandFind = $commandModel->find($chat_bot_id, "/".$code_cmd, 2);
 
                 $message = "";
 
-                $codeModel = new codeModel;
+                $codeModel = new CodeModel;
                 $codeInfo = $codeModel->find($chat_bot_id, $code, 1);
 
                 //用户码 进行用户绑定 from_id 对应
@@ -63,13 +63,13 @@
                             $message_id
                         );
                     }
-                    $codeModel = new codeModel;
+                    $codeModel = new CodeModel;
                     $codeModel-> updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$from['username']);
                 }
 
                 # 记录用户code 码相关回复数据 方便最后发放奖励
                 # 记录用户数据 $chat['id'] $message_id code 发送时间 message  $from['id'] $from['username']
-                $codeLogModel = new codeLogModel;
+                $codeLogModel = new CodeLogModel;
                 $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$from['username']);
 
             }
