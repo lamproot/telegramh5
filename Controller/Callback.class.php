@@ -39,7 +39,7 @@
 		    if (isset ($this->func)) {
 		        $pluginList = $pluginModel->getinfo (NULL, 1);
                 // $errorModel->sendError (MASTER, print_r($pluginList, true));
-                 $errorModel->sendError (MASTER, "func".print_r($this->func, true));
+                // $errorModel->sendError (MASTER, "func".print_r($this->func, true));
 
 		        if (!empty ($pluginList)) {
     		        foreach ($pluginList as $pluginList_d) {
@@ -52,7 +52,7 @@
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
-                    $errorModel->sendError (MASTER, "2222");
+                    
     		        foreach ($object as $object_d) {
                         //$errorModel->sendError (MASTER, "func".$this->func);
     		            if (method_exists ($object_d, $this->func)) {
@@ -62,11 +62,8 @@
     		            }
     		        }
 
-                    $errorModel->sendError (MASTER, "444");
     		        if (isset ($cuPlugin))
     		            unset ($cuPlugin);
-
-                    $errorModel->sendError (MASTER, "5555");
 		        }
 		        if ($this->func == 'inline_query') {
 		            $telegramModel->sendInline ($this->param[2], 0);

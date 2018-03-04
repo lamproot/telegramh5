@@ -9,8 +9,6 @@
                 $errorModel = new ErrorModel;
                 $chatBotModel = new ChatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
-                $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true));
-                $errorModel->sendError (MASTER, "chatBot".print_r($chatBot, true));
                 $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
                 //查询命令是否有回复
