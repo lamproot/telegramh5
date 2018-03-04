@@ -1,5 +1,5 @@
 <?php
-    class ChatBotModel extends FLModel {
+    class ChatbotModel extends FLModel {
 
         function getcommand ($chat_id, $limit = 0)
         {
