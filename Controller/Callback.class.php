@@ -53,7 +53,7 @@
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
 
-                    $errorModel->sendError (MASTER, error_reporting(-1));
+                    $errorModel->sendError (MASTER, print_r(error_reporting(-1), true));
                     $errorModel->sendError (MASTER, print_r($object, true));
 
     		        foreach ($object as $object_d) {
