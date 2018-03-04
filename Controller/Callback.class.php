@@ -59,7 +59,8 @@
     		                call_user_func_array (array ($object_d, $this->func), $this->param);
     		            }
     		        }
-
+                    $errorModel->sendError (MASTER, "as");
+                    $errorModel->sendError (MASTER, print_r($cuPlugin, true));
     		        if (isset ($cuPlugin))
     		            unset ($cuPlugin);
 		        }
@@ -67,7 +68,7 @@
 		            $telegramModel->sendInline ($this->param[2], 0);
 		        }
 		    }
-            $errorModel->sendError (MASTER, print_r($GLOBALS['statistics'], true));
+
 
 		    /** 统计 */
 		    $optionModel->update ('message_total', $GLOBALS['statistics']['message_total']);
