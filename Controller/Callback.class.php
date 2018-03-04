@@ -39,6 +39,8 @@
 		    if (isset ($this->func)) {
 		        $pluginList = $pluginModel->getinfo (NULL, 1);
                 $errorModel->sendError (MASTER, print_r($pluginList, true));
+                $errorModel->sendError (MASTER, "APP_PATH".APP_PATH);
+
 		        if (!empty ($pluginList)) {
     		        foreach ($pluginList as $pluginList_d) {
     		            $pluginName = $pluginList_d['pcn'];
