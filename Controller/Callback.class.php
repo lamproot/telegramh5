@@ -10,7 +10,7 @@
             $GLOBALS['statistics']['message_total'] = $optionModel->getvalue ('message_total');
             $GLOBALS['statistics']['send_total'] = $optionModel->getvalue ('send_total');
             $GLOBALS['statistics']['error_total'] = $optionModel->getvalue ('error_total');
-            echo "111";echo "<br>";
+            $errorModel->sendError (MASTER, 'hkjhjhjhk');
 		    /** 分析消息 */
 		    $GLOBALS['statistics']['message_total']++;
 		    $this->parseMessage ();
