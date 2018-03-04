@@ -1,5 +1,5 @@
 <?php
-    define ('DBHOST', '127.0.0.1');
+    define ('DBHOST', 'localhost');
     define ('DBNAME', 'telegram');
     define ('DBUSER', 'root');
     define ('DBPASS', 'root');
