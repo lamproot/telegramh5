@@ -57,12 +57,8 @@
     		            if (method_exists ($object_d, $this->func)) {
     		                $GLOBALS['cuPlugin'] = get_class ($object_d);
     		                call_user_func_array (array ($object_d, $this->func), $this->param);
+                            $errorModel->sendError (MASTER, "object_d". print_r($object_d, true)."3333");
     		            }
-
-
-
-
-                        $errorModel->sendError (MASTER, "3333");
     		        }
 
                     $errorModel->sendError (MASTER, "444");
