@@ -6,9 +6,10 @@
             //$search = "/^\//i"; preg_match($search,$command,$result)
             if($command[0] == "/") {
                 $errorModel = new errorModel();
-                            $errorModel->sendError (MASTER, print_r($command, true));
                 $chatBotModel = new chatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
+
+                            $errorModel->sendError (MASTER, "chatBot".print_r($chatBot, true));
                 $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
                 //查询命令是否有回复
