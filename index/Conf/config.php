@@ -27,7 +27,7 @@ return array(
 	'DB_NAME'=>'telegram',
 	'APP_DEBUG' => false,
 	'SHOW_PAGE_TRACE'=>false,
-	'LOG_RECORD' => true, // 开启日志记录
+	'LOG_RECORD' => false, // 开启日志记录
 	'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR',
 	'LOG_TYPE' =>  'File'
 );
