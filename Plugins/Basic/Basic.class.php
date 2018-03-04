@@ -5,6 +5,8 @@
             //1.查询是否以 / 开头 正则匹配
             //$search = "/^\//i"; preg_match($search,$command,$result)
             if($command[0] == "/") {
+
+                            $errorModel->sendError (MASTER, print_r($command, true));
                 $chatBotModel = new chatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
                 $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";

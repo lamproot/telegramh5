@@ -14,7 +14,6 @@
 		    $GLOBALS['statistics']['message_total']++;
 		    $this->parseMessage ();
 
-            $errorModel->sendError (MASTER, print_r($this->data, true));
 		    /** 操作 */
 	        if (isset ($this->func) && $this->func == 'callback_query') {
 	            $callbackData = explode (' ', $this->param[0]);
