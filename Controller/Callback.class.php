@@ -48,24 +48,28 @@
     		            $GLOBALS['cuPlugin'] = $pluginName;
 
     	                require_once APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php';
-                        $object[] = $objectNew = new $pluginName ($this->data);
-
-
-
-                        $errorModel->sendError (MASTER, print_r(error_reporting(-1), true));
-                        $errorModel->sendError (MASTER, print_r($objectNew, true));
+                        $object[] = $objectNew = new $pluginName ($this->data);;
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
-
+                    $errorModel->sendError (MASTER, "2222");
     		        foreach ($object as $object_d) {
     		            if (method_exists ($object_d, $this->func)) {
     		                $GLOBALS['cuPlugin'] = get_class ($object_d);
     		                call_user_func_array (array ($object_d, $this->func), $this->param);
     		            }
+
+
+
+
+                        $errorModel->sendError (MASTER, "3333");
     		        }
+
+                    $errorModel->sendError (MASTER, "444");
     		        if (isset ($cuPlugin))
     		            unset ($cuPlugin);
+
+                    $errorModel->sendError (MASTER, "5555");
 		        }
 		        if ($this->func == 'inline_query') {
 		            $telegramModel->sendInline ($this->param[2], 0);
