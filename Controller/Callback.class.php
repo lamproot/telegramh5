@@ -38,16 +38,18 @@
 		    /** 引入处理 */
 		    if (isset ($this->func)) {
 		        $pluginList = $pluginModel->getinfo (NULL, 1);
-                $errorModel->sendError (MASTER, print_r($pluginList, true));
-                $errorModel->sendError (MASTER, "APP_PATH".APP_PATH);
+                // $errorModel->sendError (MASTER, print_r($pluginList, true));
+                // $errorModel->sendError (MASTER, "APP_PATH".APP_PATH);
 
 		        if (!empty ($pluginList)) {
     		        foreach ($pluginList as $pluginList_d) {
     		            $pluginName = $pluginList_d['pcn'];
 
     		            $GLOBALS['cuPlugin'] = $pluginName;
+
     	                require_once APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php';
-    	                $object[] = $objectNew = new $pluginName ($this->data);
+                        $errorModel->sendError (MASTER, APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php');
+                        $object[] = $objectNew = new $pluginName ($this->data);
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
