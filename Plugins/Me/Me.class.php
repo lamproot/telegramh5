@@ -19,8 +19,8 @@
 
                 if ($codeInfo && $codeInfo[0] && isset($codeInfo[0]['code'])) {
                     $mycommand = "/code".$codeInfo[0]['code'];
-                    $errorModel = new ErrorModel;
-                    $errorModel->sendError (MASTER, $mycommand);
+                    // $errorModel = new ErrorModel;
+                    // $errorModel->sendError (MASTER, $mycommand);
                 }else{
                     return;
                 }
