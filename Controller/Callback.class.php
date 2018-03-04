@@ -54,6 +54,7 @@
     		        }
                     $errorModel->sendError (MASTER, "2222");
     		        foreach ($object as $object_d) {
+                        $errorModel->sendError (MASTER, "func".$this->func);
     		            if (method_exists ($object_d, $this->func)) {
     		                $GLOBALS['cuPlugin'] = get_class ($object_d);
     		                call_user_func_array (array ($object_d, $this->func), $this->param);
