@@ -1,7 +1,8 @@
 <?php
     class Basic extends Base {
         public function command ($command, $param, $message_id, $from, $chat, $date) {
-            $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true));
+            $errorModel = new errorModel;
+            $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true)."$command");
             # 步骤
             //1.查询是否以 / 开头 正则匹配
             //$search = "/^\//i"; preg_match($search,$command,$result)
