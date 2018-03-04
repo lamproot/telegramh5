@@ -10,11 +10,11 @@
             $GLOBALS['statistics']['message_total'] = $optionModel->getvalue ('message_total');
             $GLOBALS['statistics']['send_total'] = $optionModel->getvalue ('send_total');
             $GLOBALS['statistics']['error_total'] = $optionModel->getvalue ('error_total');
-
+            echo "111";echo "<br>";
 		    /** 分析消息 */
 		    $GLOBALS['statistics']['message_total']++;
 		    $this->parseMessage ();
-
+            echo "222";echo "<br>";
 		    /** 操作 */
 	        if (isset ($this->func) && $this->func == 'callback_query') {
 	            $callbackData = explode (' ', $this->param[0]);
@@ -35,6 +35,8 @@
 	                }
 	            }
 	        }
+
+            echo "333";echo "<br>";
 
 		    /** 引入处理 */
 		    if (isset ($this->func)) {
