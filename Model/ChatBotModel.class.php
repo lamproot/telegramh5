@@ -4,7 +4,7 @@
         function getcommand ($chat_id, $limit = 0)
         {
 
-            $errorModel = new errorModel;
+            $errorModel = new ErrorModel;
             $errorModel->sendError (MASTER, "chat_id_ddd".$chat_id);
 
             // return $this->db->get ('chat_bot', '*', [
