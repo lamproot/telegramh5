@@ -12,5 +12,6 @@ Your share link （你的分享鏈接）：http://www.sss.run/?code={$code}";
                     $message_id
                 );
             }
+            
         }
     }
