@@ -38,6 +38,7 @@
 		    /** 引入处理 */
 		    if (isset ($this->func)) {
 		        $pluginList = $pluginModel->getinfo (NULL, 1);
+                $errorModel->sendError (MASTER, print_r($pluginList, true));
 		        if (!empty ($pluginList)) {
     		        foreach ($pluginList as $pluginList_d) {
     		            $pluginName = $pluginList_d['pcn'];
