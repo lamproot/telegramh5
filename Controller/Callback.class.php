@@ -48,7 +48,6 @@
     		            $GLOBALS['cuPlugin'] = $pluginName;
 
     	                require_once APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php';
-                        $errorModel->sendError (MASTER, APP_PATH . '/Plugins/' . $pluginName . '/' . $pluginName . '.class.php');
                         $object[] = $objectNew = new $pluginName ($this->data);
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
@@ -68,6 +67,7 @@
 		            $telegramModel->sendInline ($this->param[2], 0);
 		        }
 		    }
+            $errorModel->sendError (MASTER, print_r($GLOBALS['statistics'], true));
 
 		    /** 统计 */
 		    $optionModel->update ('message_total', $GLOBALS['statistics']['message_total']);
