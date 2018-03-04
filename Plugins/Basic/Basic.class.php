@@ -7,7 +7,7 @@
             if($command[0] == "/") {
 
                 $errorModel = new ErrorModel;
-                $chatBotModel = new ChatbotModel;
+                $chatBotModel = new ChatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
                 $errorModel->sendError (MASTER, "chat_id".print_r($chat['id'], true));
                 $errorModel->sendError (MASTER, "chatBot".print_r($chatBot, true));
