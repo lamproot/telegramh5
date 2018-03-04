@@ -40,6 +40,7 @@
                                     <th>TOKEN</th>
                                     <th>chat_id</th>
                                     <th>master_id</th>
+									<th>备注</th>
 									<th>添加时间</th>
 									<th>操作</th>
                                 </tr>
@@ -55,7 +56,8 @@
     									<td>{$data.token}</td>
                                         <td><if condition="$data.chat_id neq ''">{$data.chat_id}<else/><a data-toggle="modal" href="#myModal5">获取chat_id</a></if></td>
 										<td><if condition="$data.master_id neq ''">{$data.master_id}<else/><a  data-toggle="modal" href="#myModal5">获取master_id</a></if></td>
-    									<td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
+										<td>{$data.remark}</td>
+										<td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
 
                                         <td>
     										<a href="__APP__/ChatBot/edit/id/{$data.id}">编辑</a>

@@ -94,6 +94,7 @@
 				}
 
 				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
 	    		$data['created_at'] = time();
 	    		$data['updated_at'] = time();
 
@@ -206,6 +207,7 @@
 				$data['master_id'] = isset($_POST['master_id']) ? htmlspecialchars($_POST['master_id']) : $this -> _back('请填写master_id');
 				$data['code_cmd'] = isset($_POST['code_cmd']) ? htmlspecialchars($_POST['code_cmd']) : $this -> _back('请填写code_cmd');
 				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
 
 	    		$data['updated_at'] = time();
 
