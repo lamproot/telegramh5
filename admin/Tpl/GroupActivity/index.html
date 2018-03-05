@@ -33,15 +33,37 @@
                 </div>
                 <div class="ibox-content">
 					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动类型:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="type">
+                                    <option value="1" <if condition="$result['type'] == 1">selected="selected"</if>>Code邀请活动</option>
+                                    <option value="2" <if condition="$result['type'] == 2">selected="selected"</if>>拟稿人活动</option>
+                                </select>
+                                <p>活动类型 1.Code邀请活动  2.拟稿人活动</p>
+                            </div>
+                        </div>
 
-						<if condition="$botCode['code'] neq ''">
+						<if condition="$botCode['code'] neq '' && $result['type'] == 1">
 							<div class="form-group">
-	                            <label class="col-sm-3 control-label">群活动机器人邀请地址:</label>
+	                            <label class="col-sm-3 control-label">群活动邀请地址:</label>
 	                            <div class="col-sm-9">
 	                                <a href="http://m.name-technology.fun/Index/code/{$botCode['code']}">http://m.name-technology.fun/Index/code/{$botCode['code']}</a>
 	                            </div>
 	                        </div>
 						</if>
+
+                        <if condition="$result['type'] == 2">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">群活动邀请地址:</label>
+                                <div class="col-sm-9">
+                                    <a href="http://m.name-technology.fun/Index/activity/{$result['id']}">http://m.name-technology.fun/Index/activity/{$result['id']}</a>
+                                </div>
+                            </div>
+                        </if>
+
+
 						<div class="form-group">
                             <label class="col-sm-3 control-label">标题:</label>
                             <div class="col-sm-9">

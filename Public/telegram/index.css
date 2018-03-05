@@ -54,6 +54,20 @@ a, a:hover, a:active {
     text-align: left;
     font-size: 20px;
 }
+.addmessage {
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 56px;
+    line-height: 56px;
+    background: #fff;
+    color: #FF0066;
+    font-weight: bold;
+    margin: 30px auto 191px;
+    font-size: 18px;
+}
 .submit {
     display: block;
     width: 100%;

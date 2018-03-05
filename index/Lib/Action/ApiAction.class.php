@@ -103,6 +103,56 @@
 			}
 	    }
 
+	    /**
+		 * 拟稿人活动
+		 *
+		 * 参数描述：
+		 *
+		 *
+		 *
+		 * 返回值：
+		 *
+		 */
+	    public function activity()
+	    {
+			if (empty($_POST['uid']) || !isset($_POST['uid'])) {
+				echo json_encode(array("code" => 101, "success" => false));exit;
+			}
+
+			$params = array(
+
+				'table_name' => 'drafters',
+
+				'where' => "uid = {$_POST['uid']} AND activity_id = '{$_POST['activity_id']}'"
+
+			);
+
+	    	$codes = $this -> model -> my_find($params);
+
+			if (!$codes) {
+				$data['uid'] = $_POST['uid'];
+				$data['created_at'] = time();
+				$data['activity_id'] = $_POST['activity_id'];
+				$data['content'] = json_encode($_POST['message_url']);
+
+				$drafters_params = array(
+
+					'table_name' => 'drafters',
+
+					'data' => $data
+				);
+
+				$draftersAdd = $this -> model -> my_add($drafters_params);
+				if ($draftersAdd) {
+					echo json_encode(array("code" => 0, "success" => true));exit;
+				}else{
+					echo json_encode(array("code" => 101, "success" => false, "message" => "添加失败"));exit;
+				}
+			}else{
+				echo json_encode(array("code" => 0, "success" => true));exit;
+			}
+	    }
+
 		/**
 		 * 返回16位md5值
 		 *

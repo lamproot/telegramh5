@@ -29,7 +29,7 @@
 		}
 
 	    /**
-		 * 首页：
+		 * code 邀请活动页面
 		 *
 		 */
 	    public function code()
@@ -193,6 +193,54 @@
 		   }
 	   }
 
+
+
+	    /**
+		 * 首页：
+		 *
+		 */
+	    public function activity()
+	    {
+			
+			$id = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : "";
+			
+
+			// //获取机器人信息
+			// $params = array(
+
+			// 	'table_name' => 'chat_bot',
+
+			// 	'where' => "id = {$codes['chat_bot_id']}"
+
+			// );
+
+	  //   	$chat_bot = $this -> model -> my_find($params);
+			// if (!$chat_bot) {
+			// 	$this -> _back('chat数据获取失败');
+			// }
+
+			//获取活动信息
+			$params = array(
+
+				'table_name' => 'group_activity',
+
+				'where' => "id = {$id}"
+
+			);
+
+	    	$group_activity = $this -> model -> my_find($params);
+			if (!$group_activity) {
+				$this -> _back('activity数据获取失败');
+			}
+
+			$this -> assign('group_activity', $group_activity);
+
+			if ($_GET['lang'] == 'en') {
+				$this -> display('en_activity');
+			}else{
+				$this -> display();
+			}
+	    }
 	   /**
 		* 返回16位md5值
 		*
