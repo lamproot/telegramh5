@@ -60,7 +60,7 @@
 					$data['url'] = $logo['msg'];
 					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
 				}
-				
+
 	    		$params = array(
 
 	    			'table_name' => 'group_activity',
@@ -74,7 +74,8 @@
 
 	    		if ($chat_bot_save)
 	    		{
-	    			redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
+					$this -> _alert('保存成功');
+					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{

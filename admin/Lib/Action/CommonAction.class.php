@@ -73,6 +73,13 @@
 	    	die('<meta http-equiv="Content-Type" content="text/html"; charset="utf8"><script language="javascript">alert("' . $msg . '");window.history.back(-1);</script>');
 	    }
 
+		public function _alert($message)
+	   {
+		   $msg = $message ? $message : '出现错误，请稍后再试。';
+
+		   echo ('<meta http-equiv="Content-Type" content="text/html"; charset="utf8"><script language="javascript">alert("' . $msg . '");</script>');
+	   }
+
 	    /**
 		*[Rongzi] (Beta)2014-~ 社区送 Crm.
 		************************************
