@@ -25,11 +25,15 @@
         <div class="container">
             <form class="row">
                 <div class="col-sm-12 text-right lang-box">
-                    <a href="javascript:void(0);" class="lang">English</a></div>
+                    <a href="javascript:void(0);" class="lang">中文</a></div>
                 <div class="col-sm-12 text-center">
                     <img class="logo" src="{$group_activity['logo']}" alt=""></div>
                 <!-- <div class="col-sm-12 text-center">
                     <a href="{$group_activity['join_button_url']}" class="join border-radius" style="text-decoration:none;">{$group_activity['join_button_text']}</a></div> -->
+                <div class="col-sm-12 text-center">
+                    <p class="desc">{$group_activity['en_title']}</p>
+                    <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
+                </div>
                 <div class="col-sm-12 text-center">
                     <p class="desc">{$group_activity['en_message']}</p>
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
@@ -183,7 +187,7 @@
                 });
 
                 $('.lang').click(function() {
-                    location.href = location.protocol + '//' + location.host + location.pathname + '?lang=en' + ('' ? '&code=': '')
+                    location.href = location.protocol + '//' + location.host + location.pathname + '?lang=ch'
                 });
             });</script>
         <!--baidu-->
