@@ -3,7 +3,7 @@
 
     <head lang="zh">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>{$group_activity['title']}</title>
+        <title>{$group_activity['en_title']}</title>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
         <link rel="stylesheet" href="__PUBLIC__/telegram/bootstrap.min.css">
         <script src="__PUBLIC__/telegram/hm.js"></script>
@@ -31,15 +31,15 @@
                 <!-- <div class="col-sm-12 text-center">
                     <a href="{$group_activity['join_button_url']}" class="join border-radius" style="text-decoration:none;">{$group_activity['join_button_text']}</a></div> -->
                 <div class="col-sm-12 text-center">
-                    <p class="desc">{$group_activity['message']}</p>
+                    <p class="desc">{$group_activity['en_message']}</p>
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
 
                     <if condition ="$group_activity['placeholder_text'] neq ''">
-                        <input name="uid" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}">
+                        <input name="uid" class="address border-radius text-center" placeholder="{$group_activity['en_placeholder_text']}">
                     <else/>
-                        <input name="uid" class="address border-radius text-center" placeholder="请输入你的 ETH 钱包地址">
+                        <input name="uid" class="address border-radius text-center" placeholder="Message Url">
                     </if>
                     <br>
 
@@ -50,22 +50,22 @@
 
                 <div class="col-sm-12 text-center message_list">
 
-                    <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" >
+                    <input name="message_url[]" class="address border-radius text-center" placeholder="Message Url" >
                     <!-- <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" style="margin-top:18px;"> -->
                 </div>
 
 
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="addmessage border-radius text-center ladda-button" data-style="zoom-in" style="margin-bottom:0px;">
-                        <span class="ladda-label">新增文章地址</span></button>
+                        <span class="ladda-label">Add Url</span></button>
                 </div>
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">
-                        <span class="ladda-label">{$group_activity['join_button_text']}</span></button>
+                        <span class="ladda-label">{$group_activity['en_join_button_text']}</span></button>
                 </div>
                 <div class="col-sm-12 text-center rule-box">
                     <a class="link" data-toggle="modal" data-target="#myModal">
-                        <u>活动详情</u>
+                        <u>Activity Details</u>
                     </a>
                 </div>
 
@@ -78,10 +78,10 @@
                                 <!-- <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4> -->
                             </div>
                             <div class="modal-body" style="white-space:pre-wrap">
-                                {$group_activity['rule']|htmlspecialchars_decode}
+                                {$group_activity['en_rule']|htmlspecialchars_decode}
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <!-- <button type="button" class="btn btn-primary">提交更改</button> -->
                             </div>
                         </div><!-- /.modal-content -->
@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="col-sm-12 text-center link-box">
-                    <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a></div>
+                    <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['en_bottom_text']}</a></div>
             </form>
         </div>
         <script src="__PUBLIC__/telegram/web3.min.js"></script>
