@@ -64,7 +64,14 @@
 
 											<if condition="$data.chat_id neq ''">
 												<a href="__APP__/ChatCommand/index/chat_bot_id/{$data.id}">命令设置</a>
-												<a href="__APP__/Codes/index/chat_bot_id/{$data.id}">用户列表</a>
+												
+                                                <if condition="$data.group_activity_type == 2">
+                                                    <a href="__APP__/Drafters/index/chat_bot_id/{$data.id}">用户列表</a>
+                                                <else/>
+                                                    <a href="__APP__/Codes/index/chat_bot_id/{$data.id}">用户列表</a>
+                                                </if>
+
+
 												<a href="__APP__/GroupActivity/index/chat_bot_id/{$data.id}">活动页面</a>
 											</if>
 

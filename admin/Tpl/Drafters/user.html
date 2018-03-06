@@ -1,0 +1,112 @@
+<include file="public:header" />
+<link href="__PUBLIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<ol class="breadcrumb">
+			<a href="__URL__"><i class="fa fa-home"></i></a>
+            <li>
+                <a href="__URL__">首页</a>
+            </li>
+            <li>
+                <a>群管理</a>
+            </li>
+			<li>
+                <a>邀请管理</a>
+            </li>
+        </ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated">
+	<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content table-responsive">
+                    <div class="row">
+                        <div class="col-sm-12 m-b-xs">
+							<p>
+                                <!-- <a type="button" class="btn btn-w-m btn-danger">导出用户数据</a> -->
+                                <!-- <button type="button" class="btn btn-w-m btn-primary">启用</button>
+                                <button type="button" class="btn btn-w-m btn-primary">禁用</button>
+                                <button type="button" class="btn btn-w-m btn-primary">删除</button>
+                                <button type="button" class="btn btn-w-m btn-primary">排序</button> -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover no-margins table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <!-- <th>#</th> -->
+
+                                    <th>来源</th>
+									<th>名称</th>
+									<th>钱包</th>
+                                    <th>邀请码</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="result['result']" item="data">
+                                    <tr>
+                                        <!-- <td>
+                                            <input type="checkbox" checked class="i-checks" name="input[]">
+                                        </td> -->
+                                        <td>{$data.from_id}</span></td>
+    									<td>{$data.from_username}</td>
+                                        <td>{$data.eth}</td>
+										<td>{$data.code}</td>
+                                        
+                                    </tr>
+                                </foreach>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+			<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+							   <div class="modal-dialog modal-lg">
+								   <div class="modal-content">
+									   <div class="modal-header">
+										   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										   <h4 class="modal-title">窗口标题</h4>
+										   <small class="font-bold">这里可以显示副标题。
+									   </div>
+									   <div class="modal-body">
+										   <p><strong>H+</strong> 是一个完全响应式，基于Bootstrap3.3.6最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本(v2.1.1)，当然，也集成了很多功能强大，用途广泛的jQuery插件，她可以用于所有的Web应用程序，如网站管理后台，网站会员中心，CMS，CRM，OA等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
+									   </div>
+
+									   <div class="modal-footer">
+										   <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+										   <button type="button" class="btn btn-primary">保存</button>
+									   </div>
+								   </div>
+							   </div>
+						   </div>
+        </div>
+
+    </div>
+
+	<div class="row">
+	    <div class="col-sm-12 text-right">
+	        <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+	            <ul class="pagination">
+	                {$result.page}
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+
+</div>
+<include file="public:footer" />
+<!-- iCheck -->
+<script src="__PUBLIC__/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+   $(document).ready(function () {
+	   $('.i-checks').iCheck({
+		   checkboxClass: 'icheckbox_square-green',
+		   radioClass: 'iradio_square-green',
+	   });
+   });
+</script>
