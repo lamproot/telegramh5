@@ -34,7 +34,7 @@
                     <p class="desc">{$group_activity['title']}</p>
                 </div>
                 <div class="col-sm-12 text-center">
-                    <p class="desc">{$group_activity['message']}</p>
+                    <p class="desc">{$group_activity['message']|htmlspecialchars_decode}</p>
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
@@ -81,7 +81,7 @@
                                 <!-- <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4> -->
                             </div>
                             <div class="modal-body" style="white-space:pre-wrap">
-                                {$group_activity['rule']|htmlspecialchars_decode}
+                                {$group_activity['rule']}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
