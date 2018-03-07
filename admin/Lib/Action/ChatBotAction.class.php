@@ -54,6 +54,24 @@
 
 	    	$result = $this -> model -> order_select($params);
 
+	    	//获取活动类型
+	    	//
+	    	//
+	    	foreach ($result['result'] as $key => $value) {
+	    		$params = array(
+
+		    		'table_name' => 'group_activity',
+
+		    		'where' => "chat_bot_id = ".$value['id']
+		    	);
+
+		    	$groupActivityInfo = $this -> model -> my_find($params);
+
+		    	if ($groupActivityInfo) {
+		    		$result['result'][$key]['group_activity_type'] = $groupActivityInfo['type'];
+		    	}
+	    	}
+
 	    	$this -> assign('result', $result);
 
 	    	$this -> display();
