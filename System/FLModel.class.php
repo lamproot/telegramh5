@@ -3,9 +3,9 @@
      * 模型基类
      */
     class FLModel extends FLBase {
-        /** 
+        /**
          * 数据库类
-         * 
+         *
          * @var    medoo
          */
         protected $db;
@@ -23,7 +23,7 @@
                     'server' => DBHOST,
                     'username' => DBUSER,
                     'password' => DBPASS,
-                    'charset' => 'utf8',
+                    'charset' => DBCHARSET,
                     'option' => array (
                         PDO::ATTR_PERSISTENT => DBPERSISTENT
                     )
