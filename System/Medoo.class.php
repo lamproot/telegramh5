@@ -87,7 +87,7 @@ class Medoo
                     }
                     else
                     {
-                        $dsn = $type . ':host=' . $this->server . ($is_port ? ';port=' . $port : '') . ';dbname=' . $this->database_name.'?characterEncoding=utf8mb4';
+                        $dsn = $type . ':host=' . $this->server . ($is_port ? ';port=' . $port : '') . ';dbname=' . $this->database_name.';characterEncoding=utf8mb4';
                     }
 
                     // Make MySQL using standard quoted identifier
