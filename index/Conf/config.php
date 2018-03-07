@@ -29,7 +29,8 @@ return array(
 	'SHOW_PAGE_TRACE'=>false,
 	'LOG_RECORD' => false, // 开启日志记录
 	'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR',
-	'LOG_TYPE' =>  'File'
+	'LOG_TYPE' =>  'File',
+	'DB_CHARSET'=> 'utf8mb4'
 );
 /*
 return array(
