@@ -135,6 +135,7 @@
 				$data['activity_id'] = $_POST['activity_id'];
 				$data['chat_bot_id'] = intval($_POST['chat_bot_id']);
 				$data['content'] = json_encode($_POST['message_url']);
+				$data['telegram_uid'] =  $_POST['telegram_uid'];
 
 				$drafters_params = array(
 
