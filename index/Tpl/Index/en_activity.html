@@ -20,6 +20,48 @@
         <link type="text/css" rel="stylesheet" href="chrome-extension://gdahdckfamodilgodnphjbihfhghkdag/style.css">
         <link type="text/css" rel="stylesheet" href="chrome-extension://gdahdckfamodilgodnphjbihfhghkdag/content.css">
         <script type="text/javascript" charset="utf-8" src="chrome-extension://gdahdckfamodilgodnphjbihfhghkdag/page_context.js"></script>
+        <style>
+            .address {
+                color: #fff;
+                width: 100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                display: block;
+                height: 56px;
+                line-height: 56px;
+                outline: none;
+                border: none;
+                padding: 0 30px;
+                background: rgba(255,255,255,.3);
+                text-align: left;
+                font-size: 20px;
+                margin: 20px auto 30px;
+            }
+            .copy {
+                font-size: 18px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                padding: 0 20px;
+                /*width: 102px;*/
+                height: 56px;
+                line-height: 56px;
+                color: #FF0066;
+                background: #fff;
+                -webkit-border-radius: 0 100px 100px 0;
+                -moz-border-radius: 0 100px 100px 0;
+                border-radius: 0 100px 100px 0;
+                font-weight: bold;
+            }
+            .copy:hover, .copy:active {
+                color: #FF0066;
+            }
+            .input-box {
+                position: relative;
+            }
+        </style>
     </head>
 
     <body style="font-size: 24px;" duitang_screen_capture_injected="true">
@@ -40,6 +82,9 @@
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
+                    <input name="telegram_uid" class="address border-radius text-center" placeholder="请输入Telegram ID">
+                </div>
+                <div class="col-sm-12 text-center">
 
                     <if condition ="$group_activity['placeholder_text'] neq ''">
                         <input name="uid" class="address border-radius text-center" placeholder="{$group_activity['en_placeholder_text']}">
@@ -54,8 +99,10 @@
 
 
                 <div class="col-sm-12 text-center message_list">
-
-                    <input name="message_url[]" class="address border-radius text-center" placeholder="Message Url" >
+                    <div class="input-box ">
+                        <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" >
+                        <span href="javascript:void(0);" style="display:none" class=" copy text-center copy-btn"data-clipboard-target=".address">✔</span>
+                    </div>
                     <!-- <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" style="margin-top:18px;"> -->
                 </div>
 
@@ -185,8 +232,38 @@
                 });
 
                 $('.addmessage').click(function() {
-                    $('.message_list').append('<input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" style="margin-top:18px;">');
+                    $('.message_list').append('<div class="input-box">
+                        <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" >
+                        <span href="javascript:void(0);" style="display:none" class="copy text-center copy-btn"data-clipboard-target=".address">✔</span>
+                    </div>');
+                    blur();
                 });
+
+                blur();
+                function blur(){
+
+                    $('.address').blur(function() {
+                        var reg = isURL($(this).val());
+                        if (reg) {
+                            $(this).next().show();
+                        }else{
+                            $(this).next().hide();
+                        }
+                    });
+                }
+
+                function isURL(domain) {
+                    var name = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+                    if( !(name.test(domain)))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+
 
                 $('.lang').click(function() {
                     location.href = location.protocol + '//' + location.host + location.pathname + '?lang=ch'
