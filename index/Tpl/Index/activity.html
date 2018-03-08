@@ -28,12 +28,15 @@
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 display: block;
+                height: 56px;
+                line-height: 56px;
                 outline: none;
                 border: none;
+                padding: 0 30px;
                 background: rgba(255,255,255,.3);
                 text-align: left;
                 font-size: 20px;
-                margin: 20px auto;
+                margin: 20px auto 30px;
             }
             .copy {
                 font-size: 18px;
@@ -42,6 +45,9 @@
                 right: 0;
                 display: inline-block;
                 padding: 0 20px;
+                /*width: 102px;*/
+                height: 56px;
+                line-height: 56px;
                 color: #FF0066;
                 background: #fff;
                 -webkit-border-radius: 0 100px 100px 0;
@@ -86,7 +92,6 @@
                     <else/>
                         <input name="uid" class="address border-radius text-center" placeholder="请输入你的 ETH 钱包地址">
                     </if>
-                    <br>
 
                     <input type="hidden" name="chat_bot_id" value="{$group_activity['chat_bot_id']}">
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
