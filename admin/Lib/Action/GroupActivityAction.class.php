@@ -44,131 +44,28 @@
 	    public function index()
 	    {
 			$chat_bot_id = $_GET['chat_bot_id'];
+			$where = "";
 
-			$form_key = htmlspecialchars($_POST['form_key']);
+			if ($_GET['chat_bot_id']) {
+	        	$where = "chat_bot_id = {$chat_bot_id}";
+			}
 
-	    	if ($form_key == 'yes')
-	    	{
-				$data = $_POST;
-
-				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
-				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
-				$logo = $this -> _upload_pic('group_activity');
-
-				if ($logo['status'] == 1)
-				{
-					$data['url'] = $logo['msg'];
-					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
-				}
-
-	    		$params = array(
-
-	    			'table_name' => 'group_activity',
-
-	    			'where' => "chat_bot_id = {$_POST['chat_bot_id']}",
-
-	    			'data' => $data
-	    		);
-
-	    		$chat_bot_save = $this -> model -> my_save($params);
-
-	    		if ($chat_bot_save)
-	    		{
-					$this -> _alert('保存成功');
-					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
-	    		}
-	    		else
-	    		{
-	    			$this -> _back('保存失败 请稍后重试');
-	    		}
-	    	}
-
-	    	$group_params = array(
+	    	$params = array(
 
 	    		'table_name' => 'group_activity',
 
 	    		'order' => 'id desc',
 
-	    		'where' => "chat_bot_id = {$chat_bot_id}"
+	    		'where' => $where
 	    	);
 
-	    	$result = $this -> model -> my_find($group_params);
 
-			if (!$result) {
-				# 新增
-				$data['chat_bot_id'] = $chat_bot_id;
-				$data['created_at'] = time();
+	    	$result = $this -> model -> order_select($params);
 
-				$params = array(
+	    	// foreach ($result['result'] as $key => $value) {
+	    	// 	$result['result'][$key]['content'] = json_decode($result['result'][$key]['content'], true);
+	    	// }
 
-		    		'table_name' => 'group_activity',
-
-		    		'data' => $data
-		    	);
-
-		    	$my_add = $this -> model -> my_add($params);
-
-				if ($my_add) {
-					//添加机器人code
-					$botcode_data['from_id'] = 1;
-					$botcode_data['from_username'] = "机器人账号";
-					$botcode_data['eth'] = "0000000000000000";
-					$botcode_data['code'] = $this->short_md5(md5($my_add."_".$botcode_data['eth']."_telegram"));
-					$botcode_data['status'] = 3;
-					$botcode_data['created_at'] = time();
-					$botcode_data['updated_at'] = time();
-					$botcode_data['chat_bot_id'] = $chat_bot_id;
-					$botcode_data['activity_id'] = $my_add;
-
-					$botcode_params = array(
-
-			    		'table_name' => 'codes',
-
-			    		'data' => $botcode_data
-			    	);
-
-			    	$botcode_add = $this -> model -> my_add($botcode_params);
-
-			    	$result = $this -> model -> my_find($group_params);
-				}
-			}
-
-			//机器人活动地址查询
-	    	$botcode_params = array(
-
-	    		'table_name' => 'codes',
-
-	    		'order' => 'id desc',
-
-	    		'where' => "chat_bot_id = {$chat_bot_id} AND from_id = 1 AND status = 3 AND eth = '0000000000000000'"
-	    	);
-
-	    	$botCode = $this -> model -> my_find($botcode_params);
-
-			if (!$botCode) {
-				$botcode_data['from_id'] = 1;
-				$botcode_data['from_username'] = "机器人账号";
-				$botcode_data['eth'] = "0000000000000000";
-				$botcode_data['code'] = $this->short_md5(md5($result['id']."_".$botcode_data['eth']."_telegram"));
-				$botcode_data['status'] = 3;
-				$botcode_data['created_at'] = time();
-				$botcode_data['updated_at'] = time();
-				$botcode_data['chat_bot_id'] = $chat_bot_id;
-				$botcode_data['activity_id'] = $result['id'];
-
-				$botcode_params = array(
-
-					'table_name' => 'codes',
-
-					'data' => $botcode_data
-				);
-
-				$botcode_add = $this -> model -> my_add($botcode_params);
-
-				$botCode = $this -> model -> my_find($botcode_params);
-			}
-
-			$this -> assign('botCode', $botCode);
 	    	$this -> assign('result', $result);
 
 	    	$this -> display();
@@ -188,22 +85,26 @@
 		 */
 	    public function add()
 	    {
-	    	$form_key = htmlspecialchars($_POST['form_key']);
+
+			$form_key = htmlspecialchars($_POST['form_key']);
 
 	    	if ($form_key == 'yes')
 	    	{
-	    		$data['token'] = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : $this -> _back('请填写token');
-				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+				$data = $_POST;
+				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
+				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
+				$data['created_at'] = time();
+				$logo = $this -> _upload_pic('group_activity');
 
-	    		$data['created_at'] = time();
-
-	    		$data['updated_at'] = time();
-
-	    		$data['is_del'] = 0;
+				if ($logo['status'] == 1)
+				{
+					$data['url'] = $logo['msg'];
+					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
+				}
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_bot',
+	    			'table_name' => 'group_activity',
 
 	    			'data' => $data
 	    		);
@@ -213,15 +114,61 @@
 	    		if ($chat_bot_add)
 	    		{
 
-	    			redirect(__APP__.'/ChatBot/index', 0);
+	    			if ($data['type'] == 1) {
+	    				//添加机器人code
+						$botcode_data['from_id'] = 1;
+						$botcode_data['from_username'] = "机器人账号";
+						$botcode_data['eth'] = "0000000000000000";
+						$botcode_data['code'] = $this->short_md5(md5($my_add."_".$botcode_data['eth']."_telegram"));
+						$botcode_data['status'] = 3;
+						$botcode_data['created_at'] = time();
+						$botcode_data['updated_at'] = time();
+						$botcode_data['chat_bot_id'] = $data['chat_bot_id'];
+						$botcode_data['activity_id'] = $chat_bot_add;
+
+						$botcode_params = array(
+
+				    		'table_name' => 'codes',
+
+				    		'data' => $botcode_data
+				    	);
+
+				    	$botcode_add = $this -> model -> my_add($botcode_params);
+	    			}
+	    			
+					$this -> _alert('添加成功');
+					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
-	    			$this -> _back('创建失败 请稍后重试');
+	    			$this -> _back('保存失败 请稍后重试');
 	    		}
 	    	}
 
+	    	$group_params = array(
+
+	    		'table_name' => 'group_activity',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "chat_bot_id = {$chat_bot_id}"
+	    	);
+
+	    	$result = $this -> model -> my_find($group_params);
+
+			$params = array(
+
+	    		'table_name' => 'chat_bot',
+
+	    		'order' => 'id desc',
+
+	    		'where' => ""
+	    	);
+
+
+	    	$chatBotList = $this -> model -> easy_select($params);
 	    	$this -> assign('result', $result);
+	    	$this -> assign('chatBotList', $chatBotList);
 
 	    	$this -> display();
 	    }
@@ -245,37 +192,27 @@
 	    		$this -> _back('错误的参数');
 	    	}
 
-	    	$params = array(
-
-	    		'table_name' => 'chat_bot',
-
-	    		'where' => "id = {$id} AND is_del = 0"
-	    	);
-
-	    	$result = $this -> model -> my_find($params);
-
-	    	if (!$result)
-	    	{
-	    		$this -> _back('没有符合的记录');
-	    	}
-
-	    	$form_key = htmlspecialchars($_POST['form_key']);
+			$form_key = htmlspecialchars($_POST['form_key']);
 
 	    	if ($form_key == 'yes')
 	    	{
-				$data['token'] = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : $this -> _back('请填写token');
-				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
-				$data['master_id'] = isset($_POST['master_id']) ? htmlspecialchars($_POST['master_id']) : $this -> _back('请填写master_id');
-				$data['code_cmd'] = isset($_POST['code_cmd']) ? htmlspecialchars($_POST['code_cmd']) : $this -> _back('请填写code_cmd');
-				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+				$data = $_POST;
 
-	    		$data['updated_at'] = time();
+				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
+				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
+				$logo = $this -> _upload_pic('group_activity');
+
+				if ($logo['status'] == 1)
+				{
+					$data['url'] = $logo['msg'];
+					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
+				}
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_bot',
+	    			'table_name' => 'group_activity',
 
-	    			'where' => "id = {$id}",
+	    			'where' => "id = {$_POST['id']}",
 
 	    			'data' => $data
 	    		);
@@ -284,7 +221,8 @@
 
 	    		if ($chat_bot_save)
 	    		{
-	    			redirect(__APP__.'/ChatBot/index', 0);
+					$this -> _alert('保存成功');
+					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
 	    		else
 	    		{
@@ -292,7 +230,44 @@
 	    		}
 	    	}
 
+	    	$group_params = array(
+
+	    		'table_name' => 'group_activity',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "id = {$id}"
+	    	);
+
+	    	$result = $this -> model -> my_find($group_params);
+
+			$params = array(
+
+	    		'table_name' => 'chat_bot',
+
+	    		'order' => 'id desc',
+
+	    		'where' => ""
+	    	);
+	    	$chatBotList = $this -> model -> easy_select($params);
+
+	    	$params = array(
+
+	    		'table_name' => 'codes',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "activity_id = {$_GET['id']} and from_id = 1  and status = 3"
+	    	);
+
+
+	    	$botCode = $this -> model -> my_find($params);
+	    	
 	    	$this -> assign('result', $result);
+	    	$this -> assign('chatBotList', $chatBotList);
+	    	$this -> assign('botCode', $botCode);
+
+	    	
 
 	    	$this -> display();
 	    }
