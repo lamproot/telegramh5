@@ -79,6 +79,9 @@
 
         private function parseMessage ()
         {
+
+                            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, "ssadas");
             $data = json_decode (file_get_contents ("php://input"), true);
 
                 $errorModel = new ErrorModel;
