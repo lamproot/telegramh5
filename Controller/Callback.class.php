@@ -52,7 +52,7 @@
     	                if (method_exists ($objectNew, 'init'))
     	                    call_user_func_array (array ($objectNew, 'init'), $this->initParam);
     		        }
-                    
+
     		        foreach ($object as $object_d) {
                         //$errorModel->sendError (MASTER, "func".$this->func);
     		            if (method_exists ($object_d, $this->func)) {
@@ -79,7 +79,13 @@
 
         private function parseMessage ()
         {
+
+                            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, "ssadas");
             $data = json_decode (file_get_contents ("php://input"), true);
+
+                $errorModel = new ErrorModel;
+                $errorModel->sendError (MASTER, "ssadas");
 		    if (isset ($data['message'])) {
 		        if (isset ($data['message']['text'])) {
 		            if ($data['message']['text'][0] == '/') {
@@ -189,6 +195,10 @@
                         $data['message']['chat'],
                         $data['message']['date'],
                     ];
+
+                    $errorModel = new ErrorModel;
+                    $errorModel->sendError (MASTER, print_r($data['message']['photo'], true));
+
                 }
 		    } else if (isset ($data['callback_query'])) {
 		        if (isset ($data['callback_query']['data'])) {

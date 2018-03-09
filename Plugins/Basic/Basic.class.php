@@ -48,6 +48,15 @@
                 }
             }
         }
+        //$data['message']['photo'],
+        public function photo($photo, $caption, $message_id, $from, $chat, $date){
+            $message = "你发布了禁止消息";
+            $this->telegram->sendMessage (
+                $chat['id'],
+                $message,
+                $message_id
+            );
+        }
 
         public function new_member ($new_member, $message_id, $from, $chat, $date) {
             // $command = "new_member";
