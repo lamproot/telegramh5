@@ -80,9 +80,10 @@
         private function parseMessage ()
         {
             $data = json_decode (file_get_contents ("php://input"), true);
-		    if (isset ($data['message'])) {
+
                 $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, print_r($data['message'], true));
+                $errorModel->sendError (MASTER, print_r($data, true));
+		    if (isset ($data['message'])) {
 		        if (isset ($data['message']['text'])) {
 		            if ($data['message']['text'][0] == '/') {
 		                $data['message']['text'] = str_replace ("\n", " ", $data['message']['text']);
