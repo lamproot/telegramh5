@@ -1,6 +1,11 @@
 <?php
     class Callback extends FLController {
         function run () {
+
+            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, "ssadas123");
+
+                            
             /** 初始化 */
             $errorModel = new ErrorModel;
             $pluginModel = new PluginModel;
