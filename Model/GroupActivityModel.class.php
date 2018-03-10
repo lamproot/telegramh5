@@ -21,7 +21,8 @@
         function getGroupActivityByChatId ($chat_bot_id)
         {
             return $this->db->get ('group_activity', '*', [
-                'chat_bot_id' => $chat_bot_id
+                'chat_bot_id' => $chat_bot_id,
+                'type' = 1
             ]);
         }
     }
