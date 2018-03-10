@@ -46,6 +46,13 @@
                     }
 
                 }
+            }else{
+                $message = "你发布了禁止消息1212";
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
             }
         }
         //$data['message']['photo'],
