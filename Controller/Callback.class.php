@@ -7,6 +7,9 @@
             $optionModel = new OptionModel;
             $telegramModel = new TelegramModel;
 
+            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, "ssadas123");
+
             $GLOBALS['statistics']['message_total'] = $optionModel->getvalue ('message_total');
             $GLOBALS['statistics']['send_total'] = $optionModel->getvalue ('send_total');
             $GLOBALS['statistics']['error_total'] = $optionModel->getvalue ('error_total');
