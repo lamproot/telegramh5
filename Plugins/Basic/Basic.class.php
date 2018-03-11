@@ -102,13 +102,24 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "message.";
+                
+                //链接  关键字（敏感词）过滤
+                $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+
+                if (preg_match($regex, $message)) {
+                    $message = $message;
             
-                $this->telegram->sendMessage (
-                    $chat['id'],
-                    $message,
-                    $message_id
-                );
+                    $this->telegram->sendMessage (
+                        $chat['id'],
+                        $message,
+                        $message_id
+                    );
+                }
+
+                
+
+
+
             }
         }
 
