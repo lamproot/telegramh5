@@ -102,18 +102,15 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $con = '真怕有一天我们再次成为交叉线，我想那时就再也不可能回归了，快乐永远是拿痛苦做代价，你现在多幸福，多快乐，你以后就会越伤心越难过，不想发生!';
 
-                $result = $this->get_tags_arr($con);
+                // $errorModel = new ErrorModel;
+                // $errorModel->sendError (MASTER, print_r($result, true));
 
-                $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, print_r($result, true));
-
-                $this->telegram->sendMessage (
-                        $chat['id'],
-                        $message,
-                        $message_id
-                    );
+                // $this->telegram->sendMessage (
+                //     $chat['id'],
+                //     $message,
+                //     $message_id
+                // );
 
                 //链接  关键字（敏感词）过滤
                 $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
@@ -131,6 +128,12 @@
                         $chat['id'],
                         $message_id
                     );
+                }else{
+                    $result = $this->get_tags_arr($con);
+                    if ($result) {
+                        $errorModel = new ErrorModel;
+                        $errorModel->sendError (MASTER, print_r($result, true));
+                    }
                 }
 
 
