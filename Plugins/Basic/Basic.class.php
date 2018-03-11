@@ -110,7 +110,7 @@
                 $ar = $fc->getWord('聚知台是一个及时沟通工具');
 
                 $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, print_r($ar, true));
+                $errorModel->sendError (MASTER, _VIC_WORD_DICT_PATH_);
 
                 $this->telegram->sendMessage (
                         $chat['id'],
