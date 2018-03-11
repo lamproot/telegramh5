@@ -1,6 +1,6 @@
 <?php
     class SensitiveWordsModel extends FLModel {
-        function find ($word)
+        function find ($word, $limit = 0)
         {
             /** 查询 */
             $where = array (
