@@ -192,6 +192,21 @@
                         $data['message']['chat'],
                         $data['message']['date'],
                     ];
+                } else if (isset ($data['message']['document'])) {
+                    $func = 'document';
+                    $param = [
+                        $data['message']['document'],
+                        $data['message']['message_id'],
+                        $data['message']['from'],
+                        $data['message']['chat'],
+                        $data['message']['date'],
+                    ];
+                    $initParam = [
+                        $func,
+                        $data['message']['from'],
+                        $data['message']['chat'],
+                        $data['message']['date'],
+                    ];
                 }
 		    } else if (isset ($data['callback_query'])) {
 		        if (isset ($data['callback_query']['data'])) {
