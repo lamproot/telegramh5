@@ -129,7 +129,7 @@
                         $message_id
                     );
                 }else{
-                    $result = $this->get_tags_arr($con);
+                    $result = $this->get_tags_arr($message);
                     if ($result) {
                         $errorModel = new ErrorModel;
                         $errorModel->sendError (MASTER, print_r($result, true));
