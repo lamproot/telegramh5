@@ -130,9 +130,18 @@
                         $word = $sensitiveWordsModel->find($result);
 
                         if ($word) {
-                            $errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, print_r($word, true));
-                        
+                            $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+
+                            $this->telegram->deleteMessage (
+                                $chat['id'],
+                                $message_id
+                            );
                         }
 
                     }
