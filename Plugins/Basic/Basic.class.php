@@ -106,7 +106,8 @@
                 // define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
                 
                 //定义词典文件路径
-                define('_VIC_WORD_DICT_PATH_',APP_PATH.'/Data/dict.igb');
+                define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
+                
                 require APP_PATH.'/vendor/autoload.php';
                 use Lizhichao\Word\VicWord;
                 $fc = new VicWord('igb');
