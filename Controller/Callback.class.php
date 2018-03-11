@@ -189,10 +189,6 @@
                         $data['message']['chat'],
                         $data['message']['date'],
                     ];
-
-                    $errorModel = new ErrorModel;
-                    $errorModel->sendError (MASTER, print_r($data['message']['photo'], true));
-
                 }
 		    } else if (isset ($data['callback_query'])) {
 		        if (isset ($data['callback_query']['data'])) {

@@ -48,30 +48,48 @@
                 }
             }
         }
+        
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
-            $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            $this->telegram->sendMessage (
-                $chat['id'],
-                $message,
-                $message_id
-            );
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
-            $this->telegram->deleteMessage (
-                $chat['id'],
-                $message_id
-            );
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
             
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
+
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
         }
 
         
         public function sticker ($sticker, $message_id, $from, $chat, $date) {
-            $message = "sticker";
-            $this->telegram->sendMessage (
-                $chat['id'],
-                $message,
-                $message_id
-            );
+            
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
+
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
         }
 
         public function new_member ($new_member, $message_id, $from, $chat, $date) {
