@@ -114,9 +114,14 @@
                         $message,
                         $message_id
                     );
+
+                    $this->telegram->deleteMessage (
+                        $chat['id'],
+                        $message_id
+                    );
                 }
 
-                
+
 
             }
         }
