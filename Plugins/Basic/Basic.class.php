@@ -103,15 +103,6 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
 
-                // $errorModel = new ErrorModel;
-                // $errorModel->sendError (MASTER, print_r($result, true));
-
-                // $this->telegram->sendMessage (
-                //     $chat['id'],
-                //     $message,
-                //     $message_id
-                // );
-
                 //链接  关键字（敏感词）过滤
                 $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
 
@@ -131,8 +122,19 @@
                 }else{
                     $result = $this->get_tags_arr($message);
                     if ($result) {
-                        $errorModel = new ErrorModel;
-                        $errorModel->sendError (MASTER, print_r($result, true));
+
+                        $sensitiveWordsModel = new SensitiveWordsModel;
+                        // $errorModel = new ErrorModel;
+                        // $errorModel->sendError (MASTER, print_r($result, true));
+                        // 
+                        $word = $sensitiveWordsModel->find($result);
+
+                        if ($word) {
+                            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, print_r($word, true));
+                        
+                        }
+
                     }
                 }
 
