@@ -102,14 +102,9 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                // require_once(APP_PATH.'/Lib/VicWord.php');
-                // define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
-                
-                //定义词典文件路径
-                define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
-                
-                require APP_PATH.'/vendor/autoload.php';
-                use Lizhichao\Word\VicWord;
+                define('_VIC_WORD_DICT_PATH_',APP_PATH.'/Data/dict.igb');
+                require_once(APP_PATH.'/Lib/VicWord.php');
+
                 $fc = new VicWord('igb');
                 //长度优先分词
                 $ar = $fc->getWord('聚知台是一个及时沟通工具');
