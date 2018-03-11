@@ -48,9 +48,10 @@
                 }
             }
         }
-        
+
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
+            $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
@@ -72,7 +73,7 @@
 
         
         public function sticker ($sticker, $message_id, $from, $chat, $date) {
-            
+            $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
