@@ -46,18 +46,27 @@
                     }
 
                 }
-            }else{
-                $message = "你发布了禁止消息1212";
-                $this->telegram->sendMessage (
-                    $chat['id'],
-                    $message,
-                    $message_id
-                );
             }
         }
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
-            $message = "你发布了禁止消息";
+            $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            $this->telegram->sendMessage (
+                $chat['id'],
+                $message,
+                $message_id
+            );
+
+            $this->telegram->deleteMessage (
+                $chat['id'],
+                $message_id
+            );
+            
+        }
+
+        
+        public function sticker ($sticker, $message_id, $from, $chat, $date) {
+            $message = "sticker";
             $this->telegram->sendMessage (
                 $chat['id'],
                 $message,

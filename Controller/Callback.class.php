@@ -1,19 +1,11 @@
 <?php
     class Callback extends FLController {
         function run () {
-
-            $errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, "ssadas123");
-
-                            
             /** 初始化 */
             $errorModel = new ErrorModel;
             $pluginModel = new PluginModel;
             $optionModel = new OptionModel;
             $telegramModel = new TelegramModel;
-
-            $errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, "ssadas123");
 
             $GLOBALS['statistics']['message_total'] = $optionModel->getvalue ('message_total');
             $GLOBALS['statistics']['send_total'] = $optionModel->getvalue ('send_total');
@@ -87,13 +79,7 @@
 
         private function parseMessage ()
         {
-
-                            $errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, "ssadas");
             $data = json_decode (file_get_contents ("php://input"), true);
-
-                $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, "ssadas");
 		    if (isset ($data['message'])) {
 		        if (isset ($data['message']['text'])) {
 		            if ($data['message']['text'][0] == '/') {
