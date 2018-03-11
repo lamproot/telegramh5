@@ -204,7 +204,7 @@
                 $pscws->set_rule(APP_PATH.'/scws/rules.utf8.ini');
                 $pscws->set_ignore(true);
                 $pscws->send_text($title);
-                $words = $pscws->get_tops();
+                $words = $pscws->get_tops(100);
                 $tags = array();
                 foreach ($words as $val) {
                     $tags[] = $val['word'];
