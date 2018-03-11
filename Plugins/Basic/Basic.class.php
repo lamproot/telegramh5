@@ -102,7 +102,7 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
+                define('_VIC_WORD_DICT_PATH_',APP_PATH.'/Data/dict.igb');
                 require_once(APP_PATH.'/Lib/VicWord.php');
 
                 $fc = new VicWord('igb');
