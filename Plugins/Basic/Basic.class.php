@@ -102,7 +102,22 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                
+                define('_VIC_WORD_DICT_PATH_',__DIR__.'/Data/dict.igb');
+                require_once(__DIR__.'/Lib/VicWord.php');
+
+                $fc = new VicWord('igb');
+                //长度优先分词
+                $ar = $fc->getWord('聚知台是一个及时沟通工具');
+
+                $errorModel = new ErrorModel;
+                $errorModel->sendError (MASTER, print_r($ar, true));
+
+                $this->telegram->sendMessage (
+                        $chat['id'],
+                        $message,
+                        $message_id
+                    );
+
                 //链接  关键字（敏感词）过滤
                 $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
 
