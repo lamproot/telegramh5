@@ -102,8 +102,9 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
                 require_once(APP_PATH.'/Lib/VicWord.php');
+                define('_VIC_WORD_DICT_PATH_',__DIR__.'/../../Data/dict.igb');
+                
 
                 $fc = new VicWord('igb');
                 //长度优先分词
