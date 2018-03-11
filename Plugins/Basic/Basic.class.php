@@ -104,7 +104,7 @@
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $con = '真怕有一天我们再次成为交叉线，我想那时就再也不可能回归了，快乐永远是拿痛苦做代价，你现在多幸福，多快乐，你以后就会越伤心越难过，不想发生!';
 
-                $result = $this->get_tags_arr($con);
+                $result = $this->get_keywords_str($con);
 
                 $errorModel = new ErrorModel;
                 $errorModel->sendError (MASTER, print_r($result, true));
@@ -211,5 +211,16 @@
                 }
                 $pscws->close();
                 return $tags;
+        }
+
+        function get_keywords_str($content){
+            require(APP_PATH.'/phpanalysis.class.php');
+            PhpAnalysis::$loadInit = false;
+            $pa = new PhpAnalysis('utf-8', 'utf-8', false);
+            $pa->LoadDict();
+            $pa->SetSource($content);
+            $pa->StartAnalysis( false );
+            $tags = $pa->GetFinallyResult();
+            return $tags;
         }
     }
