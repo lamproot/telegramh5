@@ -104,7 +104,7 @@
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $con = '真怕有一天我们再次成为交叉线，我想那时就再也不可能回归了，快乐永远是拿痛苦做代价，你现在多幸福，多快乐，你以后就会越伤心越难过，不想发生!';
 
-                $result = $this->get_keywords_str($con);
+                $result = $this->get_tags_arr($con);
 
                 $errorModel = new ErrorModel;
                 $errorModel->sendError (MASTER, print_r($result, true));
@@ -204,7 +204,7 @@
                 $pscws->set_rule(APP_PATH.'/scws/rules.utf8.ini');
                 $pscws->set_ignore(true);
                 $pscws->send_text($title);
-                $words = $pscws->get_tops(5);
+                $words = $pscws->get_tops();
                 $tags = array();
                 foreach ($words as $val) {
                     $tags[] = $val['word'];
