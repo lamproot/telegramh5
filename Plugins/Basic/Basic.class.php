@@ -102,15 +102,12 @@
             //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                define('_VIC_WORD_DICT_PATH_',APP_PATH.'/Data/dict.igb');
-                require_once(APP_PATH.'/Lib/VicWord.php');
+                $con = '真怕有一天我们再次成为交叉线，我想那时就再也不可能回归了，快乐永远是拿痛苦做代价，你现在多幸福，多快乐，你以后就会越伤心越难过，不想发生!';
 
-                $fc = new VicWord('igb');
-                //长度优先分词
-                $ar = $fc->getWord('聚知台是一个及时沟通工具');
+                $result = $this->get_tags_arr($con);
 
                 $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, _VIC_WORD_DICT_PATH_);
+                $errorModel->sendError (MASTER, print_r($result, true));
 
                 $this->telegram->sendMessage (
                         $chat['id'],
@@ -197,5 +194,22 @@
             $codeModel = new codeModel;
             $codeModel->updateByFromId($chat_bot_id, @$from['id']);
 
+        }
+
+        function get_tags_arr($title)
+        {
+                require(APP_PATH.'/pscws4.class.php');
+                $pscws = new PSCWS4();
+                $pscws->set_dict(APP_PATH.'/scws/dict.utf8.xdb');
+                $pscws->set_rule(APP_PATH.'/scws/rules.utf8.ini');
+                $pscws->set_ignore(true);
+                $pscws->send_text($title);
+                $words = $pscws->get_tops(5);
+                $tags = array();
+                foreach ($words as $val) {
+                    $tags[] = $val['word'];
+                }
+                $pscws->close();
+                return $tags;
         }
     }
