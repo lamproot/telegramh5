@@ -68,7 +68,7 @@
 			if (!$codes) {
 				$this -> _back('code数据获取失败');
 			}
-
+			echo $codes['chat_bot_id'];exit;
 			//获取机器人信息
 			$params = array(
 
