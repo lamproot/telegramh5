@@ -74,13 +74,13 @@
 
 				'table_name' => 'chat_bot',
 
-				'where' => "id = {$codes['chat_bot_id']}"
+					'where' => "id = {$codes['chat_bot_id']}"
 
 			);
 
 	    	$chat_bot = $this -> model -> my_find($params);
 			if (!$chat_bot) {
-				$this -> _back('chat数据获取失败');
+				$this -> _back('chat数据获取失败2');
 			}
 
 			//获取活动信息
@@ -201,9 +201,9 @@
 		 */
 	    public function activity()
 	    {
-			
+
 			$id = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : "";
-			
+
 
 			// //获取机器人信息
 			// $params = array(
