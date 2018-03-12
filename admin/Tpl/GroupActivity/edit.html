@@ -1,0 +1,504 @@
+<include file="public:header" />
+<link href="__PUBLIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/lang/zh-cn/zh-cn.js"></script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <ol class="breadcrumb">
+            <a href="__URL__"><i class="fa fa-home"></i></a>
+            <li>
+                <a href="__URL__">首页</a>
+            </li>
+            <li>
+                <a>群邀请活动管理</a>
+            </li>
+            <li>
+                <strong>修改</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="text-center">修改</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__" enctype="multipart/form-data">
+                        
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">活动所在群:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="chat_bot_id">
+                                    <foreach name="chatBotList" item="data">
+                                        <option  <if condition="$result['chat_bot_id'] == $data['id']">selected="selected"</if> value="{$data['id']}">{$data['name']}</option>
+                                    </foreach>
+                                </select>
+                                <p>活动所在群指的是参与该活动的群组</p>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="form-group">
+                            <label class="col-sm-3 control-label">活动类型:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="type">
+                                    <option value="1" <if condition="$result['type'] == 1">selected="selected"</if>>Code邀请活动</option>
+                                    <option value="2" <if condition="$result['type'] == 2">selected="selected"</if>>拟稿人活动</option>
+                                </select>
+                                <p>活动类型 1.Code邀请活动  2.拟稿人活动</p>
+                            </div>
+                        </div> -->
+
+                        <if condition="$botCode['code'] neq '' && $result['type'] == 1">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">群活动邀请地址:</label>
+                                <div class="col-sm-9">
+                                    <a href="http://m.name-technology.fun/Index/code/{$botCode['code']}">http://m.name-technology.fun/Index/code/{$botCode['code']}</a>
+                                    <p>保存数据之后生效</p>
+                                </div>
+                            </div>
+                        </if>
+
+                        <if condition="$result['type'] == 2">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">群活动邀请地址:</label>
+                                <div class="col-sm-9">
+                                    <a href="http://m.name-technology.fun/Index/activity/{$result['id']}">http://m.name-technology.fun/Index/activity/{$result['id']}</a>
+                                    <p>保存数据之后生效</p>
+                                </div>
+                            </div>
+                        </if>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题:</label>
+                            <div class="col-sm-9">
+                                <input id="title" name="title" value="{$result['title']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                
+                                <input type="hidden" name="id" value="{$result['id']}" />
+                                <input type="hidden" name="form_key" value="yes" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题en:</label>
+                            <div class="col-sm-9">
+                                <input id="en_title" name="en_title" value="{$result['en_title']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">LOGO:</label>
+                            <div class="col-sm-9">
+                                <input id="logo" name="logo" value="{$result['logo']}" class="form-control" type="file" aria-required="true" aria-invalid="true" class="error">
+                                <p>{$result['logo']}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动开始时间:</label>
+                            <div class="col-sm-9">
+                                <input id="started_at" name="started_at" value="{$result['started_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动结束时间:</label>
+                            <div class="col-sm-9">
+                                <input id="stoped_at" name="stoped_at" value="{$result['stoped_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">加入群文案:</label>
+                            <div class="col-sm-9">
+                                <input id="join_button_text" name="join_button_text" value="{$result['join_button_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">加入群文案en:</label>
+                            <div class="col-sm-9">
+                                <input id="en_join_button_text" name="en_join_button_text" value="{$result['en_join_button_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">加入群跳转地址:</label>
+                            <div class="col-sm-9">
+                                <input id="join_button_url" name="join_button_url" value="{$result['join_button_url']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">输入框地址文案:</label>
+                            <div class="col-sm-9">
+                                <input id="placeholder_text" name="placeholder_text" value="{$result['placeholder_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">输入框地址文案en:</label>
+                            <div class="col-sm-9">
+                                <input id="en_placeholder_text" name="en_placeholder_text" value="{$result['en_placeholder_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label class="col-sm-3 control-label">描述:</label>
+                            <div class="col-sm-9">
+                                <textarea name="message" rows="8" cols="80" id="message" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['message']}</textarea>
+
+                            </div>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">*描述:</label>
+                            <div class="col-sm-9">
+                                <div class="ibox-content gray-bg">
+
+                                    <div class="summernote"  style="" name="message">
+                                       {$result['message']|htmlspecialchars_decode}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <textarea name="message" rows="8" cols="40" class="content_code" style="display:none">
+
+                        </textarea>
+
+                        <!-- <div class="form-group">
+                            <label class="col-sm-3 control-label">描述en:</label>
+                            <div class="col-sm-9">
+                                <textarea name="en_message" rows="8" cols="80" id="en_message" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['en_message']}</textarea>
+
+                            </div>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">*描述en:</label>
+                            <div class="col-sm-9">
+                                <div class="ibox-content gray-bg">
+
+                                    <div class="en_summernote"  style="" name="en_message">
+                                       {$result['en_message']|htmlspecialchars_decode}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <textarea name="en_message" rows="8" cols="40" class="en_content_code" style="display:none">
+
+                        </textarea>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动细则:</label>
+                            <div class="col-sm-9">
+                                <textarea name="rule" rows="8" cols="80" id="rule" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['rule']}</textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动细则en:</label>
+                            <div class="col-sm-9">
+                                <textarea name="en_rule" rows="8" cols="80" id="en_rule" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['en_rule']}</textarea>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">底部文案:</label>
+                            <div class="col-sm-9">
+                                <input id="bottom_text" name="bottom_text" value="{$result['bottom_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">底部文案en:</label>
+                            <div class="col-sm-9">
+                                <input id="en_bottom_text" name="en_bottom_text" value="{$result['en_bottom_text']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">底部文案跳转地址:</label>
+                            <div class="col-sm-9">
+                                <input id="bottom_text_url" name="bottom_text_url" value="{$result['bottom_text_url']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">邀请奖励:</label>
+                            <div class="col-sm-9">
+                                <input id="rate" name="rate" value="{$result['rate']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">邀请奖励单位:</label>
+                            <div class="col-sm-9">
+                                <input id="rate_unit" name="rate_unit" value="{$result['rate_unit']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动结束文案:</label>
+                            <div class="col-sm-9">
+                                <textarea name="activity_end_text" rows="8" cols="80" id="activity_end_text" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['activity_end_text']}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注:</label>
+                            <div class="col-sm-9">
+                                <textarea name="remarks" rows="8" cols="80" id="remarks" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['remarks']}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" onclick="save()">提交</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<include file="public:footer" />
+<!-- jQuery Validation plugin javascript-->
+<script src="__PUBLIC__/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/js/plugins/validate/messages_zh.min.js"></script>
+<script src="__PUBLIC__/js/plugins/summernote/summernote.min.js"></script>
+<script src="__PUBLIC__/js/plugins/summernote/summernote-zh-CN.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.summernote').summernote({
+            lang: 'zh-CN',
+            height:"200",
+            focus:true,
+            onImageUpload: function(files, editor, $editable) {
+              sendFile(files[0],editor,$editable);
+            }
+        });
+
+        $('.en_summernote').summernote({
+            lang: 'zh-CN',
+            height:"200",
+            focus:true,
+            onImageUpload: function(files, editor, $editable) {
+              sendFile(files[0],editor,$editable);
+            }
+        });
+
+        //$('.summernote').code("112");
+
+    });
+
+    function sendFile(file, editor, $editable) {
+        var filename = false;
+        try {
+            filename = file['name'];
+            console.log(filename);
+        } catch(e) {
+            filename = false;
+        }
+        if (!filename) {
+            $(".note-alarm").remove();
+        }
+        //以上防止在图片在编辑器内拖拽引发第二次上传导致的提示错误
+        var ext = filename.substr(filename.lastIndexOf("."));
+        ext = ext.toUpperCase();
+        var timestamp = new Date().getTime();
+        var name = timestamp + "_" + $(".summernote").attr('aid') + ext;
+        //name是文件名，自己随意定义，aid是我自己增加的属性用于区分文件用户
+        data = new FormData($( "#uploadForm" )[0]);
+        data.append("file", file);
+        data.append("upload_dir", "group_activity");
+
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "__APP__/Uploads/upload",
+            //图片上传出来的url，返回的是图片上传后的路径，http格式
+            contentType:false,
+            dataType:"json",
+            cache: false,
+            processData: false,
+            success: function(resdata) {
+                //resdata是返回的hash,key之类的值，key是定义的文件名
+                //把图片放到编辑框中。editor.insertImage 是参数，写死。后面的http是网上的图片资源路径。
+                //网上很多就是这一步出错。
+                //$('.summernote').summernote('insertImage',"http://res.cloudinary.com/demo/image/upload/butterfly.jpg");
+                editor.insertImage($editable, resdata['url']);
+                $(".note-alarm").html("上传成功,请等待加载");
+                setTimeout(function() {
+                    $(".note-alarm").remove();
+                },
+                3000);
+            },
+            error: function() {
+                $(".note-alarm").html("上传失败");
+                setTimeout(function() {
+                    $(".note-alarm").remove();
+                },
+                3000);
+            }
+        });
+    }
+
+
+    var save = function () {
+        var aHTML = $('.summernote').code(); //save HTML If you need(aHTML: array).
+        $('.content_code').val(aHTML)
+
+        var aHTML = $('.en_summernote').code(); //save HTML If you need(aHTML: array).
+        $('.en_content_code').val(aHTML)
+    };
+
+    var imgs = []; //存储图片链接
+    //为文件上传添加change事件
+    var fileM = document.querySelector(".file");
+    $(".file").on("change",
+    function() {
+        console.log(fileM.files);
+        //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
+        var fileObj = fileM.files[0];
+        //创建formdata对象，formData用来存储表单的数据，表单数据时以键值对形式存储的。
+        var formData = new FormData();
+        formData.append('file', fileObj);
+        formData.append("upload_dir", "news");
+        //创建ajax对象
+        var ajax = new XMLHttpRequest();
+        //发送POST请求
+        ajax.open("POST", "__APP__/Uploads/upload", true);
+        ajax.send(formData);
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4) {
+                if (ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+                    console.log(ajax.responseText);
+                    var obj = JSON.parse(ajax.responseText);
+                    if (obj.code == 200) {
+                        //上传成功后自动动创建img标签放在指定位置
+                        //var img = $("<img src='" + obj.url + "' alt='' />");
+                        $(".logoname").val(obj.imagename);
+                        $(".logourl").attr("src", obj.url)
+                    } else {
+                        alert(obj.msg);
+                    }
+                }
+            }
+        }
+    });
+    // function sendFile(files, editor, $editable) {
+    //     var data = new FormData();
+    //     data.append("file", files[0]);
+    //     data.append("upload_dir", "news");
+
+    //     $.ajax({
+    //         data : data,
+    //         type : "POST",
+    //         url : "__APP__/Uploads/upload", //图片上传出来的url，返回的是图片上传后的路径，http格式
+    //         cache : false,
+    //         contentType : false,
+    //         processData : false,
+    //         dataType : "json",
+    //         success: function(data){
+    //             $('.summernote').summernote('insertImage', data.data);
+    //         },
+    //         error:function(){
+    //             alert("上传失败");
+    //         }
+    //     });
+    // }
+
+    // var edit = function () {
+    //     $("#eg").addClass("no-padding");
+    //     $('.click2edit').summernote({
+    //         lang: 'zh-CN',
+    //         focus: true
+    //     });
+    // };
+
+</script>
+<script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+$('.form_datetime').datetimepicker({
+     language:  'zh-CN',
+     format: 'yyyy-mm-dd',
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 4,
+        forceParse: 0
+ });
+</script>
+
+<script>
+
+
+    //以下为官方示例
+   $().ready(function () {
+       // validate signup form on keyup and submit
+       $("#signupForm").validate({
+           rules: {
+               cmd: {
+                   required: true
+               },
+               type: {
+                   required: true
+               },
+               content: {
+                   required: true
+               },
+               // chat_bot_id: {
+                //    required: true,
+               // },
+               // master_id: {
+                //    required: true
+               // },
+               // code_cmd: "required"
+           },
+           messages: {
+
+           }
+       });
+   });
+</script>

@@ -1,0 +1,81 @@
+[
+    {
+        "name": "xu42/vic-word",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xu42/VicWord.git",
+            "reference": "9ae0ac4c86f5f43c30f728aea35002f64ea5b5cf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/xu42/VicWord/zipball/9ae0ac4c86f5f43c30f728aea35002f64ea5b5cf",
+            "reference": "9ae0ac4c86f5f43c30f728aea35002f64ea5b5cf",
+            "shasum": ""
+        },
+        "time": "2017-12-27 11:37:37",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Xu42\\VicWord\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache 2.0"
+        ],
+        "authors": [
+            {
+                "name": "xu42",
+                "email": "xu42.cn@gmail.com",
+                "homepage": "https://xu42.cn"
+            }
+        ],
+        "description": "vic word",
+        "homepage": "https://github.com/xu42/VicWord",
+        "keywords": [
+            "vic",
+            "word"
+        ]
+    },
+    {
+        "name": "lizhichao/word",
+        "version": "v1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lizhichao/VicWord.git",
+            "reference": "7187a22c062d934219b5181dad3f66c3d701839d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lizhichao/VicWord/zipball/7187a22c062d934219b5181dad3f66c3d701839d",
+            "reference": "7187a22c062d934219b5181dad3f66c3d701839d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-12-27 13:27:33",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Lizhichao\\Word\\": "Lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache 2"
+        ],
+        "authors": [
+            {
+                "name": "tanszhe",
+                "email": "1018595261@qq.com"
+            }
+        ],
+        "description": "This is a participle library"
+    }
+]

@@ -181,6 +181,10 @@
             
             /** 获取设置 */
             $ret = $pluginModel->callMethod ($_POST['pcn'], $_POST['method']);
+
+
+            $errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, "哈哈哈哈");
             
             /** 返回 */
             if ($ret == '') {

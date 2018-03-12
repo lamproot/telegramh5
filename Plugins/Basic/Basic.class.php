@@ -48,15 +48,133 @@
                 }
             }
         }
+
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
-            $message = "你发布了禁止消息";
-            $this->telegram->sendMessage (
-                $chat['id'],
-                $message,
-                $message_id
-            );
+            $chatBotModel = new ChatBotModel;
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
+
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
         }
+
+        
+        public function sticker ($sticker, $message_id, $from, $chat, $date) {
+            $chatBotModel = new ChatBotModel;
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
+
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
+        }
+
+
+        
+
+        public function message ($message, $message_id, $from, $chat, $date) {
+            $chatBotModel = new ChatBotModel;
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+
+                //链接  关键字（敏感词）过滤
+                $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+
+                if (preg_match($regex, $message)) {
+                    $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                    $this->telegram->sendMessage (
+                        $chat['id'],
+                        $message,
+                        $message_id
+                    );
+
+                    $this->telegram->deleteMessage (
+                        $chat['id'],
+                        $message_id
+                    );
+                }else{
+                    $result = $this->get_tags_arr($message);
+                    if ($result) {
+
+                        $sensitiveWordsModel = new SensitiveWordsModel;
+                        // $errorModel = new ErrorModel;
+                        // $errorModel->sendError (MASTER, print_r($result, true));
+                        // 
+                        $word = $sensitiveWordsModel->find($result);
+
+                        if ($word) {
+                            $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+
+                            $this->telegram->deleteMessage (
+                                $chat['id'],
+                                $message_id
+                            );
+                        }
+
+                    }
+                }
+
+
+
+            }
+        }
+
+        public function document ($document, $message_id, $from, $chat, $date) {
+            $chatBotModel = new ChatBotModel;
+            $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+            
+                $this->telegram->sendMessage (
+                    $chat['id'],
+                    $message,
+                    $message_id
+                );
+
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
+        }
+
+
+
 
         public function new_member ($new_member, $message_id, $from, $chat, $date) {
             // $command = "new_member";
@@ -90,5 +208,33 @@
             $codeModel = new codeModel;
             $codeModel->updateByFromId($chat_bot_id, @$from['id']);
 
+        }
+
+        function get_tags_arr($title)
+        {
+                require(APP_PATH.'/pscws4.class.php');
+                $pscws = new PSCWS4();
+                $pscws->set_dict(APP_PATH.'/scws/dict.utf8.xdb');
+                $pscws->set_rule(APP_PATH.'/scws/rules.utf8.ini');
+                $pscws->set_ignore(true);
+                $pscws->send_text($title);
+                $words = $pscws->get_tops(100);
+                $tags = array();
+                foreach ($words as $val) {
+                    $tags[] = $val['word'];
+                }
+                $pscws->close();
+                return $tags;
+        }
+
+        function get_keywords_str($content){
+            require(APP_PATH.'/phpanalysis.class.php');
+            PhpAnalysis::$loadInit = false;
+            $pa = new PhpAnalysis('utf-8', 'utf-8', false);
+            $pa->LoadDict();
+            $pa->SetSource($content);
+            $pa->StartAnalysis( false );
+            $tags = $pa->GetFinallyResult();
+            return $tags;
         }
     }

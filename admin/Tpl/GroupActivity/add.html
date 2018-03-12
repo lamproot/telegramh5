@@ -39,7 +39,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control" name="chat_bot_id">
                                     <foreach name="chatBotList" item="data">
-                                        <option value="{$data['id']}">{$data['name']}</option>
+                                        <option value="{$data['id']}" <if condition="$_GET['chat_bot_id'] == $data['id']">selected="selected"</if> >{$data['name']}</option>
                                     </foreach>
                                 </select>
                                 <p>活动所在群指的是参与该活动的群组</p>
