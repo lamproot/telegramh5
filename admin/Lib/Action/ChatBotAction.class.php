@@ -134,12 +134,12 @@
 						[
 							"cmd" => "/new_member",
 							"type" => 1,
-							"content" => "欢迎你加入 命令如下: /ping 连接 /hitokoto 文字 /bing 图片 /whoami 我是谁 /code Code码处理 /me 我的-Code码"
+							"content" => "欢迎你加入 命令如下: /start 开启使用 /me 我的-Code码"
 						],
 						[
 							"cmd" => "/start",
 							"type" => 1,
-							"content" => "欢迎阅读使用手册 命令如下: /ping 连接 /hitokoto 文字 /bing 图片 /whoami 我是谁 /code Code码处理 /me 我的-Code码"
+							"content" => "欢迎阅读使用手册 命令如下: /start 开启使用 /me 我的-Code码"
 						],
 						[
 							"cmd" => "/code",
