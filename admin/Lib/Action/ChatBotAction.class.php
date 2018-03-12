@@ -226,6 +226,7 @@
 				$data['code_cmd'] = isset($_POST['code_cmd']) ? htmlspecialchars($_POST['code_cmd']) : $this -> _back('请填写code_cmd');
 				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
 				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
+				$data['is_shield'] = isset($_POST['is_shield']) ? $_POST['is_shield'] : 0;
 
 	    		$data['updated_at'] = time();
 
