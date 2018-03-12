@@ -222,37 +222,37 @@
 	    		if ($chat_bot_save)
 	    		{
 					$this -> _alert('保存成功');
-					$params = array(
-
-			    		'table_name' => 'codes',
-
-			    		'order' => 'id desc',
-
-			    		'where' => "activity_id = {$_POST['id']} and from_id = 1  and status = 3"
-			    	);
-					$botCode = $this -> model -> my_find($params);
-
-					if (!$botCode) {
-						//添加机器人code
-						$botcode_data['from_id'] = 1;
-						$botcode_data['from_username'] = "机器人账号";
-						$botcode_data['eth'] = "0000000000000000";
-						$botcode_data['code'] = $this->short_md5(md5($_POST['id']."_".$botcode_data['eth']."_telegram"));
-						$botcode_data['status'] = 3;
-						$botcode_data['created_at'] = time();
-						$botcode_data['updated_at'] = time();
-						$botcode_data['chat_bot_id'] = $data['chat_bot_id'];
-						$botcode_data['activity_id'] = $_POST['id'];
-
-						$botcode_params = array(
-
-							'table_name' => 'codes',
-
-							'data' => $botcode_data
-						);
-
-						$botcode_add = $this -> model -> my_add($botcode_params);
-					}
+					// $params = array(
+					//
+			    	// 	'table_name' => 'codes',
+					//
+			    	// 	'order' => 'id desc',
+					//
+			    	// 	'where' => "activity_id = {$_POST['id']} and from_id = 1  and status = 3"
+			    	// );
+					// $botCode = $this -> model -> my_find($params);
+					//
+					// if (!$botCode) {
+					// 	//添加机器人code
+					// 	$botcode_data['from_id'] = 1;
+					// 	$botcode_data['from_username'] = "机器人账号";
+					// 	$botcode_data['eth'] = "0000000000000000";
+					// 	$botcode_data['code'] = $this->short_md5(md5($_POST['id']."_".$botcode_data['eth']."_telegram"));
+					// 	$botcode_data['status'] = 3;
+					// 	$botcode_data['created_at'] = time();
+					// 	$botcode_data['updated_at'] = time();
+					// 	$botcode_data['chat_bot_id'] = $data['chat_bot_id'];
+					// 	$botcode_data['activity_id'] = $_POST['id'];
+					//
+					// 	$botcode_params = array(
+					//
+					// 		'table_name' => 'codes',
+					//
+					// 		'data' => $botcode_data
+					// 	);
+					//
+					// 	$botcode_add = $this -> model -> my_add($botcode_params);
+					// }
 
 					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
