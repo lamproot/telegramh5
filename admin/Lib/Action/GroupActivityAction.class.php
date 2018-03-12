@@ -119,7 +119,7 @@
 						$botcode_data['from_id'] = 1;
 						$botcode_data['from_username'] = "机器人账号";
 						$botcode_data['eth'] = "0000000000000000";
-						$botcode_data['code'] = $this->short_md5(md5($my_add."_".$botcode_data['eth']."_telegram"));
+						$botcode_data['code'] = $this->short_md5(md5($chat_bot_add."_".$botcode_data['eth']."_telegram"));
 						$botcode_data['status'] = 3;
 						$botcode_data['created_at'] = time();
 						$botcode_data['updated_at'] = time();
@@ -135,7 +135,7 @@
 
 				    	$botcode_add = $this -> model -> my_add($botcode_params);
 	    			}
-	    			
+
 					$this -> _alert('添加成功');
 					redirect(__APP__.'/GroupActivity/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
 	    		}
@@ -262,12 +262,12 @@
 
 
 	    	$botCode = $this -> model -> my_find($params);
-	    	
+
 	    	$this -> assign('result', $result);
 	    	$this -> assign('chatBotList', $chatBotList);
 	    	$this -> assign('botCode', $botCode);
 
-	    	
+
 
 	    	$this -> display();
 	    }
