@@ -121,9 +121,9 @@
                     );
                 }else{
                     $result = $this->get_tags_arr($message);
+                    $sensitiveWordsModel = new SensitiveWordsModel;
+                    
                     if ($result) {
-
-                        $sensitiveWordsModel = new SensitiveWordsModel;
                         // $errorModel = new ErrorModel;
                         // $errorModel->sendError (MASTER, print_r($result, true));
                         //
