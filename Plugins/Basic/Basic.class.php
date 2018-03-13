@@ -57,7 +57,7 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            
+
                 $this->telegram->sendMessage (
                     $chat['id'],
                     $message,
@@ -71,7 +71,7 @@
             }
         }
 
-        
+
         public function sticker ($sticker, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
@@ -79,7 +79,7 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            
+
                 $this->telegram->sendMessage (
                     $chat['id'],
                     $message,
@@ -94,7 +94,7 @@
         }
 
 
-        
+
 
         public function message ($message, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
@@ -108,7 +108,7 @@
 
                 if (preg_match($regex, $message)) {
                     $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            
+
                     $this->telegram->sendMessage (
                         $chat['id'],
                         $message,
@@ -126,12 +126,12 @@
                         $sensitiveWordsModel = new SensitiveWordsModel;
                         // $errorModel = new ErrorModel;
                         // $errorModel->sendError (MASTER, print_r($result, true));
-                        // 
+                        //
                         $word = $sensitiveWordsModel->find($result);
 
                         if ($word) {
                             $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            
+
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,
@@ -142,6 +142,22 @@
                                 $chat['id'],
                                 $message_id
                             );
+                        }else{
+                            $word = $sensitiveWordsModel->find([$message]);
+                            if ($word) {
+                                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+
+                                $this->telegram->sendMessage (
+                                    $chat['id'],
+                                    $message,
+                                    $message_id
+                                );
+
+                                $this->telegram->deleteMessage (
+                                    $chat['id'],
+                                    $message_id
+                                );
+                            }
                         }
 
                     }
@@ -159,7 +175,7 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
-            
+
                 $this->telegram->sendMessage (
                     $chat['id'],
                     $message,
