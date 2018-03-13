@@ -1,5 +1,6 @@
 <?php
     class Callback extends FLController {
+
         function run () {
             /** 初始化 */
             $errorModel = new ErrorModel;
