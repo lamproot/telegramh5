@@ -75,12 +75,12 @@
                                         <td>
                                             <a href="__APP__/GroupActivity/edit?id={$data.id}" target="_blank">修改</a>
                                             <if condition="$data.type == 2">
-                                                <a href="__APP__/Drafters/index/chat_bot_id/{$data.id}" target="_blank">用户列表</a>
+                                                <a href="__APP__/Drafters/index/activity_id/{$data.id}" target="_blank">用户列表</a>
                                             <else/>
-                                                <a href="__APP__/Codes/index/chat_bot_id/{$data.id}" target="_blank">用户列表</a>
+                                                <a href="__APP__/Codes/index/activity_id/{$data.id}" target="_blank">用户列表</a>
                                             </if>
                                         </td>
-                                         
+
                                     </tr>
                                 </foreach>
                             </tbody>

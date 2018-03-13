@@ -44,9 +44,9 @@
 	    public function index()
 	    {
 
-			$chat_bot_id = $_GET['chat_bot_id'];
+			$activity_id = $_GET['activity_id'];
 
-	        $where = "chat_bot_id = {$chat_bot_id}";
+	        $where = "activity_id = {$activity_id}";
 
 	    	$params = array(
 

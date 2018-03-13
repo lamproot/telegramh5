@@ -44,13 +44,13 @@
 	    public function index()
 	    {
 
-			$chat_bot_id = $_GET['chat_bot_id'];
+			$activity_id = $_GET['activity_id'];
 
 			$start = $_GET['start'] ? strtotime($_GET['start']) : "";
 
 	        $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : "" ;
 
-	        $where = "chat_bot_id = {$chat_bot_id} AND status = 3";
+	        $where = "activity_id = {$activity_id} AND status = 3";
 
 	        if($start && $stop){
 
