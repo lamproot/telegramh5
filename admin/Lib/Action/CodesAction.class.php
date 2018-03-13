@@ -101,7 +101,7 @@
 	    public function user()
 	    {
 
-			$chat_bot_id = $_GET['chat_bot_id'];
+			$activity_id = $_GET['activity_id'];
 			$parent_code = $_GET['parent_code'];
 
 	    	$params = array(
@@ -110,7 +110,7 @@
 
 	    		'order' => 'id desc',
 
-	    		'where' => "chat_bot_id = {$chat_bot_id} AND parent_code = '{$parent_code}' AND status = 3"
+	    		'where' => "activity_id = {$activity_id} AND parent_code = '{$parent_code}' AND status = 3"
 	    	);
 
 	    	$result = $this -> model -> order_select($params);
