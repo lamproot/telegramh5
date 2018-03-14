@@ -39,4 +39,11 @@
                 'type' => 2
             ]);
         }
+
+        function findById ($id)
+        {
+            return $this->db->get ('chat_command', '*', [
+                'id' => $id
+            ]);
+        }
     }

@@ -1,7 +1,7 @@
 <?php
     /*
     -----BEGIN INFO-----
-    @PluginName 必应美图
+    @PluginName 图文回复消息处理
     @Description 发送/bing即可查看美♂图
     @Author U2FsdGVkX1
     @AuthorEmail U2FsdGVkX1@gmail.com
@@ -17,6 +17,7 @@
                 $button = json_encode (array (
                     'inline_keyboard' => array (
                         array (array (
+
                             'text' => '下一张',
                             'callback_data' => 'bing 1'
                         ))
@@ -33,7 +34,7 @@
                 $webdata = json_decode ($this->fetch ('http://cn.bing.com/HPImageArchive.aspx?format=js&n=1&idx=' . $i), true);
                 //$imgurl = 'http://cn.bing.com' . $webdata['images'][0]['url'];
                 $imgurl = 'https://img.appledaily.com.tw/images/ReNews/20180102/640_244456183d3cfe96287b2cf6c0c2da41.jpg';
-                
+
                 $copyright = $webdata['images'][0]['copyright'];
                 if ($i == 0) {
                     $button = json_encode (array (

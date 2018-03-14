@@ -45,6 +45,27 @@
                         }
                     }
 
+                    if ($commandInfo[0]['type'] == 5) {
+                        if (isset($commandInfo[0]['content']) && $commandInfo[0]['content']) {
+
+                            $content = json_decode($commandInfo[0]['content'], true);
+                            if ($content) {
+                                $imgurl = $content[0]['url'];
+                                $copyright = $content[0]['note'];
+                                $button = json_encode (array (
+                                    'inline_keyboard' => array (
+                                        array (array (
+
+                                            'text' => '下一张',
+                                            'callback_data' => 'bing_1_'.$commandInfo[0]['id']
+                                        ))
+                                    )
+                                ));
+                                $this->telegram->sendPhoto ($chat['id'], $imgurl, $copyright, $message_id, $button);
+                            }
+
+                        }
+                    }
                 }
             }
         }
@@ -122,7 +143,7 @@
                 }else{
                     $result = $this->get_tags_arr($message);
                     $sensitiveWordsModel = new SensitiveWordsModel;
-                    
+
                     if ($result) {
                         // $errorModel = new ErrorModel;
                         // $errorModel->sendError (MASTER, print_r($result, true));
@@ -268,5 +289,60 @@
             $pa->StartAnalysis( false );
             $tags = $pa->GetFinallyResult();
             return $tags;
+        }
+
+        public function callback_query ($callback_data, $callback_id, $callback_from, $message_id, $from, $chat, $date) {
+            $callbackExplode = explode ('_', $callback_data);
+            if ($callbackExplode[0] == 'bing' && isset ($callbackExplode[1]) && isset ($callbackExplode[2])) {
+                $i = $callbackExplode[1];
+
+                //获取新闻数据
+                //查询命令是否有回复
+                $commandModel = new CommandModel;
+                $commandInfo = $commandModel->findById($callbackExplode[2]);
+
+                if ($commandInfo && $commandInfo['type'] == 5) {
+                    $content = json_decode($commandInfo['content'], true);
+                    if ($content) {
+                        $imgurl = $content[$i]['url'];
+                        $copyright = $content[$i]['note'];
+                        if ($i == 0) {
+                            $button = json_encode (array (
+                                'inline_keyboard' => array (
+                                    array (array (
+                                        'text' => '下一张',
+                                        'callback_data' => 'bing_1_'.$callbackExplode[2]
+                                    ))
+                                )
+                            ));
+                        }if ($i == (count($content)-1)) {
+                            $button = json_encode (array (
+                                'inline_keyboard' => array (
+                                    array (array (
+                                        'text' => '上一张',
+                                        'callback_data' => 'bing_' . ($i - 1) . '_'.$callbackExplode[2]
+                                    ))
+                                )
+                            ));
+                        } else {
+                            $button = json_encode (array (
+                                'inline_keyboard' => array (
+                                    array (array (
+                                        'text' => '上一张',
+                                        'callback_data' => 'bing_' . ($i - 1) . '_'.$callbackExplode[2]
+                                    )),
+                                    array (array (
+                                        'text' => '下一张',
+                                        'callback_data' => 'bing_' . ($i + 1) . '_'.$callbackExplode[2]
+                                    ))
+                                )
+                            ));
+                        }
+                        $this->telegram->sendPhoto ($chat['id'], $imgurl, $copyright, $message_id, $button);
+                    }
+
+                }
+
+            }
         }
     }
