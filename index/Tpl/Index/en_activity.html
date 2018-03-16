@@ -212,7 +212,13 @@
                     }).done(function(res) {
                         if (res && res.success) {
                             //window.location.href = '/Index/dashboard/' + res.code;
-                            window.location.href = "<?php  echo $group_activity['join_button_url'];?>";
+                            //window.location.href = "<?php  echo $group_activity['join_button_url'];?>";
+                            //
+                            <?php if ($group_activity['join_button_url'] && !empty($group_activity['join_button_url'])) { ?>
+                                window.location.href = "<?php  echo $group_activity['join_button_url'];?>";
+                            <?php }else{ ?>
+                                window.location.href = "";
+                            <?php } ?>
                         } else {
                             if (ladda) {
                                 ladda.stop();
