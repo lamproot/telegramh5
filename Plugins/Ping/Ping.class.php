@@ -1,14 +1,54 @@
 <?php
     class Ping extends Base {
         public function command ($command, $param, $message_id, $from, $chat, $date) {
-            if ($command == '/ping') {
-                $t1 = microtime (true);
-                $pong_id = $this->telegram->sendMessage ($chat['id'], 'Pong!-- $message_id'.$message_id , $message_id);
-                $t2 = microtime (true);
+            // if ($command == '/ping') {
+            //     $t1 = microtime (true);
+            //     $pong_id = $this->telegram->sendMessage ($chat['id'], 'Pong!-- $message_id'.$message_id , $message_id);
+            //     $t2 = microtime (true);
+            //
+            //     $time = round (($t2 - $t1) * 1000, 2);
+            //     $this->telegram->editMessage ($chat['id'], $pong_id, 'Pong! -- chatid'.$chat['id'] . "\n" . 'Time:<code>' . $time . ' ns</code>');
+            // }
 
-                $time = round (($t2 - $t1) * 1000, 2);
-                $this->telegram->editMessage ($chat['id'], $pong_id, 'Pong! -- chatid'.$chat['id'] . "\n" . 'Time:<code>' . $time . ' ns</code>');
+            $search = "/^\/ZoobiDoobi/i";
+
+            if (preg_match($search,$command,$result)) {
+                //获取用户信息 和机器ID 信息
+                //存取用户数据 from_uid from_username chat_id
+                $chat_bot_id = intval(base64_decode(str_replace($result[0], "", $command)));
+
+                if ($chat_bot_id != 0) {
+                    $whiteModel = new WhiteModel;
+
+                    $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+                    $message = "恭喜您获得吟唱魔法~~~";
+
+                    if ($find) {
+                        $this->telegram->sendMessage (
+                            $chat['id'],
+                            $message,
+                            $message_id
+                        );
+                    }else{
+
+
+                        $insert = $whiteModel->add($chat_bot_id, $from['id'], @$from['username']);
+
+                        if ($insert) {
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+                        }
+
+                    }
+                }
+
+
+
             }
+
 
             if ($command == '/女朋友') {
                 //$webdata = json_decode ($this->fetch ('http://cn.bing.com/HPImageArchive.aspx?format=js&n=1&idx=0'), true);

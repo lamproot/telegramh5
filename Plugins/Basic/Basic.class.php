@@ -120,7 +120,15 @@
         public function message ($message, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
-            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            $whiteModel = new WhiteModel;
+
+            $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+
+            if ($find) {
+                return true;
+            }
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
 
