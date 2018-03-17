@@ -64,13 +64,16 @@
                         );
                     }
                     $codeModel = new CodeModel;
-                    $codeModel-> updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$from['username']);
+
+                    $username = isset($from['username']) ? $from['username'] : "";
+                    $codeModel-> updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$username);
                 }
 
                 # 记录用户code 码相关回复数据 方便最后发放奖励
                 # 记录用户数据 $chat['id'] $message_id code 发送时间 message  $from['id'] $from['username']
                 $codeLogModel = new CodeLogModel;
-                $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$from['username']);
+                $username = isset($from['username']) ? $from['username'] : "";
+                $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$username);
 
             }
         }
