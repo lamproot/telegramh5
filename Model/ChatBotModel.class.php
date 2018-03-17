@@ -19,4 +19,12 @@
             // return $ret;
 
         }
+
+        function getById ($id)
+        {
+            return $this->db->get ('chat_bot', '*', [
+                'id' => $id
+            ]);
+
+        }
     }

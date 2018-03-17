@@ -17,6 +17,17 @@
                 //存取用户数据 from_uid from_username chat_id
                 $chat_bot_id = intval(base64_decode(str_replace($result[0], "", $command)));
 
+
+
+                $chatBotModel = new ChatBotModel;
+                $chatBot = $chatBotModel->getById($chat_bot_id);
+                $token = ($chatBot && isset($chatBot['token'])) ? $chatBot['token'] : "";
+                
+                if ($token) {
+                    
+                    $_SESSION['token'] = $token;
+                }
+
                 if ($chat_bot_id != 0) {
                     $whiteModel = new WhiteModel;
 
