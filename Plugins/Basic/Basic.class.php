@@ -74,7 +74,15 @@
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
             $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
-            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+
+            $whiteModel = new WhiteModel;
+
+            $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+
+            if ($find) {
+                return true;
+            }
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
@@ -96,8 +104,15 @@
         public function sticker ($sticker, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
-            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
+            $whiteModel = new WhiteModel;
+
+            $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+
+            if ($find) {
+                return true;
+            }
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
 
@@ -216,8 +231,16 @@
         public function document ($document, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
             $chatBot = $chatBotModel->getcommand($chat['id']);
-            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
 
+            $whiteModel = new WhiteModel;
+
+            $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+
+            if ($find) {
+                return true;
+            }
+            
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
 
