@@ -44,10 +44,10 @@
 	    public function index()
 	    {
 			$chat_bot_id = $_GET['chat_bot_id'];
-			$where = "";
+			$where = "is_del = 0";
 
 			if ($_GET['chat_bot_id']) {
-	        	$where = "chat_bot_id = {$chat_bot_id}";
+	        	$where = $where . "AND chat_bot_id = {$chat_bot_id}";
 			}
 
 	    	$params = array(
