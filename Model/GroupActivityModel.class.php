@@ -22,7 +22,8 @@
         {
             return $this->db->get ('group_activity', '*', [
                 'chat_bot_id' => $chat_bot_id,
-                'type' => 1
+                'type' => 1,
+                'is_del' => 0
             ]);
         }
     }
