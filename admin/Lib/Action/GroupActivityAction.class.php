@@ -47,7 +47,7 @@
 			$where = "is_del = 0";
 
 			if ($_GET['chat_bot_id']) {
-	        	$where = $where . "AND chat_bot_id = {$chat_bot_id}";
+	        	$where = $where . " AND chat_bot_id = {$chat_bot_id}";
 			}
 
 	    	$params = array(
