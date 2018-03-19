@@ -36,11 +36,11 @@
                 <p class="desc">每邀请一个好友加入，你将额外获得 {$group_activity['rate']} 个 {$group_activity['rate_unit']}</p>
             </div>
             <div class="col-sm-12 text-left">
-                <p class="text-left">1. 点击以下按钮加入 {$group_activity['rate_unit']}，在活动结束之后，我们会验证 Telegram 的群组，只有还在群里的有效用户才会发放奖励</p>
+                <p class="text-left">1. 点击以下按钮加入 {$group_activity['rate_unit']}，在活动结束之后，我们会验证 Telegram 的群组，只有还在群里的有效用户才会发放奖励。</p>
                 <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
             </div>
             <div class="col-sm-12 text-center">
-                <p class="text-left">2. 发送以下验证码至电报群即可获得{$group_activity['rate']}{$group_activity['rate_unit']}。</p>
+                <p class="text-left">2.发送以下验证码至电报群即可获得50THM。</p>
                 <div class="input-box">
                     <input class="address border-radius text-center" value="/{$chat_bot['code_cmd']}{$code}"/>
                     <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address">复制</a>
