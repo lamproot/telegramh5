@@ -324,18 +324,18 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_bot',
+	    		'table_name' => 'group_activity',
 
 	    		'where' => "id = {$id} AND is_del = 0",
 
 	    		'data' => $data
 	    	);
 
-	    	$chat_bot_save = $this -> model -> my_save($params);
+	    	$group_activity_save = $this -> model -> my_save($params);
 
-	    	if ($chat_bot_save)
+	    	if ($group_activity_save)
 	    	{
-	    		redirect(__APP__.'/ChatBot/index', 0);
+				redirect(__APP__.'/GroupActivity/index', 0);
 	    	}
 	    	else
 	    	{
