@@ -173,12 +173,17 @@
 		{
 
 			import('ORG.Net.UploadFile');
-			$width = '1000,654,600,130';
-			$height = '570,768,400,130';
-			$prefix = 'b_,m_,s_,l_';
+			// $width = '1000,654,600,130';
+			// $height = '570,768,400,130';
+			// $prefix = 'b_,m_,s_,l_';
+
+			$width = '';
+			$height = '';
+			$prefix = '';
+
 	        $upload = new UploadFile(); // 实例化上传类
 	        $upload->maxSize =10000000; // 设置附件上传大小
-	        $upload->savePath = './Uploads/images/' . $path . '/'; // 设置附件上传目录
+	        $upload->savePath = '../Uploads/images/' . $path . '/'; // 设置附件上传目录
 	        $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
 	        // $upload->saveRule = 'time';
 	        $upload->uploadReplace = true; //是否存在同名文件是否覆盖
@@ -187,7 +192,7 @@
 	        $upload->thumbMaxHeight = $height; //缩略图处理高度
 	        $upload->thumbPrefix = $prefix; //缩略图前缀
 
-	        $upload->thumbPath = './Uploads/images/' . $path .'/'; //缩略图保存路径
+	        $upload->thumbPath = '../Uploads/images/' . $path .'/'; //缩略图保存路径
 	        //$upload->thumbRemoveOrigin = true; //上传图片后删除原图片
 	        $upload->autoSub = false; //是否使用子目录保存图片
 	        $upload->subType = 'date'; //子目录保存规则
@@ -200,8 +205,11 @@
 
 	            foreach ($info as $key => $value) {
 	            	# code...
-	            	$infos["{$value['key']}"]['status'] = 1;
-	            	$infos["{$value['key']}"]['msg'] = $value['savename'];
+	            	// $infos["{$value['key']}"]['status'] = 1;
+	            	// $infos["{$value['key']}"]['msg'] = $value['savename'];
+					$res["{$value['key']}"]['status'] = 1;
+				   	$res["{$value['key']}"]['msg'] = $value['savename'];
+					$infos[] = $res;
 	            }
 
 	            $picname = $infos;

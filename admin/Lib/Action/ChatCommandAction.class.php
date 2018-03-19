@@ -144,6 +144,76 @@
 	    	$this -> display();
 	    }
 
+
+		/**
+		 * 新增
+		 *
+		 * 参数描述：
+		 *
+		 *
+		 *
+		 * 返回值：
+		 *
+		 */
+	    public function add_more()
+	    {
+	    	$form_key = htmlspecialchars($_POST['form_key']);
+	    	if ($form_key == 'yes')
+	    	{
+	    		$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
+				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
+				$content = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
+				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
+
+				if (intval($data['type']) === 5) {
+					//文件上传处理
+					$logo = $this -> _upload_pic_all('command');
+
+					foreach ($logo as $key => $value) {
+						if ($value['file']['status'] == 1)
+						{
+							$data['content'][$key]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['file']['msg'];
+
+							$data['content'][$key]['note'] = isset($content[$key]) ? $content[$key] : "";
+						}
+						elseif ($value['file']['status'] == 0)
+						{
+							$this -> _back($value['file']['msg']);
+						}
+
+
+					}
+
+
+				}
+				$data['content'] = json_encode($data['content']);
+	    		$data['created_at'] = time();
+	    		$data['updated_at'] = time();
+	    		$data['is_del'] = 0;
+	    		$params = array(
+
+	    			'table_name' => 'chat_command',
+
+	    			'data' => $data
+	    		);
+
+	    		$chat_command_add = $this -> model -> my_add($params);
+
+	    		if ($chat_command_add)
+	    		{
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
+	    		}
+	    		else
+	    		{
+	    			$this -> _back('创建失败 请稍后重试');
+	    		}
+	    	}
+
+	    	$this -> assign('result', $result);
+
+	    	$this -> display();
+	    }
+
 	    /**
 		 * 编辑
 		 *
