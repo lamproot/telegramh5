@@ -10,6 +10,9 @@
             <li>
                 <a>群管理</a>
             </li>
+			<li>
+                <a>推送管理</a>
+            </li>
         </ol>
 	</div>
 </div>
@@ -22,7 +25,7 @@
                     <div class="row">
                         <div class="col-sm-12 m-b-xs">
 							<p>
-                                <a type="button" class="btn btn-w-m btn-danger" href="__APP__/ChatBot/add">新增</a>
+                                <a type="button" class="btn btn-w-m btn-danger" href="__APP__/ChatPush/push?chat_bot_id={$_GET['chat_bot_id']}">新增</a>
                                 <!-- <button type="button" class="btn btn-w-m btn-primary">启用</button>
                                 <button type="button" class="btn btn-w-m btn-primary">禁用</button>
                                 <button type="button" class="btn btn-w-m btn-primary">删除</button>
@@ -36,13 +39,9 @@
                                 <tr>
                                     <!-- <th>#</th> -->
                                     <th>编号</th>
-									<th>群名称</th>
-                                    <th>TOKEN</th>
-                                    <th>chat_id</th>
-                                    <th>master_id</th>
-									<th>备注</th>
-									<th>添加时间</th>
-									<th>操作</th>
+                                    <th>类型</th>
+                                    <th>回复内容</th>
+									<th>推送时间</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,27 +50,17 @@
                                         <!-- <td>
                                             <input type="checkbox" checked class="i-checks" name="input[]">
                                         </td> -->
-                                        <td>{$data.id}</td>
-										<td>{$data.name}</td>
-    									<td>{$data.token}</td>
-                                        <td><if condition="$data.chat_id neq ''">{$data.chat_id}<else/><a data-toggle="modal" href="#myModal5">获取chat_id</a></if></td>
-										<td><if condition="$data.master_id neq ''">{$data.master_id}<else/><a  data-toggle="modal" href="#myModal5">获取master_id</a></if></td>
-										<td>{$data.remark}</td>
-										<td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
-
+                                        <td>{$data.id}</span></td>
+                                        <td>{$data.type}</td>
+										<td style="width:200px;word-wrap：break-word">{$data.content}</td>
+    									<td >{$data.created_at|date="Y-m-d H:i:s",###}</td>
+<!--
                                         <td>
-    										<a href="__APP__/ChatBot/edit/id/{$data.id}">编辑</a>
-
-											<if condition="$data.chat_id neq ''">
-												<a href="__APP__/ChatCommand/index/chat_bot_id/{$data.id}">命令设置</a>
+    										<a href="__APP__/ChatCommand/edit/id/{$data.id}?chat_bot_id={$_GET['chat_bot_id']}">编辑</a>
+    										<a href="__APP__/ChatCommand/delete/id/{$data.id}?chat_bot_id={$_GET['chat_bot_id']}" onclick="return confirm('确认删除吗？')">删除</a>
 
 
-												<a href="__APP__/GroupActivity/index/chat_bot_id/{$data.id}">活动页面</a>
-											</if>
-
-											<a href="__APP__/ChatBot/delete/id/{$data.id}" onclick="return confirm('确认删除吗？')">删除</a>
-											<a href="__APP__/ChatPush/index/chat_bot_id/{$data.id}">消息推送</a>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 </foreach>
                             </tbody>
@@ -83,31 +72,6 @@
         </div>
 
     </div>
-
-	<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
-	   <div class="modal-dialog modal-lg">
-		   <div class="modal-content">
-			   <div class="modal-header">
-				   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				   <h4 class="modal-title">如何获取chat_id 和 master_id</h4>
-				   <small class="font-bold">如何获取chat_id 和 master_id
-			   </div>
-			   <div class="modal-body">
-				   <p>
-					   请在机器群里输入以下命令获取 <br>
-					   /whoamiTOKEN 值获取  <br>
-
-					   例子:	/whoami549658118:AAFFZxI3fq_TYISNEEmRh73RY5fOLIF9KCY
-				   </p>
-			   </div>
-
-			   <div class="modal-footer">
-				   <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-				   <button type="button" class="btn btn-primary">保存</button>
-			   </div>
-		   </div>
-	   </div>
-   </div>
 
 	<div class="row">
 	    <div class="col-sm-12 text-right">
