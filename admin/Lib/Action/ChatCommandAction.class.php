@@ -360,39 +360,43 @@
 					//文件上传处理
 					$logo = $this -> _upload_pic_all('command');
 					$keys = array_keys($logo);
-					foreach ($keys as $kkey => $kvalue) {
-						if (isset($logo[$kvalue])) {
-							if ($kvalue == 'file') {
-								foreach ($logo[$kvalue] as $key => $value) {
-									if ($value['status'] == 1)
-									{
-										$file['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['msg'];
+					if (isset($logo['status']) && $logo['status'] == 0) {
+						# code...
+					}else{
+						foreach ($keys as $kkey => $kvalue) {
+							if (isset($logo[$kvalue])) {
+								if ($kvalue == 'file') {
+									foreach ($logo[$kvalue] as $key => $value) {
+										if ($value['status'] == 1)
+										{
+											$file['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['msg'];
 
-										$file['note'] = isset($content[$key]) ? $content[$key] : "";
-										$data['content'][] = $file;
+											$file['note'] = isset($content[$key]) ? $content[$key] : "";
+											$data['content'][] = $file;
+										}
+										elseif ($value['status'] == 0)
+										{
+											$this -> _back($value['msg']);
+										}
 									}
-									elseif ($value['status'] == 0)
-									{
-										$this -> _back($value['msg']);
-									}
-								}
-							}else{
-								$k = str_replace("file_", "", $kvalue);
+								}else{
+									$k = str_replace("file_", "", $kvalue);
 
-								if ($logo[$kvalue][0]['status'] == 1)
-								{
-									$data['content'][$k]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$logo[$kvalue][0]['msg'];
-								}
-								elseif ($logo[$kvalue][0]['status'] == 0)
-								{
-									$this -> _back($logo[$kvalue][0]['msg']);
+									if ($logo[$kvalue][0]['status'] == 1)
+									{
+										$data['content'][$k]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$logo[$kvalue][0]['msg'];
+									}
+									elseif ($logo[$kvalue][0]['status'] == 0)
+									{
+										$this -> _back($logo[$kvalue][0]['msg']);
+									}
 								}
 							}
 						}
 					}
 
-				}
 
+				}
 				$data['content'] = json_encode($data['content']);
 	    		$data['updated_at'] = time();
 
