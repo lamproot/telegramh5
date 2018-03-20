@@ -179,11 +179,7 @@
 						{
 							$this -> _back($value['file']['msg']);
 						}
-
-
 					}
-
-
 				}
 				$data['content'] = json_encode($data['content']);
 	    		$data['created_at'] = time();

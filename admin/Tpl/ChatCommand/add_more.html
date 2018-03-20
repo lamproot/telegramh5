@@ -45,9 +45,10 @@
 
                                     <option value="5">连续图文回复</option>
                                 </select>
-                                <p>命令类型 1.普通回复  2.图片文字回复 3.文件回复（gif, pdf and zip files.） 5.连续图文回复</p>
+                                <p>命令类型 连续图文回复</p>
 							</div>
 						</div>
+
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">*命令:</label>
@@ -58,33 +59,32 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">回复内容:</label>
-                            <div class="col-sm-6">
-                                <textarea name="content[]" rows="8" cols="80" id="content" class="form-control" aria-required="true" aria-invalid="true" class="error"></textarea>
+                        <div class="content_list ">
+                            <div class="content_item">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">回复内容:</label>
+                                    <div class="col-sm-6">
+                                        <textarea name="content[]" rows="4" cols="40" id="content" class="form-control" aria-required="true" aria-invalid="true" class="error"></textarea>
+                                    </div>
+
+
+                                    <div class="col-sm-3">
+                                        <a class="btn btn-primary delete_content">删除</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+        							<label class="col-sm-3 control-label">文件(或图片)上传:</label>
+        							<div class="col-sm-6">
+        								<input id="file" name="file[]" class="form-control" type="file" value="">
+        							</div>
+        						</div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">文件(或图片)上传:</label>
-							<div class="col-sm-6">
-								<input id="file" name="file[]" class="form-control" type="file" value="">
-							</div>
-						</div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">回复内容:</label>
-                            <div class="col-sm-6">
-                                <textarea name="content[]" rows="8" cols="80" id="content" class="form-control" aria-required="true" aria-invalid="true" class="error"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">文件(或图片)上传:</label>
-							<div class="col-sm-6">
-								<input id="file" name="file[]" class="form-control" type="file" value="">
-							</div>
-						</div>
+
 
 <!--
 						<div class="form-group">
@@ -104,6 +104,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-3">
+                                <a class="btn btn-primary add_content">新增</a>
                                 <button class="btn btn-primary" type="submit" onclick="save()">提交</button>
                             </div>
                         </div>
@@ -124,6 +125,36 @@
 <script>
     $(document).ready(function () {
 
+        $('.add_content').click(function() {
+            var html = '<div class="content_item">'
+                +'<div class="form-group">'
+                    +'<label class="col-sm-3 control-label">回复内容:</label>'
+                    +'<div class="col-sm-6">'
+                        +'<textarea name="content[]" rows="4" cols="40" id="content" class="form-control" aria-required="true" aria-invalid="true" class="error"></textarea>'
+                    +'</div>'
+                    +'<div class="col-sm-3">'
+                        +'<a class="btn btn-primary delete_content">删除</a>'
+                    +'</div>'
+                +'</div>'
+
+                +'<div class="form-group">'
+                    +'<label class="col-sm-3 control-label">文件(或图片)上传:</label>'
+                    +'<div class="col-sm-6">'
+                        +'<input id="file" name="file[]" class="form-control" type="file" value="">'
+                    +'</div>'
+                +'</div>'
+            +'</div>';
+
+            $('.content_list').append(html);
+
+            $('.delete_content').click(function(){
+                $(this).parent().parent().parent().remove();
+            });
+        });
+
+        $('.delete_content').click(function(){
+            $(this).parent().parent().parent().remove();
+        });
         // $('.summernote').summernote({
         //     lang: 'zh-CN'
         // });
