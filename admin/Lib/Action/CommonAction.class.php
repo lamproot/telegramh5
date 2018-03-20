@@ -459,5 +459,82 @@
         }
 
 
+		public function callMethod ($method, $param = array (), $detection = true) {
+
+            if (isset($_SESSION['admin']['token']) && !empty($_SESSION['admin']['token'])) {
+                $url = 'https://api.telegram.org/bot' . $_SESSION['admin']['token'] . '/' . $method;
+            }
+
+            /** 访问网页 */
+            $ret = json_decode ($this->fetch ($url, $param), true);
+
+            /** 返回 */
+            return $ret;
+        }
+        public function setWebhook ($newurl) {
+            $this->ret = $this->callMethod ('setWebhook', [
+                'url' => $newurl
+            ], false);
+            return $this->ret;
+        }
+        public function sendMessage ($chat_id, $text, $reply_to_message_id = NULL, $reply_markup = array (), $parse_mode = 'HTML') {
+			$this->ret = $this->callMethod ('sendMessage', [
+                'chat_id' => $chat_id,
+                'text' => $text,
+                'reply_to_message_id' => $reply_to_message_id,
+                'parse_mode' => $parse_mode,
+                'reply_markup' => $reply_markup
+            ]);
+            return $this->ret['result']['message_id'];
+        }
+        public function editMessage ($chat_id, $message_id, $text, $reply_markup = array (), $parse_mode = 'HTML') {
+            $this->ret = $this->callMethod ('editMessageText', [
+                'chat_id' => $chat_id,
+                'message_id' => $message_id,
+                'text' => $text,
+                'parse_mode' => $parse_mode,
+                'reply_markup' => $reply_markup
+            ]);
+            return $this->ret['result']['message_id'];
+        }
+        public function deleteMessage ($chat_id, $message_id) {
+            $this->ret = $this->callMethod ('deleteMessage', [
+                'chat_id' => $chat_id,
+                'message_id' => $message_id
+            ]);
+            return $this->ret;
+        }
+        public function sendPhoto ($chat_id, $photo, $caption = '', $reply_to_message_id = NULL, $reply_markup = array ()) {
+            $this->ret = $this->callMethod ('sendPhoto', [
+                'chat_id' => $chat_id,
+                'photo' => $photo,
+                'caption' => $caption,
+                'reply_to_message_id' => $reply_to_message_id,
+                'reply_markup' => $reply_markup
+            ]);
+            return $this->ret['result']['message_id'];
+        }
+        public function sendAudio ($chat_id, $audio, $caption = '', $reply_to_message_id = NULL, $reply_markup = array ()) {
+            $this->ret = $this->callMethod ('sendAudio', [
+                'chat_id' => $chat_id,
+                'audio' => $audio,
+                'caption' => $caption,
+                'reply_to_message_id' => $reply_to_message_id,
+                'reply_markup' => $reply_markup
+            ]);
+            return $this->ret['result']['message_id'];
+        }
+        public function sendDocument ($chat_id, $document, $caption = '', $reply_to_message_id = NULL, $reply_markup = array ()) {
+            $this->ret = $this->callMethod ('sendDocument', [
+                'chat_id' => $chat_id,
+                'document' => $document,
+                'caption' => $caption,
+                'reply_to_message_id' => $reply_to_message_id,
+                'reply_markup' => $reply_markup
+            ]);
+            return $this->ret['result']['message_id'];
+        }
+
+
 
 	}
