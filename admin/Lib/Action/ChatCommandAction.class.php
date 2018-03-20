@@ -303,6 +303,125 @@
 	    	$this -> display();
 	    }
 
+
+		/**
+		 * 编辑
+		 *
+		 * 参数描述：
+		 *
+		 *
+		 *
+		 * 返回值：
+		 *
+		 */
+	    public function edit_more()
+	    {
+	    	$id = isset($_POST['id']) ? intval($_POST['id']) : intval($_GET['id']);
+
+	    	if (!$id)
+	    	{
+	    		$this -> _back('错误的参数');
+	    	}
+
+	    	$params = array(
+
+	    		'table_name' => 'chat_command',
+
+	    		'where' => "id = {$id} AND is_del = 0"
+	    	);
+
+	    	$result = $this -> model -> my_find($params);
+
+			$result['content'] = json_decode($result['content'], true);
+
+	    	if (!$result)
+	    	{
+	    		$this -> _back('没有符合的记录');
+	    	}
+
+	    	$form_key = htmlspecialchars($_POST['form_key']);
+
+	    	if ($form_key == 'yes')
+	    	{
+				$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
+				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
+				$content = isset($_POST['content']) ? ($_POST['content']) : [];
+				$editcontent = isset($_POST['editcontent']) ? ($_POST['editcontent']) : [];
+				$editurl = isset($_POST['editurl']) ? ($_POST['editurl']) : [];
+				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
+
+				foreach ($editcontent as $key => $value) {
+					$data['content'][$key]['note'] = $value;
+					$data['content'][$key]['url'] = $editurl[$key];
+				}
+
+
+				if (intval($data['type']) === 5) {
+					//文件上传处理
+					$logo = $this -> _upload_pic_all('command');
+					$keys = array_keys($logo);
+					foreach ($keys as $kkey => $kvalue) {
+						if (isset($logo[$kvalue])) {
+							if ($kvalue == 'file') {
+								foreach ($logo[$kvalue] as $key => $value) {
+									if ($value['status'] == 1)
+									{
+										$file['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['msg'];
+
+										$file['note'] = isset($content[$key]) ? $content[$key] : "";
+										$data['content'][] = $file;
+									}
+									elseif ($value['status'] == 0)
+									{
+										$this -> _back($value['msg']);
+									}
+								}
+							}else{
+								$k = str_replace("file_", "", $kvalue);
+
+								if ($logo[$kvalue][0]['status'] == 1)
+								{
+									$data['content'][$k]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$logo[$kvalue][0]['msg'];
+								}
+								elseif ($logo[$kvalue][0]['status'] == 0)
+								{
+									$this -> _back($logo[$kvalue][0]['msg']);
+								}
+							}
+						}
+					}
+
+				}
+
+				$data['content'] = json_encode($data['content']);
+	    		$data['updated_at'] = time();
+
+	    		$params = array(
+
+	    			'table_name' => 'chat_command',
+
+	    			'where' => "id = {$id}",
+
+	    			'data' => $data
+	    		);
+
+	    		$chat_command_save = $this -> model -> my_save($params);
+
+	    		if ($chat_command_save)
+	    		{
+	    			redirect(__APP__.'/ChatCommand/index?chat_bot_id='.$_POST['chat_bot_id'], 0);
+	    		}
+	    		else
+	    		{
+	    			$this -> _back('保存失败 请稍后重试');
+	    		}
+	    	}
+
+	    	$this -> assign('result', $result);
+
+	    	$this -> display();
+	    }
+
 	    /**
 		 * 删除
 		 *

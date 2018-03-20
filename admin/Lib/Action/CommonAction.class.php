@@ -207,9 +207,11 @@
 	            	# code...
 	            	// $infos["{$value['key']}"]['status'] = 1;
 	            	// $infos["{$value['key']}"]['msg'] = $value['savename'];
-					$res["{$value['key']}"]['status'] = 1;
-				   	$res["{$value['key']}"]['msg'] = $value['savename'];
-					$infos[] = $res;
+					$data['status'] = 1;
+				   	$data['msg'] = $value['savename'];
+
+					$res["{$value['key']}"][] = $data;
+					$infos = $res;
 	            }
 
 	            $picname = $infos;
