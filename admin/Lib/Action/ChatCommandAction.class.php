@@ -161,7 +161,7 @@
 	    	{
 	    		$data['cmd'] = isset($_POST['cmd']) ? htmlspecialchars($_POST['cmd']) : $this -> _back('请填写cmd');
 				$data['chat_bot_id'] = isset($_POST['chat_bot_id']) ? htmlspecialchars($_POST['chat_bot_id']) : $this -> _back('请填写chat_bot_id');
-				$content = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : $this -> _back('请填写content');
+				$content = isset($_POST['content']) ? ($_POST['content']) : $this -> _back('请填写content');
 				$data['type'] = isset($_POST['type']) ? htmlspecialchars($_POST['type']) : 1;
 
 				if (intval($data['type']) === 5) {
