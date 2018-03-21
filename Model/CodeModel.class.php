@@ -16,7 +16,7 @@
             return $ret;
         }
 
-        function updateByCode ($chat_bot_id, $code, $status, $from_id, $from_username)
+        function updateByCode ($chat_bot_id, $code, $status, $from_id, $from_username, $first_name, $last_name)
         {
 
             $where['AND']['chat_bot_id'] = $chat_bot_id;
@@ -26,6 +26,8 @@
             $res = $this->db->update ('codes', [
                 'from_id' => $from_id,
                 'from_username' => $from_username,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
                 'status' => 3,
                 'updated_at' => time()
             ], $where);

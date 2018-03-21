@@ -54,7 +54,7 @@
                 //查询 code AND chat_id AND status=1
 
                 // $errorModel = new ErrorModel;
-                // $errorModel->sendError (MASTER, 'from'. $from);
+                // $errorModel->sendError (MASTER, 'from'. print_r($from, true));
 
                 if ($codeInfo && $codeInfo[0]) {
                     if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
@@ -70,14 +70,19 @@
                     $codeModel = new CodeModel;
 
                     $username = isset($from['username']) ? $from['username'] : "";
-                    $codeModel-> updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$username);
+                    $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                    $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                    $codeModel-> updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$username, $first_name, $last_name);
                 }
 
                 # 记录用户code 码相关回复数据 方便最后发放奖励
                 # 记录用户数据 $chat['id'] $message_id code 发送时间 message  $from['id'] $from['username']
                 $codeLogModel = new CodeLogModel;
                 $username = isset($from['username']) ? $from['username'] : "";
-                $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$username);
+                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+
+                $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$username, $first_name, $last_name);
 
             }
         }
