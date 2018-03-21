@@ -27,7 +27,7 @@
 							<p>
 
 
-								<a type="button" href="__APP__/Download/codes/chat_bot_id/{$_GET['chat_bot_id']}?star={$_GET['start']}&stop={$_GET['stop']}" class="btn btn-w-m btn-danger">导出用户数据</a>
+								<a type="button" href="__APP__/Download/codes/activity_id/{$_GET['activity_id']}?star={$_GET['start']}&stop={$_GET['stop']}" class="btn btn-w-m btn-danger">导出用户数据</a>
                                 <!-- <button type="button" class="btn btn-w-m btn-primary">启用</button>
                                 <button type="button" class="btn btn-w-m btn-primary">禁用</button>
                                 <button type="button" class="btn btn-w-m btn-primary">删除</button>
@@ -58,6 +58,7 @@
 
                                     <th>来源</th>
 									<th>名称</th>
+									<th>姓名</th>
 									<th>邀请人数</th>
 									<th>钱包</th>
                                     <th>邀请码</th>
@@ -72,6 +73,7 @@
                                         </td> -->
                                         <td>{$data.from_id}</span></td>
     									<td>{$data.from_username}</td>
+										<td>{$data.first_name}  {$data.last_name} </td>
 										<td>{$data.invited}</td>
                                         <td>{$data.eth}</td>
 										<td>{$data.code}</td>

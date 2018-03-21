@@ -65,9 +65,9 @@ class DownloadAction extends CommonAction {
 
         $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : "" ;
 
-		$chat_bot_id = $_GET['chat_bot_id'];
+		$activity_id = $_GET['activity_id'];
 
-		$where = "chat_bot_id = {$chat_bot_id} AND status = 3";
+		$where = "activity_id = {$activity_id} AND status = 3";
 
         if($start && $stop){
 
@@ -86,6 +86,7 @@ class DownloadAction extends CommonAction {
 		);
 
 		$result = $this -> model -> easy_select($params);
+		echo json_encode($where);exit;
 
 		foreach ($result as $key => $value) {
 
@@ -99,6 +100,7 @@ class DownloadAction extends CommonAction {
 			);
 
 			$result[$key]['invited']  = $this -> model -> get_count($params);
+			$result[$key]['xingming'] = $value['first_name']."  ". $value['last_name'];
 		}
 
         $xlsData = $result;
@@ -108,8 +110,9 @@ class DownloadAction extends CommonAction {
             $xlsCell  = array(
                 array('id','ID'),
                 array('chat_bot_id','群'),
-                array('from_id','用户ID'),
+                array('from_id','用户telegram UID'),
                 array('from_username','用户名称'),
+				array('xingming','用户姓名'),
                 array('eth','钱包'),
                 array('code','邀请码'),
                 array('created_at','加入时间'),
