@@ -15,6 +15,8 @@
             }
             curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+            $referer = "http://name-technology.fun/?t=".time();
+            curl_setopt ($ch,CURLOPT_REFERER,$referer);
             $re = curl_exec ($ch);
 
             $err_code = curl_errno($ch);
