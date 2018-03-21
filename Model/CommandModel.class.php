@@ -10,6 +10,7 @@
             $chat_bot_id === NULL ? : $where['AND']['chat_bot_id'] = $chat_bot_id;
             $cmd === NULL ? : $where['AND']['cmd'] = $cmd;
             $type === NULL ? : $where['AND']['type'] = $type;
+            $where['AND']['is_del'] = 0;
             if ($limit != 0) {
                 $where['LIMIT'] = $limit;
             }
@@ -25,6 +26,7 @@
             );
             $chat_bot_id === NULL ? : $where['AND']['chat_bot_id'] = $chat_bot_id;
             $cmd === NULL ? : $where['AND']['cmd'] = $cmd;
+            $where['AND']['is_del'] = 0;
             if ($limit != 0) {
                 $where['LIMIT'] = $limit;
             }
