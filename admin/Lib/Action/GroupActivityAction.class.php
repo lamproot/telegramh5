@@ -91,8 +91,8 @@
 	    	if ($form_key == 'yes')
 	    	{
 				$data = $_POST;
-				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
-				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
+				$data['started_at'] = strtotime($data['started_at']);
+				$data['stoped_at'] = strtotime($data['stoped_at']);
 				$data['created_at'] = time();
 				$logo = $this -> _upload_pic('group_activity');
 
@@ -198,8 +198,8 @@
 	    	{
 				$data = $_POST;
 
-				$data['started_at'] = strtotime($data['started_at']." 00:00:00");
-				$data['stoped_at'] = strtotime($data['stoped_at']." 23:59:59");
+				$data['started_at'] = strtotime($data['started_at']);
+				$data['stoped_at'] = strtotime($data['stoped_at']);
 				$logo = $this -> _upload_pic('group_activity');
 
 				if ($logo['status'] == 1)
