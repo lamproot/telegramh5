@@ -52,6 +52,10 @@
                 //status-用户状态 默认 0 1-已申请用户码 2-已在群里确认用户码(已在群里) -1-已退出群聊
                 //code 码规则 用户钱包地址_群ID_telegram_code_2018
                 //查询 code AND chat_id AND status=1
+
+                $errorModel = new ErrorModel;
+                $errorModel->sendError (MASTER, 'from'. $from);
+
                 if ($codeInfo && $codeInfo[0]) {
                     if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                         $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
