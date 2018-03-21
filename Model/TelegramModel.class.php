@@ -8,6 +8,8 @@
             parent::__construct ();
         }
         private function fetch ($url, $postdata = null) {
+            $rantime = rand(1,10);
+            sleep($rantime);
             $ch = curl_init ();
             curl_setopt ($ch, CURLOPT_URL, $url);
             if (!is_null ($postdata)) {
