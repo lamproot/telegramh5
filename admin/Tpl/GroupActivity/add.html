@@ -33,7 +33,7 @@
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__" enctype="multipart/form-data">
-                        
+
                          <div class="form-group">
                             <label class="col-sm-3 control-label">活动所在群:</label>
                             <div class="col-sm-9">
@@ -108,7 +108,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">活动开始时间:</label>
                             <div class="col-sm-9">
-                                <input id="started_at" name="started_at" value="{$result['started_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
+                                <input id="started_at" placeholder="格式例如: 2018-03-21 10:35:29" name="started_at" value="{$result['started_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
 
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">活动结束时间:</label>
                             <div class="col-sm-9">
-                                <input id="stoped_at" name="stoped_at" value="{$result['stoped_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
+                                <input id="stoped_at" placeholder="格式例如: 2018-03-21 10:35:29" name="stoped_at" value="{$result['stoped_at']|date="Y-m-d",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd" >
 
                             </div>
                         </div>
