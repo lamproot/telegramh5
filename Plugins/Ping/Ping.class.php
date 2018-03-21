@@ -22,9 +22,9 @@
                 $chatBotModel = new ChatBotModel;
                 $chatBot = $chatBotModel->getById($chat_bot_id);
                 $token = ($chatBot && isset($chatBot['token'])) ? $chatBot['token'] : "";
-                
+
                 if ($token) {
-                    
+
                     $_SESSION['token'] = $token;
                 }
 
@@ -41,7 +41,7 @@
                             $message_id
                         );
                     }else{
-
+                        $from['username'] = isset($from['username']) ? $from['username'] : "";
 
                         $insert = $whiteModel->add($chat_bot_id, $from['id'], @$from['username']);
 
