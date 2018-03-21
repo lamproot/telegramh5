@@ -53,8 +53,8 @@
                 //code 码规则 用户钱包地址_群ID_telegram_code_2018
                 //查询 code AND chat_id AND status=1
 
-                $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, 'from'. $from);
+                // $errorModel = new ErrorModel;
+                // $errorModel->sendError (MASTER, 'from'. $from);
 
                 if ($codeInfo && $codeInfo[0]) {
                     if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
