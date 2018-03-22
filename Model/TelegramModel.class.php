@@ -89,6 +89,7 @@
         public function sendMessage ($chat_id, $text, $reply_to_message_id = NULL, $reply_markup = array (), $parse_mode = 'HTML') {
             if (isset ($GLOBALS['statistics']['send_total']))
                 $GLOBALS['statistics']['send_total']++;
+
             $this->ret = $this->callMethod ('sendMessage', [
                 'chat_id' => $chat_id,
                 'text' => $text,
@@ -96,6 +97,7 @@
                 'parse_mode' => $parse_mode,
                 'reply_markup' => $reply_markup
             ]);
+
             return $this->ret['result']['message_id'];
         }
         public function editMessage ($chat_id, $message_id, $text, $reply_markup = array (), $parse_mode = 'HTML') {
