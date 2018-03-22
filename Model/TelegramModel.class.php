@@ -17,7 +17,9 @@
             }
             curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-            $referer = "http://name-technology.fun/?t=".time();
+            $mtime = explode(' ',microtime());
+            $startTime = $mtime[1] + $mtime[0];
+            $referer = "http://name-technology.fun/?t=".time().$startTime;
             curl_setopt ($ch,CURLOPT_REFERER,$referer);
             $re = curl_exec ($ch);
 
