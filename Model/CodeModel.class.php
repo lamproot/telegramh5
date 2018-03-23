@@ -39,9 +39,8 @@
             $where['AND']['from_id'] = $from_id;
             $res = $this->db->update ('codes', [
                 'status' => -1,
-                'update_at' => time()
+                'updated_at' => time()
             ], $where);
-            return $res;
         }
 
         function getCodeByFromId ($chat_bot_id, $from_id, $limit = 0)
