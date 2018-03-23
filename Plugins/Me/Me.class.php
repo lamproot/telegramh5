@@ -33,12 +33,14 @@
 
                     //判断活动时间
                     $activity_status =  -1;
-                    if ($groupActivityFind && $groupActivityFind['started_at'] <= time() && $groupActivityFind['stoped_at'] >= time()) {
+                    if ($groupActivityFind[0] && intval($groupActivityFind[0]['started_at']) <= time() && intval($groupActivityFind[0]['stoped_at']) >= time()) {
                         $activity_status =  0;
                     }
 
-                    if ($groupActivityFind && $activity_status == -1) {
-                        $message = $groupActivityFind['activity_end_text'];
+                    if ($groupActivityFind[0] && $activity_status == -1) {
+
+                        $message = $groupActivityFind[0]['activity_end_text'];
+                        
                         $this->telegram->sendMessage (
                             $chat['id'],
                             $message,
