@@ -50,6 +50,8 @@
 
 	        $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : "" ;
 
+			$code = $_GET['code'] ? $_GET['code'] : "" ;
+
 	        $where = "activity_id = {$activity_id} AND status = 3";
 
 	        if($start && $stop){
@@ -57,6 +59,10 @@
 	            $where = $where." AND created_at >= {$start} AND created_at <= {$stop}";
 
 	        }
+
+			if ($code) {
+				$where = $where." AND code = '{$code}'";
+			}
 
 	    	$params = array(
 
@@ -77,7 +83,7 @@
 
 		    		'order' => 'id desc',
 
-		    		'where' => "parent_code = '{$value['code']}'"
+		    		'where' => "parent_code = '{$value['code']}' AND status = 3 AND activity_id = {$activity_id}"
 		    	);
 
 		    	$result['result'][$key]['invited']  = $this -> model -> get_count($params);

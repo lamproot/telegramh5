@@ -41,6 +41,7 @@
 
                                     <th>来源</th>
 									<th>名称</th>
+									<th>姓名</th>
 									<th>钱包</th>
                                     <th>邀请码</th>
                                 </tr>
@@ -52,10 +53,11 @@
                                             <input type="checkbox" checked class="i-checks" name="input[]">
                                         </td> -->
                                         <td>{$data.from_id}</span></td>
+										<td>{$data.first_name} {$data.last_name}</td>
     									<td>{$data.from_username}</td>
                                         <td>{$data.eth}</td>
 										<td>{$data.code}</td>
-                                        
+
                                     </tr>
                                 </foreach>
                             </tbody>
