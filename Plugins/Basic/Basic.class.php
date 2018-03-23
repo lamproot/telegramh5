@@ -201,6 +201,30 @@
 
                         if ($word) {
                             $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                            $IllegalLogModel = new IllegalLogModel;
+
+                            //查询违规数据是否大于3次
+                            $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                            if ($count >= 3) {
+                                $this->telegram->kickChatMember (
+                                    $chat['id'],
+                                    $from['id']
+                                );
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+
+                                $codeModel = new CodeModel;
+                                $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                return;
+                            }
+
+                            //记录相关违规数据
+                            $username = isset($from['username']) ? $from['username'] : "";
+                            $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                            $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
 
                             $this->telegram->sendMessage (
                                 $chat['id'],
@@ -216,6 +240,30 @@
                             $word = $sensitiveWordsModel->find([$message]);
                             if ($word) {
                                 $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                                $IllegalLogModel = new IllegalLogModel;
+
+                                //查询违规数据是否大于3次
+                                $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                                if ($count >= 3) {
+                                    $this->telegram->kickChatMember (
+                                        $chat['id'],
+                                        $from['id']
+                                    );
+                                    $username = isset($from['username']) ? $from['username'] : "";
+                                    $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                    $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                    $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+
+                                    $codeModel = new CodeModel;
+                                    $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                    return;
+                                }
+
+                                //记录相关违规数据
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
 
                                 $this->telegram->sendMessage (
                                     $chat['id'],
@@ -234,6 +282,30 @@
                         $word = $sensitiveWordsModel->find([$message]);
                         if ($word) {
                             $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                            $IllegalLogModel = new IllegalLogModel;
+
+                            //查询违规数据是否大于3次
+                            $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                            if ($count >= 3) {
+                                $this->telegram->kickChatMember (
+                                    $chat['id'],
+                                    $from['id']
+                                );
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+
+                                $codeModel = new CodeModel;
+                                $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                return;
+                            }
+
+                            //记录相关违规数据
+                            $username = isset($from['username']) ? $from['username'] : "";
+                            $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                            $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
 
                             $this->telegram->sendMessage (
                                 $chat['id'],
