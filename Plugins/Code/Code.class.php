@@ -30,8 +30,7 @@
                 if ($groupActivityFind && $activity_status == -1) {
 
                     $message = $groupActivityFind['activity_end_text'];
-                    $errorModel = new ErrorModel;
-                    $errorModel->sendError (MASTER, "活动已停止");
+                    
                     $this->telegram->sendMessage (
                         $chat['id'],
                         $message,
@@ -39,6 +38,9 @@
                     );
                     return;
                 }
+
+                $errorModel = new ErrorModel;
+                $errorModel->sendError (MASTER, "time".time());
 
                 //查询code 回复数据
                 $commandModel = new CommandModel;
