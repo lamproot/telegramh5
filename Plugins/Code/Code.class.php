@@ -40,7 +40,7 @@
                 }
 
                 $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, "groupActivityFind".print_r($groupActivityFind, true));
+                $errorModel->sendError (MASTER, $groupActivityFind['started_at']."groupActivityFind".print_r($groupActivityFind, true));
 
                 //查询code 回复数据
                 $commandModel = new CommandModel;
