@@ -19,7 +19,7 @@
             curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
             $mtime = explode(' ',microtime());
             $startTime = $mtime[1] + $mtime[0];
-            $referer = "http://name-technology.fun/?t=".time().$startTime;
+            $referer = "http://name-technology.fun/?t=".time().$startTime.rand(1,1000000).rand(1,1000000);
             curl_setopt ($ch,CURLOPT_REFERER,$referer);
             $re = curl_exec ($ch);
 
