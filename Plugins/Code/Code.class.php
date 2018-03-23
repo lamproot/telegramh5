@@ -23,12 +23,15 @@
 
                 //判断活动时间
                 $activity_status =  -1;
-                if ($groupActivityFind && $groupActivityFind['started_at'] <= time() && $groupActivityFind['stoped_at'] >= time()) {
+                if ($groupActivityFind && intval($groupActivityFind['started_at']) <= time() && intval($groupActivityFind['stoped_at']) >= time()) {
                     $activity_status =  0;
                 }
 
                 if ($groupActivityFind && $activity_status == -1) {
+
                     $message = $groupActivityFind['activity_end_text'];
+                    $errorModel = new ErrorModel;
+                    $errorModel->sendError (MASTER, "活动已停止");
                     $this->telegram->sendMessage (
                         $chat['id'],
                         $message,
