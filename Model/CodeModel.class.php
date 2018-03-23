@@ -41,6 +41,7 @@
                 'status' => -1,
                 'update_at' => time()
             ], $where);
+            return $res;
         }
 
         function getCodeByFromId ($chat_bot_id, $from_id, $limit = 0)
