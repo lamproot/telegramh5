@@ -18,7 +18,7 @@
         // }
 
 
-        function getGroupActivityByChatId ($chat_bot_id)
+        function getGroupActivityByChatId ($chat_bot_id, $limit = 0)
         {
             // return $this->db->get ('group_activity', '*', [
             //     'chat_bot_id' => intval($chat_bot_id),
