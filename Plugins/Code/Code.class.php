@@ -20,8 +20,8 @@
                 //查询活动是否结束
                 $groupActivityModel = new GroupActivityModel;
                 $groupActivityFind = $groupActivityModel->getGroupActivityByChatId($chat_bot_id);
-                $errorModel = new ErrorModel;
-                $errorModel->sendError (MASTER, $groupActivityFind[0]['started_at']."groupActivityFind".print_r($groupActivityFind[0], true));
+                // $errorModel = new ErrorModel;
+                // $errorModel->sendError (MASTER, $groupActivityFind[0]['started_at']."groupActivityFind".print_r($groupActivityFind[0], true));
 
 
                 //判断活动时间
