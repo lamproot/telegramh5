@@ -112,8 +112,8 @@ class DownloadAction extends CommonAction {
 				'where' => "parent_code = '{$value['code']}'"
 			);
 
-			$result[$key]['invited']  = $this -> model -> get_count($params);
-			$result[$key]['xingming'] = $value['first_name']."  ". $value['last_name'];
+			$result[$key]['invited']  = @$this -> model -> get_count($params);
+			$result[$key]['xingming'] = @$value['first_name']."  ". @$value['last_name'];
 		}
 
         $xlsData = $result;
