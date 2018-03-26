@@ -109,7 +109,7 @@ class DownloadAction extends CommonAction {
 
 				'order' => 'id desc',
 
-				'where' => "parent_code = '{$value['code']}'"
+				'where' => "parent_code = '{$value['code']}' AND status =3 "
 			);
 
 			$result[$key]['invited']  = @$this -> model -> get_count($params);
