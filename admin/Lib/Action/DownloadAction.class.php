@@ -117,8 +117,8 @@ class DownloadAction extends CommonAction {
 		}
 
         $xlsData = $result;
-
-            $xlsName  = "用户邀请导出";
+			$p = $_GET['p'] ? $_GET['p'] : 1;
+            $xlsName  = "用户邀请导出".$p;
 
             $xlsCell  = array(
                 array('id','ID'),
