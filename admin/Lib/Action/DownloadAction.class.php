@@ -100,6 +100,8 @@ class DownloadAction extends CommonAction {
 
 		$result = $result['result'];
 
+		echo json_encode($result);exit;
+
 		foreach ($result as $key => $value) {
 
 			$params = array(
