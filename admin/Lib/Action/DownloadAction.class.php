@@ -118,10 +118,22 @@ class DownloadAction extends CommonAction {
                 array('invited','邀请人数')
             );
 
+			$xlsCellM = array(
+                id,
+                chat_bot_id,
+                from_id,
+                from_username,
+				xingming,
+                eth,
+                code,
+                created_at,
+                invited
+            );
+
             foreach ($xlsData as $key => $value) {
                 $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
             }
-            $this->exportExcel($xlsName,$xlsCell,$xlsData);
+            $this->exportExcel($xlsName,$xlsCellM,$xlsData);
     }
 
     /**
