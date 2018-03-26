@@ -416,6 +416,14 @@
 			import("ORG.PHPExcel");
 			$objPHPExcel = new PHPExcel();
 
+			ini_set("memory_limit", "1024M"); // 设置php可使用内存
+
+	        $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip;
+	        if (!\PHPExcel_Settings::setCacheStorageMethod($cacheMethod)) {
+	            die($cacheMethod . " 缓存方法不可用" . EOL);
+	        }
+	        echo date('H:i:s'), " 当前使用的缓存方法是： ", $cacheMethod, " 方式", EOL;
+
 			$cellName = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ');
 
 			$objPHPExcel->getActiveSheet(0)->mergeCells('A1:'.$cellName[$cellNum-1].'1');//合并单元格
