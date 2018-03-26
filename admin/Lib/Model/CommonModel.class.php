@@ -208,11 +208,11 @@
 
 				$table = M($parameter['table_name']);
 
-				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',5000') -> select();
+				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',10000') -> select();
 
 				$count = $table -> where($parameter['where']) -> count();
 
-				$Page = new Page($count, 5000);
+				$Page = new Page($count, 10000);
 
 				$data['page'] = $Page -> show();
 

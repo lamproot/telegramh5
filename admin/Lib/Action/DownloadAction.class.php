@@ -151,11 +151,11 @@ class DownloadAction extends CommonAction {
                 $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
-			if($start && $stop){
-				redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=".$_GET['p'], 0);
-	        }else{
-				redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=".$_GET['p'], 0);
-			}
+			// if($start && $stop){
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=".$_GET['p'], 0);
+	        // }else{
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=".$_GET['p'], 0);
+			// }
 
 
     }
