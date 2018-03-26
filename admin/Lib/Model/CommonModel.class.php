@@ -169,11 +169,11 @@
 
 				$table = M($parameter['table_name']);
 
-				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',10') -> select();
+				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',200') -> select();
 
 				$count = $table -> where($parameter['where']) -> count();
 
-				$Page = new Page($count, 10);
+				$Page = new Page($count, 200);
 
 				$data['page'] = $Page -> show();
 
