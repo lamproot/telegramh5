@@ -208,7 +208,7 @@
 
 				$table = M($parameter['table_name']);
 
-				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',10') -> select();
+				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',5000') -> select();
 
 				$count = $table -> where($parameter['where']) -> count();
 
