@@ -86,7 +86,6 @@ class DownloadAction extends CommonAction {
 		);
 
 		$result = $this -> model -> easy_select($params);
-		echo json_encode($where);exit;
 
 		foreach ($result as $key => $value) {
 
