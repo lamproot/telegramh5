@@ -98,12 +98,8 @@ class DownloadAction extends CommonAction {
 
 		$data = $this -> model -> order_download_select($params);
 
-		if (intval($_GET['p']) > round($data['count']/10000)) {
-			echo "导出完毕";exit;
-		}
 
 		$result = $data['result'];
-		echo json_encode($result);exit;
 
 		foreach ($result as $key => $value) {
 
