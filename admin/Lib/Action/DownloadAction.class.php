@@ -30,7 +30,7 @@ class DownloadAction extends CommonAction {
 	{
 		parent::__construct();
 
-		$this -> model = D('Finances');
+		$this -> model = D('Common');
 	}
 
     /**
