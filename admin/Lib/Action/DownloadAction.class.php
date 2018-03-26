@@ -113,7 +113,8 @@ class DownloadAction extends CommonAction {
 			);
 
 			$result[$key]['invited']  = @$this -> model -> get_count($params);
-			$result[$key]['xingming'] = @$value['first_name']."  ". @$value['last_name'];
+			$result[$key]['xingming'] = $this->match_chinese($value['first_name'])."  ". $this->match_chinese($value['last_name']);
+			$result[$key]['from_username'] = $this->match_chinese($value['from_username']);
 		}
 
         $xlsData = $result;
@@ -157,6 +158,15 @@ class DownloadAction extends CommonAction {
 
     }
 
+
+
+	function match_chinese($chars,$encoding='utf8')
+    {
+        $pattern =($encoding=='utf8')?'/[\x{4e00}-\x{9fa5}a-zA-Z0-9]/u':'/[\x80-\xFF]/';
+        preg_match_all($pattern,$chars,$result);
+        $temp =join('',$result[0]);
+        return $temp;
+    }
     /**
 	 * 奖金明细
 	 *
