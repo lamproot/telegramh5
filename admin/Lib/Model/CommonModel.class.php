@@ -216,6 +216,8 @@
 
 				$data['page'] = $Page -> show();
 
+				$data['count'] = $count;
+
 				return $data;
 			}
 			elseif ($is_page == 'no')

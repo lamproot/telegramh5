@@ -98,9 +98,11 @@ class DownloadAction extends CommonAction {
 
 		$data = $this -> model -> order_download_select($params);
 
-		$result = $data['result'];
+		if (intval($_GET['p']) == round($data['count']/5000)) {
+			echo "导出完毕";exit;
+		}
 
-		echo json_encode($data);exit;
+		$result = $data['result'];
 
 		foreach ($result as $key => $value) {
 
@@ -149,12 +151,11 @@ class DownloadAction extends CommonAction {
                 $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
-
-			// if($start && $stop){
-			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=");
-	        // }else{
-			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=");
-			// }
+			if($start && $stop){
+				redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=".$_GET['p']);
+	        }else{
+				redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=".$_GET['p']);
+			}
 
 
     }
