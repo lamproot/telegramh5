@@ -98,7 +98,7 @@ class DownloadAction extends CommonAction {
 
 		$data = $this -> model -> order_download_select($params);
 
-		$result = $result['result'];
+		$result = $data['result'];
 
 		echo json_encode($result);exit;
 
@@ -149,6 +149,14 @@ class DownloadAction extends CommonAction {
                 $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
+
+			// if($start && $stop){
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=");
+	        // }else{
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=");
+			// }
+
+
     }
 
     /**
