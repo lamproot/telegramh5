@@ -76,6 +76,17 @@ class DownloadAction extends CommonAction {
         }
 
 //echo $where;exit;
+		// $params = array(
+		//
+		// 	'table_name' => 'codes',
+		//
+		// 	'order' => 'id desc',
+		//
+		// 	'where' => $where
+		// );
+		//
+		// $result = $this -> model -> easy_select($params);
+
 		$params = array(
 
 			'table_name' => 'codes',
@@ -85,7 +96,9 @@ class DownloadAction extends CommonAction {
 			'where' => $where
 		);
 
-		$result = $this -> model -> easy_select($params);
+		$data = $this -> model -> order_select($params);
+
+		$result = $result['result'];
 
 		foreach ($result as $key => $value) {
 
