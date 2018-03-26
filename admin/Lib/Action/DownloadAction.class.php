@@ -119,21 +119,21 @@ class DownloadAction extends CommonAction {
             );
 
 			$xlsCellM = array(
-                id,
-                chat_bot_id,
-                from_id,
-                from_username,
-				xingming,
-                eth,
-                code,
-                created_at,
-                invited
+                array('id','ID'),
+                array('chat_bot_id','群'),
+                array('from_id','用户telegram UID'),
+                array('from_username','用户名称'),
+				array('xingming','用户姓名'),
+                array('eth','钱包'),
+                array('code','邀请码'),
+                array('created_at','加入时间'),
+                array('invited','邀请人数')
             );
 
             foreach ($xlsData as $key => $value) {
                 $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
             }
-            $this->exportExcel($xlsName,$xlsCellM,$xlsData);
+            $this->exportExcel($xlsName,$xlsCell,$xlsData);
     }
 
     /**

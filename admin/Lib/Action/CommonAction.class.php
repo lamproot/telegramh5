@@ -409,83 +409,84 @@
 		*/
 		public function exportExcel($expTitle,$expCellName,$expTableData){
 
-			// $xlsTitle = iconv('utf-8', 'gb2312', $expTitle);//文件名称
+			$xlsTitle = iconv('utf-8', 'gb2312', $expTitle);//文件名称
 			$fileName = $expTitle.date('_YmdHis');//or $xlsTitle 文件名称可根据自己情况设定
-			// $cellNum = count($expCellName);
-			// $dataNum = count($expTableData);
-			// import("ORG.PHPExcel");
-			// $objPHPExcel = new PHPExcel();
-		   //
-			// ini_set("memory_limit", "1024M"); // 设置php可使用内存
-		   //
-	       //  $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip;
-	       //  if (!\PHPExcel_Settings::setCacheStorageMethod($cacheMethod)) {
-	       //      die($cacheMethod . " 缓存方法不可用" . EOL);
-	       //  }
-		   //
-			// $cellName = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ');
-		   //
-			// $objPHPExcel->getActiveSheet(0)->mergeCells('A1:'.$cellName[$cellNum-1].'1');//合并单元格
-		   // // $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', $expTitle.'  Export time:'.date('Y-m-d H:i:s'));
-			// for($i=0;$i<$cellNum;$i++){
-			// 	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($cellName[$i].'2', $expCellName[$i][1]);
-			// }
-			//   // Miscellaneous glyphs, UTF-8
-			// for($i=0;$i<$dataNum;$i++){
-			//   for($j=0;$j<$cellNum;$j++){
-			// 	$objPHPExcel->getActiveSheet(0)->setCellValue($cellName[$j].($i+3), $expTableData[$i][$expCellName[$j][0]]);
-			//   }
-			// }
-		   //
-			// header('pragma:public');
-			// header('Content-type:application/vnd.ms-excel;charset=utf-8;name="'.$xlsTitle.'.xls"');
-			// header("Content-Disposition:attachment;filename=$fileName.xls");//attachment新窗口打印inline本窗口打印
-			// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-			// $objWriter->save('php://output');
-			// exit;
-			// 不限制脚本执行时间以确保导出完成
+			$cellNum = count($expCellName);
+			$dataNum = count($expTableData);
+			import("ORG.PHPExcel");
+			$objPHPExcel = new PHPExcel();
+
+			ini_set("memory_limit", "2048M"); // 不够继续加大
 			set_time_limit(0);
-			// 输出Excel文件头，可把user.csv换成你要的文件名
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'.$fileName.'"');
-			header('Cache-Control: max-age=0');
 
-			// 从数据库中获取数据，为了节省内存，不要把数据一次性读到内存，从句柄中一行一行读即可
-			// $sql = 'select * from amazon_product_quantity';
-			// $stmt = mysql_query($sql);
+	        $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip;
+	        if (!\PHPExcel_Settings::setCacheStorageMethod($cacheMethod)) {
+	            die($cacheMethod . " 缓存方法不可用" . EOL);
+	        }
 
-			// 打开PHP文件句柄，php://output 表示直接输出到浏览器
-			$fp = fopen('php://output', 'a');
+			$cellName = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ');
 
-			// 输出Excel列名信息
-			$head = $expCellName ? $expCellName: [];
-			foreach ($head as $i => $v) {
-			    // CSV的Excel支持GBK编码，一定要转换，否则乱码
-			    $head[$i] = iconv('utf-8', 'gb2312', $v);
+			$objPHPExcel->getActiveSheet(0)->mergeCells('A1:'.$cellName[$cellNum-1].'1');//合并单元格
+		   // $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', $expTitle.'  Export time:'.date('Y-m-d H:i:s'));
+			for($i=0;$i<$cellNum;$i++){
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue($cellName[$i].'2', $expCellName[$i][1]);
+			}
+			  // Miscellaneous glyphs, UTF-8
+			for($i=0;$i<$dataNum;$i++){
+			  for($j=0;$j<$cellNum;$j++){
+				$objPHPExcel->getActiveSheet(0)->setCellValue($cellName[$j].($i+3), $expTableData[$i][$expCellName[$j][0]]);
+			  }
 			}
 
-			// 将数据通过fputcsv写到文件句柄
-			fputcsv($fp, $head);
-
-			// 计数器
-			$cnt = 0;
-			// 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
-			$limit = 100000;
-
-			// 逐行取出数据，不浪费内存
-			while ($expTableData) {
-			    $cnt ++;
-			    if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
-			        ob_flush();
-			        flush();
-			        $cnt = 0;
-			    }
-
-			    foreach ($row as $i => $v) {
-			        $row[$i] = iconv('utf-8', 'gb2312', $v);
-			    }
-			    fputcsv($fp, $row);
-			}
+			header('pragma:public');
+			header('Content-type:application/vnd.ms-excel;charset=utf-8;name="'.$xlsTitle.'.xls"');
+			header("Content-Disposition:attachment;filename=$fileName.xls");//attachment新窗口打印inline本窗口打印
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$objWriter->save('php://output');
+			exit;
+			// 不限制脚本执行时间以确保导出完成
+			// set_time_limit(0);
+			// // 输出Excel文件头，可把user.csv换成你要的文件名
+			// header('Content-Type: application/vnd.ms-excel');
+			// header('Content-Disposition: attachment;filename="'.$fileName.'"');
+			// header('Cache-Control: max-age=0');
+			//
+			// // 从数据库中获取数据，为了节省内存，不要把数据一次性读到内存，从句柄中一行一行读即可
+			// // $sql = 'select * from amazon_product_quantity';
+			// // $stmt = mysql_query($sql);
+			//
+			// // 打开PHP文件句柄，php://output 表示直接输出到浏览器
+			// $fp = fopen('php://output', 'a');
+			//
+			// // 输出Excel列名信息
+			// $head = $expCellName ? $expCellName: [];
+			// foreach ($head as $i => $v) {
+			//     // CSV的Excel支持GBK编码，一定要转换，否则乱码
+			//     $head[$i] = iconv('utf-8', 'gb2312', $v);
+			// }
+			//
+			// // 将数据通过fputcsv写到文件句柄
+			// fputcsv($fp, $head);
+			//
+			// // 计数器
+			// $cnt = 0;
+			// // 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+			// $limit = 100000;
+			//
+			// // 逐行取出数据，不浪费内存
+			// while ($expTableData) {
+			//     $cnt ++;
+			//     if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+			//         ob_flush();
+			//         flush();
+			//         $cnt = 0;
+			//     }
+			//
+			//     foreach ($row as $i => $v) {
+			//         $row[$i] = iconv('utf-8', 'gb2312', $v);
+			//     }
+			//     fputcsv($fp, $row);
+			// }
 		}
 
 		public function fetch ($url, $postdata = null) {
