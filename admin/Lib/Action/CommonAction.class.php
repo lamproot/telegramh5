@@ -443,7 +443,6 @@
 			header("Content-Disposition:attachment;filename=$fileName.xls");//attachment新窗口打印inline本窗口打印
 			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 			$objWriter->save('php://output');
-			exit;
 			// 不限制脚本执行时间以确保导出完成
 			// set_time_limit(0);
 			// // 输出Excel文件头，可把user.csv换成你要的文件名
