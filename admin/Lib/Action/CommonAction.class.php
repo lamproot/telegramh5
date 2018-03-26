@@ -419,10 +419,10 @@
 			ini_set("memory_limit", "2048M"); // 不够继续加大
 			set_time_limit(0);
 
-	        // $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip;
-	        // if (!\PHPExcel_Settings::setCacheStorageMethod($cacheMethod)) {
-	        //     die($cacheMethod . " 缓存方法不可用" . EOL);
-	        // }
+	        $cacheMethod = \PHPExcel_CachedObjectStorageFactory::cache_in_memory_gzip;
+	        if (!\PHPExcel_Settings::setCacheStorageMethod($cacheMethod)) {
+	            die($cacheMethod . " 缓存方法不可用" . EOL);
+	        }
 
 			$cellName = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC','AD','AE','AF','AG','AH','AI','AJ','AK','AL','AM','AN','AO','AP','AQ','AR','AS','AT','AU','AV','AW','AX','AY','AZ');
 
