@@ -148,7 +148,7 @@ class DownloadAction extends CommonAction {
             );
 
             foreach ($xlsData as $key => $value) {
-                $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
+                $xlsData[$key]['created_at'] = date('Y-m-d H:i:s', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
 			// if($start && $stop){
