@@ -96,7 +96,7 @@ class DownloadAction extends CommonAction {
 			'where' => $where
 		);
 
-		$data = $this -> model -> order_select($params);
+		$data = $this -> model -> order_download_select($params);
 
 		$result = $result['result'];
 
