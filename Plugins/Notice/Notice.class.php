@@ -9,22 +9,38 @@
             // $errorModel = new ErrorModel;
             // $errorModel->sendError (MASTER, "new member");
 
-            for ($i=0; $i < count($blank); $i++) {
-                $username = isset($new_member['username']) ? $new_member['username'] : "";
-                $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
-                $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
-                $errorModel->sendError (MASTER, $new_member);
-                $find = stripos($username, $value);
+            // for ($i=0; $i < count($blank); $i++) {
+            //     $username = isset($new_member['username']) ? $new_member['username'] : "";
+            //     $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
+            //     $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
+            //     $errorModel->sendError (MASTER, $new_member);
+            //     $find = stripos($username, $value);
+            //
+            //     if ($find) {
+            //         $IllegalLogModel = new IllegalLogModel();
+            //         // $this->telegram->kickChatMember (
+            //         //     $chat['id'],
+            //         //     $new_member['id']
+            //         // );
+            //         $errorModel->sendError (MASTER, $username."用户名是否含有违禁词");
+            //         $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+            //     }
+            // }
 
-                if ($find) {
-                    $IllegalLogModel = new IllegalLogModel();
-                    // $this->telegram->kickChatMember (
-                    //     $chat['id'],
-                    //     $new_member['id']
-                    // );
-                    $errorModel->sendError (MASTER, $username."用户名是否含有违禁词");
-                    $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
-                }
+            $username = isset($new_member['username']) ? $new_member['username'] : "";
+            $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
+            $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
+            $errorModel->sendError (MASTER, $new_member);
+            $find = stripos($username, $value);
+
+            if ($find) {
+                $IllegalLogModel = new IllegalLogModel();
+                // $this->telegram->kickChatMember (
+                //     $chat['id'],
+                //     $new_member['id']
+                // );
+                $errorModel->sendError (MASTER, $username."用户名是否含有违禁词");
+                $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
             }
 
             $chatBotModel = new ChatBotModel;
