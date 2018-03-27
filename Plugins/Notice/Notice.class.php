@@ -26,7 +26,7 @@
             //         $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
             //     }
             // }
-
+            $errorModel = new ErrorModel;
             $username = isset($new_member['username']) ? $new_member['username'] : "";
             $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
             $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
