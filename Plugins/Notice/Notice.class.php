@@ -17,7 +17,7 @@
                 $find = stripos($username, $value);
 
                 if ($find) {
-                    // $IllegalLogModel = new IllegalLogModel();
+                    $IllegalLogModel = new IllegalLogModel();
                     // $this->telegram->kickChatMember (
                     //     $chat['id'],
                     //     $new_member['id']
