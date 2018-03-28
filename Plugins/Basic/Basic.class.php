@@ -151,7 +151,7 @@
                 $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
                 $needle= 'http';
                 $pos = strripos($message, $needle);
-                if (preg_match($regex, $message) || $pos) {
+                if (preg_match($regex, $message) || $pos !== false) {
                     $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
 
                     $IllegalLogModel = new IllegalLogModel;
