@@ -67,6 +67,11 @@
             /** 访问网页 */
             $ret = json_decode ($this->fetch ($url, $param), true);
 
+
+            // $IllegalLogModel = new IllegalLogModel;
+            // $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
+
+
             /** 分析结果 */
             if ($ret['ok'] == false && $detection == true) {
                 if ($ret['error_code'] != 400 && $ret['error_code'] != 403) {
