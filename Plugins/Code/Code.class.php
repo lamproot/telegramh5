@@ -26,14 +26,14 @@
 
                 //判断活动时间
                 $activity_status =  -1;
-                if ($groupActivityFind[0] && intval($groupActivityFind[0]['started_at']) <= time() && intval($groupActivityFind[0]['stoped_at']) >= time()) {
+                if ($groupActivityFind && $groupActivityFind[0] && intval($groupActivityFind[0]['started_at']) <= time() && intval($groupActivityFind[0]['stoped_at']) >= time()) {
                     $activity_status =  0;
                 }
 
-                if ($groupActivityFind[0] && $activity_status == -1) {
+                if ($groupActivityFind && $groupActivityFind[0] && $activity_status == -1) {
 
                     $message = $groupActivityFind[0]['activity_end_text'];
-                    
+
                     $this->telegram->sendMessage (
                         $chat['id'],
                         $message,
@@ -42,7 +42,7 @@
                     return;
                 }
 
-                
+
                 //查询code 回复数据
                 $commandModel = new CommandModel;
                 $commandFind = $commandModel->find($chat_bot_id, "/".$code_cmd, 2);

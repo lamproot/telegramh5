@@ -169,11 +169,11 @@
 
 				$table = M($parameter['table_name']);
 
-				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',10') -> select();
+				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',200') -> select();
 
 				$count = $table -> where($parameter['where']) -> count();
 
-				$Page = new Page($count, 10);
+				$Page = new Page($count, 200);
 
 				$data['page'] = $Page -> show();
 
@@ -188,6 +188,48 @@
 				return $result;
 			}
 		}
+
+
+		/**
+		 * 排序查询
+		 *
+		 * 参数描述：
+		 *   parameter 	参数
+		 *
+		 * 返回值：
+		 *   结果集
+		 */
+		public function order_download_select(array $parameter, $is_page = 'yes')
+		{
+			if ($is_page == 'yes')
+			{
+				//页码
+				$p = intval($_GET['p']) ? intval($_GET['p']) : 1;
+
+				$table = M($parameter['table_name']);
+
+				$data['result'] = $table -> where($parameter['where']) -> order($parameter['order']) -> page($p.',10000') -> select();
+
+				$count = $table -> where($parameter['where']) -> count();
+
+				$Page = new Page($count, 10000);
+
+				$data['page'] = $Page -> show();
+
+				$data['count'] = $count;
+
+				return $data;
+			}
+			elseif ($is_page == 'no')
+			{
+				$table = M($parameter['table_name']);
+
+				$result = $table -> where($parameter['where']) -> order($parameter['order']) -> select();
+
+				return $result;
+			}
+		}
+
 
 		/**
 		 * 排序查询

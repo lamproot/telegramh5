@@ -30,7 +30,7 @@ class DownloadAction extends CommonAction {
 	{
 		parent::__construct();
 
-		$this -> model = D('Finances');
+		$this -> model = D('Common');
 	}
 
     /**
@@ -76,6 +76,17 @@ class DownloadAction extends CommonAction {
         }
 
 //echo $where;exit;
+		// $params = array(
+		//
+		// 	'table_name' => 'codes',
+		//
+		// 	'order' => 'id desc',
+		//
+		// 	'where' => $where
+		// );
+		//
+		// $result = $this -> model -> easy_select($params);
+
 		$params = array(
 
 			'table_name' => 'codes',
@@ -85,8 +96,10 @@ class DownloadAction extends CommonAction {
 			'where' => $where
 		);
 
-		$result = $this -> model -> easy_select($params);
-		echo json_encode($where);exit;
+		$data = $this -> model -> order_download_select($params);
+
+
+		$result = $data['result'];
 
 		foreach ($result as $key => $value) {
 
@@ -96,16 +109,17 @@ class DownloadAction extends CommonAction {
 
 				'order' => 'id desc',
 
-				'where' => "parent_code = '{$value['code']}'"
+				'where' => "parent_code = '{$value['code']}' AND status =3 "
 			);
 
-			$result[$key]['invited']  = $this -> model -> get_count($params);
-			$result[$key]['xingming'] = $value['first_name']."  ". $value['last_name'];
+			$result[$key]['invited']  = @$this -> model -> get_count($params);
+			$result[$key]['xingming'] = $this->match_chinese($value['first_name'])."  ". $this->match_chinese($value['last_name']);
+			$result[$key]['from_username'] = $this->match_chinese($value['from_username']);
 		}
 
         $xlsData = $result;
-
-            $xlsName  = "用户邀请导出";
+			$p = $_GET['p'] ? $_GET['p'] : 1;
+            $xlsName  = "用户邀请导出".$p;
 
             $xlsCell  = array(
                 array('id','ID'),
@@ -119,12 +133,40 @@ class DownloadAction extends CommonAction {
                 array('invited','邀请人数')
             );
 
+			$xlsCellM = array(
+                array('id','ID'),
+                array('chat_bot_id','群'),
+                array('from_id','用户telegram UID'),
+                array('from_username','用户名称'),
+				array('xingming','用户姓名'),
+                array('eth','钱包'),
+                array('code','邀请码'),
+                array('created_at','加入时间'),
+                array('invited','邀请人数')
+            );
+
             foreach ($xlsData as $key => $value) {
-                $xlsData[$key]['created_at'] = date('Y-m-d', $value['created_at']);
+                $xlsData[$key]['created_at'] = date('Y-m-d H:i:s', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
+			// if($start && $stop){
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?star=".date("Y-m-d",$start)."&stop=".date("Y-m-d",$stop)."&p=".$_GET['p'], 0);
+	        // }else{
+			// 	redirect(__APP__."/Download/codes/activity_id/{$activity_id}?p=".$_GET['p'], 0);
+			// }
+
+
     }
 
+
+
+	function match_chinese($chars,$encoding='utf8')
+    {
+        $pattern =($encoding=='utf8')?'/[\x{4e00}-\x{9fa5}a-zA-Z0-9]/u':'/[\x80-\xFF]/';
+        preg_match_all($pattern,$chars,$result);
+        $temp =join('',$result[0]);
+        return $temp;
+    }
     /**
 	 * 奖金明细
 	 *

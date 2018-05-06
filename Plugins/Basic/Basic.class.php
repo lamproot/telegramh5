@@ -149,8 +149,9 @@
 
                 //链接  关键字（敏感词）过滤
                 $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
-
-                if (preg_match($regex, $message)) {
+                $needle= 'http';
+                $pos = strripos($message, $needle);
+                if (preg_match($regex, $message) || $pos !== false) {
                     $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
 
                     $IllegalLogModel = new IllegalLogModel;
@@ -169,6 +170,18 @@
 
                         $codeModel = new CodeModel;
                         $codeModel->updateByFromId($chat_bot_id, $from['id']);
+
+                         $this->telegram->sendMessage (
+                            $chat['id'],
+                            $sendmessage,
+                            $message_id
+                        );
+
+                        $this->telegram->deleteMessage (
+                            $chat['id'],
+                            $message_id
+                        );
+
                         return;
                     }
 
@@ -358,7 +371,49 @@
 
 
 
-        public function new_member ($new_member, $message_id, $from, $chat, $date) {
+        //public function new_member ($new_member, $message_id, $from, $chat, $date) {
+            //查询用户名是否含有违禁词 bot Bot Token token Admin admin 这6个呗
+            // $blank = ["bot","Bot","Token","token","Admin","admin"];
+            //
+            // $errorModel = new ErrorModel;
+            // $errorModel->sendError (MASTER, "new member");
+            //
+            // for ($i=0; $i < count($blank); $i++) {
+            //     $username = isset($new_member['username']) ? $new_member['username'] : "";
+            //     $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
+            //     $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
+            //     $errorModel->sendError (MASTER, $new_member);
+            //     $find = stripos($username, $value);
+            //
+            //     if ($find) {
+            //         // $IllegalLogModel = new IllegalLogModel();
+            //         // $this->telegram->kickChatMember (
+            //         //     $chat['id'],
+            //         //     $new_member['id']
+            //         // );
+            //         // $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+            //     }
+            //     exit;
+            // }
+            // foreach ($blank as $key => $value) {
+            //
+            //     $username = isset($new_member['username']) ? $new_member['username'] : "";
+            //     $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
+            //     $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
+            //     $errorModel = new ErrorModel;
+            //     $errorModel->sendError (MASTER, $new_member);
+            //     $find = stripos($username, $value);
+            //
+            //     if ($find) {
+            //         // $IllegalLogModel = new IllegalLogModel();
+            //         // $this->telegram->kickChatMember (
+            //         //     $chat['id'],
+            //         //     $new_member['id']
+            //         // );
+            //         // $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名是否含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+            //     }
+            //     exit;
+            // }
             // $command = "new_member";
             // //创建欢迎消息
             // $commandModel = new CommandModel;
@@ -379,7 +434,7 @@
             // $str = '@' . @$from['username'] . ' 邀请了 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . ' 玩' . "\n";
             // $str .= '欢迎 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . '  玩(ฅ>ω<*ฅ)';
             // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
-        }
+    //    }
         public function left_member ($left_member, $message_id, $from, $chat, $date) {
             // $str = '喵喵喵？ @' . $left_member['username'] . ' 被 @' . @$from['username'] . ' 移出了 ' . $chat['title'];
             // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');

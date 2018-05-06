@@ -8,6 +8,20 @@
                 $this->telegram->sendMessage (MASTER, $str, $message_id);
             }
 
+<<<<<<< HEAD
+=======
+            //激活机器人 输入激活码  查询机器人是否已激活 已激活-返回已激活 未激活返回未激活状态
+            // 是否激活  is_activate  是否工作 is_work 是否工作
+            if ($command == '/activatebot') {
+                $str = "已激活";
+                $str .= '你的 master_id：' . $from['id'] . "\n";
+                $str .= '群的 chat_id：' . $chat['id'] . "\n";
+                $str .= '这条消息的 id：' . $message_id . "\n";
+                $this->telegram->sendMessage (MASTER, $str, $message_id);
+            }
+
+            $search = "/^\/whoami/i";
+>>>>>>> d523dffd477439f51230d8652f4bb466c73aa98a
 
 
             if ($command == '/activatebot') {
