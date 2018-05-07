@@ -55,6 +55,7 @@
 			// 	// $_SESSION['Rongzi']['user'] = $this -> model -> my_find($params);
             //
 			// }
+			//echo phpinfo();exit;
 
 		}
 

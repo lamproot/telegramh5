@@ -587,7 +587,4 @@
             ]);
             return $this->ret['result']['message_id'];
         }
-
-
-
 	}

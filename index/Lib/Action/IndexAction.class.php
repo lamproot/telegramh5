@@ -50,8 +50,8 @@
 			// exit;
 			// echo json_encode($result);exit;
 			// exit;
-
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
+			
 			//获取code信息
 			$params = array(
 
@@ -93,6 +93,22 @@
 			if (!$group_activity) {
 				$this -> _back('activity数据获取失败');
 			}
+
+			//获取活动主题
+			$params = array(
+
+				'table_name' => 'activity_theme',
+
+				'where' => "id = {$group_activity['theme_id']}"
+
+			);
+
+	    	$activity_theme = $this -> model -> my_find($params);
+
+	    	$group_activity['bglogo'] = "";
+	    	if ($activity_theme) {
+	    		$group_activity['bglogo'] = $activity_theme['bglogo'] ? $activity_theme['bglogo'] : __PUBLIC__."/img/code1.png";
+	    	}
 
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
@@ -175,19 +191,34 @@
 			   $activity_status =  0;
 		   }
 
-		   $this -> assign('activity_status', $activity_status);
-		   $this -> assign('codes', $codes);
-		   $this -> assign('chat_bot', $chat_bot);
-		   $this -> assign('group_activity', $group_activity);
-		   $this -> assign('code', $code);
-		   $this -> assign('code_count', $code_count);
-		   $this -> assign('code_rate', $code_rate);
+		   //获取活动主题
+			$params = array(
 
-		   if ($_GET['lang'] == 'en') {
+				'table_name' => 'activity_theme',
+
+				'where' => "id = {$group_activity['theme_id']}"
+
+			);
+
+	    	$activity_theme = $this -> model -> my_find($params);
+	    	$group_activity['dashboard_logo'] = "";
+	    	if ($activity_theme) {
+	    		$group_activity['dashboard_logo'] = $activity_theme['dashboard'] ? $activity_theme['dashboard'] : __PUBLIC__."/img/dashboard1.png";
+	    	}
+
+			$this -> assign('activity_status', $activity_status);
+			$this -> assign('codes', $codes);
+			$this -> assign('chat_bot', $chat_bot);
+			$this -> assign('group_activity', $group_activity);
+			$this -> assign('code', $code);
+			$this -> assign('code_count', $code_count);
+			$this -> assign('code_rate', $code_rate);
+
+			if ($_GET['lang'] == 'en') {
 			   $this -> display('en_dashboard');
-		   }else{
+			}else{
 			   $this -> display();
-		   }
+			}
 	   }
 
 

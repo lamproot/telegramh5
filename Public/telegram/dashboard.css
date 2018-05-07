@@ -36,7 +36,8 @@ p {
     text-decoration: none;
     height: 56px;
     line-height: 56px;
-    margin: 20px 0 30px 8px;
+    /*margin: 20px 0 30px 8px;*/
+    margin: 10px 0 10px 8px;
 }
 .desc {
     font-size: 18px;

@@ -27,4 +27,12 @@
             ]);
 
         }
+
+        function getByChatId ($chat_id)
+        {
+            return $this->db->get ('chat_bot', '*', [
+                'chat_id' => $chat_id
+            ]);
+
+        }
     }

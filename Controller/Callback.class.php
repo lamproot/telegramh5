@@ -81,8 +81,9 @@
         private function parseMessage ()
         {
             $data = json_decode (file_get_contents ("php://input"), true);
-            $errorModel = new ErrorModel;
-            $errorModel->sendError (MASTER, print_r($data, true));
+            // $errorModel = new ErrorModel;
+            // $errorModel->sendError (MASTER, print_r($_GET, true));
+
 
 		    if (isset ($data['message'])) {
 		        if (isset ($data['message']['text'])) {
