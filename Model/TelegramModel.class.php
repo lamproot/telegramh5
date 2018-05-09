@@ -68,8 +68,8 @@
             $ret = json_decode ($this->fetch ($url, $param), true);
 
 
-            $IllegalLogModel = new IllegalLogModel;
-            $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
+            // $IllegalLogModel = new IllegalLogModel;
+            // $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
 
 
             /** 分析结果 */
