@@ -6,26 +6,28 @@
                 $errorModel = new ErrorModel;
                 //查询chat code_cmd 默认 /code
                 $chatBotModel = new ChatBotModel;
-                $chatBot = $chatBotModel->getcommand($chat['id']);
+                $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+
+                $chatBot = $chatBotModel->getById($chat_bot_id);
 
                 $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
                 $search = "/^\/".$code_cmd."/i";
 
                 //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-                $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : $chatBot['id'];
-
+                
                 $codeModel = new CodeModel;
                 $codeInfo = $codeModel->getCodeByFromId($chat_bot_id, $from['id']);
                 $mycommand = "";
-
+                // $errorModel = new ErrorModel;
+                // $errorModel->sendError (MASTER, print_r($codeInfo, true));exit;
+                
                 if ($codeInfo && $codeInfo[0] && isset($codeInfo[0]['code'])) {
                     $mycommand = "/code".$codeInfo[0]['code'];
-                    // $errorModel = new ErrorModel;
-                    // $errorModel->sendError (MASTER, $mycommand);
+
                 }else{
                     return;
                 }
-
+                
                 if(preg_match($search,$mycommand,$result)) {
                     $code = str_replace($result[0], "", $mycommand);
                     //查询活动是否结束

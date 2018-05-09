@@ -3,13 +3,13 @@
         public function command ($command, $param, $message_id, $from, $chat, $date) {
             //查询chat code_cmd 默认 /code
             $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+
+            $chatBot = $chatBotModel->getById($chat_bot_id);
+            //$chatBot = $chatBotModel->getcommand($chat['id']);
 
             $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
             $search = "/^\/".$code_cmd."/i";
-
-            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : $chatBot['id'];
 
             //
             // $errorModel = new ErrorModel;
