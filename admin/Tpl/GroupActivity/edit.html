@@ -34,7 +34,7 @@
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__" enctype="multipart/form-data">
 
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">活动所在群:</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="chat_bot_id">
@@ -43,6 +43,18 @@
                                     </foreach>
                                 </select>
                                 <p>活动所在群指的是参与该活动的群组</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动主题:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="theme_id">
+                                    <foreach name="themeList" item="data">
+                                        <option  <if condition="$result['theme_id'] == $data['id']">selected="selected"</if> value="{$data['id']}">{$data['name']}</option>
+                                    </foreach>
+                                </select>
+                                <p>活动主题</p>
                             </div>
                         </div>
 
@@ -283,6 +295,85 @@
                                 <textarea name="remarks" rows="8" cols="80" id="remarks" class="form-control" aria-required="true" aria-invalid="true" class="error">{$result['remarks']}</textarea>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系TokenMan:</label>
+                            <div class="col-sm-9">
+                                <input id="tokenman_url" name="tokenman_url" value="{$result['tokenman_url']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">STEP1设置:</label>
+                            <div class="col-sm-9">
+                                <div class="input-group m-b"><span class="input-group-addon">CH</span>
+                                    <input id="step1" name="step1" value="{$result['step1']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">EN</span>
+                                    <input id="en_step1" name="en_step1" value="{$result['en_step1']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">STEP2设置:</label>
+                            <div class="col-sm-9">
+                               <div class="input-group m-b"><span class="input-group-addon">CH</span>
+                                    <input id="step2" name="step2" value="{$result['step2']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">EN</span>
+                                    <input id="en_step2" name="en_step2" value="{$result['en_step2']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label">STEP3设置:</label>
+                            <div class="col-sm-9">
+                               <div class="input-group m-b"><span class="input-group-addon">CH</span>
+                                    <input id="step3" name="step3" value="{$result['step3']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">EN</span>
+                                    <input id="en_step3" name="en_step3" value="{$result['en_step3']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">STEP4设置:</label>
+                            <div class="col-sm-9">
+                               <div class="input-group m-b"><span class="input-group-addon">CH</span>
+                                    <input id="step4" name="step4" value="{$result['step4']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">EN</span>
+                                    <input id="en_step4" name="en_step4" value="{$result['en_step4']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">相关链接:</label>
+                            <div class="col-sm-9">
+                               
+                                <div class="input-group m-b"><span class="input-group-addon">twitter</span>
+                                    <input id="twitter" name="twitter" value="{$result['twitter']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                 <div class="input-group m-b"><span class="input-group-addon">facebook</span>
+                                    <input id="facebook" name="facebook" value="{$result['facebook']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">telegram</span>
+                                    <input id="telegram" name="telegram" value="{$result['telegram']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="input-group m-b"><span class="input-group-addon">web</span>
+                                    <input id="web" name="web" value="{$result['web']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                            </div>
+                        </div>
+
+                         
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3">

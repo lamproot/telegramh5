@@ -118,7 +118,7 @@
 	    				//添加机器人code
 						$botcode_data['from_id'] = 1;
 						$botcode_data['from_username'] = "机器人账号";
-						$botcode_data['eth'] = "0000000000000000";
+						$botcode_data['eth'] = "0xf6BC0AAc1fdFAf2CCea054F5978350DC9eFc6E82";
 						$botcode_data['code'] = $this->short_md5(md5($chat_bot_add."_".$botcode_data['eth']."_telegram"));
 						$botcode_data['status'] = 3;
 						$botcode_data['created_at'] = time();
@@ -167,6 +167,18 @@
 
 
 	    	$chatBotList = $this -> model -> easy_select($params);
+
+	    	$params = array(
+
+	    		'table_name' => 'activity_theme',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "is_del = 0"
+	    	);
+	    	$themeList = $this -> model -> easy_select($params);
+
+	    	$this -> assign('themeList', $themeList);
 	    	$this -> assign('result', $result);
 	    	$this -> assign('chatBotList', $chatBotList);
 
@@ -236,7 +248,7 @@
 					// 	//添加机器人code
 					// 	$botcode_data['from_id'] = 1;
 					// 	$botcode_data['from_username'] = "机器人账号";
-					// 	$botcode_data['eth'] = "0000000000000000";
+					// 	$botcode_data['eth'] = "0xf6BC0AAc1fdFAf2CCea054F5978350DC9eFc6E82";
 					// 	$botcode_data['code'] = $this->short_md5(md5($_POST['id']."_".$botcode_data['eth']."_telegram"));
 					// 	$botcode_data['status'] = 3;
 					// 	$botcode_data['created_at'] = time();
@@ -295,6 +307,18 @@
 
 	    	$botCode = $this -> model -> my_find($params);
 
+
+	    	$params = array(
+
+	    		'table_name' => 'activity_theme',
+
+	    		'order' => 'id desc',
+
+	    		'where' => "is_del = 0"
+	    	);
+	    	$themeList = $this -> model -> easy_select($params);
+
+	    	$this -> assign('themeList', $themeList);
 	    	$this -> assign('result', $result);
 	    	$this -> assign('chatBotList', $chatBotList);
 	    	$this -> assign('botCode', $botCode);
