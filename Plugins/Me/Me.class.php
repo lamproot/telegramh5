@@ -17,11 +17,11 @@
                 $search = "/^\/".$code_cmd."/i";
 
                 //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-                
+
                 $codeModel = new CodeModel;
                 $codeInfo = $codeModel->getCodeByFromId($chat_bot_id, $from['id']);
                 $mycommand = "";
-               
+
                 if ($codeInfo && $codeInfo[0] && isset($codeInfo[0]['code'])) {
                     $mycommand = "/code".$codeInfo[0]['code'];
 
@@ -56,14 +56,14 @@
                     $commandModel = new CommandModel;
                     $commandFind = $commandModel->find($chat_bot_id, "/".$code_cmd, 2);
 
-                   
+
                     $message = "";
                     if ($codeInfo && $codeInfo[0]) {
                         if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                             $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
-                            $errorModel = new ErrorModel;
-                            $errorModel->sendError ($chat['id'], $chat['id'].$_SESSION['token']);
-                
+                            // $errorModel = new ErrorModel;
+                            // $errorModel->sendError ($chat['id'], $chat['id'].$_SESSION['token']);
+                            // 
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,
