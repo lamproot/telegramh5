@@ -1,0 +1,143 @@
+<include file="public:header" />
+<link href="__PUBLIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/uedit/lang/zh-cn/zh-cn.js"></script>
+
+<style type="text/css">
+    div{
+        width:100%;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<ol class="breadcrumb">
+			<a href="__URL__"><i class="fa fa-home"></i></a>
+            <li>
+                <a href="__URL__">首页</a>
+            </li>
+            <li>
+                <a>主题管理</a>
+            </li>
+            <li>
+                <strong>修改</strong>
+            </li>
+        </ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated">
+	<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 class="text-center">修改</h5>
+
+                </div>
+                <div class="ibox-content">
+					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__"  enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">*主题名称:</label>
+                            <div class="col-sm-6">
+                                <input id="name" name="name" value="{$result['name']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input type="hidden" name="form_key" value="yes" />
+								<input type="hidden" name="id" value="{$result['id']}" />
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label class="col-sm-3 control-label">群聊:</label>
+                            <div class="col-sm-6">
+                                <input id="chat_bot_id" name="chat_bot_id" value="{$result['chat_bot_id']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="col-sm-3 control-label">类型:</label>
+                            <div class="col-sm-6">
+                                <input id="type" name="type" value="{$result['type']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div> -->
+
+                        <div class="form-group">
+							<label class="col-sm-3 control-label">主题表单页背景图:</label>
+							<div class="col-sm-6">
+								<input id="file" name="file" class="form-control" type="file" value="">
+                                <p>
+                                    <img src="{$result['bglogo']}" style="width:150px;height:200px;">
+                                </p>
+							</div>
+						</div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">主题表单页背景图:</label>
+                            <div class="col-sm-6">
+                                <input id="file_dashboard" name="file_dashboard" class="form-control" type="file" value="">
+                                <p>
+                                    <img src="{$result['dashboard']}" style="width:150px;height:200px;">
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit" onclick="save()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<include file="public:footer" />
+<!-- jQuery Validation plugin javascript-->
+<script src="__PUBLIC__/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/js/plugins/validate/messages_zh.min.js"></script>
+<script src="__PUBLIC__/js/plugins/summernote/summernote.min.js"></script>
+<script src="__PUBLIC__/js/plugins/summernote/summernote-zh-CN.js"></script>
+<script>
+    $(document).ready(function () {
+
+        // $('.summernote').summernote({
+        //     lang: 'zh-CN'
+        // });
+    });
+
+</script>
+<script>
+
+
+	//以下为官方示例
+   $().ready(function () {
+	   // validate signup form on keyup and submit
+	   $("#signupForm").validate({
+		   rules: {
+			   cmd: {
+				   required: true
+			   },
+               type: {
+				   required: true
+			   },
+               content: {
+				   required: true
+			   },
+			   // chat_bot_id: {
+				//    required: true,
+			   // },
+			   // master_id: {
+				//    required: true
+			   // },
+			   // code_cmd: "required"
+		   },
+		   messages: {
+
+		   }
+	   });
+   });
+</script>
