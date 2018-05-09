@@ -9,6 +9,9 @@
                 $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
 
                 $chatBot = $chatBotModel->getById($chat_bot_id);
+                if ($chatBot) {
+                    $_SESSION['token'] = $chatBot['token'];
+                }
 
                 $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
                 $search = "/^\/".$code_cmd."/i";
@@ -18,16 +21,13 @@
                 $codeModel = new CodeModel;
                 $codeInfo = $codeModel->getCodeByFromId($chat_bot_id, $from['id']);
                 $mycommand = "";
-                // $errorModel = new ErrorModel;
-                // $errorModel->sendError (MASTER, print_r($codeInfo, true));exit;
-                
+               
                 if ($codeInfo && $codeInfo[0] && isset($codeInfo[0]['code'])) {
                     $mycommand = "/code".$codeInfo[0]['code'];
 
                 }else{
                     return;
                 }
-                
                 if(preg_match($search,$mycommand,$result)) {
                     $code = str_replace($result[0], "", $mycommand);
                     //查询活动是否结束
@@ -56,10 +56,14 @@
                     $commandModel = new CommandModel;
                     $commandFind = $commandModel->find($chat_bot_id, "/".$code_cmd, 2);
 
+                   
                     $message = "";
                     if ($codeInfo && $codeInfo[0]) {
                         if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                             $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
+                            $errorModel = new ErrorModel;
+                            $errorModel->sendError ($chat['id'], $chat['id'].$_SESSION['token']);
+                
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,

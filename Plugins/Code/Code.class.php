@@ -7,7 +7,9 @@
 
             $chatBot = $chatBotModel->getById($chat_bot_id);
             //$chatBot = $chatBotModel->getcommand($chat['id']);
-
+            if ($chatBot) {
+                $_SESSION['token'] = $chatBot['token'];
+            }
             $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
             $search = "/^\/".$code_cmd."/i";
 
