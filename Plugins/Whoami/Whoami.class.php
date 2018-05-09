@@ -15,7 +15,7 @@
             if ($command == '/activatebot') {
                 $chatBotModel = new ChatBotModel;
                 $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
-               
+
                 if (isset($_GET['bot_id'])) {
                     $chatBot = $chatBotModel->getById($chat_id);
                 }else{
@@ -32,7 +32,7 @@
                 }else{
                     $str = "激活成功 \n 欢迎使用 TokenMan 智能机器人!";
                 }
-  
+
                 $button = json_encode (array (
                     'inline_keyboard' => array (
                         array (array (
@@ -41,17 +41,17 @@
                             'url' => 'https://twitter.com/IamTokenMan'
                         ))
                     )
-                ));    
+                ));
                 //$button = array();
 
-                $this->telegram->sendMessage ($chat['id'], $str, $message_id, $button);                
+                $this->telegram->sendMessage ($chat['id'], $str, $message_id, $button);
             }
 
             $search = "/^\/whoami/i";
-            
+
             if(preg_match($search,$command,$result)) {
                 //$_SESSION['token'] = str_replace($result[0], "", $command);
-            
+
                 $str = '你的 master_id：' . $from['id'] . "\n";
                 $str .= '群的 chat_id：' . $chat['id'] . "\n";
                 $str .= '这条消息的 id：' . $message_id . "\n";
