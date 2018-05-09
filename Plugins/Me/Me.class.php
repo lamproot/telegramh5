@@ -11,7 +11,8 @@
                 $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
                 $search = "/^\/".$code_cmd."/i";
 
-                $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+                //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+                $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : $chatBot['id'];
 
                 $codeModel = new CodeModel;
                 $codeInfo = $codeModel->getCodeByFromId($chat_bot_id, $from['id']);
@@ -40,7 +41,7 @@
                     if ($groupActivityFind[0] && $activity_status == -1) {
 
                         $message = $groupActivityFind[0]['activity_end_text'];
-                        
+
                         $this->telegram->sendMessage (
                             $chat['id'],
                             $message,

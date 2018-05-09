@@ -35,7 +35,6 @@
 	    public function code()
 	    {
 			//INSERT INTO `codes` VALUES  ('1', '-1001249040089', '520439802', '0xf6BC0AAc1fdFAf2CCea054F5978350DC9eFc6E83', 'bf3c1eac97f80c7e', '6666', '3', '0', '1518599007', '')
-
 			//$this->short_md5(md5($_POST['chat_bot_id']."_".$_POST['wallet']."_telegram"));
 			// for ($i=520439802; $i <= 520440802; $i++) {
 			// 	$data['parent_code'] = $this->short_md5(md5("-1001249040089_"."0xf6BC0AAc1fdFAf2CCea054F5".md5(rand(520439802, 520440802))."_telegram"));
@@ -51,7 +50,7 @@
 			// echo json_encode($result);exit;
 			// exit;
 			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : $code;
-			
+
 			//获取code信息
 			$params = array(
 
@@ -232,21 +231,6 @@
 
 			$id = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : "";
 
-
-			// //获取机器人信息
-			// $params = array(
-
-			// 	'table_name' => 'chat_bot',
-
-			// 	'where' => "id = {$codes['chat_bot_id']}"
-
-			// );
-
-	  //   	$chat_bot = $this -> model -> my_find($params);
-			// if (!$chat_bot) {
-			// 	$this -> _back('chat数据获取失败');
-			// }
-
 			//获取活动信息
 			$params = array(
 
@@ -260,9 +244,84 @@
 			if (!$group_activity) {
 				$this -> _back('activity数据获取失败');
 			}
+			//获取活动主题
+ 			$params = array(
+
+ 				'table_name' => 'activity_theme',
+
+ 				'where' => "id = {$group_activity['theme_id']}"
+
+ 			);
+
+ 	    	$activity_theme = $this -> model -> my_find($params);
+ 	    	$group_activity['bglogo'] = "";
+ 	    	if ($activity_theme) {
+ 	    		$group_activity['bglogo'] = $activity_theme['bglogo'] ? $activity_theme['bglogo'] : __PUBLIC__."/img/activity_bg.png";
+ 	    	}
 
 			$this -> assign('group_activity', $group_activity);
 
+			if ($_GET['lang'] == 'en') {
+				$this -> display('en_activity');
+			}else{
+				$this -> display();
+			}
+	    }
+
+
+		/**
+		 * 首页：
+		 *
+		 */
+	    public function drafters()
+	    {
+
+			$code = $_REQUEST['_URL_'][2] ?  $_REQUEST['_URL_'][2] : "";
+
+			//获取活动信息
+			$params = array(
+
+				'table_name' => 'drafters',
+
+				'where' => "code = '{$code}' and is_del = 0"
+
+			);
+
+	    	$drafters = $this -> model -> my_find($params);
+			if (!$drafters) {
+				$this -> _back('drafters数据获取失败');
+			}
+
+			//获取活动信息
+			$params = array(
+
+				'table_name' => 'group_activity',
+
+				'where' => "id = {$drafters['activity_id']}"
+
+			);
+
+	    	$group_activity = $this -> model -> my_find($params);
+
+			//获取活动主题
+ 			$params = array(
+
+ 				'table_name' => 'activity_theme',
+
+ 				'where' => "id = {$group_activity['theme_id']}"
+
+ 			);
+
+ 	    	$activity_theme = $this -> model -> my_find($params);
+ 	    	$group_activity['dashboard_logo'] = "";
+ 	    	if ($activity_theme) {
+ 	    		$group_activity['dashboard_logo'] = $activity_theme['dashboard'] ? $activity_theme['dashboard'] : __PUBLIC__."/img/activity_bg.png";
+ 	    	}
+
+			$this -> assign('drafters', $drafters);
+			$this -> assign('chat_bot', $chat_bot);
+			$this -> assign('group_activity', $group_activity);
+			$this -> assign('code', $code);
 			if ($_GET['lang'] == 'en') {
 				$this -> display('en_activity');
 			}else{

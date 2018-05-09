@@ -17,7 +17,7 @@
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
         <style type="text/css"></style>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-          
+
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -127,7 +127,7 @@
                         dataType: 'json'
                     }).done(function(res) {
                         if (res && res.success) {
-                            window.location.href = '/Index/dashboard/' + res.code;
+                            window.location.href = '/Index/dashboard/' + res.usercode;
                         } else {
                             if (ladda) {
                                 ladda.stop();

@@ -8,7 +8,8 @@
             $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
             $search = "/^\/".$code_cmd."/i";
 
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : $chatBot['id'];
 
             //
             // $errorModel = new ErrorModel;

@@ -94,7 +94,7 @@
 
 				$codeAdd = $this -> model -> my_add($code_params);
 				if ($codeAdd) {
-					echo json_encode(array("code" => 0, "success" => true, "code" => $code));exit;
+					echo json_encode(array("code" => 0, "success" => true, "usercode" => $code));exit;
 				}else{
 					echo json_encode(array("code" => 101, "success" => false));exit;
 				}
@@ -115,7 +115,7 @@
 		 */
 	    public function activity()
 	    {
-			if (empty($_POST['uid']) || !isset($_POST['uid'])) {
+			if (empty($_POST['telegram_uid']) || !isset($_POST['telegram_uid'])) {
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
@@ -123,19 +123,21 @@
 
 				'table_name' => 'drafters',
 
-				'where' => "uid = {$_POST['uid']} AND activity_id = '{$_POST['activity_id']}'"
+				'where' => "telegram_uid = {$_POST['telegram_uid']} AND activity_id = '{$_POST['activity_id']}'"
 
 			);
 
 	    	$codes = $this -> model -> my_find($params);
 
 			if (!$codes) {
-				$data['uid'] = $_POST['uid'];
+				//$data['uid'] = $_POST['uid'];
 				$data['created_at'] = time();
 				$data['activity_id'] = $_POST['activity_id'];
+				$data['eth'] = $_POST['wallet'];
 				$data['chat_bot_id'] = intval($_POST['chat_bot_id']);
-				$data['content'] = json_encode($_POST['message_url']);
+				//$data['content'] = json_encode($_POST['message_url']);
 				$data['telegram_uid'] =  $_POST['telegram_uid'];
+				$code = $data['code'] = $this->short_md5(md5($_POST['activity_id']."_".$_POST['wallet']."_".$_POST['telegram_uid']."_telegram"));
 
 				$drafters_params = array(
 
@@ -146,12 +148,12 @@
 
 				$draftersAdd = $this -> model -> my_add($drafters_params);
 				if ($draftersAdd) {
-					echo json_encode(array("code" => 0, "success" => true));exit;
+					echo json_encode(array("code" => 0, "success" => true, "usercode" => $code));exit;
 				}else{
 					echo json_encode(array("code" => 101, "success" => false, "message" => "添加失败"));exit;
 				}
 			}else{
-				echo json_encode(array("code" => 0, "success" => true));exit;
+				echo json_encode(array("code" => 0, "success" => true, "usercode" => $codes['code']));exit;
 			}
 	    }
 

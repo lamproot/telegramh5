@@ -17,7 +17,7 @@
         <style type="text/css"></style>
         <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-          
+
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -127,7 +127,7 @@
                         dataType: 'json'
                     }).done(function(res) {
                         if (res && res.success) {
-                            window.location.href = '/Index/dashboard/' + res.code;
+                            window.location.href = '/Index/dashboard/' + res.usercode;
                         } else {
                             if (ladda) {
                                 ladda.stop();

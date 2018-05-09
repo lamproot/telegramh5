@@ -45,7 +45,6 @@
 			$table = M($parameter['table_name']);
 
 			$result = $table -> data($parameter['data']) -> add();
-
 			return $result;
 		}
 

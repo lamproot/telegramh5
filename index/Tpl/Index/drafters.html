@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-dpr="2" style="font-size: 37.5px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>{$group_activity['en_title']}</title>
+    <title>{$group_activity['title']}</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href="__PUBLIC__/telegram/bootstrap.min.css">
     <script src="__PUBLIC__/telegram/hm.js"></script><script src="__PUBLIC__/telegram/flexible_css.js"></script><style>@charset "utf-8";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}
@@ -10,16 +10,16 @@
         }
     </style>
     <script src="__PUBLIC__/telegram/flexible.js"></script>
-    <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
     <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
+    <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
     <link rel="stylesheet" href="__PUBLIC__/telegram/dashboard.css?t=<?php echo time();?>">
 <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer"></head>
 
-<body style="font-size: 24px;background-image:url({$group_activity['dashboard_logo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
+<body  style="font-size: 24px;background-image:url({$group_activity['dashboard_logo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-right lang-box">
-            <a href="__APP__/Index/dashboard/{$code}?lang=ch" class="lang">中文</a>
+            <a href="__APP__/Index/dashboard/{$code}?lang=en" class="lang">English</a>
         </div>
         <div class="col-sm-12 text-center">
             <img class="logo" src="{$group_activity['logo']}" alt="">
@@ -27,65 +27,67 @@
 
         <if condition = "$activity_status eq -1">
     		<div class="col-sm-12 text-center">
-                <a href="{$group_activity['join_button_url']}" class="join border-radius">Join {$group_activity['en_join_button_text']} Telegram Group</a>
+                <a href="{$group_activity['join_button_url']}" class="join border-radius">{$group_activity['join_button_text']}</a>
             </div>
     		<div class="col-sm-12 text-center" stye="">
-                    <p class="desc">{$group_activity['en_message']}</p>
-                    <!-- <p class="desc">如果您對奖励的 {$group_activity['rate_unit']} 數量正確性有疑問，請<a href="{$group_activity['join_button_url']}"><u>Telegram</u></a>联系客服，我們工作人員會核實數據。</p> -->
+                    <p class="desc">{$group_activity['message']}</p>
+                    <p class="desc">如果您對奖励的 {$group_activity['rate_unit']} 數量正確性有疑問，請<a href="{$group_activity['join_button_url']}"><u>Telegram</u></a>联系客服，我們工作人員會核實數據。</p>
            </div>
-        <else/>
-            <div class="col-sm-12 text-center">
 
-                <p class="desc">{$group_activity['en_message']}</p>
+       <else/>
+
+            <div class="col-sm-12 text-center">
+                <p class="desc">{$group_activity['message']}</p>
             </div>
             <div class="col-sm-12 text-center">
-                <p class="text-left"><empty name="group_activity['en_step1']">1.Copy the exclusive invitation code.<else /> {$group_activity['en_step1']}</empty></p>
+                <p class="text-left"><empty name="group_activity['step1']">1.复制专属邀请码<else /> {$group_activity['step1']}</empty>
+                </p>
                 <div class="input-box">
-                    <input class="address border-radius text-center" value="/{$chat_bot['code_cmd']}{$code}"/>
-                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address">COPY</a>
+                    <input class="address border-radius text-center" value="/drafters{$code}"/>
+                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address">复制</a>
                 </div>
             </div>
             <div class="col-sm-12 text-left">
-                <p class="text-left"><empty name="group_activity['en_step2']">2.Click the button，send the code to TokenMan<else /> {$group_activity['en_step2']}</empty></p>
-                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
-                <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">Join {$group_activity['join_button_text']} Telegram Group</a>
+                <p class="text-left"><empty name="group_activity['step2']">2.点击按钮，将code码发送至TokenMan<else /> {$group_activity['step2']}</empty></p>
+                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">发送code码给TokenMan</a>
+                <!-- <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">加入{$group_activity['join_button_text']}电报群</a> -->
             </div>
-            <div class="col-sm-12 text-left">
-                <p class="text-left"><empty name="group_activity['en_step3']">3.Share the following link to your friends, you can get 10LMC for each successful invitation.<else /> {$group_activity['en_step3']}</empty></p>
+
+            <!-- <div class="col-sm-12 text-left">
+                <p class="text-left"><empty name="group_activity['step3']">3.将以下链接分享给好友，每成功邀请一位好友，即可获得10LMC<else /> {$group_activity['step3']}</empty></p>
                 <div class="input-box">
                     <input class="submit border-radius" value="http://m.name-technology.fun/Index/code/{$code}"/>
-                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit">COPY</a>
+                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit">复制</a>
+                </div>
+            </div> -->
+
+            <div class="col-sm-12 text-left">
+                <p class="text-left"><empty name="group_activity['step4']">4.分享活动并关注官方社交平台<else /> {$group_activity['step4']}</empty></p>
+                <div class="input-box" style="margin:20px 0px;">
+                    <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a>
+                    <a href="{$group_activity['teitter']}" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
+                    <a href="{$group_activity['telegram']}" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
+                    <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
                 </div>
             </div>
         </if>
 
-         <div class="col-sm-12 text-left">
-            <p class="text-left"><empty name="group_activity['en_step4']">4.Share Airdrop and follow official social platforms<else /> {$group_activity['en_step4']}</empty></p>
-            <div class="input-box" style="margin:20px 0px;">
-                <a href="" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a>
-                <a href="" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
-                <a href="" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
-                <a href="" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
-            </div>
-        </div>
-
-        <div class="col-sm-6 text-center">
+        <!-- <div class="col-sm-6 text-center">
             <div class="data-box">
-                <p>Invited</p>
+                <p>已成功邀请人数</p>
                 <h3>{$code_count}</h3>
             </div>
         </div>
         <div class="col-sm-6 text-center">
             <div class="data-box">
-                <p>Earned {$group_activity['rate_unit']}</p>
+                <p>已赚取 {$group_activity['rate_unit']}</p>
                 <h3>{$code_rate}</h3>
             </div>
-        </div>
+        </div> -->
+        <br>
         <div class="col-sm-12 text-center link-box">
-           <div class="col-sm-12 text-center link-box">
            <!-- <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a> -->
             <a href="https://twitter.com/IamTokenMan" title="TokenMan"><img style="width:35px;height:35px;" src="__PUBLIC__/img/tokenman.png"></a>
-        </div>
         </div>
     </div>
 </div>
@@ -110,7 +112,6 @@ clipboard.on('error', function(e) {
     });
 });
 </script>
-
 
 
 </body></html>

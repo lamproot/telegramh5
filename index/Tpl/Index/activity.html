@@ -17,7 +17,7 @@
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
         <style type="text/css"></style>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-          
+
         <style>
             .address {
                 color: #fff;
@@ -62,7 +62,7 @@
         </style>
     </head>
 
-    <body style="font-size: 24px;">
+    <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
         <div class="container">
             <form class="row">
                 <div class="col-sm-12 text-right lang-box">
@@ -80,15 +80,16 @@
                 </div>
 
                 <div class="col-sm-12 text-center">
+
                     <input name="telegram_uid" class="address border-radius text-center" placeholder="请输入Telegram ID">
                 </div>
 
                 <div class="col-sm-12 text-center">
 
                     <if condition ="$group_activity['placeholder_text'] neq ''">
-                        <input name="uid" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}">
+                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}">
                     <else/>
-                        <input name="uid" class="address border-radius text-center" placeholder="请输入你的 ETH 钱包地址">
+                        <input name="wallet" class="address border-radius text-center" placeholder="请输入你的 ETH 钱包地址">
                     </if>
 
                     <input type="hidden" name="chat_bot_id" value="{$group_activity['chat_bot_id']}">
@@ -96,13 +97,13 @@
                 </div>
 
 
-                <div class="col-sm-12 text-center message_list">
+                <!-- <div class="col-sm-12 text-center message_list">
                     <div class="input-box ">
                         <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" >
                         <span href="javascript:void(0);" style="display:none" class=" copy text-center copy-btn"data-clipboard-target=".address">✔</span>
                     </div>
-                    <!-- <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" style="margin-top:18px;"> -->
-                </div>
+                     <input name="message_url[]" class="address border-radius text-center" placeholder="请输入你的文章地址" style="margin-top:18px;">
+                </div> -->
                 <!-- <div class="col-sm-12 text-center">
                     <div class="input-box">
                         <input class="address border-radius text-center" value="/code6725ddf7aceb52d2">
@@ -110,13 +111,13 @@
                     </div>
                 </div> -->
 
-                <div class="col-sm-12 text-center">
+                <!-- <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="addmessage border-radius text-center ladda-button" data-style="zoom-in" style="margin-bottom:0px;">
                         <span class="ladda-label">+ 新增文章地址</span></button>
-                </div>
+                </div> -->
                 <div class="col-sm-12 text-center">
-                    <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">
-                        <span class="ladda-label">{$group_activity['join_button_text']}</span></button>
+                    <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in" style="margin-bottom:0px;">
+                        <span class="ladda-label">提交</span></button>
                 </div>
                 <div class="col-sm-12 text-center rule-box">
                     <a class="link" data-toggle="modal" data-target="#myModal" href="" onclick="return false;">
@@ -144,7 +145,14 @@
                 </div>
 
                 <div class="col-sm-12 text-center link-box">
-                    <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a></div>
+                    <a class="link">由于监管原因，我们不接受来自中国，美国，加拿大，韩国和 OFAC 限制国的参与者( 详情请看</a>
+                    <a href="https://www.treasury.gov/resource-center/sanctions/Programs/Pages/Programs.aspx" class="link">
+                        <u>OFAC</u>)</a>
+                </div>
+                <div class="col-sm-12 text-center link-box">
+                   <!--  <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a> -->
+                   <a href="https://twitter.com/IamTokenMan" title="TokenMan"><img style="width:35px;height:35px;" src="__PUBLIC__/img/tokenman.png"></a>
+                </div>
             </form>
         </div>
         <script src="__PUBLIC__/telegram/web3.min.js"></script>
@@ -178,7 +186,7 @@
                         timeout: 30000,
                         beforeSend: function() {
 
-                            if (!data.uid) {
+                            if (!data.telegram_uid) {
                                 layer.msg('The uid can not be empty!', {
                                     shade: [0.8, '#000'],
                                     time: 1500
@@ -186,35 +194,35 @@
                                 return false;
                             };
 
-                            if (!data.message_url) {
-                                layer.msg('The message_url can not be empty!', {
+                            // if (!data.message_url) {
+                            //     layer.msg('The message_url can not be empty!', {
+                            //         shade: [0.8, '#000'],
+                            //         time: 1500
+                            //     });
+                            //     return false;
+                            // };
+                            if (!data.wallet) {
+                                layer.msg('The address of the wallet can not be empty!', {
                                     shade: [0.8, '#000'],
                                     time: 1500
                                 });
                                 return false;
-                            };
-                            // if (!data.wallet) {
-                            //     layer.msg('The address of the wallet can not be empty!', {
-                            //         shade: [0.8, '#000'],
-                            //         time: 1500
-                            //     });
-                            //     return false;
-                            // } else if (!Web3.utils.isAddress(data.wallet)) {
-                            //     layer.msg('The address of the wallet is invalid!', {
-                            //         shade: [0.8, '#000'],
-                            //         time: 1500
-                            //     });
-                            //     return false;
-                            // } else {
-                            //     ladda = Ladda.create(_this);
-                            //     ladda.start();
-                            // }
+                            } else if (!Web3.utils.isAddress(data.wallet)) {
+                                layer.msg('The address of the wallet is invalid!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            } else {
+                                ladda = Ladda.create(_this);
+                                ladda.start();
+                            }
                         },
                         dataType: 'json'
                     }).done(function(res) {
                         if (res && res.success) {
-                            //window.location.href = '/Index/dashboard/' + res.code;
-                            window.location.href = "<?php  echo $group_activity['join_button_url'];?>";
+                            window.location.href = '/Index/drafters/' + res.usercode;
+                            //window.location.href = "<?php  echo $group_activity['join_button_url'];?>";
                         } else {
                             if (ladda) {
                                 ladda.stop();
