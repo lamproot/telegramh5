@@ -61,9 +61,9 @@
                     if ($codeInfo && $codeInfo[0]) {
                         if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                             $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
-                            // $errorModel = new ErrorModel;
-                            // $errorModel->sendError ($chat['id'], $chat['id'].$_SESSION['token']);
-                            // 
+                            //$errorModel = new ErrorModel;
+                            $errorModel->sendError (MASTER, $chat['id'].$_SESSION['token']);
+
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,

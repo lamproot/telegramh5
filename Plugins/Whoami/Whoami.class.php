@@ -47,14 +47,30 @@
                 $this->telegram->sendMessage ($chat['id'], $str, $message_id, $button);
             }
 
-            $search = "/^\/whoami/i";
+            //$search = "/^\/whoami/i";
 
-            if(preg_match($search,$command,$result)) {
+            if($command == '/whoami') {
                 //$_SESSION['token'] = str_replace($result[0], "", $command);
+                $chatBotModel = new ChatBotModel;
+                $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
 
-                $str = '你的 master_id：' . $from['id'] . "\n";
-                $str .= '群的 chat_id：' . $chat['id'] . "\n";
-                $str .= '这条消息的 id：' . $message_id . "\n";
+                if (isset($_GET['bot_id'])) {
+                    $chatBot = $chatBotModel->getById($chat_id);
+                }else{
+                    $chatBot = $chatBotModel->getByChatId($chat_id);
+                }
+
+                if ($chatBot) {
+                    $_SESSION['token'] = $chatBot['token'];
+                }
+
+                //私聊禁止激活
+                if ($chat['type'] == 'private') {
+                    $str = "激活失败 请在机器人所在的群组激活!";
+                }else{
+                    $str = "激活成功 \n 欢迎使用 TokenMan 智能机器人!";
+                }
+
                 $this->telegram->sendMessage ($chat['id'], $str, $message_id);
             }
 
