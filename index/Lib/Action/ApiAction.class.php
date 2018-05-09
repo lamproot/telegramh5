@@ -99,7 +99,7 @@
 					echo json_encode(array("code" => 101, "success" => false));exit;
 				}
 			}else{
-				echo json_encode(array("code" => 0, "success" => true, "code" => $codes['code']));exit;
+				echo json_encode(array("code" => 0, "success" => true, "usercode" => $codes['code']));exit;
 			}
 	    }
 
