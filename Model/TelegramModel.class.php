@@ -35,27 +35,39 @@
             return $re;
         }
         public function callMethod ($method, $param = array (), $detection = true) {
-            if ($this->token === NULL) {
-                $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
-            }
+            // if ($this->token === NULL) {
+            //     $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
+            // }
 
             //获取相关TOKEN 数据
-            if (isset($param['chat_id'])) {
-                $token = $this->gettoken($param['chat_id']);
-                if ($token) {
-                    $url = 'https://api.telegram.org/bot' . $token . '/' . $method;
+            // if (isset($param['chat_id'])) {
+            //     $token = $this->gettoken($param['chat_id']);
+            //     if ($token) {
+            //         $url = 'https://api.telegram.org/bot' . $token . '/' . $method;
+            //     }else{
+            //         $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
+            //     }
+            // }
+
+            if (isset($_GET['bot_id'])) {
+                $chatBotModel = new ChatBotModel;
+                $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
+
+                if (isset($_GET['bot_id'])) {
+                    $chatBot = $chatBotModel->getById($chat_id);
                 }else{
-                    $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
+                    $chatBot = $chatBotModel->getByChatId($chat_id);
+                }
+
+                if ($chatBot) {
+                    $_SESSION['token'] = $chatBot['token'];
                 }
             }
+            
 
             if (isset($_SESSION['token']) && !empty($_SESSION['token'])) {
                 $url = 'https://api.telegram.org/bot' . $_SESSION['token'] . '/' . $method;
             }
-
-            // $errorModel = new ErrorModel;
-            // $errorModel->sendError (MASTER, '$url ' . $url . 'chat_id' . $param['chat_id']);
-
             /** 初始化变量 */
             // if ($this->token === NULL) {
             //     $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
@@ -68,8 +80,8 @@
             $ret = json_decode ($this->fetch ($url, $param), true);
 
 
-            $IllegalLogModel = new IllegalLogModel;
-            $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
+            // $IllegalLogModel = new IllegalLogModel;
+            // $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
 
 
             /** 分析结果 */

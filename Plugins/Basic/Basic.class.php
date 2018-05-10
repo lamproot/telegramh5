@@ -9,7 +9,7 @@
                 $errorModel = new ErrorModel;
                 $chatBotModel = new ChatBotModel;
                 $chatBot = $chatBotModel->getcommand($chat['id']);
-                $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+                $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chatBot['id'];
 
                 //查询命令是否有回复
                 $commandModel = new CommandModel;

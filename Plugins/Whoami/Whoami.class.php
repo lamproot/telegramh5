@@ -63,45 +63,26 @@
 
             //$search = "/^\/whoami/i";
 
-            // if($command == '/whoami') {
-            //     //$_SESSION['token'] = str_replace($result[0], "", $command);
-            //     $chatBotModel = new ChatBotModel;
-            //     $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
+            if($command == '/activatebot') {
+                //私聊禁止激活
+                if ($chat['type'] == 'private') {
+                    $str = "激活失败 请在机器人所在的群组激活!";
+                }else{
+                    $str = "激活成功 \n 欢迎使用 TokenMan 智能机器人!";
+                }
 
-            //     if (isset($_GET['bot_id'])) {
-            //         $chatBot = $chatBotModel->getById($chat_id);
-            //     }else{
-            //         $chatBot = $chatBotModel->getByChatId($chat_id);
-            //     }
+                // $button = json_encode (array (
+                //     'inline_keyboard' => array (
+                //         array (array (
+                //             'text' => '',
+                //             'url' => 'https://twitter.com/IamTokenMan'
+                //         ))
+                //     )
+                // ));
 
-            //     if ($chatBot) {
-            //         $_SESSION['token'] = $chatBot['token'];
-            //     }
+                //$button = array ();
+                $this->telegram->sendMessage ($chat['id'], $str);
 
-            //     //私聊禁止激活
-            //     if ($chat['type'] == 'private') {
-            //         $str = "激活失败 请在机器人所在的群组激活!";
-            //     }else{
-            //         $str = "激活成功 \n 欢迎使用 TokenMan 智能机器人!";
-            //     }
-            //     // $errorModel = new ErrorModel;
-            //     // $errorModel->sendError (MASTER, 'from'.print_r($from, true));
-            //     $button = json_encode (array (
-            //         'inline_keyboard' => array (
-            //             array (array (
-
-            //                 'text' => 'TokenMan AI Bot',
-            //                 'url' => 'https://twitter.com/IamTokenMan'
-            //             ))
-            //         )
-            //     ));
-
-            //     //$button = json_encode (array ());
-            //     $this->telegram->sendMessage ($chat['id'], $str, $message_id, $button);
-            // }
-
-
-
-
+            }
         }
     }

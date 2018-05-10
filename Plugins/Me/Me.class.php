@@ -9,9 +9,9 @@
                 $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
 
                 $chatBot = $chatBotModel->getById($chat_bot_id);
-                if ($chatBot) {
-                    $_SESSION['token'] = $chatBot['token'];
-                }
+                // if ($chatBot) {
+                //     $_SESSION['token'] = $chatBot['token'];
+                // }
 
                 $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
                 $search = "/^\/".$code_cmd."/i";
@@ -72,7 +72,7 @@
                         if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                             $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
                             //$errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, $chat['id'].$_SESSION['token']);
+                            $errorModel->sendError (MASTER, $chat['id']);
 
                             $this->telegram->sendMessage (
                                 $chat['id'],
