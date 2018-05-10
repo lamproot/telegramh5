@@ -24,6 +24,8 @@
                 $chatBotArray[] = $value;
             }
 
+            $errorModel->sendError (MASTER, print_r($chatBotArray, true) . in_array($username, $chatBotArray));
+exit;
             //判断是否为 TokenMan机器人
             //查询所有TokenMan机器人
             if (in_array($username, $chatBotArray)) {
@@ -58,7 +60,7 @@
                     }
                 }
             }
-          
+
 
             $command = "/new_member";
             //创建欢迎消息
