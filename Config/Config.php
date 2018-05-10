@@ -2,7 +2,7 @@
     define ('DBHOST', 'localhost');
     define ('DBNAME', 'telegram');
     define ('DBUSER', 'root');
-    define ('DBPASS', 'lamproot');
+    define ('DBPASS', 'root');
     define ('DBPERSISTENT', true);
     define ('DBCHARSET', 'utf8mb4');
     // define ('DBHOST', '18.218.250.89');

@@ -58,6 +58,16 @@
 
 
                     $message = "";
+                    $button = json_encode (array (
+                        'inline_keyboard' => array (
+                            array (array (
+
+                                'text' => 'TokenMan AI Bot',
+                                'url' => 'https://twitter.com/IamTokenMan'
+                            ))
+                        )
+                    ));
+
                     if ($codeInfo && $codeInfo[0]) {
                         if ($commandFind && $commandFind[0] && $commandFind[0]['content']) {
                             $message = str_replace("{{".$code_cmd."}}", $code, $commandFind[0]['content']);
@@ -67,7 +77,8 @@
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,
-                                $message_id
+                                $message_id,
+                                $button
                             );
                         }
                     }
