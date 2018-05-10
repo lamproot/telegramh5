@@ -18,34 +18,47 @@
             $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
             $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
 
-            foreach ($blank as $key => $value) {
-                $addblank = false;
+            $chatBotList = $chatBotModel->getChatList();
+            $chatBotArray = [];
+            foreach ($chatBotList as $key => $value) {
+                $chatBotArray[] = $value;
+            }
 
-                $find = stripos($username, $value);
-                if ($find !== false) {
-                    $addblank = true;
-                }
+            //判断是否为 TokenMan机器人
+            //查询所有TokenMan机器人
+            if (in_array($username, $chatBotArray)) {
+                # code...
+            }else{
+                foreach ($blank as $key => $value) {
+                    $addblank = false;
 
-                $find = stripos($first_name, $value);
-                if ($find !== false) {
-                    $addblank = true;
-                }
+                    $find = stripos($username, $value);
+                    if ($find !== false) {
+                        $addblank = true;
+                    }
 
-                $find = stripos($last_name, $value);
-                if ($find !== false) {
-                    $addblank = true;
-                }
+                    $find = stripos($first_name, $value);
+                    if ($find !== false) {
+                        $addblank = true;
+                    }
 
-                if ($addblank) {
-                    $IllegalLogModel = new IllegalLogModel();
-                    $this->telegram->kickChatMember (
-                        $chat['id'],
-                        $new_member['id']
-                    );
-                    $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+                    $find = stripos($last_name, $value);
+                    if ($find !== false) {
+                        $addblank = true;
+                    }
 
+                    if ($addblank) {
+                        $IllegalLogModel = new IllegalLogModel();
+                        $this->telegram->kickChatMember (
+                            $chat['id'],
+                            $new_member['id']
+                        );
+                        $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+
+                    }
                 }
             }
+          
 
             $command = "/new_member";
             //创建欢迎消息
