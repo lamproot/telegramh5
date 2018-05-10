@@ -17,7 +17,9 @@
                 $str = '你的 master_id：' . $from['id']. "\n";
                 $str .= '群的 chat_id：' . $chat['id'] . "\n";
                 $str .= '这条消息的 id：' . $message_id . "\n";
-                $this->telegram->sendMessage (MASTER, $str, $message_id);
+                $errorModel = new ErrorModel;
+                $errorModel->sendError (MASTER, $str);
+                //$this->telegram->sendMessage (MASTER, $str, $message_id);
             }
 
 
