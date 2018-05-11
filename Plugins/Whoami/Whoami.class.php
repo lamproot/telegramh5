@@ -26,14 +26,18 @@
 
                     //获取群信息
                     $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
-                    $chatBotModel = new chatBotModel;
+                    $chatBotModel = new ChatBotModel;
+                    $chatGroupModel = new ChatGroupModel;
                     $chatBot = $chatBotModel->getById($chat_id);
 
                     if ($chatBot && $chatBot['chat_id'] != "") {
                         //return;
-                        $str = "TokenMan 已在使用中!";
+                        $str = "TokenMan 已在使用中 如有问题请联系管理员!";
                     }else{
                         $chatBotModel->updateById($chat_id, $from['id'], $chat['id']);
+                        //添加机器人管理群
+
+                        $chatGroupModel->create(@$chat['title'], $chat_id, 1, @$chatBot['admin_id'], @$chat['id']);
                         $str = "激活成功 \n 欢迎使用 TokenMan 智能机器人!";
                     }
                     
