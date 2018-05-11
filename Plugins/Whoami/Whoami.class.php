@@ -16,10 +16,6 @@
 
             if ($command == '/activatebot') {
                 $errorModel = new ErrorModel;
-                
-
-
-                
                // $errorModel->sendError (MASTER, print_r($chatBot, true));exit;
                 //私聊禁止激活
                 if ($chat['type'] == 'private') {
