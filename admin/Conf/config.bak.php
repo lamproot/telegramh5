@@ -11,10 +11,7 @@ return array(
 	'DB_NAME'=>'telegram',
 	'APP_DEBUG' => false,
 	'SHOW_PAGE_TRACE'=>false,
-	'DB_CHARSET'=> 'utf8mb4',
-	'view_replace_str'       => [
-        '__PUBLIC__'=> SCRIPT_DIR . '/public'              //定义首页
-    ],
+	'DB_CHARSET'=> 'utf8mb4'
 );
 /*
 return array(
