@@ -48,7 +48,6 @@
             //         $url = 'https://api.telegram.org/bot' . TOKEN . '/' . $method;
             //     }
             // }
-
             if (isset($_GET['bot_id'])) {
                 $chatBotModel = new ChatBotModel;
                 $chat_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chat['id'];
@@ -65,6 +64,8 @@
             }
             
 
+            $errorModel = new ErrorModel;
+
             if (isset($_SESSION['token']) && !empty($_SESSION['token'])) {
                 $url = 'https://api.telegram.org/bot' . $_SESSION['token'] . '/' . $method;
             }
@@ -76,6 +77,10 @@
             //     $url = 'https://api.telegram.org/bot' . $this->token . '/' . $method;
             // }
 
+
+            // $errorModel->sendError (MASTER, "bot_id:".$_GET['bot_id'] ."token:".$_SESSION['token'] );
+            // $errorModel->sendError (MASTER, print_r($param, true));
+            
             /** 访问网页 */
             $ret = json_decode ($this->fetch ($url, $param), true);
 
@@ -92,7 +97,7 @@
                 }
             }
 
-            $_SESSION['token'] = "";
+            //$_SESSION['token'] = "";
 
             /** 返回 */
             return $ret;
