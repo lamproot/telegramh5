@@ -53,9 +53,9 @@
 			if (empty($_POST['wallet']) || !isset($_POST['wallet'])) {
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
-			if (strlen($_POST['wallet']) != 42) {
-				echo json_encode(array("code" => 101, "success" => false));exit;
-			}
+			// if (strlen($_POST['wallet']) != 42) {
+			// 	echo json_encode(array("code" => 101, "success" => false));exit;
+			// }
 
 			if (empty($_POST['code']) || !isset($_POST['code'])) {
 				echo json_encode(array("code" => 101, "success" => false));exit;
