@@ -17,7 +17,7 @@
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
         <style type="text/css"></style>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-
+         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -44,6 +44,9 @@
                     <input type="hidden" name="code" value="{$code}">
                     <input type="hidden" name="chat_bot_id" value="{$chat_bot['id']}">
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
+                </div>
+                <div class="col-sm-12 text-center">
+                    <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
                 </div>
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">

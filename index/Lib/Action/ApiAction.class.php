@@ -64,6 +64,11 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
+			if (empty($_POST['googleauth']) || !isset($_POST['googleauth'])) {
+				echo json_encode(array("code" => 101, "success" => false));exit;
+			}
+			
+
 
 			// chat_bot_id eth code parent_code status ctrated_at
 			$params = array(

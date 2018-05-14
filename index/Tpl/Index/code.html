@@ -14,9 +14,15 @@
         <link rel="stylesheet" href="__PUBLIC__/telegram/ladda-themeless.min.css">
         <link rel="stylesheet" href="__PUBLIC__/telegram/index.css?t=<?php echo time();?>">
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
-        <style type="text/css"></style>
+        <style type="text/css">
+            .g-recaptcha div{
+                width: 100% !important;
+            }
+        </style>
         <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
+
+        <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
 
     </head>
 
@@ -42,6 +48,10 @@
                     <input type="hidden" name="code" value="{$code}">
                     <input type="hidden" name="chat_bot_id" value="{$chat_bot['id']}">
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
+                </div>
+
+                <div class="col-sm-12 text-center" style="margin-top:15px;">
+                    <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
                 </div>
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">
@@ -95,12 +105,31 @@
                     if ($(this).prop("disabled")) {
                         return false;
                     }
+
+
+                    //获取
+                    //alert($("#g-recaptcha-response").val());
+                    //alert()
+
+
                     var ladda, data = {},
                     _this = this;
                     $.each($('form').serializeArray(),
                     function() {
                         data[this.name] = this.value;
                     });
+
+                    if ($("#g-recaptcha-response").val() == "") {
+                        layer.msg('Please Google Auth!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    }else{
+                        data.googleauth = $("#g-recaptcha-response").val();
+                    }
+
                     $.ajax({
                         type: "post",
                         url: "__APP__/Api/code",
