@@ -6,7 +6,7 @@
         <title>{$group_activity['title']}</title>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
         <link rel="stylesheet" href="__PUBLIC__/telegram/bootstrap.min.css">
-        <script src="__PUBLIC__/telegram/hm.js"></script>
+
         <script src="__PUBLIC__/telegram/flexible_css.js"></script>
         <style>@charset "utf-8";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
         <script src="__PUBLIC__/telegram/flexible.js"></script>
@@ -21,9 +21,16 @@
         </style>
         <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
+<<<<<<< HEAD
 
         <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
 
+=======
+        <!-- 国内使用 -->
+        <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/nch5/index.js?t=2015052012"></script>
+    <!-- 若您的主要用户来源于海外，请替换使用下面的js资源 -->
+    <!-- <script type="text/javascript" charset="utf-8" src="//aeis.alicdn.com/sd/nch5/index.js?t=2015052012"></script> -->
+>>>>>>> 492e2c94167ad0524c9f78df69cefcf9460dcc8a
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -54,7 +61,13 @@
                     <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
                 </div>
                 <div class="col-sm-12 text-center">
-                    <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button" data-style="zoom-in">
+                <div id="__nc" style="margin-left:auto;margin-right:auto;padding-top:10px;">
+                    <div id="nc"></div>
+                </div>
+            </div>
+
+                <div class="col-sm-12 text-center">
+                    <button type="button" href="javascript:void(0);" id="usernameID" class="submit border-radius text-center ladda-button" data-style="zoom-in">
                         <span class="ladda-label">提交</span></button>
                 </div>
                 <div class="col-sm-12 text-center rule-box">
@@ -94,12 +107,56 @@
                 </div>
             </form>
         </div>
-        <script src="__PUBLIC__/telegram/web3.min.js"></script>
-        <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
-        <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
-        <script src="__PUBLIC__/telegram/spin.min.js"></script>
-        <script src="__PUBLIC__/telegram/ladda.min.js"></script>
-        <script src="__PUBLIC__/telegram/layer.js"></script>
+        <script>
+        var alitoken = false;
+    var nc_token = ["FFFF0N00000000005F49", (new Date()).getTime(), Math.random()].join(':');
+    var nc=NoCaptcha.init({
+        renderTo: '#nc',
+        appkey: 'FFFF0N00000000005F49',
+        scene: 'nc_activity_h5',
+        token: nc_token,
+        trans: {"key1": "code200"},
+        elementID: ["usernameID"],
+        is_Opt: 0,
+        language: "cn",
+        timeout: 10000,
+        retryTimes: 5,
+        errorTimes: 5,
+        inline:false,
+        apimap: {
+            // 'analyze': '//a.com/nocaptcha/analyze.jsonp',
+            // 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
+        },
+        bannerHidden:false,
+        initHidden:false,
+        callback: function (data) {
+            alitoken = true;
+            // window.console && console.log("nc_token:"+nc_token)
+            // window.console && console.log("csessionid:"+data.csessionid)
+            // window.console && console.log("sig" + data.sig)
+        },
+        error: function (s) {
+        }
+    });
+    NoCaptcha.setEnabled(true);
+    nc.reset();//请务必确保这里调用一次reset()方法
+
+    NoCaptcha.upLang('cn', {
+        'LOADING':"加载中...",//加载
+        'SLIDER_LABEL': "请向右滑动验证",//等待滑动
+        'CHECK_Y':"验证通过",//通过
+        'ERROR_TITLE':"非常抱歉，这出错了...",//拦截
+        'CHECK_N':"验证未通过", //准备唤醒二次验证
+        'OVERLAY_INFORM':"经检测你当前操作环境存在风险，请输入验证码",//二次验证
+        'TIPS_TITLE':"验证码错误，请重新输入"//验证码输错时的提示
+    });
+    </script>
+    <script src="__PUBLIC__/telegram/web3.min.js"></script>
+    <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
+    <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/telegram/spin.min.js"></script>
+    <script src="__PUBLIC__/telegram/ladda.min.js"></script>
+    <script src="__PUBLIC__/telegram/layer.js"></script>
         <script>$(function() {
                 $('.submit').click(function() {
                     if ($(this).prop("disabled")) {
@@ -119,6 +176,7 @@
                         data[this.name] = this.value;
                     });
 
+<<<<<<< HEAD
                     if ($("#g-recaptcha-response").val() == "") {
                         layer.msg('Please Google Auth!', {
                                 shade: [0.8, '#000'],
@@ -128,6 +186,14 @@
                         return false;
                     }else{
                         data.googleauth = $("#g-recaptcha-response").val();
+=======
+                    if (!alitoken) {
+                        layer.msg('请滑动验证!', {
+                            shade: [0.8, '#000'],
+                            time: 1500
+                        });
+                        return false;
+>>>>>>> 492e2c94167ad0524c9f78df69cefcf9460dcc8a
                     }
 
                     $.ajax({
@@ -136,6 +202,7 @@
                         data: data,
                         timeout: 30000,
                         beforeSend: function() {
+
                             if (!data.wallet) {
                                 layer.msg('The address of the wallet can not be empty!', {
                                     shade: [0.8, '#000'],
@@ -155,23 +222,25 @@
                         },
                         dataType: 'json'
                     }).done(function(res) {
-                        if (res && res.success) {
-                            window.location.href = '/Index/dashboard/' + res.usercode;
-                        } else {
-                            if (ladda) {
-                                ladda.stop();
-                            }
-                            var msg = '';
-                            if (res.code == 101) {
-                                msg = 'The address of the wallet is invalid!';
-                            } else {
-                                msg = 'The system is busy, please try again later!'
-                            }
-                            layer.msg(msg, {
-                                shade: [0.8, '#000'],
-                                time: 1500
-                            });
-                        }
+
+                        //alert("dsa")
+                        // if (res && res.success) {
+                        //     window.location.href = '/Index/dashboard/' + res.usercode;
+                        // } else {
+                        //     if (ladda) {
+                        //         ladda.stop();
+                        //     }
+                        //     var msg = '';
+                        //     if (res.code == 101) {
+                        //         msg = 'The address of the wallet is invalid!';
+                        //     } else {
+                        //         msg = 'The system is busy, please try again later!'
+                        //     }
+                        //     layer.msg(msg, {
+                        //         shade: [0.8, '#000'],
+                        //         time: 1500
+                        //     });
+                        // }
                     });
                 });
 

@@ -10,6 +10,7 @@
  * @time 2014-06-12
  * @version 1.0.0
  */
+ use afs\Request\V20180112 as Afs;
 	class ApiAction extends CommonAction {
 
 		/**
@@ -40,7 +41,6 @@
 		 */
 	    public function code()
 	    {
-
 			// wallet
 			// code
 			// token
