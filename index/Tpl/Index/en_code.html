@@ -10,14 +10,18 @@
         <script src="__PUBLIC__/telegram/flexible_css.js"></script>
         <style>@charset "utf-8";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
 <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
-        <script src="__PUBLIC__/telegram/flexible.js"></script>
         <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
         <link rel="stylesheet" href="__PUBLIC__/telegram/ladda-themeless.min.css">
         <link rel="stylesheet" href="__PUBLIC__/telegram/index.css?t=<?php echo time();?>">
         <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
         <style type="text/css"></style>
+        <style type="text/css">
+            .g-recaptcha div{
+                width: 100% !important;
+            }
+        </style>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -45,7 +49,7 @@
                     <input type="hidden" name="chat_bot_id" value="{$chat_bot['id']}">
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
                 </div>
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12 text-center" style="margin-top:15px;">
                     <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
                 </div>
                 <div class="col-sm-12 text-center">
@@ -87,6 +91,8 @@
                 </div>
             </form>
         </div>
+
+        <script src="__PUBLIC__/telegram/flexible.js"></script>
         <script src="__PUBLIC__/telegram/web3.min.js"></script>
         <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
         <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
@@ -104,6 +110,18 @@
                     function() {
                         data[this.name] = this.value;
                     });
+
+                    if ($("#g-recaptcha-response").val() == "") {
+                        layer.msg('Please Google Auth!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    }else{
+                        data.googleauth = $("#g-recaptcha-response").val();
+                    }
+
                     $.ajax({
                         type: "post",
                         url: "__APP__/Api/code",

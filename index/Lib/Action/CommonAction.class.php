@@ -411,25 +411,27 @@
 	   return $sys_protocal.(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '').$relate_url;
 	}
 
-	//获取市场补贴比例
-	function get_market_ratio(){
-		$params = array(
+	public function fetch ($url, $postdata = null) {
+        $ch = curl_init ();
+        curl_setopt ($ch, CURLOPT_URL, $url);
+        if (!is_null ($postdata)) {
+            curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query ($postdata));
+        }
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        $re = curl_exec ($ch);
 
-			'table_name' => 'bonus_rule',
+        // $err_code = curl_errno($ch);
+        // if($err_code)
+        // {
+        //     $errorModel = new ErrorModel;
+        //     $errorModel->sendError (MASTER, "err_code" . $err_code);
+        // }
 
-			'where' => "category = 'marketcash' AND `key` = 0"
-		);
+        curl_close ($ch);
 
-		$my_find = $this -> model -> my_find($params);
+        return $re;
+    }
 
-		if($my_find){
-			if($my_find['value'] && $my_find['value'] > 0){
-				return $my_find['value']/100;
-			}else{
-				return "0.00";
-			}
-		}else{
-			return "0.00";
-		}
-	}
+
 }
