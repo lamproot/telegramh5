@@ -21,13 +21,13 @@
         </style>
         <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
         <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
-        <!--<script type="text/javascript">
+        <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('html_element', {
           'sitekey' : '6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2'
         });
       };
-    </script>-->
+    </script>
     </head>
 
     <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
@@ -54,10 +54,10 @@
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
                 </div>
 
-                <!-- <div class="col-sm-12 text-center" style="margin-top:15px;">
-                    <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
+                <div class="col-sm-12 text-center" style="margin-top:15px;">
+                    <!-- <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div> -->
                     <div id="html_element"></div>
-                </div> -->
+                </div>
 
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" id="usernameID" class="submit border-radius text-center ladda-button" data-style="zoom-in">
@@ -100,9 +100,9 @@
                 </div>
             </form>
         </div>
-     <!--<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
-    </script>-->
+    </script>
     <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
     <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
     <script src="__PUBLIC__/telegram/spin.min.js"></script>
@@ -121,14 +121,14 @@
                     //alert($("#g-recaptcha-response").val());
                     //alert()
                     //alert($("#g-recaptcha-response").val());
-                    // if ($("#g-recaptcha-response").val() == undefined) {
-                    //     layer.msg('Please Google Auth!', {
-                    //             shade: [0.8, '#000'],
-                    //             time: 1500
-                    //         }
-                    //     );
-                    //     return false;
-                    // };
+                    if ($("#g-recaptcha-response").val() == undefined) {
+                        layer.msg('Please Google Auth!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    };
 
                     var ladda, data = {},
                     _this = this;
@@ -137,16 +137,16 @@
                         data[this.name] = this.value;
                     });
 
-                    // if ($("#g-recaptcha-response").val() == "") {
-                    //     layer.msg('Please Google Auth!', {
-                    //             shade: [0.8, '#000'],
-                    //             time: 1500
-                    //         }
-                    //     );
-                    //     return false;
-                    // }else{
-                    //     data.googleauth = $("#g-recaptcha-response").val();
-                    // }
+                    if ($("#g-recaptcha-response").val() == "") {
+                        layer.msg('Please Google Auth!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    }else{
+                        data.googleauth = $("#g-recaptcha-response").val();
+                    }
 
                     var web3 = new Web3();
                     $.ajax({

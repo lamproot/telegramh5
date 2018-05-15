@@ -69,20 +69,20 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
-			// if (empty($_POST['googleauth']) || !isset($_POST['googleauth'])) {
-			// 	echo json_encode(array("code" => 101, "success" => false));exit;
-			// }
+			if (empty($_POST['googleauth']) || !isset($_POST['googleauth'])) {
+				echo json_encode(array("code" => 101, "success" => false));exit;
+			}
 
-	  //   	$googledata['secret'] = "6LfwBVkUAAAAAFbYHUxRn-6Nn2TUdIdP_lvQ2nOX";
-			// $googledata['response'] = $_POST['googleauth'];
-			// $googledata['remoteip'] = $_SERVER['REMOTE_ADDR'];
+	    	$googledata['secret'] = "6LfwBVkUAAAAAFbYHUxRn-6Nn2TUdIdP_lvQ2nOX";
+			$googledata['response'] = $_POST['googleauth'];
+			$googledata['remoteip'] = $_SERVER['REMOTE_ADDR'];
 
-			// $result = $this->fetch("https://www.google.com/recaptcha/api/siteverify", $googledata);
-			// if ($result && $result['success'] == true) {
-			// 	# code...
-			// }else{
-			// 	echo json_encode(array("code" => 103, "success" => false));exit;
-			// }
+			$result = $this->fetch("https://www.google.com/recaptcha/api/siteverify", $googledata);
+			if ($result && $result['success'] == true) {
+				# code...
+			}else{
+				echo json_encode(array("code" => 103, "success" => false));exit;
+			}
 
 			// chat_bot_id eth code parent_code status ctrated_at
 			$params = array(
@@ -104,6 +104,9 @@
 				$data['created_at'] = time();
 				$data['status'] = 1;
 				$data['activity_id'] = $_POST['activity_id'];
+
+				// $data['ip'] = $this->get_ip();
+				// $data['agent'] = $_SERVER['HTTP_USER_AGENT'];
 				$code_params = array(
 
 					'table_name' => 'codes',
@@ -185,4 +188,29 @@
 		function short_md5($str) {
 		    return substr(md5($str), 8, 16);
 		}
+
+		//不同环境下获取真实的IP
+		function get_ip(){
+			    //判断服务器是否允许$_SERVER
+			    if(isset($_SERVER)){
+			        if(isset($_SERVER[HTTP_X_FORWARDED_FOR])){
+			            $realip = $_SERVER[HTTP_X_FORWARDED_FOR];
+			        }elseif(isset($_SERVER[HTTP_CLIENT_IP])) {
+			            $realip = $_SERVER[HTTP_CLIENT_IP];
+			        }else{
+			            $realip = $_SERVER[REMOTE_ADDR];
+			        }
+			    }else{
+			        //不允许就使用getenv获取
+			        if(getenv("HTTP_X_FORWARDED_FOR")){
+			              $realip = getenv( "HTTP_X_FORWARDED_FOR");
+			        }elseif(getenv("HTTP_CLIENT_IP")) {
+			              $realip = getenv("HTTP_CLIENT_IP");
+			        }else{
+			              $realip = getenv("REMOTE_ADDR");
+			        }
+			    }
+
+			    return $realip;
+			}
 	}
