@@ -34,7 +34,7 @@
                 foreach ($blank as $key => $value) {
                     $addblank = false;
 
-                    $find = stripos($username, $value);
+                    $find = stripos(strtolower($username), $value);
                     if ($find !== false) {
                         $addblank = true;
                     }
