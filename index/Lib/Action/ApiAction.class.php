@@ -69,9 +69,9 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
-			if (empty($_POST['googleauth']) || !isset($_POST['googleauth'])) {
-				echo json_encode(array("code" => 101, "success" => false));exit;
-			}
+			// if (empty($_POST['googleauth']) || !isset($_POST['googleauth'])) {
+			// 	echo json_encode(array("code" => 101, "success" => false));exit;
+			// }
 
 	  //   	$googledata['secret'] = "6LfwBVkUAAAAAFbYHUxRn-6Nn2TUdIdP_lvQ2nOX";
 			// $googledata['response'] = $_POST['googleauth'];
