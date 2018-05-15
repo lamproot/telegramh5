@@ -73,16 +73,16 @@
 				echo json_encode(array("code" => 101, "success" => false));exit;
 			}
 
-	    	$googledata['secret'] = "6LfwBVkUAAAAAFbYHUxRn-6Nn2TUdIdP_lvQ2nOX";
-			$googledata['response'] = $_POST['googleauth'];
-			$googledata['remoteip'] = $_SERVER['REMOTE_ADDR'];
+	  //   	$googledata['secret'] = "6LfwBVkUAAAAAFbYHUxRn-6Nn2TUdIdP_lvQ2nOX";
+			// $googledata['response'] = $_POST['googleauth'];
+			// $googledata['remoteip'] = $_SERVER['REMOTE_ADDR'];
 
-			$result = $this->fetch("https://www.google.com/recaptcha/api/siteverify", $googledata);
-			if ($result && $result['success'] == true) {
-				# code...
-			}else{
-				echo json_encode(array("code" => 103, "success" => false));exit;
-			}
+			// $result = $this->fetch("https://www.google.com/recaptcha/api/siteverify", $googledata);
+			// if ($result && $result['success'] == true) {
+			// 	# code...
+			// }else{
+			// 	echo json_encode(array("code" => 103, "success" => false));exit;
+			// }
 
 			// chat_bot_id eth code parent_code status ctrated_at
 			$params = array(
