@@ -117,7 +117,7 @@
 
 	        $upload = new UploadFile(); // 实例化上传类
 	        $upload->maxSize =10000000; // 设置附件上传大小
-	        $upload->savePath = '../Uploads/images/' . $path . '/'; // 设置附件上传目录
+	        $upload->savePath = '../../Uploads/images/' . $path . '/'; // 设置附件上传目录
 	        $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
 	        // $upload->saveRule = 'time';
 	        $upload->uploadReplace = true; //是否存在同名文件是否覆盖
@@ -126,7 +126,7 @@
 	        $upload->thumbMaxHeight = $height; //缩略图处理高度
 	        $upload->thumbPrefix = $prefix; //缩略图前缀
 
-	        $upload->thumbPath = '../Uploads/images/' . $path .'/'; //缩略图保存路径
+	        $upload->thumbPath = '../../Uploads/images/' . $path .'/'; //缩略图保存路径
 	        //$upload->thumbRemoveOrigin = true; //上传图片后删除原图片
 	        $upload->autoSub = false; //是否使用子目录保存图片
 	        $upload->subType = 'date'; //子目录保存规则
@@ -183,7 +183,7 @@
 
 	        $upload = new UploadFile(); // 实例化上传类
 	        $upload->maxSize =10000000; // 设置附件上传大小
-	        $upload->savePath = '../Uploads/images/' . $path . '/'; // 设置附件上传目录
+	        $upload->savePath = '../../Uploads/images/' . $path . '/'; // 设置附件上传目录
 	        $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
 	        // $upload->saveRule = 'time';
 	        $upload->uploadReplace = true; //是否存在同名文件是否覆盖
@@ -192,7 +192,7 @@
 	        $upload->thumbMaxHeight = $height; //缩略图处理高度
 	        $upload->thumbPrefix = $prefix; //缩略图前缀
 
-	        $upload->thumbPath = '../Uploads/images/' . $path .'/'; //缩略图保存路径
+	        $upload->thumbPath = '../../Uploads/images/' . $path .'/'; //缩略图保存路径
 	        //$upload->thumbRemoveOrigin = true; //上传图片后删除原图片
 	        $upload->autoSub = false; //是否使用子目录保存图片
 	        $upload->subType = 'date'; //子目录保存规则
@@ -249,7 +249,7 @@
 
 	        $upload = new UploadFile(); // 实例化上传类
 	        $upload->maxSize =50000000; // 设置附件上传大小
-	        $upload->savePath = '../Uploads/file/' . $path . '/'; // 设置附件上传目录
+	        $upload->savePath = '../../Uploads/file/' . $path . '/'; // 设置附件上传目录
 	        $upload->allowExts = array('apk', 'ipa', 'zip', 'pdf', 'gif'); // 设置附件上传类型
 	        // $upload->saveRule = 'time';
 	        $upload->uploadReplace = true; //是否存在同名文件是否覆盖
