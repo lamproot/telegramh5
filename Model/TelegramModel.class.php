@@ -119,11 +119,12 @@
                 'reply_markup' => $reply_markup
             ]);
 
-            if ($this->ret['result']) {
+            if (isset($this->ret['result'])) {
                 return $this->ret['result']['message_id'];
             }else{
                 return false;
             }
+
         }
         public function editMessage ($chat_id, $message_id, $text, $reply_markup = array (), $parse_mode = 'HTML') {
             $this->ret = $this->callMethod ('editMessageText', [
