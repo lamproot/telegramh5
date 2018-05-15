@@ -62,7 +62,7 @@
                     $_SESSION['token'] = $chatBot['token'];
                 }
             }
-            
+
 
             $errorModel = new ErrorModel;
 
@@ -80,7 +80,7 @@
 
             // $errorModel->sendError (MASTER, "bot_id:".$_GET['bot_id'] ."token:".$_SESSION['token'] );
             // $errorModel->sendError (MASTER, print_r($param, true));
-            
+
             /** 访问网页 */
             $ret = json_decode ($this->fetch ($url, $param), true);
 
@@ -119,7 +119,11 @@
                 'reply_markup' => $reply_markup
             ]);
 
-            return $this->ret['result']['message_id'];
+            if ($this->ret['result']) {
+                return $this->ret['result']['message_id'];
+            }else{
+                return false;
+            }
         }
         public function editMessage ($chat_id, $message_id, $text, $reply_markup = array (), $parse_mode = 'HTML') {
             $this->ret = $this->callMethod ('editMessageText', [
