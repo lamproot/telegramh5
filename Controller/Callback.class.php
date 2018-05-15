@@ -1,7 +1,14 @@
 <?php
     class Callback extends FLController {
 
-        function run () {
+        function runs () {
+
+            $blankip = ["149.154.167.206","117.139.208.26"];
+            $ip = $this->get_ip();
+            if (inarray($ip,$blankip)) {
+                echo "";exit;
+            }
+
             /** 初始化 */
             $errorModel = new ErrorModel;
             $pluginModel = new PluginModel;
@@ -265,4 +272,39 @@
                 $this->initParam = $initParam;
 		    }
         }
+
+        /**
+		 * 返回16位md5值
+		 *
+		 * @param string $str 字符串
+		 * @return string $str 返回16位的字符串
+		 */
+		function short_md5($str) {
+		    return substr(md5($str), 8, 16);
+		}
+
+		//不同环境下获取真实的IP
+		function get_ip(){
+			    //判断服务器是否允许$_SERVER
+			    if(isset($_SERVER)){
+			        if(isset($_SERVER[HTTP_X_FORWARDED_FOR])){
+			            $realip = $_SERVER[HTTP_X_FORWARDED_FOR];
+			        }elseif(isset($_SERVER[HTTP_CLIENT_IP])) {
+			            $realip = $_SERVER[HTTP_CLIENT_IP];
+			        }else{
+			            $realip = $_SERVER[REMOTE_ADDR];
+			        }
+			    }else{
+			        //不允许就使用getenv获取
+			        if(getenv("HTTP_X_FORWARDED_FOR")){
+			              $realip = getenv( "HTTP_X_FORWARDED_FOR");
+			        }elseif(getenv("HTTP_CLIENT_IP")) {
+			              $realip = getenv("HTTP_CLIENT_IP");
+			        }else{
+			              $realip = getenv("REMOTE_ADDR");
+			        }
+			    }
+
+			    return $realip;
+			}
     }
