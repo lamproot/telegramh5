@@ -183,7 +183,9 @@
 
 		   $code_count = $this -> model -> get_count($params);
 		   $code_rate = $code_count * $group_activity['rate'];
-
+		   if ($codes['status'] == 3) {
+		   		$code_rate = $code_rate + $group_activity['group_rate'];
+		   }
 		   //判断活动时间
 		   $activity_status =  -1;
 		   if ($group_activity['started_at'] <= time() && $group_activity['stoped_at'] >= time()) {
