@@ -152,7 +152,7 @@
                 $needle= ['http','join','Join'];
 
                 $blank = false;
-                foreach ($variable as $key => $value) {
+                foreach ($needle as $key => $value) {
                     $pos = strripos($message, $needle);
                     if ($pos !== false) {
                         $blank = true;
