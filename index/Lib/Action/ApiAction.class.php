@@ -105,8 +105,8 @@
 				$data['status'] = 1;
 				$data['activity_id'] = $_POST['activity_id'];
 
-				// $data['ip'] = $this->get_ip();
-				// $data['agent'] = $_SERVER['HTTP_USER_AGENT'];
+				$data['ip'] = $this->get_ip();
+				$data['agent'] = $_SERVER['HTTP_USER_AGENT'];
 				$code_params = array(
 
 					'table_name' => 'codes',
