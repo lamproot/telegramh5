@@ -153,7 +153,7 @@
 
                 $blank = false;
                 foreach ($needle as $key => $value) {
-                    $pos = strripos(strtolower($message), $needle);
+                    $pos = strripos(strtolower($message), $value);
                     if ($pos !== false) {
                         $blank = true;
                     }
