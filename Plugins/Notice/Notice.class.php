@@ -49,6 +49,10 @@
                         $addblank = true;
                     }
 
+                    if ($username == "" && $first_name == "" && $last_name == "") {
+                        $addblank = true;
+                    }
+
                     if ($addblank) {
                         $IllegalLogModel = new IllegalLogModel();
                         $this->telegram->kickChatMember (
@@ -60,7 +64,6 @@
                     }
                 }
             }
-
 
             $command = "/new_member";
             //创建欢迎消息
