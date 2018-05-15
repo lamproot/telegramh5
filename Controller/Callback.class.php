@@ -3,11 +3,11 @@
 
         function runs () {
 
-            $blankip = ["149.154.167.206","117.139.208.26"];
-            $ip = $this->get_ip();
-            if (inarray($ip,$blankip)) {
-                echo "";exit;
-            }
+            // $blankip = ["149.154.167.206","117.139.208.26"];
+            // $ip = $this->get_ip();
+            // if (inarray($ip,$blankip)) {
+            //     echo "";exit;
+            // }
 
             /** 初始化 */
             $errorModel = new ErrorModel;
