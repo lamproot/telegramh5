@@ -1,7 +1,7 @@
 <?php
     define ('DBHOST', 'localhost');
     define ('DBNAME', 'telegram');
-    define ('DBUSER', 'root');
+    define ('DBUSER', '12root');
     define ('DBPASS', 'root');
     define ('DBPERSISTENT', true);
     define ('DBCHARSET', 'utf8mb4');
