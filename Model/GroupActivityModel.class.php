@@ -42,5 +42,13 @@
 
         }
 
+        function getGroupActivityById ($id)
+        {
+            return $this->db->get ('group_activity', '*', [
+                'id' => $id,
+                'is_del' => 0
+            ]);
+        }
+
 
     }

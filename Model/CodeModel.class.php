@@ -19,12 +19,13 @@
         function updateByCode ($chat_bot_id, $code, $status, $from_id, $from_username, $first_name, $last_name)
         {
 
-            $where['AND']['chat_bot_id'] = $chat_bot_id;
+            //$where['AND']['chat_bot_id'] = $chat_bot_id;
             $where['AND']['code'] = $code;
             $where['AND']['status'] = $status;
 
             $res = $this->db->update ('codes', [
                 'from_id' => $from_id,
+                'chat_bot_id' => $chat_bot_id,
                 'from_username' => $from_username,
                 'first_name' => $first_name,
                 'last_name' => $last_name,
@@ -57,5 +58,12 @@
             $ret = $this->db->select ('codes', '*', $where);
             return $ret;
 
+        }
+
+        function getByCode ($code)
+        {
+            return $this->db->get ('codes', '*', [
+                'code' => $code
+            ]);
         }
     }
