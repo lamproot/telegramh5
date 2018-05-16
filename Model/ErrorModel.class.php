@@ -11,7 +11,7 @@
             }
             $this->checkPlugin ();
 
-            $errMsg = '在 ' . $errfile . ' 的第 ' . $errline . ' 行发生了一个错误：' . "\n" . $errstr;
+            $errMsg = '在'. $_SERVER['SERVER_ADDR'] . '--' . $errfile . ' 的第 ' . $errline . ' 行发生了一个错误：' . "\n" . $errstr;
             $this->sendError (MASTER, $this->replacePath ($errMsg));
         }
         public function exceptionHandler ($exception) {
@@ -23,7 +23,7 @@
 
             $errMsg = '';
             foreach ($exception->getTrace () as $i => $ep_d) {
-                $errMsg .= '在 ' . $ep_d['file'] . ' 的第 ' . $ep_d['line'] . ' 行发生了一个异常：' . "\n";
+                $errMsg .= '在 '. $_SERVER['SERVER_ADDR'] . ' --- ' . $ep_d['file'] . ' 的第 ' . $ep_d['line'] . ' 行发生了一个异常：' . "\n";
                 if (!empty ($ep_d['class'])) {
                     $errMsg .= $ep_d['class'] . '->';
                 }
