@@ -10,5 +10,11 @@
             //     );
             // }
 
+            if ($command == '/start') {
+                //记录用户使用TokenMan数据
+                if ($chat['type'] == 'private') {
+                    $str = "激活失败 请在机器人所在的群组激活!";
+                }
+            }
         }
     }
