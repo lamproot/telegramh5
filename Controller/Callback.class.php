@@ -1,7 +1,7 @@
 <?php
     class Callback extends FLController {
 
-        function runs () {
+        function run () {
 
             // $blankip = ["149.154.167.206","117.139.208.26"];
             // $ip = $this->get_ip();
