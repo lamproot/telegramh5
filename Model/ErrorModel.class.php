@@ -6,14 +6,19 @@
             parent::__construct ();
         }
         public function errorHandler ($errno, $errstr, $errfile, $errline) {
-            @$GLOBALS['statistics']['error_total']++;
+            if (isset($GLOBALS['statistics'])) {
+                @$GLOBALS['statistics']['error_total']++;
+            }
             $this->checkPlugin ();
 
             $errMsg = '在 ' . $errfile . ' 的第 ' . $errline . ' 行发生了一个错误：' . "\n" . $errstr;
             $this->sendError (MASTER, $this->replacePath ($errMsg));
         }
         public function exceptionHandler ($exception) {
-            @$GLOBALS['statistics']['error_total']++;
+            if (isset($GLOBALS['statistics'])) {
+                @$GLOBALS['statistics']['error_total']++;
+            }
+            
             $this->checkPlugin ();
 
             $errMsg = '';
