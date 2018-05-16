@@ -16,3 +16,4 @@ admin/config/
 index/config/
 admin/runtime/
 index/runtime/
+Config/Config.php
