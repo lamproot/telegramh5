@@ -1,11 +1,10 @@
 <?php
     class UserTokenManLogModel extends FLModel {
 
-        function add ($chat_bot_id, $message_id, $from_id, $from_username, $first_name, $last_name, $ip, $agent)
+        function add ($chat_bot_id, $from_id, $from_username, $first_name, $last_name, $ip, $agent)
         {
             $this->db->insert ('user_tokenman_log', [
                 'chat_bot_id' => $chat_bot_id,
-                'message_id' => $message_id,
                 'created_at' => time(),
                 'from_id' => $from_id,
                 'from_username' => $from_username,

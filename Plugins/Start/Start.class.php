@@ -22,7 +22,7 @@
                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
                     $ip = $this->get_ip();
                     $agent = $_SERVER['HTTP_USER_AGENT'];
-                    $commandFind = $UserTokenManLogModel-> add ($chat_bot_id, $message_id, $from['id'], $username, $first_name, $last_name, $ip, $agent)
+                    $commandFind = $UserTokenManLogModel-> add ($chat_bot_id, $from['id'], $username, $first_name, $last_name, $ip, $agent)
                 }
             }
         }
