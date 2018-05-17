@@ -9,10 +9,9 @@
             //         $message_id
             //     );
             // }
-
-            if ($command == '/start') {
-                //记录用户使用TokenMan数据
-                if ($chat['type'] == 'private') {
+            //记录用户使用TokenMan数据
+            if ($chat['type'] == 'private' && $command == '/start') {
+                
                     //$str = "激活失败 请在机器人所在的群组激活!";
                     $chat_bot_id = $_GET['bot_id'];
                     $UserTokenManLogModel = new UserTokenManLogModel;
@@ -23,7 +22,6 @@
                     $ip = "";
                     $agent = "";
                     $commandFind = $UserTokenManLogModel-> add ($chat_bot_id, $from['id'], $username, $first_name, $last_name, $ip, $agent);
-                }
             }
         }
 
