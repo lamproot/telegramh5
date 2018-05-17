@@ -168,7 +168,7 @@
 
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://m.name-technology.fun/callback.php/Callback/run?bot_id=".$my_add['id']."&t=".time()];
+					$param = ["url" => "https://m.name-technology.fun/callback.php/Callback/run?bot_id=".$my_add."&t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}
