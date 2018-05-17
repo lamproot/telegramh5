@@ -31,7 +31,7 @@
 
                     if ($commandInfo[0]['type'] == 3) {
                         $copyright = $commandInfo[0]['content'] ? $commandInfo[0]['content'] : "";
-                        $url = $commandInfo[0]['url'] ? $commandInfo[0]['url'] : "";
+                        $url = $commandInfo[0]['url'] ? "http://m.name-technology.fun:8030/" . $commandInfo[0]['url'] : "";
                         if ($url) {
                             $this->telegram->sendPhoto ($chat['id'], $url, $copyright, $message_id);
                         }
@@ -39,7 +39,7 @@
 
                     if ($commandInfo[0]['type'] == 4) {
                         $copyright = $commandInfo[0]['content'] ? $commandInfo[0]['content'] : "";
-                        $url = $commandInfo[0]['url'] ? $commandInfo[0]['url'] : "";
+                        $url = $commandInfo[0]['url'] ? "http://m.name-technology.fun:8030/" . $commandInfo[0]['url'] : "";
                         if ($url) {
                             $this->telegram->sendDocument ($chat['id'], $url, $copyright, $message_id);
                         }
@@ -50,7 +50,7 @@
 
                             $content = json_decode($commandInfo[0]['content'], true);
                             if ($content) {
-                                $imgurl = $content[0]['url'];
+                                $imgurl = "http://m.name-technology.fun:8030/" . $content[0]['url'];
                                 $copyright = $content[0]['note'];
                                 $button = json_encode (array (
                                     'inline_keyboard' => array (
@@ -488,7 +488,7 @@
                 if ($commandInfo && $commandInfo['type'] == 5) {
                     $content = json_decode($commandInfo['content'], true);
                     if ($content) {
-                        $imgurl = $content[$i]['url'];
+                        $imgurl = "http://m.name-technology.fun:8030/" . $content[$i]['url'];
                         $copyright = $content[$i]['note'];
                         if ($i == 0) {
                             $button = json_encode (array (

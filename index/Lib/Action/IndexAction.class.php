@@ -108,6 +108,7 @@
 	    	if ($activity_theme) {
 	    		$group_activity['bglogo'] = $activity_theme['bglogo'] ? $activity_theme['bglogo'] : __PUBLIC__."/img/code1.png";
 	    	}
+			$group_activity['logo'] = FILE_URL . $group_activity['logo'];
 
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
@@ -207,6 +208,7 @@
 	    		$group_activity['dashboard_logo'] = $activity_theme['dashboard'] ? $activity_theme['dashboard'] : __PUBLIC__."/img/dashboard1.png";
 	    	}
 
+	    	$group_activity['logo'] = FILE_URL . $group_activity['logo'];
 			$this -> assign('activity_status', $activity_status);
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
@@ -260,6 +262,8 @@
  	    	if ($activity_theme) {
  	    		$group_activity['bglogo'] = $activity_theme['bglogo'] ? $activity_theme['bglogo'] : __PUBLIC__."/img/activity_bg.png";
  	    	}
+ 	    	$group_activity['logo'] = FILE_URL . $group_activity['logo'];
+
 
 			$this -> assign('group_activity', $group_activity);
 
@@ -319,6 +323,8 @@
  	    	if ($activity_theme) {
  	    		$group_activity['dashboard_logo'] = $activity_theme['dashboard'] ? $activity_theme['dashboard'] : __PUBLIC__."/img/activity_bg.png";
  	    	}
+ 	    	$group_activity['logo'] = FILE_URL . $group_activity['logo'];
+
 
 			$this -> assign('drafters', $drafters);
 			$this -> assign('chat_bot', $chat_bot);

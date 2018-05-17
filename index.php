@@ -6,6 +6,7 @@
 	define('APP_NAME','index');
 	define('APP_PATH','./index/');
 	define('APP_DEBUG',true);
+	define('FILE_URL', 'http://m.name-technology.fun:8030/');
 	require './ThinkPHP/ThinkPHP.php';
 	// define('ROOT',$_SERVER['DOCUMENT_ROOT']);
 	// define('THINK_PATH',ROOT.'/ThinkPHP/');
