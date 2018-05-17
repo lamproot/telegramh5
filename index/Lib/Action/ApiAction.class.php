@@ -193,12 +193,12 @@
 		function get_ip(){
 			    //判断服务器是否允许$_SERVER
 			    if(isset($_SERVER)){
-			        if(isset($_SERVER[HTTP_X_FORWARDED_FOR])){
-			            $realip = $_SERVER[HTTP_X_FORWARDED_FOR];
-			        }elseif(isset($_SERVER[HTTP_CLIENT_IP])) {
-			            $realip = $_SERVER[HTTP_CLIENT_IP];
+			        if(isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+			            $realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+			        }elseif(isset($_SERVER["HTTP_CLIENT_IP"])) {
+			            $realip = $_SERVER["HTTP_CLIENT_IP"];
 			        }else{
-			            $realip = $_SERVER[REMOTE_ADDR];
+			            $realip = $_SERVER["REMOTE_ADDR"];
 			        }
 			    }else{
 			        //不允许就使用getenv获取
