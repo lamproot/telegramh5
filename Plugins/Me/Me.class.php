@@ -24,11 +24,10 @@
 
                 if ($codeInfo && $codeInfo[0] && isset($codeInfo[0]['code'])) {
                     $mycommand = "/code".$codeInfo[0]['code'];
-
                 }else{
                     return;
                 }
-                
+
                 if(preg_match($search,$mycommand,$result)) {
                     $code = str_replace($result[0], "", $mycommand);
                     //查询活动是否结束
