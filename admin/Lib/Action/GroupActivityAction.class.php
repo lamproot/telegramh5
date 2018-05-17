@@ -99,7 +99,7 @@
 				if ($logo['status'] == 1)
 				{
 					$data['url'] = $logo['msg'];
-					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
+					$data['logo'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/group_activity/".$data['url'];
 				}
 
 	    		$params = array(
@@ -217,7 +217,7 @@
 				if ($logo['status'] == 1)
 				{
 					$data['url'] = $logo['msg'];
-					$data['logo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/group_activity/".$data['url'];
+					$data['logo'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/group_activity/".$data['url'];
 				}
 
 	    		$params = array(
