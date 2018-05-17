@@ -97,7 +97,7 @@
 						$this -> _back($logo['msg']);
 					}
 
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
+					$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$data['url'];
 				}
 
 				if (intval($data['type']) === 4) {
@@ -113,7 +113,7 @@
 						$this -> _back($logo['msg']);
 					}
 
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
+					$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/file/command_file/".$data['url'];
 				}
 
 
@@ -171,7 +171,7 @@
 					foreach ($logo as $key => $value) {
 						if ($value['file']['status'] == 1)
 						{
-							$data['content'][$key]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['file']['msg'];
+							$data['content'][$key]['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$value['file']['msg'];
 
 							$data['content'][$key]['note'] = isset($content[$key]) ? $content[$key] : "";
 						}
@@ -261,7 +261,7 @@
 					if ($logo['status'] == 1)
 					{
 						$data['url'] = $logo['msg'];
-						$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
+						$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$data['url'];
 					}
 				}
 
@@ -272,7 +272,7 @@
 					if ($logo['status'] == 1)
 					{
 						$data['url'] = $logo['msg'];
-						$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
+						$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/file/command_file/".$data['url'];
 					}
 				}
 
@@ -369,7 +369,7 @@
 									foreach ($logo[$kvalue] as $key => $value) {
 										if ($value['status'] == 1)
 										{
-											$file['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$value['msg'];
+											$file['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$value['msg'];
 
 											$file['note'] = isset($content[$key]) ? $content[$key] : "";
 											$data['content'][] = $file;
@@ -384,7 +384,7 @@
 
 									if ($logo[$kvalue][0]['status'] == 1)
 									{
-										$data['content'][$k]['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$logo[$kvalue][0]['msg'];
+										$data['content'][$k]['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$logo[$kvalue][0]['msg'];
 									}
 									elseif ($logo[$kvalue][0]['status'] == 0)
 									{

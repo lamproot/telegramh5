@@ -89,7 +89,7 @@
 					if ($logo['file'][0]['status'] == 1)
 					{
 						$data['url'] = $logo['file'][0]['msg'];
-						$data['bglogo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/activity/".$data['url'];
+						$data['bglogo'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/activity/".$data['url'];
 					}
 					elseif ($logo['file'][0]['status'] == 0)
 					{
@@ -101,7 +101,7 @@
 					if ($logo['file_dashboard'][0]['status'] == 1)
 					{
 						$data['dashboard_url'] = $logo['file_dashboard'][0]['msg'];
-						$data['dashboard'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/activity/".$data['dashboard_url'];
+						$data['dashboard'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/activity/".$data['dashboard_url'];
 				
 					}
 					elseif ($logo['file_dashboard'][0]['status'] == 0)
@@ -185,7 +185,7 @@
 					if ($logo['file'][0]['status'] == 1)
 					{
 						$data['url'] = $logo['file'][0]['msg'];
-						$data['bglogo'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/activity/".$data['url'];
+						$data['bglogo'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/activity/".$data['url'];
 					}
 					elseif ($logo['file'][0]['status'] == 0)
 					{
@@ -197,7 +197,7 @@
 					if ($logo['file_dashboard'][0]['status'] == 1)
 					{
 						$data['dashboard_url'] = $logo['file_dashboard'][0]['msg'];
-						$data['dashboard'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/activity/".$data['dashboard_url'];
+						$data['dashboard'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/activity/".$data['dashboard_url'];
 				
 					}
 					elseif ($logo['file_dashboard'][0]['status'] == 0)

@@ -95,7 +95,7 @@
 						$this -> _back($logo['msg']);
 					}
 
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/images/command/".$data['url'];
+					$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/images/command/".$data['url'];
 				}
 
 				if (intval($data['type']) === 4) {
@@ -111,7 +111,7 @@
 						$this -> _back($logo['msg']);
 					}
 
-					$data['url'] = "http://".$_SERVER['HTTP_HOST'] ."/Uploads/file/command_file/".$data['url'];
+					$data['url'] = "http://".$_SERVER['SERVER_NAME'].":8030"."/Uploads/file/command_file/".$data['url'];
 				}
 
 
