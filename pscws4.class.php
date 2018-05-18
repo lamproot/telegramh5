@@ -264,8 +264,8 @@ class PSCWS4
 				$pflag &= ~PSCWS4_PFLAG_VALID;
 				for ($i = $off+1; $i < ($off+3); $i++)
 				{
-					$ch = $txt[$i];
-					$cx = ord($ch);
+					$ch = @$txt[$i];
+					$cx = @ord($ch);
 					if (($i >= $len) || ($cx <= 0x20) || ($this->_ztab[$cx] > 1))
 					{
 						$pflag |= PSCWS4_PFLAG_VALID;
@@ -920,7 +920,7 @@ class PSCWS4
 			{
 				while ($start++ < $end)
 				{
-					$cx = ord($txt[$start]);
+					$cx = @ord($txt[$start]);
 					if ($this->_ztab[$cx] > 1) break;
 					$clen++;
 				}

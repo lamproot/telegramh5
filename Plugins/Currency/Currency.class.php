@@ -67,24 +67,57 @@
                             $name = isset($apiresultJson['data']['name']) ? $apiresultJson['data']['name'] : "";
                             $rank = isset($apiresultJson['data']['rank']) ? $apiresultJson['data']['rank'] : "";
 
-                            $circulating_supply = isset($apiresultJson['data']['circulating_supply']) ? $this->bqwhitscn($apiresultJson['data']['circulating_supply']) : "";
 
-                            $market_cap = isset($apiresultJson['data']['quotes'][$convert]['market_cap']) ? $convert . " " . $this->bqwhitscn($apiresultJson['data']['quotes'][$convert]['market_cap'])  : "";
-                            $price = isset($apiresultJson['data']['quotes'][$convert]['price']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['price'],4) : "";
-                            $volume_24h = isset($apiresultJson['data']['quotes'][$convert]['volume_24h']) ?  $convert . " " . $this->bqwhitscn($apiresultJson['data']['quotes'][$convert]['volume_24h']) : "";
 
                             $percent_change_24h = isset($apiresultJson['data']['quotes'][$convert]['percent_change_24h']) ? $apiresultJson['data']['quotes'][$convert]['percent_change_24h'] . "%" : "";
                             $percent_change_7d = isset($apiresultJson['data']['quotes'][$convert]['percent_change_7d']) ? $apiresultJson['data']['quotes'][$convert]['percent_change_7d'] . "%" : "";
                             $percent_change_1h = isset($apiresultJson['data']['quotes'][$convert]['percent_change_1h']) ? $apiresultJson['data']['quotes'][$convert]['percent_change_1h'] . "%" : "";
 
+                            
+                            
+                            $button_text = "Click here to know more about the currency market";
                             if ($convert == 'CNY') {
-                                $msg = "名称：{$name} \n 排名：{$rank} \n 市值：{$market_cap} \n 综合价格：{$price} \n 成交量：{$volume_24h} \n 流通量：{$circulating_supply} \n 涨幅(1H)：{$percent_change_1h} \n 涨幅(24H)：{$percent_change_24h}  \n 涨幅(7D)：{$percent_change_7d}";
+                                $button_text = "私信TokenMan了解更多币种行情";
+                                $circulating_supply = isset($apiresultJson['data']['circulating_supply']) ? $this->bqwhitscn($apiresultJson['data']['circulating_supply']) : "";
+                                $market_cap = isset($apiresultJson['data']['quotes'][$convert]['market_cap']) ? $convert . " " . $this->bqwhitscn($apiresultJson['data']['quotes'][$convert]['market_cap'])  : "";
+                                $price = isset($apiresultJson['data']['quotes'][$convert]['price']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['price'],4) : "";
+                                $volume_24h = isset($apiresultJson['data']['quotes'][$convert]['volume_24h']) ?  $convert . " " . $this->bqwhitscn($apiresultJson['data']['quotes'][$convert]['volume_24h']) : "";
+
+                                $msg = "名称：{$name} \n 排名：{$rank} \n 市值：{$market_cap} \n 综合价格：{$price} \n 成交量：{$volume_24h} \n 流通量：{$circulating_supply} \n 涨幅(1H)：{$percent_change_1h} \n 涨幅(24H)：{$percent_change_24h}  \n 涨幅(7D)：{$percent_change_7d}"."";
                             }else{
-                                $msg = "Name：{$name} \n Rank：{$rank} \n Market Cap：{$market_cap} \n Price：{$price} \n Volume：{$volume_24h} \n Circulating Supply：{$circulating_supply} \n Percent Change(1H)：{$percent_change_1h} \n Percent Change(24H)：{$percent_change_24h}  \n Percent Change(7D)：{$percent_change_7d}";
+
+                                $circulating_supply = isset($apiresultJson['data']['circulating_supply']) ? number_format($apiresultJson['data']['circulating_supply']) : "";
+                                $market_cap = isset($apiresultJson['data']['quotes'][$convert]['market_cap']) ? $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['market_cap'])  : "";
+                                $price = isset($apiresultJson['data']['quotes'][$convert]['price']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['price'],4) : "";
+                                $volume_24h = isset($apiresultJson['data']['quotes'][$convert]['volume_24h']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['volume_24h']) : "";
+
+                                $msg = "Name：{$name} \n Rank：{$rank} \n Market Cap：{$market_cap} \n Price：{$price} \n Volume：{$volume_24h} \n Circulating Supply：{$circulating_supply} \n Percent Change(1H)：{$percent_change_1h} \n Percent Change(24H)：{$percent_change_24h}  \n Percent Change(7D)：{$percent_change_7d}"."";
                             }
 
-                            $errorModel = new ErrorModel;
-                            $errorModel->sendError (MASTER, $msg);
+                            // $errorModel = new ErrorModel;
+                            // $errorModel->sendError (MASTER, $msg);exit;
+
+                            $button = json_encode (array (
+                                'inline_keyboard' => array (
+                                    array (array (
+
+                                        'text' => $button_text,
+                                        'url' => 'http://t.me/TokenManBot'
+                                    ))
+                                )
+                            ));
+
+                            $message = $msg;
+                            
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id,
+                                $button
+                            );
+
+                            // $errorModel = new ErrorModel;
+                            // $errorModel->sendError (MASTER, $msg ."\n" ."私信TokenMan了解更多币种行情 \n Send a private message to TokenMan know more about the currency market.");
                         }
                     }
                 }
