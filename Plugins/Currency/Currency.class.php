@@ -83,7 +83,7 @@
                                 $price = isset($apiresultJson['data']['quotes'][$convert]['price']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['price'],4) : "";
                                 $volume_24h = isset($apiresultJson['data']['quotes'][$convert]['volume_24h']) ?  $convert . " " . $this->bqwhitscn($apiresultJson['data']['quotes'][$convert]['volume_24h']) : "";
 
-                                $msg = " 名称：{$name} \n 排名：{$rank} \n 市值：{$market_cap} \n 综合价格：{$price} \n 成交量：{$volume_24h} \n 流通量：{$circulating_supply} \n 涨幅(1H)：{$percent_change_1h} \n 涨幅(24H)：{$percent_change_24h}  \n 涨幅(7D)：{$percent_change_7d}"."";
+                                $msg = " 名称：{$name} \n排名：{$rank} \n市值：{$market_cap} \n综合价格：{$price} \n成交量：{$volume_24h} \n流通量：{$circulating_supply} \n涨幅(1H)：{$percent_change_1h} \n涨幅(24H)：{$percent_change_24h}  \n涨幅(7D)：{$percent_change_7d}"."";
                             }else{
 
                                 $circulating_supply = isset($apiresultJson['data']['circulating_supply']) ? number_format($apiresultJson['data']['circulating_supply']) : "";
@@ -91,7 +91,7 @@
                                 $price = isset($apiresultJson['data']['quotes'][$convert]['price']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['price'],4) : "";
                                 $volume_24h = isset($apiresultJson['data']['quotes'][$convert]['volume_24h']) ?  $convert . " " . number_format($apiresultJson['data']['quotes'][$convert]['volume_24h']) : "";
 
-                                $msg = " Name：{$name} \n Rank：{$rank} \n Market Cap：{$market_cap} \n Price：{$price} \n Volume：{$volume_24h} \n Circulating Supply：{$circulating_supply} \n Percent Change(1H)：{$percent_change_1h} \n Percent Change(24H)：{$percent_change_24h}  \n Percent Change(7D)：{$percent_change_7d}"."";
+                                $msg = "Name：{$name} \nRank：{$rank} \nMarket Cap：{$market_cap} \nPrice：{$price} \nVolume：{$volume_24h} \nCirculating Supply：{$circulating_supply} \nPercent Change(1H)：{$percent_change_1h} \nPercent Change(24H)：{$percent_change_24h}  \nPercent Change(7D)：{$percent_change_7d}"."";
                             }
 
                             // $errorModel = new ErrorModel;
