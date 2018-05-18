@@ -12,7 +12,8 @@
 
             $search = "/^\//i";
 
-            // $errorModel = new ErrorModel;
+            if ($command != "/start") {
+                // $errorModel = new ErrorModel;
             // $errorModel->sendError (MASTER,$search);exit;
             if(preg_match($search,$command,$result)) {
 
@@ -124,6 +125,9 @@
 
 
             }
+            }
+
+            
             //获取
             // if ($command == '/marketlist') {
             //     //记录用户使用TokenMan数据
