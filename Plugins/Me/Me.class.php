@@ -13,6 +13,28 @@
                 //     $_SESSION['token'] = $chatBot['token'];
                 // }
 
+                if ($chat['type'] == 'supergroup') {
+                    $button = json_encode (array (
+                        'inline_keyboard' => array (
+                            array (array (
+
+                                'text' => "Click here to send code to TokenMan",
+                                'url' => 'http://t.me/'.$chatBot['tokenman_name']
+                            ))
+                        )
+                    ));
+
+                    $message = "Invalid！";
+                    
+                    $this->telegram->sendMessage (
+                        $chat['id'],
+                        $message,
+                        $message_id,
+                        $button
+                    );
+                    return;
+                }
+
                 $code_cmd = ($chatBot && isset($chatBot['code_cmd'])) ? str_replace("/", "", $chatBot['code_cmd']): "code";
                 $search = "/^\/".$code_cmd."/i";
 

@@ -53,6 +53,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">TokenMan名称:</label>
+                            <div class="col-sm-6">
+                                <input id="tokenman_name" name="tokenman_name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
 							<label class="col-sm-3 control-label">备注</label>
 							<div class="col-sm-6">
 								<input id="remark" name="remark" value="{$result['remark']}" class="form-control" type="text">
@@ -113,9 +120,9 @@
 			   token: {
 				   required: true
 			   },
-			   // chat_id: {
-				//    required: true,
-			   // },
+			   tokenman_name: {
+				   required: true,
+			   },
 			   // master_id: {
 				//    required: true
 			   // },

@@ -53,6 +53,12 @@
 							</div>
 						</div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">TokanMan名称:</label>
+                            <div class="col-sm-6">
+                                <input id="tokenman_name" name="tokenman_name" value="{$result['tokenman_name']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">chat_id:</label>
                             <div class="col-sm-6">
                                 <input id="chat_id" name="chat_id" value="{$result['chat_id']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
@@ -74,20 +80,25 @@
 						</div>
 
 
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">是否开启消息过滤:</label>
-							<div class="col-sm-6">
-								<input id="code_cmd" name="code_cmd" value="{$result['code_cmd']}" class="form-control" type="text">
-							</div>
-						</div>
-
-
+              
                         <div class="form-group">
                            <label class="col-sm-3 control-label">是否开启消息过滤:</label>
                            <div class="col-sm-6">
                                <select class="form-control" name="is_shield">
                                    <option  <if condition="$result['is_shield'] == 0">selected="selected"</if> value="0">不开启</option>
                                    <option  <if condition="$result['is_shield'] == 1">selected="selected"</if> value="1">开启</option>
+                               </select>
+                               <p>开启过滤 标签 图片 文件 敏感词</p>
+                           </div>
+                        </div>
+
+
+                        <div class="form-group">
+                           <label class="col-sm-3 control-label">是否开启实时报价:</label>
+                           <div class="col-sm-6">
+                               <select class="form-control" name="is_currency">
+                                   <option  <if condition="$result['is_currency'] == 0">selected="selected"</if> value="0">不开启</option>
+                                   <option  <if condition="$result['is_currency'] == 1">selected="selected"</if> value="1">开启</option>
                                </select>
                                <p>开启过滤 标签 图片 文件 敏感词</p>
                            </div>
@@ -147,9 +158,9 @@
 			   token: {
 				   required: true
 			   },
-			   // chat_id: {
-				//    required: true,
-			   // },
+			   tokenman_name: {
+				   required: true,
+			   },
 			   // master_id: {
 				//    required: true
 			   // },

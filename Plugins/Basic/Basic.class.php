@@ -85,7 +85,7 @@
             }
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
 
                 $this->telegram->sendMessage (
                     $chat['id'],
@@ -114,7 +114,7 @@
                 return true;
             }
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
 
                 $this->telegram->sendMessage (
                     $chat['id'],
@@ -152,7 +152,7 @@
                 $needle= 'http';
                 $pos = strripos($message, $needle);
                 if (preg_match($regex, $message) || $pos !== false) {
-                    $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                    $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
 
                     $IllegalLogModel = new IllegalLogModel;
 
@@ -171,7 +171,7 @@
                         $codeModel = new CodeModel;
                         $codeModel->updateByFromId($chat_bot_id, $from['id']);
 
-                         $this->telegram->sendMessage (
+                        $this->telegram->sendMessage (
                             $chat['id'],
                             $sendmessage,
                             $message_id
@@ -213,7 +213,7 @@
                         $word = $sensitiveWordsModel->find($result);
 
                         if ($word) {
-                            $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                            $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
                             $IllegalLogModel = new IllegalLogModel;
 
                             //查询违规数据是否大于3次
@@ -252,7 +252,7 @@
                         }else{
                             $word = $sensitiveWordsModel->find([$message]);
                             if ($word) {
-                                $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                                $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
                                 $IllegalLogModel = new IllegalLogModel;
 
                                 //查询违规数据是否大于3次
@@ -294,7 +294,7 @@
                     }else{
                         $word = $sensitiveWordsModel->find([$message]);
                         if ($word) {
-                            $sendmessage = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                            $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
                             $IllegalLogModel = new IllegalLogModel;
 
                             //查询违规数据是否大于3次
@@ -353,7 +353,7 @@
             }
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Opps... error！Any ads posted in here are not allowed ，such as profiles，links，pictures etc... They will be automatically deleted. Please don't send these contents any more，or you will be taken out of the group.";
+                $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
 
                 $this->telegram->sendMessage (
                     $chat['id'],

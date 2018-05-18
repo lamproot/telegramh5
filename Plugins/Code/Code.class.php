@@ -11,6 +11,29 @@
             $search = "/^\/".$code_cmd."/i";
 
             if(preg_match($search,$command,$result)) {
+
+                if ($chat['type'] == 'supergroup') {
+                    $button = json_encode (array (
+                        'inline_keyboard' => array (
+                            array (array (
+
+                                'text' => "Click here to send code to TokenMan",
+                                'url' => 'http://t.me/'.$chatBot['tokenman_name']
+                            ))
+                        )
+                    ));
+
+                    $message = "Invalid！";
+                    
+                    $this->telegram->sendMessage (
+                        $chat['id'],
+                        $message,
+                        $message_id,
+                        $button
+                    );
+                    return;
+                }
+
                 $code = str_replace($result[0], "", $command);
                 //获取是否Code验证
                 $codeModel = new CodeModel;
