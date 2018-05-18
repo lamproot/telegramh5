@@ -227,6 +227,7 @@
 				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
 				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
 				$data['is_shield'] = isset($_POST['is_shield']) ? $_POST['is_shield'] : 0;
+				$data['is_currency'] = isset($_POST['is_currency']) ? $_POST['is_currency'] : 0;
 
 	    		$data['updated_at'] = time();
 
