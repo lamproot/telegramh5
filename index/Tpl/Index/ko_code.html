@@ -3,7 +3,7 @@
     <head lang="zh">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>
-            {$group_activity['en_title']}
+            {$group_activity_language['title']}
         </title>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
@@ -45,11 +45,9 @@
         <div class="container">
             <form class="row">
                 <div class="col-sm-12 text-right lang-box">
-                    <if condition="$_GET['callback'] == 'ko'">
-                        <a href="__APP__/Index/code/{$code}?lang=ko" class="lang">한국어</a>
-                    <else/>
-                        <a href="__APP__/Index/code/{$code}?lang=ch" class="lang">中文</a>
-                    </if>
+                    <a href="javascript:void(0);" class="lang">
+                        English
+                    </a>
                 </div>
                 <div class="col-sm-12 text-center">
                     <img class="logo" src="{$group_activity['logo']}" alt="" />
@@ -57,18 +55,18 @@
                 <div class="col-sm-12 text-center">
                     <a href="{$group_activity['join_button_url']}" class="join border-radius"
                     style="text-decoration:none;">
-                        {$group_activity['en_join_button_text']}
+                        {$group_activity_language['join_button_text']}
                     </a>
                 </div>
                 <div class="col-sm-12 text-center">
                     <div class="desc">
-                        {$group_activity['en_message']}
+                        {$group_activity_language['message']}
                     </div>
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
                     <if condition="$group_activity['placeholder_text'] neq ''">
-                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['en_placeholder_text']}"
+                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity_language['placeholder_text']}"
                         />
                         <else />
                         <input name="wallet" class="address border-radius text-center" placeholder="Please enter your ETH wallet address"
@@ -87,14 +85,14 @@
                     <button type="button" href="javascript:void(0);" class="submit border-radius text-center ladda-button"
                     data-style="zoom-in">
                         <span class="ladda-label">
-                            Submit
+                            제출
                         </span>
                     </button>
                 </div>
                 <div class="col-sm-12 text-center rule-box">
                     <a class="link" data-toggle="modal" data-target="#myModal" href="" onclick="return false;">
                         <u>
-                            Activity Details
+                            상세한 상황
                         </u>
                     </a>
                 </div>
@@ -110,11 +108,11 @@
                                 <!-- <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4> -->
                             </div>
                             <div class="modal-body" style="white-space:pre-wrap;font-size:16px">
-                                {$group_activity['en_rule']|htmlspecialchars_decode}
+                                {$group_activity_language['rule']|htmlspecialchars_decode}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    关闭
+                                    Close
                                 </button>
                                 <!-- <button type="button" class="btn btn-primary">提交更改</button> -->
                             </div>
@@ -146,7 +144,7 @@
         </script>
 
 
-           <script src="https://www.google.com/recaptcha/api.js?hl=en&onload=onloadCallback&render=explicit"
+           <script src="https://www.google.com/recaptcha/api.js?hl=ko&onload=onloadCallback&render=explicit"
                async defer>
             </script>
 
@@ -241,7 +239,7 @@
                 });
 
                 $('.lang').click(function() {
-                    location.href = location.protocol + '//' + location.host + location.pathname + '?lang=ch' + ('' ? '&code=': '')
+                    location.href = location.protocol + '//' + location.host + location.pathname + '?lang=en' + ('' ? '&code=': '') +'&callback=ko'
                 });
             });
         </script>

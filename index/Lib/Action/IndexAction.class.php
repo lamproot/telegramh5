@@ -110,6 +110,20 @@
 	    	}
 			$group_activity['logo'] = FILE_URL . $group_activity['logo'];
 
+			//获取(多语言)韩语配置数据
+			// $activity_language = [];
+			// if ($_GET['lang'] != '' && $_GET['lang'] != 'en' && $_GET['lang'] != 'ch' ) {
+			// 	$params = array(
+			// 		'table_name' => 'activity_language',
+			// 		'where' => "activity_id = {$group_activity['id']} and language = {$group_activity['ex_language']}"
+			// 	);
+			// 	$activity_language = $this -> model -> my_find($params);
+			// }
+			if ($_GET['lang'] != '' && $_GET['lang'] != 'en' && $_GET['lang'] != 'ch' ) {
+				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				$this -> assign('group_activity_language', $group_activity_language[$_GET['lang']]);
+			}
+			
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
 			$this -> assign('group_activity', $group_activity);
@@ -117,6 +131,8 @@
 
 			if ($_GET['lang'] == 'en') {
 				$this -> display('en_code');
+			}else if ($_GET['lang'] == 'ko') {
+				$this -> display('ko_code');
 			}else{
 				$this -> display();
 			}
@@ -209,6 +225,26 @@
 	    	}
 
 	    	$group_activity['logo'] = FILE_URL . $group_activity['logo'];
+
+			// $group_activity_language["ko"]["language"] = "ko";
+			// $group_activity_language["ko"]["language_text"] = "한국어";
+			// $group_activity_language["ko"]["title"] = "Tron 에어드롭을 시작하였습니다.";
+			// $group_activity_language['ko']['join_button_text'] = "트론의 공식 텔레그램에 가입해주세요.";
+			// $group_activity_language['ko']['message'] = "처음 트론 텔레그램에 가입하면 2TRX를 획득합니다.또한 한명씩 초대할때 마다 4TRX를 획득할 수 있습니다.최대 초대 인원수는 150명입니다.";
+			// $group_activity_language['ko']['rule'] = "";
+			// $group_activity_language['ko']['placeholder_text'] = "ETH 지갑 주소를 입력해주세요.";
+			// $group_activity_language['ko']['step1'] = "1.인증 코드를 복사해주세요.";
+			// $group_activity_language['ko']['step2'] = "2.복사 버튼을 클릭하고 코드를TokenMan에게 전송해주세요.텔레그램 단톡방에 보내시면 무효입니다.";
+			// $group_activity_language['ko']['step3'] = "3.아래의 링크를 친구들에게 공유해주세요.한명씩 초대 성공할때마다 20TRX를 획득할 수 있습니다.";
+			// $group_activity_language['ko']['step4'] = "4.이벤트를 공유하고 공식 소셜 플랫폼을 팔로우해주세요. ";
+
+			//echo addslashes(json_encode($group_activity_language));exit;
+
+			if ($_GET['lang'] != '' && $_GET['lang'] != 'en' && $_GET['lang'] != 'ch' ) {
+				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				$this -> assign('group_activity_language', $group_activity_language[$_GET['lang']]);
+			}
+
 			$this -> assign('activity_status', $activity_status);
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
@@ -218,9 +254,11 @@
 			$this -> assign('code_rate', $code_rate);
 
 			if ($_GET['lang'] == 'en') {
-			   $this -> display('en_dashboard');
+				$this -> display('en_dashboard');
+			}else if ($_GET['lang'] == 'ko') {
+				$this -> display('ko_dashboard');
 			}else{
-			   $this -> display();
+				$this -> display();
 			}
 	   }
 
