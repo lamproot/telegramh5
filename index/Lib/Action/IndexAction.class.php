@@ -123,7 +123,7 @@
 				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
 				$this -> assign('group_activity_language', $group_activity_language[$_GET['lang']]);
 			}
-			
+
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
 			$this -> assign('group_activity', $group_activity);
@@ -237,12 +237,22 @@
 			// $group_activity_language['ko']['step2'] = "2.복사 버튼을 클릭하고 코드를TokenMan에게 전송해주세요.텔레그램 단톡방에 보내시면 무효입니다.";
 			// $group_activity_language['ko']['step3'] = "3.아래의 링크를 친구들에게 공유해주세요.한명씩 초대 성공할때마다 20TRX를 획득할 수 있습니다.";
 			// $group_activity_language['ko']['step4'] = "4.이벤트를 공유하고 공식 소셜 플랫폼을 팔로우해주세요. ";
-
-			//echo addslashes(json_encode($group_activity_language));exit;
+			// $group_activity_language['ko']['tokenman_url'] = "https://t.me/TronKObot";
+			// $group_activity_language['en']['tokenman_url'] = "https://t.me/TronENbot";
+			// echo addslashes(json_encode($group_activity_language));exit;
 
 			if ($_GET['lang'] != '' && $_GET['lang'] != 'en' && $_GET['lang'] != 'ch' ) {
 				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
 				$this -> assign('group_activity_language', $group_activity_language[$_GET['lang']]);
+				$group_activity['tokenman_url'] = $group_activity_language[$_GET['lang']]['tokenman_url'];
+			}
+
+			if ($_GET['lang'] != '') {
+				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				if (isset($group_activity_language[$_GET['lang']])) {
+					$group_activity['tokenman_url'] = $group_activity_language[$_GET['lang']]['tokenman_url'];
+				}
+
 			}
 
 			$this -> assign('activity_status', $activity_status);
