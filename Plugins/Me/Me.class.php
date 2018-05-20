@@ -25,7 +25,7 @@
                     ));
 
                     $message = "Invalid！";
-                    
+
                     $this->telegram->sendMessage (
                         $chat['id'],
                         $message,
@@ -54,17 +54,19 @@
                     $code = str_replace($result[0], "", $mycommand);
                     //查询活动是否结束
                     $groupActivityModel = new GroupActivityModel;
-                    $groupActivityFind = $groupActivityModel->getGroupActivityByChatId($chat_bot_id);
+                    //$groupActivityFind = $groupActivityModel->getGroupActivityByChatId($chat_bot_id);
+
+                    $groupActivityFind = $groupActivityModel->getGroupActivityById($codeInfo['activity_id']);
 
                     //判断活动时间
                     $activity_status =  -1;
-                    if ($groupActivityFind[0] && intval($groupActivityFind[0]['started_at']) <= time() && intval($groupActivityFind[0]['stoped_at']) >= time()) {
+                    if ($groupActivityFind && intval($groupActivityFind['started_at']) <= time() && intval($groupActivityFind['stoped_at']) >= time()) {
                         $activity_status =  0;
                     }
 
-                    if ($groupActivityFind[0] && $activity_status == -1) {
+                    if ($groupActivityFind && $activity_status == -1) {
 
-                        $message = $groupActivityFind[0]['activity_end_text'];
+                        $message = $groupActivityFind['activity_end_text'];
 
                         $this->telegram->sendMessage (
                             $chat['id'],
