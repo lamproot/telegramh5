@@ -56,7 +56,7 @@
                     $groupActivityModel = new GroupActivityModel;
                     //$groupActivityFind = $groupActivityModel->getGroupActivityByChatId($chat_bot_id);
 
-                    $groupActivityFind = $groupActivityModel->getGroupActivityById($codeInfo['activity_id']);
+                    $groupActivityFind = $groupActivityModel->getGroupActivityById($codeInfo[0]['activity_id']);
 
                     //判断活动时间
                     $activity_status =  -1;
