@@ -219,7 +219,7 @@
                         dataType: 'json'
                     }).done(function(res) {
                         if (res && res.success) {
-                            window.location.href = '/Index/dashboard/' + res.usercode;
+                            window.location.href = '/Index/dashboard/' + res.usercode + '?lang=ko';
                         } else {
                             if (ladda) {
                                 ladda.stop();
