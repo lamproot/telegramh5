@@ -52,6 +52,14 @@
 
 
                     if ($result) {
+                        $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+                        $chatBotModel = new chatBotModel;
+                        $chatBot = $chatBotModel->getById($chat_bot_id);
+
+                        if ($chatBot && isset($chatBot['is_currency']) && intval($chatBot['is_currency']) != 1) {
+                            return;
+                        }
+
                         $result = array_values($result);
                         if ($result && isset($result[0]) && isset($result[0]['symbol']) && isset($result[0]['id'])) {
                             $id = $result[0]['id'];
@@ -108,8 +116,18 @@
                                     )
                                 ));
 
+                                //获取是否支持其他币查询
+                                $BotCurrencyModel = new BotCurrencyModel;
+
+                                $bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+                                $currencyName = strtolower($currencyName);
+                                $BotCurrency = $BotCurrencyModel->getByChatBotId($bot_id, $currencyName);
+                                    
+                                if (!$BotCurrency) {
+                                    $msg = "Invalid！";
+                                }
+
                                 $message = $msg;
-                                
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     $message,
