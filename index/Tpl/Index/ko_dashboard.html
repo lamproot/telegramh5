@@ -26,9 +26,9 @@
         </div>
 
         <if condition = "$activity_status eq -1">
-    		<div class="col-sm-12 text-center">
+    		<!-- <div class="col-sm-12 text-center">
                 <a href="{$group_activity['join_button_url']}" class="join border-radius">Join {$group_activity_language['join_button_text']} Telegram Group</a>
-            </div>
+            </div> -->
     		<div class="col-sm-12 text-center" stye="">
                     <p class="desc">{$group_activity_language['message']}</p>
                     <!-- <p class="desc">如果您對奖励的 {$group_activity['rate_unit']} 數量正確性有疑問，請<a href="{$group_activity['join_button_url']}"><u>Telegram</u></a>联系客服，我們工作人員會核實數據。</p> -->
@@ -47,7 +47,7 @@
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity_language['step2']">2.Click the button，send the code to TokenMan<else /> {$group_activity_language['step2']}</empty></p>
-                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
+                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">TokenMan에게 인증 코드를 전송해주세요.</a>
                 <!-- <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">Join {$group_activity['join_button_text']} Telegram Group</a> -->
             </div>
             <div class="col-sm-12 text-left">
@@ -73,13 +73,13 @@
 
         <div class="col-sm-6 text-center">
             <div class="data-box">
-                <p>Invited</p>
+                <p>초대 인원수</p>
                 <h3>{$code_count}</h3>
             </div>
         </div>
         <div class="col-sm-6 text-center">
             <div class="data-box">
-                <p>Earned {$group_activity['rate_unit']}</p>
+                <p>보상 획득 {$group_activity['rate_unit']}</p>
                 <h3>{$code_rate}</h3>
             </div>
         </div>
