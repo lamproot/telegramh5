@@ -131,6 +131,7 @@
 				}
 			}else{
 				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				$_GET['lang'] = 'ch';
 				if (isset($group_activity_language[$_GET['lang']]) && isset($group_activity_language[$_GET['lang']]['join_button_url'])) {
 					$group_activity['join_button_url'] = $group_activity_language[$_GET['lang']]['join_button_url'];
 				}
