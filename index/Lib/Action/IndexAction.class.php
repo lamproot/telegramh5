@@ -129,6 +129,11 @@
 				if (isset($group_activity_language[$_GET['lang']]) && isset($group_activity_language[$_GET['lang']]['join_button_url'])) {
 					$group_activity['join_button_url'] = $group_activity_language[$_GET['lang']]['join_button_url'];
 				}
+			}else{
+				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				if (isset($group_activity_language[$_GET['lang']]) && isset($group_activity_language[$_GET['lang']]['join_button_url'])) {
+					$group_activity['join_button_url'] = $group_activity_language[$_GET['lang']]['join_button_url'];
+				}
 			}
 
 			$this -> assign('codes', $codes);
