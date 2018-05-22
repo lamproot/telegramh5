@@ -49,14 +49,22 @@
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity['step2']">2.点击按钮，将code码发送至TokenMan<else /> {$group_activity['step2']}</empty></p>
-                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">发送code码给TokenMan</a>
-                <!-- <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">加入{$group_activity['join_button_text']}电报群</a> -->
+                <if condition="$group_activity['activate_type'] eq 0">
+                    <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">发送code码给TokenMan</a>
+                </if>
+                <if condition="$group_activity['activate_type'] eq 1">
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                </if>
+                <if condition="$group_activity['activate_type'] eq 2">
+                    <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">发送code码给TokenMan</a>
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                </if>
             </div>
 
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity['step3']">3.将以下链接分享给好友，每成功邀请一位好友，即可获得10LMC<else /> {$group_activity['step3']}</empty></p>
                 <div class="input-box">
-                    <input class="submit border-radius" value="http://m.name-technology.fun/Index/code/{$code}"/>
+                    <input class="submit border-radius" value="{$group_activity['activity_tinyurl']}{$code}"/>
                     <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit">复制</a>
                 </div>
             </div>
@@ -71,6 +79,13 @@
                     <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
                     <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/4.pic.jpg" style="height:35px;width:35px"></a>
 
+                </div>
+            </div>
+
+            <div class="col-sm-12 text-left">
+                <p class="text-left">5.联系TokenMan获取更多最新糖果空投信息</p>
+                <div class="input-box" style="margin:20px 0px;">
+                     <a target="_blank" href="http://t.me/TokenManBot" class="join border-radius text-nowrap">联系TokenMan</a>
                 </div>
             </div>
         </if>

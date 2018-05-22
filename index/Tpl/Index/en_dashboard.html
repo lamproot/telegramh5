@@ -52,13 +52,27 @@
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity['en_step2']">2.Click the button，send the code to TokenMan<else /> {$group_activity['en_step2']}</empty></p>
-                <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
+                
+                <if condition="$group_activity['activate_type'] eq 0">
+                    <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
+                </if>
+
+                <if condition="$group_activity['activate_type'] eq 1">
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                </if>
+
+                <if condition="$group_activity['activate_type'] eq 2">
+                    <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
+
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                </if>
+
                 <!-- <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">Join {$group_activity['join_button_text']} Telegram Group</a> -->
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity['en_step3']">3.Share the following link to your friends, you can get 10LMC for each successful invitation.<else /> {$group_activity['en_step3']}</empty></p>
                 <div class="input-box">
-                    <input class="submit border-radius" value="http://m.name-technology.fun/Index/code/{$code}?lang=en"/>
+                    <input class="submit border-radius" value="{$group_activity['activity_tinyurl']}{$code}?lang=en"/>
                     <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit">COPY</a>
                 </div>
             </div>
@@ -73,6 +87,13 @@
                 <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
                 <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
                 <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/4.pic.jpg" style="height:35px;width:35px"></a>
+            </div>
+        </div>
+
+        <div class="col-sm-12 text-left">
+            <p class="text-left">5.Chat with TokenMan to get more latest candy drop information.</p>
+            <div class="input-box" style="margin:20px 0px;">
+                 <a target="_blank" href="http://t.me/TokenManBot" class="join border-radius text-nowrap">Chat with TokenMan</a>
             </div>
         </div>
 

@@ -280,6 +280,8 @@
 
 			}
 
+			$group_activity['activity_tinyurl'] = !empty($group_activity['activity_tinyurl']) ? $group_activity['activity_tinyurl'] : "http://m.name-technology.fun/Index/code/";
+			
 			$this -> assign('activity_status', $activity_status);
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);

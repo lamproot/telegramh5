@@ -35,3 +35,7 @@ CREATE TABLE `user_tokenman_log` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
+
+ALTER TABLE group_activity ADD activate_type TINYINT(2) NOT NULL DEFAULT 0 COMMENT '激活类型';
+ALTER TABLE group_activity ADD activity_tinyurl varchar(255) NOT NULL DEFAULT '' COMMENT '邀请地址配置';
+

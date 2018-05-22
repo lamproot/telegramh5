@@ -58,6 +58,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动激活方式:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="activate_type">
+                                    <option value="0" <if condition="$result['activate_type'] == 0">selected="selected"</if>>TokenMan激活</option>
+                                    <option value="1" <if condition="$result['activate_type'] == 1">selected="selected"</if>>群内激活</option>
+                                    <option value="2" <if condition="$result['activate_type'] == 2">selected="selected"</if>>TokenMan和群内激活</option>
+                                </select>
+                                <p>激活类型 0-TokenMan 激活 1-群激活 2-TokenMan和群激活</p>
+                            </div>
+                        </div>
+
 
                         <!-- <div class="form-group">
                             <label class="col-sm-3 control-label">活动类型:</label>
