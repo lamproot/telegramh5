@@ -260,8 +260,8 @@
 // 			$group_activity_language['ch']['tokenman_url'] = "https://t.me/TronCNbot";
 // 			$group_activity_language['ko']['join_button_url'] = "https://t.me/tronnetworkKR";
 // 			$group_activity_language['ch']['join_button_url'] = "https://t.me/tronnetworkCN";
-			
-			
+
+
 
 // 			echo addslashes(json_encode($group_activity_language));exit;
 
@@ -276,12 +276,19 @@
 				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
 				if (isset($group_activity_language[$_GET['lang']])) {
 					$group_activity['tokenman_url'] = $group_activity_language[$_GET['lang']]['tokenman_url'];
+					$group_activity['join_button_url'] = $group_activity_language[$_GET['lang']]['join_button_url'];
 				}
 
+			}else{
+				$group_activity_language = json_decode(stripslashes($group_activity['group_activity_language']), true);
+				$_GET['lang'] = 'ch';
+				if (isset($group_activity_language[$_GET['lang']]) && isset($group_activity_language[$_GET['lang']]['join_button_url'])) {
+					$group_activity['join_button_url'] = $group_activity_language[$_GET['lang']]['join_button_url'];
+				}
 			}
 
 			$group_activity['activity_tinyurl'] = !empty($group_activity['activity_tinyurl']) ? $group_activity['activity_tinyurl'] : "http://m.name-technology.fun/Index/code/";
-			
+
 			$this -> assign('activity_status', $activity_status);
 			$this -> assign('codes', $codes);
 			$this -> assign('chat_bot', $chat_bot);
