@@ -303,4 +303,32 @@
 
 			return $result[0];
 		}
+
+
+		/**
+		 * group_count
+		 *
+		 * 参数描述：
+		 *   parameter 	参数
+		 *
+		 * 返回值：
+		 *   单条结果数据
+		 */
+		public function group_count($parameter)
+		{
+
+			// $Model = new \Think\Model() // 实例化一个model对象 没有对应任何数据表
+			// $result = $Model->query("select count(1) as c from codes where status=3");
+			//
+			// return $result;
+
+			$table = M($parameter['table_name']);
+
+			$result = $table ->field($parameter['field'])-> where($parameter['where']) -> group($parameter['group']) ->  order($parameter['order']) -> select();
+
+			return $result;
+		}
+
+
+
 	}

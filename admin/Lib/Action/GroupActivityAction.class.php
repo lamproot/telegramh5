@@ -72,6 +72,114 @@
 	    }
 
 
+		/**
+		* data
+		*
+		* 参数描述：
+		*
+		*
+		*
+		* 返回值：
+		*
+		*/
+	   public function data()
+	   {
+		   $activity_id = $_GET['activity_id'];
+		   if (!$_GET['activity_id']) {
+			   //$this -> _back('activity_id失败 请稍后重试');
+		   }
+
+		   $group_params = array(
+
+			   'table_name' => 'group_activity',
+
+			   'order' => 'id desc',
+
+			   'where' => "id = {$activity_id}"
+		   );
+
+		   $group_activity = $this -> model -> my_find($group_params);
+
+		   $params = array(
+
+			   'table_name' => 'codes',
+
+			   'order' => 'id desc',
+
+			   'where' => "activity_id = {$activity_id}"
+		   );
+
+		   $result['total_count'] = $this -> model -> get_count($params);
+
+		   $params = array(
+
+			   'table_name' => 'codes',
+
+			   'order' => 'id desc',
+
+			   'where' => "status = 3 AND activity_id = {$activity_id}"
+		   );
+		   //入群激活总数
+		   $result['activate_count'] = $this -> model -> get_count($params);
+		   $result['activate_rate'] = $group_activity['rate'] * $result['activate_count'] ;
+
+		   $params = array(
+
+			   'table_name' => 'codes',
+
+			   'order' => 'id desc',
+
+			   'where' => "status = 1 AND activity_id = {$activity_id}"
+		   );
+
+		   $result['not_activate_count'] = $this -> model -> get_count($params);
+
+		   $params = array(
+ 			   'table_name' => 'codes',
+
+ 			   'order' => 'id desc',
+
+ 			   'group' => 'parent_code',
+
+ 			   'where' => "status = 3 AND parent_code != '' AND from_id != 0 AND activity_id = {$activity_id}"
+ 		   );
+
+ 		   $result['parent_group'] = $this -> model -> get_count($params);
+		   $result['invitation_rate'] = $result['parent_group'] * $group_activity['group_rate'] ;
+		   $result['total_rate'] = $result['activate_rate'] + $result['invitation_rate'] ;
+
+
+// 		   $params = array(
+// 			   'table_name' => 'codes',
+//
+// 			   'field' => 'count(*) as c',
+//
+// 			   'order' => 'id desc',
+//
+// 			   'group' => 'parent_code',
+//
+// 			   'where' => "status = 3 AND activity_id = {$activity_id}"
+// 		   );
+//
+// 		   $result['parent_group'] = $this -> model -> group_count($params);
+// $sum = 0;
+// foreach ($result['parent_group'] as $key => $value) {
+// 	$sum = $sum + $value['c'];
+// }
+//
+// echo json_encode($sum);exit;
+//58525
+		   // foreach ($result['result'] as $key => $value) {
+		   // 	$result['result'][$key]['content'] = json_decode($result['result'][$key]['content'], true);
+		   // }
+
+		   $this -> assign('result', $result);
+
+		   $this -> display();
+	   }
+
+
+
 
 	    /**
 		 * 新增

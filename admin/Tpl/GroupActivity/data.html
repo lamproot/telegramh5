@@ -24,11 +24,7 @@
                 <div class="ibox-content table-responsive">
                     <div class="row">
                         <div class="col-sm-4 m-b-xs">
-                            <p>
 
-
-                               <a type="button" href="__APP__/GroupActivity/add/chat_bot_id/{$_GET['chat_bot_id']}" class="btn btn-w-m btn-danger" target="_blank">添加活动</a>
-                            </p>
                         </div>
 
                         <!-- <div class="col-sm-8 text-right">
@@ -46,46 +42,50 @@
                                 </form>
                         </div> -->
                     </div>
+
+                    <!-- total_count
+         activate_count
+         activate_rate
+         not_activate_count
+         parent_group
+         invitation_rate
+         total_rate -->
                     <div class="table-responsive">
                         <table class="table table-hover no-margins table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>活动ID</th>
-                                    <th>群ID</th>
-                                    <th>活动名称</th>
-                                    <th>活动类型</th>
-                                    <th>添加时间</th>
-                                    <th>操作</th>
+                                    <th>活动总人数</th>
+                                    <th>激活人数</th>
+                                    <th>未激活人数</th>
+                                    <th>邀请人次</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <foreach name="result['result']" item="data">
                                     <tr>
-                                        <td>{$data.id}</td>
-                                        <td>{$data.chat_bot_id}</td>
-                                        <td>{$data.title}</td>
-                                        <td>
-                                            <if condition="$data.type == 1">
-                                                Code 邀请活动
-                                            <else/>
-                                                拟稿人活动
-                                            </if>
-                                        </td>
-                                        <td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
-                                        <td>
-                                            <a href="__APP__/GroupActivity/edit?id={$data.id}" target="_blank">修改</a>
-                                            <a href="__APP__/GroupActivity/data?activity_id={$data.id}&chat_bot_id={$data.id}">活动数据查询</a>
-                                            <if condition="$data.type == 2">
-                                                <a href="__APP__/Drafters/index/activity_id/{$data.id}" target="_blank">用户列表</a>
-                                            <else/>
-                                                <a href="__APP__/Codes/index/activity_id/{$data.id}" target="_blank">用户列表</a>
-                                            </if>
-
-                                            <a href="__APP__/GroupActivity/delete?id={$data.id}&chat_bot_id={$data.id}">删除</a>
-                                        </td>
+                                        <td>{$result['total_count']}</td>
+                                        <td>{$result['activate_count']}</td>
+                                        <td>{$result['not_activate_count']}</td>
+                                        <td>{$result['parent_group']}</td>
 
                                     </tr>
-                                </foreach>
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th>激活奖励</th>
+                                    <th>邀请奖励</th>
+                                    <th>奖励总数</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>{$result['activate_rate']}</td>
+                                        <td>{$result['invitation_rate']}</td>
+                                        <td>{$result['total_rate']}</td>
+                                        <td></td>
+
+                                    </tr>
                             </tbody>
                         </table>
                     </div>
