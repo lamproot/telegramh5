@@ -253,7 +253,7 @@
 // TRON은 현재 인터넷의 탈 중앙화를 위한 기초 기반 구축에 전념하고 있는 프로젝트입니다.TRON 프로토콜은&nbsp; 전세계에서 제일 큰 블록체인 기반의 탈 중앙화 운영 체제중 하나입니다.TRON은 탈 중앙화 운영 체제를 위하여 고가용성,확장성.신빙성을 갖춘 생태계를 제공합니다.";
 // 			$group_activity_language['ko']['placeholder_text'] = "ETH 지갑 주소를 입력해주세요.";
 // 			$group_activity_language['ko']['step1'] = "1.인증 코드를 복사해주세요.";
-// 			$group_activity_language['ko']['step2'] = "2.복사 버튼을 클릭하고 코드를TokenMan에게 전송해주세요.텔레그램 단톡방에 보내시면 무효입니다.";
+// 			$group_activity_language['ko']['step2'] = "2.코드를 복사하여 트론 공식 텔레그램방으로 전송해주세요.";
 // 			$group_activity_language['ko']['step3'] = "3.아래의 링크를 친구들에게 공유해주세요.한명씩 초대 성공할때마다 20TRX를 획득할 수 있습니다.";
 // 			$group_activity_language['ko']['step4'] = "4.이벤트를 공유하고 공식 소셜 플랫폼을 팔로우해주세요. ";
 // 			$group_activity_language['ko']['tokenman_url'] = "https://t.me/TronKORbot";
