@@ -228,6 +228,8 @@
 				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
 				$data['is_shield'] = isset($_POST['is_shield']) ? $_POST['is_shield'] : 0;
 				$data['is_currency'] = isset($_POST['is_currency']) ? $_POST['is_currency'] : 0;
+				$data['tokenman_name'] = isset($_POST['tokenman_name']) ? $_POST['tokenman_name'] : "";
+
 
 	    		$data['updated_at'] = time();
 
