@@ -140,10 +140,10 @@
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
-
             if ($find) {
                 return true;
             }
+
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
 
@@ -207,12 +207,16 @@
                     $sensitiveWordsModel = new SensitiveWordsModel;
 
                     if ($result) {
-                        // $errorModel = new ErrorModel;
-                        // $errorModel->sendError (MASTER, print_r($result, true));
-                        //
-                        $word = $sensitiveWordsModel->find($result);
 
-                        if ($word) {
+                        $wordresult = false;
+                        foreach ($result as $key => $value) {
+                            $sensitiveWord = $sensitiveWordsModel->find($value);
+                            if ($sensitiveWord) {
+                                $wordresult = true;
+                            }
+                        }
+
+                        if ($wordresult) {
                             $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
                             $IllegalLogModel = new IllegalLogModel;
 
