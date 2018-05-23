@@ -32,7 +32,7 @@
 
         <if condition = "$activity_status eq -1">
     		<div class="col-sm-12 text-center">
-                <a href="{$group_activity['join_button_url']}" class="join border-radius">Join {$group_activity['en_join_button_text']} Telegram Group</a>
+                <a href="{$group_activity['join_button_url']}" class="join border-radius">{$group_activity['en_join_button_text']}</a>
             </div>
     		<div class="col-sm-12 text-center" stye="">
                     <p class="desc">{$group_activity['en_message']}</p>
@@ -58,13 +58,13 @@
                 </if>
 
                 <if condition="$group_activity['activate_type'] eq 1">
-                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['en_join_button_text']}</a>
                 </if>
 
                 <if condition="$group_activity['activate_type'] eq 2">
                     <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
 
-                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['join_button_text']}</a>
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity['en_join_button_text']}</a>
                 </if>
 
                 <!-- <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">Join {$group_activity['join_button_text']} Telegram Group</a> -->
