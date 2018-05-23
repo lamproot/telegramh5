@@ -84,7 +84,7 @@
 
 				'table_name' => 'group_activity',
 
-				'where' => "chat_bot_id = {$codes['chat_bot_id']} AND type = 1 AND is_del = 0"
+				'where' => "id = {$codes['activity_id']} AND type = 1 AND is_del = 0"
 
 			);
 
@@ -193,7 +193,7 @@
 
 			   'table_name' => 'group_activity',
 
-			   'where' => "chat_bot_id = {$codes['chat_bot_id']} and type = 1  AND is_del = 0"
+			   'where' => "id = {$codes['activity_id']} and type = 1  AND is_del = 0"
 
 		   );
 
