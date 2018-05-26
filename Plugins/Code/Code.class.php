@@ -1,7 +1,7 @@
 <?php
     class Code extends Base {
         public function command ($command, $param, $message_id, $from, $chat, $date) {
-            
+
             //查询chat code_cmd 默认 /code
             $chatBotModel = new ChatBotModel;
             $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
@@ -11,7 +11,7 @@
             $search = "/^\/".$code_cmd."/i";
 
             if(preg_match($search,$command,$result)) {
-              
+
                 $code = str_replace($result[0], "", $command);
                 //获取是否Code验证
                 $codeModel = new CodeModel;
@@ -30,9 +30,9 @@
                 if (!$codeInfo) {
                     return true;
                 }
-                
+
                 //已激活 添加日志
-                if ($codeInfo && (intval($codeInfo['from_id']) != 0 || intval($codeInfo['status']) == 3)) { 
+                if ($codeInfo && (intval($codeInfo['from_id']) != 0 || intval($codeInfo['status']) == 3)) {
                     //查询是否配置已激活文案
                     $commandModel = new CommandModel;
                     $commandInfo = $commandModel->findall($chat_bot_id, '/codeactivate', 1, 1);
@@ -47,15 +47,33 @@
 
                     $codeLogModel->add($chat_bot_id, $message_id, $code, "重复激活日志", @$from['id'], @$username, $first_name, $last_name);
                     return true;
+                }else{
+                    //查询该用户是否已激活
+                    $findCode = $codeModel->getCodeByActivityId($codeInfo['activity_id'], $from['id']);
+                    if ($findCode) {
+                        //查询是否配置已激活文案
+                        $commandModel = new CommandModel;
+                        $commandInfo = $commandModel->findall($chat_bot_id, '/repeatactivate', 1, 1);
+                        $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : "";
+                        if ($message) {
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+                        }
+                    }
                 }
+
+
 
                 //查询活动数据
                 if ($codeInfo && intval($codeInfo['activity_id'])){
                     //查询活动是否结束
                     $groupActivityFind = $groupActivityModel->getGroupActivityById($codeInfo['activity_id']);
-   
+
                     if ($groupActivityFind && intval($groupActivityFind['activate_type']) == 0) {
-                        
+
                         if ($chat['type'] == 'supergroup') {
                             $button = json_encode (array (
                                 'inline_keyboard' => array (
@@ -68,7 +86,7 @@
                             ));
 
                             $message = "Invalid！";
-                            
+
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,
@@ -81,9 +99,9 @@
 
                     if ($groupActivityFind && intval($groupActivityFind['activate_type']) == 1) {
                         if ($chat['type'] == 'private') {
-                            
+
                             $message = "Invalid！Please Send Code To Group";
-                            
+
                             $this->telegram->sendMessage (
                                 $chat['id'],
                                 $message,
@@ -143,7 +161,7 @@
 
             //有根据Code码获取活动信息 activity_id
             //记录用户激活操作记录
-            
+
             //查询活动信息
             //查询活动是否结束 结束返回活动结束
             //继续激活操作 获取Code 码回复数据

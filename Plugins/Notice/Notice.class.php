@@ -7,9 +7,9 @@
 
 
             $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 0;
             $blank = ["bot","Bot","Token","token","Admin","admin"];
 
             $errorModel = new ErrorModel;
