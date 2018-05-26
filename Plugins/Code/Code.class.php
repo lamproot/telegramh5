@@ -62,6 +62,7 @@
                                 $message_id
                             );
                         }
+                        return;
                     }
                 }
 
