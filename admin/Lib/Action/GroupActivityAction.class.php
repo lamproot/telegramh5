@@ -111,7 +111,7 @@
 			   'where' => "activity_id = {$activity_id} and status = 3 and c>1"
 		   );
 
-		   $result = $this -> model -> order_group_select($params, no);
+		   $result = $this -> model -> group_count($params);
 
 		   foreach ($result as $key => $value) {
 		   		$data[] = $value['from_id'];
