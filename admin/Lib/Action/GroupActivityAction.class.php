@@ -71,7 +71,53 @@
 	    	$this -> display();
 	    }
 
+		/**
+		* data
+		*
+		* 参数描述：
+		*
+		*
+		*
+		* 返回值：
+		*
+		*/
+	   public function datachange()
+	   {
+		   $activity_id = $_GET['activity_id'];
+		   if (!$_GET['activity_id']) {
+			   //$this -> _back('activity_id失败 请稍后重试');
+		   }
 
+		   $group_params = array(
+
+			   'table_name' => 'group_activity',
+
+			   'order' => 'id desc',
+
+			   'where' => "id = {$activity_id}"
+		   );
+
+		   $group_activity = $this -> model -> my_find($group_params);
+
+		   $params = array(
+
+			   'field' => 'from_id,count(1) as c'
+			   'table_name' => 'codes',
+
+			   'order' => 'id desc',
+
+			   'group' => 'from_id',
+
+			   'where' => "activity_id = {$activity_id} and status = 3 and c>1"
+		   );
+
+		   $result = $this -> model -> order_group_select($params, no);
+
+		   foreach ($result as $key => $value) {
+		   		$data[] = $value['from_id'];
+		   }
+		  echo json_encode($data);
+	   }
 		/**
 		* data
 		*
