@@ -101,7 +101,7 @@
 
 		   $params = array(
 
-			   'field' => 'from_id,count(1) as c'
+			   'field' => 'from_id,count(1) as c',
 			   'table_name' => 'codes',
 
 			   'order' => 'id desc',
