@@ -325,7 +325,7 @@
 			$table = M($parameter['table_name']);
 
 			$result = $table ->field($parameter['field'])-> where($parameter['where']) -> group($parameter['group']) ->  order($parameter['order']) -> select();
-
+			//echo $table->getLastSql();EXIT;
 			return $result;
 		}
 

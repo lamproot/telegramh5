@@ -101,14 +101,15 @@
 
 		   $params = array(
 
-			   'field' => 'from_id,count(1) as c',
+			   'field' => "count(*) as count,from_id",
+
 			   'table_name' => 'codes',
 
 			   'order' => 'id desc',
 
 			   'group' => 'from_id',
 
-			   'where' => "activity_id = {$activity_id} and status = 3 and c>1"
+			   'where' => "activity_id = {$activity_id} and status = 3"
 		   );
 
 		   $result = $this -> model -> group_count($params);

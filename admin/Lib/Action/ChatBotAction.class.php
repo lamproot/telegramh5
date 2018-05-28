@@ -217,7 +217,9 @@
 					$admindata['email'] = $_POST['email'];
 					$admindata['username'] = $_POST['username'];
 					$admindata['nickname'] = $_POST['nickname'];
-					$admindata['password'] = md5($_POST['password']);
+					$str = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
+					$admindata['salt'] = substr(str_shuffle($str),5,6);
+					$admindata['password'] = md5(md5($_POST['password']).$admindata['salt']);
 					$admindata['chat_bot_id'] = $_POST['chat_bot_id'];
 					$params = array(
 							'table_name' => 'fa_admin',
