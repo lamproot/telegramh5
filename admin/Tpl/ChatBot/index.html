@@ -37,9 +37,10 @@
                                     <!-- <th>#</th> -->
                                     <th>编号</th>
 									<th>群名称</th>
-                                    <th>TOKEN</th>
+                                    <!-- <th>TOKEN</th> -->
                                     <th>chat_id</th>
                                     <th>master_id</th>
+																		<th>管理员</th>
 									<th>备注</th>
 									<th>添加时间</th>
 									<th>操作</th>
@@ -53,25 +54,34 @@
                                         </td> -->
                                         <td>{$data.id}</td>
 										<td>{$data.name}</td>
-    									<td>{$data.token}</td>
+    									<!-- <td>{$data.token}</td> -->
                                         <td><if condition="$data.chat_id neq ''">{$data.chat_id}<else/><a data-toggle="modal" href="#myModal5">获取chat_id</a></if></td>
 										<td><if condition="$data.master_id neq ''">{$data.master_id}<else/><a  data-toggle="modal" href="#myModal5">获取master_id</a></if></td>
+										<td>
+											<if condition="$data.admin_id eq '' || $data.admin_id eq 0">
+												<a href="__APP__/ChatBot/admin/id/{$data.id}">添加管理员</a>
+											<else/>
+												{$data.admin_id}
+											</if>
+										</td>
 										<td>{$data.remark}</td>
-										<td>{$data.created_at|date="Y-m-d H:i:s",###}</td>
+										<td>{$data.created_at|date="Y-m-d",###}</td>
 
                                         <td>
-    										<a href="__APP__/ChatBot/edit/id/{$data.id}">编辑</a>
+									    										<a href="__APP__/ChatBot/edit/id/{$data.id}">编辑</a>
 
-											<if condition="$data.chat_id neq ''">
-												<a href="__APP__/ChatCommand/index/chat_bot_id/{$data.id}">命令设置</a>
+																					<if condition="$data.chat_id neq ''">
+																						<a href="__APP__/ChatCommand/index/chat_bot_id/{$data.id}">命令设置</a>
 
 
-												<a href="__APP__/GroupActivity/index/chat_bot_id/{$data.id}">活动页面</a>
-											</if>
+																						<a href="__APP__/GroupActivity/index/chat_bot_id/{$data.id}">活动页面</a>
+																					</if>
 
-											<a href="__APP__/ChatBot/delete/id/{$data.id}" onclick="return confirm('确认删除吗？')">删除</a>
-											<a href="__APP__/ChatPush/index/chat_bot_id/{$data.id}">消息推送</a>
-                                        </td>
+																					<a href="__APP__/ChatBot/delete/id/{$data.id}" onclick="return confirm('确认删除吗？')">删除</a>
+																					<a href="__APP__/ChatPush/index/chat_bot_id/{$data.id}">消息推送</a>
+
+
+																				</td>
                                     </tr>
                                 </foreach>
                             </tbody>

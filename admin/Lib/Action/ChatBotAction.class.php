@@ -183,6 +183,81 @@
 	    	$this -> display();
 	    }
 
+
+			/**
+		* 新增
+		*
+		* 参数描述：
+		*
+		*
+		*
+		* 返回值：
+		*
+		*/
+		 public function admin()
+		 {
+			 $form_key = htmlspecialchars($_POST['form_key']);
+			 $id = $_GET['id'];
+			 $params = array(
+
+				 'table_name' => 'chat_bot',
+
+				 'where' => "id = {$id} AND is_del = 0"
+			 );
+
+			 $result = $this -> model -> my_find($params);
+			 if ($result && $result['admin_id'] != 0) {
+			 		$this -> _back('该机器人已有管理员');
+			 }
+
+			 if ($form_key == 'yes')
+			 {
+					//添加admin账户
+					$admindata['createtime'] = time();
+					$admindata['email'] = $_POST['email'];
+					$admindata['username'] = $_POST['username'];
+					$admindata['nickname'] = $_POST['nickname'];
+					$admindata['password'] = md5($_POST['password']);
+					$admindata['chat_bot_id'] = $_POST['chat_bot_id'];
+					$params = array(
+							'table_name' => 'fa_admin',
+							'data' => $admindata
+					);
+					$adminadd = $this -> model -> my_add($params);
+
+					//添加admin账户权限
+					$authgroup['uid'] =  $adminadd;
+					$authgroup['group_id'] = $_POST['auth_group'];
+					$params = array(
+							'table_name' => 'fa_auth_group_access',
+							'data' => $authgroup
+					);
+					$authgroupadd = $this -> model -> my_add($params);
+
+					//更新机器人管理员ID
+					$botdata['admin_id'] = $adminadd;
+	    		$params = array(
+		    			'table_name' => 'chat_bot',
+		    			'where' => "id = {$_POST['chat_bot_id']}",
+		    			'data' => $botdata
+	    		);
+
+	    		$chat_bot_save = $this -> model -> my_save($params);
+					
+					if ($chat_bot_save) {
+							redirect(__APP__.'/ChatBot/index');
+					}else{
+							$this -> _back('添加失败');
+					}
+			 }
+
+			 // $this -> assign('result', $result);
+			 //查询改机器人是否已添加账户
+
+
+			 $this -> display();
+		 }
+
 	    /**
 		 * 编辑
 		 *
