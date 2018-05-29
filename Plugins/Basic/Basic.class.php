@@ -158,7 +158,7 @@
 
                     //查询违规数据是否大于3次
                     $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-                    if ($count >= 3) {
+                    if ($count >= 1) {
                         $this->telegram->kickChatMember (
                             $chat['id'],
                             $from['id']
@@ -222,7 +222,7 @@
 
                             //查询违规数据是否大于3次
                             $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-                            if ($count >= 3) {
+                            if ($count >= 1) {
                                 $this->telegram->kickChatMember (
                                     $chat['id'],
                                     $from['id']
@@ -261,7 +261,7 @@
 
                                 //查询违规数据是否大于3次
                                 $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-                                if ($count >= 3) {
+                                if ($count >= 1) {
                                     $this->telegram->kickChatMember (
                                         $chat['id'],
                                         $from['id']
@@ -303,7 +303,7 @@
 
                             //查询违规数据是否大于3次
                             $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-                            if ($count >= 3) {
+                            if ($count >= 1) {
                                 $this->telegram->kickChatMember (
                                     $chat['id'],
                                     $from['id']
