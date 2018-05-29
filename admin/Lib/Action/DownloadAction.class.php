@@ -129,7 +129,7 @@ class DownloadAction extends CommonAction {
 				array('xingming','用户姓名'),
                 array('eth','钱包'),
                 array('code','邀请码'),
-                array('created_at','加入时间'),
+                // array('created_at','加入时间'),
                 array('invited','邀请人数')
             );
 
@@ -141,12 +141,12 @@ class DownloadAction extends CommonAction {
 				array('xingming','用户姓名'),
                 array('eth','钱包'),
                 array('code','邀请码'),
-                array('created_at','加入时间'),
+                // array('created_at','加入时间'),
                 array('invited','邀请人数')
             );
 
             foreach ($xlsData as $key => $value) {
-                $xlsData[$key]['created_at'] = date('Y-m-d H:i:s', $value['created_at']);
+                // $xlsData[$key]['created_at'] = date('Y-m-d H:i:s', $value['created_at']);
             }
             $this->exportExcel($xlsName,$xlsCell,$xlsData);
 			// if($start && $stop){

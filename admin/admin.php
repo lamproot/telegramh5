@@ -11,7 +11,7 @@
 	define('APP_DEBUG',true);
 	define('FILE_URL', 'http://m.name-technology.fun:8030/');
 	//定义常量
-    define('SCRIPT_DIR', rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/\\'));     //新增常量，大家打印一下就知道是什么了
+	define('SCRIPT_DIR', rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/\\'));     //新增常量，大家打印一下就知道是什么了
 
 	define('__PUBLIC__', "../Public");
 	require '../ThinkPHP/ThinkPHP.php';

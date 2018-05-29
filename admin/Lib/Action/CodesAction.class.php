@@ -74,6 +74,7 @@
 	    	);
 
 	    	$result = $this -> model -> order_select($params);
+				$count = $this -> model -> get_count($params);
 
 			foreach ($result['result'] as $key => $value) {
 
@@ -89,8 +90,9 @@
 		    	$result['result'][$key]['invited']  = $this -> model -> get_count($params);
 			}
 
+				$ceil = ceil($count/10000);
 	    	$this -> assign('result', $result);
-
+				$this -> assign('ceil', $ceil);
 	    	$this -> display();
 	    }
 
