@@ -76,16 +76,16 @@ class DownloadAction extends CommonAction {
         }
 
 //echo $where;exit;
-		// $params = array(
-		//
-		// 	'table_name' => 'codes',
-		//
-		// 	'order' => 'id desc',
-		//
-		// 	'where' => $where
-		// );
-		//
-		// $result = $this -> model -> easy_select($params);
+		$params = array(
+		
+			'table_name' => 'group_activity',
+		
+			'order' => 'id desc',
+		
+			'where' => "id = {$activity_id}"
+		);
+		
+		$group_activity = $this -> model -> my_find($params);
 
 		$params = array(
 
@@ -115,7 +115,17 @@ class DownloadAction extends CommonAction {
 			$result[$key]['invited']  = @$this -> model -> get_count($params);
 			$result[$key]['xingming'] = $this->match_chinese($value['first_name'])."  ". $this->match_chinese($value['last_name']);
 			$result[$key]['from_username'] = $this->match_chinese($value['from_username']);
-		}
+            //获取入群奖励
+            $result[$key]['group_rate'] = isset($group_activity['group_rate']) ? $group_activity['group_rate'] : 0;
+            //获取邀请奖励
+            $result[$key]['invited_rate'] = isset($group_activity['rate']) ? $result[$key]['invited'] * $group_activity['rate'] : 0;
+            //获取总奖励
+            $result[$key]['total_rate'] = $result[$key]['group_rate'] + $result[$key]['invited_rate'];
+            //奖励单位
+            $result[$key]['rate_unit'] = isset($group_activity['rate_unit']) ? $group_activity['rate_unit'] : "";
+            
+            //
+        }
 
         $xlsData = $result;
 			$p = $_GET['p'] ? $_GET['p'] : 1;
@@ -128,6 +138,10 @@ class DownloadAction extends CommonAction {
                 array('from_username','用户名称'),
 				array('xingming','用户姓名'),
                 array('eth','钱包'),
+                array('group_rate','入群奖励'),
+                array('invited_rate','邀请奖励'),
+                array('total_rate','总奖励'),
+                array('rate_unit','奖励单位'),
                 array('code','邀请码'),
                 // array('created_at','加入时间'),
                 array('invited','邀请人数')
@@ -140,6 +154,10 @@ class DownloadAction extends CommonAction {
                 array('from_username','用户名称'),
 				array('xingming','用户姓名'),
                 array('eth','钱包'),
+                array('group_rate','入群奖励'),
+                array('invited_rate','邀请奖励'),
+                array('total_rate','总奖励'),
+                array('rate_unit','奖励单位'),
                 array('code','邀请码'),
                 // array('created_at','加入时间'),
                 array('invited','邀请人数')
