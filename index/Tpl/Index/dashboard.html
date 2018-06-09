@@ -116,14 +116,14 @@
 var clipboard = new Clipboard('.copy-btn');
 
 clipboard.on('success', function(e) {
-    layer.msg("Successful replication!", {
+    layer.msg("复制成功!", {
         shade: [0.8, '#000'],
         time: 1000
     });
 });
 
 clipboard.on('error', function(e) {
-    layer.msg("Replication failed!", {
+    layer.msg("复制失败!", {
         shade: [0.8, '#000'],
         time: 1000
     });
