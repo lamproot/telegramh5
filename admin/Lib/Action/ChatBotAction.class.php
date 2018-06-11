@@ -115,6 +115,8 @@
 				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
 	    		$data['created_at'] = time();
 	    		$data['updated_at'] = time();
+				$data['started_at'] = strtotime($_POST['started_at']);
+	    		$data['stoped_at'] = strtotime($_POST['stoped_at']);
 
 	    		$data['is_del'] = 0;
 
@@ -245,7 +247,7 @@
 	    		);
 
 	    		$chat_bot_save = $this -> model -> my_save($params);
-					
+
 					if ($chat_bot_save) {
 							redirect(__APP__.'/ChatBot/index');
 					}else{
@@ -306,7 +308,8 @@
 				$data['is_shield'] = isset($_POST['is_shield']) ? $_POST['is_shield'] : 0;
 				$data['is_currency'] = isset($_POST['is_currency']) ? $_POST['is_currency'] : 0;
 				$data['tokenman_name'] = isset($_POST['tokenman_name']) ? $_POST['tokenman_name'] : "";
-
+				$data['started_at'] = strtotime($_POST['started_at']);
+	    		$data['stoped_at'] = strtotime($_POST['stoped_at']);
 
 	    		$data['updated_at'] = time();
 
