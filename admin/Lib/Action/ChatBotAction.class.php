@@ -117,7 +117,7 @@
 	    		$data['updated_at'] = time();
 				$data['started_at'] = strtotime($_POST['started_at']);
 	    		$data['stoped_at'] = strtotime($_POST['stoped_at']);
-
+					$data['tokenman_name'] = isset($_POST['tokenman_name']) ? $_POST['tokenman_name'] : "";
 	    		$data['is_del'] = 0;
 
 	    		$params = array(
@@ -170,7 +170,7 @@
 
 					//初始化回调
 					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://m.name-technology.fun/callback.php/Callback/run?bot_id=".$my_add."&t=".time()];
+					$param = ["url" => "https://m.name-technology.fun/callback.php/Callback/run?bot_id=".$chat_bot_add."&t=".time()];
 					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/ChatBot/index', 0);
 	    		}
