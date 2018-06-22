@@ -8,6 +8,7 @@
         .input-box-a{
             margin:5px;
         }
+        a{text-decoration:none}
     </style>
     <script src="__PUBLIC__/telegram/flexible.js"></script>
     <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
@@ -52,7 +53,7 @@
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity['en_step2']">2.Click the button，send the code to TokenMan<else /> {$group_activity['en_step2']}</empty></p>
-                
+
                 <if condition="$group_activity['activate_type'] eq 0">
                     <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">send the code to TokenMan</a>
                 </if>

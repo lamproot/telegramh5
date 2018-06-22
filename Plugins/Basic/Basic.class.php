@@ -101,33 +101,33 @@
         }
 
 
-        public function sticker ($sticker, $message_id, $from, $chat, $date) {
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
-            $whiteModel = new WhiteModel;
-
-            $find = $whiteModel->my_find($chat_bot_id, $from['id']);
-
-            if ($find) {
-                return true;
-            }
-            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
-
-                $this->telegram->sendMessage (
-                    $chat['id'],
-                    $message,
-                    $message_id
-                );
-
-                $this->telegram->deleteMessage (
-                    $chat['id'],
-                    $message_id
-                );
-            }
-        }
+        // public function sticker ($sticker, $message_id, $from, $chat, $date) {
+        //     $chatBotModel = new ChatBotModel;
+        //     $chatBot = $chatBotModel->getcommand($chat['id']);
+        //     $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+        //
+        //     $whiteModel = new WhiteModel;
+        //
+        //     $find = $whiteModel->my_find($chat_bot_id, $from['id']);
+        //
+        //     if ($find) {
+        //         return true;
+        //     }
+        //     if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+        //         $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+        //
+        //         $this->telegram->sendMessage (
+        //             $chat['id'],
+        //             $message,
+        //             $message_id
+        //         );
+        //
+        //         $this->telegram->deleteMessage (
+        //             $chat['id'],
+        //             $message_id
+        //         );
+        //     }
+        // }
 
 
 

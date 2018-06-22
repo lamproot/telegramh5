@@ -8,6 +8,7 @@
         .input-box-a{
             margin:5px;
         }
+        a{text-decoration:none}
     </style>
     <script src="__PUBLIC__/telegram/flexible.js"></script>
     <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
@@ -47,11 +48,11 @@
             </div>
             <div class="col-sm-12 text-left">
                 <p class="text-left"><empty name="group_activity_language['step2']">2.Click the button，send the code to TokenMan<else /> {$group_activity_language['step2']}</empty></p>
-                
+
                 <if condition="$group_activity['activate_type'] eq 0">
                     <a target="_blank" href="{$group_activity['tokenman_url']}" class="join border-radius text-nowrap">TokenMan에게 인증 코드를 전송해주세요.</a>
                 </if>
-                
+
                 <if condition="$group_activity['activate_type'] eq 1">
                     <a href="{$group_activity['join_button_url']}" class="join border-radius text-nowrap">{$group_activity_language['join_button_text']}</a>
                 </if>
