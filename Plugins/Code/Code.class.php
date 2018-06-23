@@ -138,7 +138,7 @@
                             //type =  1 文字回复  2 code 码回复 3 图片文字回复 4 文件回复
                             if ($commandInfo[0]['type'] == 3) {
                                 $copyright = $commandInfo[0]['content'] ? $commandInfo[0]['content'] : "";
-                                $url = $commandInfo[0]['url'] ? urlencode("http://m.name-technology.fun:8030" . $commandInfo[0]['url'] ): "";
+                                $url = $commandInfo[0]['url'] ? "http://m.name-technology.fun:8030" . $commandInfo[0]['url'] : "";
                                 if ($url) {
                                     $this->telegram->sendPhoto ($chat['id'], $url, $copyright, $message_id);
                                 }
