@@ -120,13 +120,37 @@
 
                     if ($groupActivityFind && $groupActivityFind && $activity_status == -1) {
 
-                        $message = $groupActivityFind['activity_end_text'];
+                        $commandModel = new CommandModel;
+                        $commandInfo = $commandModel->findall($chat_bot_id, "/activity_end_text", 1, 1);
 
-                        $this->telegram->sendMessage (
-                            $chat['id'],
-                            $message,
-                            $message_id
-                        );
+                        if ($commandInfo && $commandInfo[0] && $commandInfo[0]['type']) {
+                            if ($commandInfo[0]['type'] == 1) {
+                                $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : "";
+                                if ($message) {
+                                    $this->telegram->sendMessage (
+                                        $chat['id'],
+                                        $message,
+                                        $message_id
+                                    );
+                                }
+                            }
+
+                            //type =  1 文字回复  2 code 码回复 3 图片文字回复 4 文件回复
+                            if ($commandInfo[0]['type'] == 3) {
+                                $copyright = $commandInfo[0]['content'] ? $commandInfo[0]['content'] : "";
+                                $url = $commandInfo[0]['url'] ? "http://m.name-technology.fun:8030/" . $commandInfo[0]['url'] : "";
+                                if ($url) {
+                                    $this->telegram->sendPhoto ($chat['id'], $url, $copyright, $message_id);
+                                }
+                            }
+                        }else{
+                            $message = $groupActivityFind['activity_end_text'];
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $message,
+                                $message_id
+                            );
+                        }
                         return;
                     }
 
