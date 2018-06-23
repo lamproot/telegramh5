@@ -86,7 +86,7 @@
 
 
             $IllegalLogModel = new IllegalLogModel;
-            $IllegalLogModel->add (1, 1, json_encode($ret), 1, $url, 1, 1);
+            $IllegalLogModel->add (1, 1, json_encode($ret), 1, json_encode($param), 1, 1);
 
 
             /** 分析结果 */
