@@ -10,7 +10,7 @@
             // $chatBot = $chatBotModel->getcommand($chat['id']);
             // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 0;
-            $blank = ["bot","Bot","Token","token","Admin","admin","交易平台","手续费","返利","币种","邀请","等你拿","官网","搜索","名称","拉人","微信","粉丝","电报","糖果","candy"];
+            $blank = ["bot","Bot","Token","token","Admin","admin","资询","客服","交易平台","手续费","返利","币种","邀请","等你拿","官网","搜索","名称","拉人","微信","粉丝","电报","糖果","candy"];
 
             $errorModel = new ErrorModel;
 

@@ -86,6 +86,12 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                $command = "/datacleaning";
+                //查询数据清除返回文案
+                $commandModel = new CommandModel;
+                $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $message;
+
 
                 $this->telegram->sendMessage (
                     $chat['id'],
@@ -153,6 +159,11 @@
                 $pos = strripos($message, $needle);
                 if (preg_match($regex, $message) || $pos !== false) {
                     $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                    $command = "/datacleaning";
+                    //查询数据清除返回文案
+                    $commandModel = new CommandModel;
+                    $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                    $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
 
                     $IllegalLogModel = new IllegalLogModel;
 
@@ -218,6 +229,12 @@
 
                         if ($wordresult) {
                             $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                            $command = "/datacleaning";
+                            //查询数据清除返回文案
+                            $commandModel = new CommandModel;
+                            $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                            $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
                             $IllegalLogModel = new IllegalLogModel;
 
                             //查询违规数据是否大于3次
@@ -257,6 +274,12 @@
                             $word = $sensitiveWordsModel->find([$message]);
                             if ($word) {
                                 $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                                $command = "/datacleaning";
+                                //查询数据清除返回文案
+                                $commandModel = new CommandModel;
+                                $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                                $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
                                 $IllegalLogModel = new IllegalLogModel;
 
                                 //查询违规数据是否大于3次
@@ -299,6 +322,12 @@
                         $word = $sensitiveWordsModel->find([$message]);
                         if ($word) {
                             $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                            $command = "/datacleaning";
+                            //查询数据清除返回文案
+                            $commandModel = new CommandModel;
+                            $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                            $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
                             $IllegalLogModel = new IllegalLogModel;
 
                             //查询违规数据是否大于3次
@@ -358,6 +387,11 @@
 
             if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
                 $message = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                $command = "/datacleaning";
+                //查询数据清除返回文案
+                $commandModel = new CommandModel;
+                $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $message;
 
                 $this->telegram->sendMessage (
                     $chat['id'],
@@ -419,7 +453,7 @@
             //     exit;
             // }
             // $command = "new_member";
-            // //创建欢迎消息
+            // //查询数据清除返回文案
             // $commandModel = new CommandModel;
             // $commandInfo = $commandModel->find($chat['id'], $command, 1, 1);
             //
