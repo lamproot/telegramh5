@@ -93,6 +93,12 @@
 
 
 		    if (isset ($data['message'])) {
+                //更新消息处理数
+                // if ($data['message']['chat'] && isset($data['message']['chat']['id'])) {
+                //     $newsTotalModel = new NewsTotalModel();
+                //     $newsTotalModel->updateTotalByChatId($data['message']['chat']['id']);
+                // }
+
 		        if (isset ($data['message']['text'])) {
 		            if ($data['message']['text'][0] == '/') {
 		                $data['message']['text'] = str_replace ("\n", " ", $data['message']['text']);

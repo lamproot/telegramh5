@@ -18,6 +18,27 @@
         // }
 
 
+        function updateTotalRateById ($id, $subtract = 0)
+        {
+            $where['AND']['id'] = $id;
+            $res = $this->db->update ('activity', [
+                "total_rate[-]" => $subtract,
+                "updated_at" => time()
+            ], $where);
+        }
+
+        /*
+            修改活动结束时间
+        */
+        function updateActivityStopedatById ($id)
+        {
+            $where['AND']['id'] = $id;
+            $res = $this->db->update ('activity', [
+                "stoped_at" => time(),
+                "updated_at" => time()
+            ], $where);
+        }
+
         function getGroupActivityByChatId ($chat_bot_id, $limit = 0)
         {
             // return $this->db->get ('group_activity', '*', [

@@ -1,22 +1,20 @@
 <?php
     class Notice extends Base {
         public function new_member ($new_member, $message_id, $from, $chat, $date) {
-            // $str = '@' . @$from['username'] . ' 邀请了 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . ' 玩' . "\n";
-            // $str .= '欢迎 @' . $new_member['username'] . ' 来到 ' . $chat['title'] . '  玩(ฅ>ω<*ฅ)';
-            // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
-
-
             $chatBotModel = new ChatBotModel;
-            // $chatBot = $chatBotModel->getcommand($chat['id']);
-            // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 0;
             $blank = ["bot","Bot","Token","token","Admin","admin","资询","客服","交易平台","手续费","返利","币种","邀请","等你拿","官网","搜索","名称","拉人","微信","粉丝","电报","糖果","candy"];
 
             $errorModel = new ErrorModel;
 
             $username = isset($new_member['username']) ? $new_member['username'] : "";
+            $from_id = isset($new_member['from_id']) ? $new_member['from_id'] : "";
             $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
             $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
+
+            //添加加入用户记录
+            $groupUserModel = new GroupUserModel;
+            $groupUserModel->create($chat_bot_id, $chat['id'], 1, $from_id, $first_name, $last_name, $username);
 
             $chatBotList = $chatBotModel->getChatList();
             $chatBotArray = [];
@@ -24,8 +22,6 @@
                 $chatBotArray[] = $value;
             }
 
-//             $errorModel->sendError (MASTER, print_r($chatBotArray, true) . in_array($username, $chatBotArray));
-// exit;
             //判断是否为 TokenMan机器人
             //查询所有TokenMan机器人
             if (in_array($username, $chatBotArray)) {
@@ -84,6 +80,7 @@
             }
         }
         public function left_member ($left_member, $message_id, $from, $chat, $date) {
+            //获取退群处理
             // $str = '喵喵喵？ @' . $left_member['username'] . ' 被 @' . @$from['username'] . ' 移出了 ' . $chat['title'];
             // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
         }

@@ -167,6 +167,17 @@
                         // $errorModel->sendError (MASTER, 'commandMessage'. $message);
                         $codeModel->updateByCode ($chat_bot_id, $code, 1, @$from['id'], @$username, $first_name, $last_name);
 
+                        # 入群奖励 + 邀请奖励 $groupActivityFind['rate'] $groupActivityFind['group_rate']
+                        $subtract = $groupActivityFind['rate'] + $groupActivityFind['group_rate'];
+                        #修改消耗的奖励数
+                        $groupActivityModel = new GroupActivityModel();
+                        #如果消耗数小于0停止活动 活动已结束
+                        $groupActivityModel->updateTotalRateById($groupActivityFind['id'], $subtract);
+                        # 后期增加消息提醒 如 邀请人已激活 用 TokenMan 发送已激活消息
+                        if ($groupActivityFind['total_rate'] <= 0) {
+                            $groupActivityModel->updateActivityStopedatById($groupActivityFind['id']);
+                        }
+
                         # 记录用户code 码相关回复数据 方便最后发放奖励
                         # 记录用户数据 $chat['id'] $message_id code 发送时间 message  $from['id'] $from['username']
                         $codeLogModel->add($chat_bot_id, $message_id, $code, @$message, @$from['id'], @$username, $first_name, $last_name);

@@ -72,10 +72,10 @@
 
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
+            // $chatBotModel = new ChatBotModel;
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -110,8 +110,8 @@
         // public function sticker ($sticker, $message_id, $from, $chat, $date) {
         //     $chatBotModel = new ChatBotModel;
         //     $chatBot = $chatBotModel->getcommand($chat['id']);
-        //     $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-        //
+        //     //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+        //  $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
         //     $whiteModel = new WhiteModel;
         //
         //     $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -139,10 +139,10 @@
 
 
         public function message ($message, $message_id, $from, $chat, $date) {
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
+            // $chatBotModel = new ChatBotModel;
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -177,7 +177,7 @@
                         $username = isset($from['username']) ? $from['username'] : "";
                         $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                         $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                        $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+                        $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                         $codeModel = new CodeModel;
                         $codeModel->updateByFromId($chat_bot_id, $from['id']);
@@ -200,7 +200,7 @@
                     $username = isset($from['username']) ? $from['username'] : "";
                     $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                    $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
+                    $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                     $this->telegram->sendMessage (
                         $chat['id'],
@@ -247,7 +247,7 @@
                                 $username = isset($from['username']) ? $from['username'] : "";
                                 $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                                 $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                                 $codeModel = new CodeModel;
                                 $codeModel->updateByFromId($chat_bot_id, $from['id']);
@@ -258,7 +258,7 @@
                             $username = isset($from['username']) ? $from['username'] : "";
                             $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                             $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                             $this->telegram->sendMessage (
                                 $chat['id'],
@@ -292,7 +292,7 @@
                                     $username = isset($from['username']) ? $from['username'] : "";
                                     $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                                    $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+                                    $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                                     $codeModel = new CodeModel;
                                     $codeModel->updateByFromId($chat_bot_id, $from['id']);
@@ -303,7 +303,7 @@
                                 $username = isset($from['username']) ? $from['username'] : "";
                                 $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                                 $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                                $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                                 $this->telegram->sendMessage (
                                     $chat['id'],
@@ -340,7 +340,7 @@
                                 $username = isset($from['username']) ? $from['username'] : "";
                                 $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                                 $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name);
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                                 $codeModel = new CodeModel;
                                 $codeModel->updateByFromId($chat_bot_id, $from['id']);
@@ -351,7 +351,7 @@
                             $username = isset($from['username']) ? $from['username'] : "";
                             $first_name = isset($from['first_name']) ? $from['first_name'] : "";
                             $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name);
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
 
                             $this->telegram->sendMessage (
                                 $chat['id'],
@@ -373,10 +373,10 @@
         }
 
         public function document ($document, $message_id, $from, $chat, $date) {
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
+            // $chatBotModel = new ChatBotModel;
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -476,12 +476,15 @@
         public function left_member ($left_member, $message_id, $from, $chat, $date) {
             // $str = '喵喵喵？ @' . $left_member['username'] . ' 被 @' . @$from['username'] . ' 移出了 ' . $chat['title'];
             // $this->telegram->sendMessage ($chat['id'], $str, $message_id, array (), '');
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-
+            // $chatBotModel = new ChatBotModel;
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            // //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
             $codeModel = new CodeModel;
             $codeModel->updateByFromId($chat_bot_id, @$from['id']);
+
+            $groupUserModel = new GroupUserModel;
+            $groupUserModel->updateByFromId($chat_bot_id, $chat['id'], @$from['id']);
 
         }
 

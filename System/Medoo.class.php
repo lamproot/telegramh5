@@ -136,7 +136,7 @@ class Medoo
                 $commands[] = "SET NAMES '" . $this->charset . "'";
             }
 
-            $this->pdo = new PDO(
+            $this->pdo = @new PDO(
                 $dsn,
                 $this->username,
                 $this->password,
