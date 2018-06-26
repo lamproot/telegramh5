@@ -55,7 +55,7 @@
                             $chat['id'],
                             $new_member['id']
                         );
-                        $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名含有违禁词", $new_member['id'], $username, $first_name, $last_name);
+                        $IllegalLogModel->add ($chat_bot_id, $message_id, "用户名含有违禁词", $new_member['id'], $username, $first_name, $last_name, $chat['id']);
 
                     }
                 }

@@ -1,7 +1,7 @@
 <?php
     class IllegalLogModel extends FLModel {
 
-        function add ($chat_bot_id, $message_id, $content, $from_id, $from_username, $first_name, $last_name, $chat_id)
+        function add ($chat_bot_id, $message_id, $content, $from_id, $from_username, $first_name, $last_name, $chat_id = 0)
         {
             // $errorModel = new ErrorModel;
             // $errorModel->sendError (MASTER, "dasdas");
