@@ -170,7 +170,7 @@
                         # 入群奖励 + 邀请奖励 $groupActivityFind['rate'] $groupActivityFind['group_rate']
                         $subtract = (int)$groupActivityFind['rate'] + (int)$groupActivityFind['group_rate'];
                         #修改消耗的奖励数
-                        $groupActivityModel = new GroupActivityModel();
+                        $groupActivityModel = new GroupActivityModel;
                         $errorModel = new ErrorModel;
                         $errorModel->sendError (MASTER, $groupActivityFind['id'] ."----". $subtract);
                         #如果消耗数小于0停止活动 活动已结束
