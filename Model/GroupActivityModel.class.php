@@ -20,13 +20,15 @@
 
         function updateTotalRateById ($id, $subtract)
         {
+
+            $errorModel = new ErrorModel;
+            $errorModel->sendError (MASTER, $subtract ."====".$id);
+
             $where['AND']['id'] = $id;
             $res = $this->db->update ('activity', [
-                "total_rate[-]" => $subtract,
+                "total_rate" => $subtract,
                 "updated_at" => time()
             ], $where);
-            $errorModel = new ErrorModel;
-            $errorModel->sendError (MASTER, $res);
 
         }
 
