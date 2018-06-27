@@ -73,9 +73,12 @@
         //$data['message']['photo'],
         public function photo($photo, $caption, $message_id, $from, $chat, $date){
             $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             //$chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+
+            $chatBot = $chatBotModel->getById($chat_bot_id);
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -140,9 +143,12 @@
 
         public function message ($message, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             //$chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+
+            $chatBot = $chatBotModel->getById($chat_bot_id);
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
@@ -374,9 +380,12 @@
 
         public function document ($document, $message_id, $from, $chat, $date) {
             $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getcommand($chat['id']);
-            $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
+            // $chatBot = $chatBotModel->getcommand($chat['id']);
+            // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             //$chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
+            $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+
+            $chatBot = $chatBotModel->getById($chat_bot_id);
             $whiteModel = new WhiteModel;
 
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
