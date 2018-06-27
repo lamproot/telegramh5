@@ -20,7 +20,6 @@
 
         function updateTotalRateById ($id, $subtract)
         {
-
             $errorModel = new ErrorModel;
             $errorModel->sendError (MASTER, $subtract ."====".$id);
 
@@ -29,6 +28,9 @@
                 "total_rate" => $subtract,
                 "updated_at" => time()
             ], $where);
+
+            $errorModel->sendError (MASTER, $this->db->last_query());
+
 
         }
 
