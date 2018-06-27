@@ -24,7 +24,7 @@
             // $errorModel->sendError (MASTER, $subtract ."====".$id);
             $where['AND']['id'] = $id;
             $res = $this->db->update ('group_activity', [
-                "total_rate" => $subtract,
+                "total_rate[-]" => $subtract,
                 "updated_at" => time()
             ], $where);
 
