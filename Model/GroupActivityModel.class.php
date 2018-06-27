@@ -20,16 +20,13 @@
 
         function updateTotalRateById ($id, $subtract)
         {
-            $errorModel = new ErrorModel;
-            $errorModel->sendError (MASTER, $subtract ."====".$id);
-
+            // $errorModel = new ErrorModel;
+            // $errorModel->sendError (MASTER, $subtract ."====".$id);
             $where['AND']['id'] = $id;
-            $res = $this->db->update ('activity', [
+            $res = $this->db->update ('group_activity', [
                 "total_rate" => $subtract,
                 "updated_at" => time()
             ], $where);
-
-            $errorModel->sendError (MASTER, $this->db->last_query());
 
 
         }
@@ -40,7 +37,7 @@
         function updateActivityStopedatById ($id)
         {
             $where['AND']['id'] = $id;
-            $res = $this->db->update ('activity', [
+            $res = $this->db->update ('group_activity', [
                 "stoped_at" => time(),
                 "updated_at" => time()
             ], $where);
