@@ -45,7 +45,7 @@
                 </p>
                 <div class="input-box">
                     <input class="address border-radius text-center" value="/{$chat_bot['code_cmd']}{$code}"/>
-                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address">复制</a>
+                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address" style="cursor: pointer;">复制</a>
                 </div>
             </div>
             <div class="col-sm-12 text-left">
@@ -66,7 +66,8 @@
                 <p class="text-left"><empty name="group_activity['step3']">3.将以下链接分享给好友，每成功邀请一位好友，即可获得10LMC<else /> {$group_activity['step3']}</empty></p>
                 <div class="input-box">
                     <input class="submit border-radius" value="{$group_activity['activity_tinyurl']}{$code}"/>
-                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit">复制</a>
+                    <input type="text" name="" value="{$group_activity['share_msg']}{$group_activity['activity_tinyurl']}{$code} 邀请成功，私信TokenMan获取你的实时奖励！" class="submit_text" style="opacity:0;">
+                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit_text">复制</a>
                 </div>
             </div>
 
@@ -124,12 +125,28 @@ clipboard.on('success', function(e) {
 });
 
 clipboard.on('error', function(e) {
-    layer.msg("复制失败!", {
+    layer.msg("请选择“拷贝”进行复制!", {
         shade: [0.8, '#000'],
         time: 1000
     });
 });
+
+// var clipboard = new Clipboard('.copy-btn');
+// clipboard.on('success', function(e) {
+// console.info('Action:', e.action);
+// console.info('Text:', e.text);
+// console.info('Trigger:', e.trigger);
+// alert("复制成功");
+// e.clearSelection();
+// });
+// clipboard.on('error', function(e) {
+// console.error('Action:', e.action);
+// console.error('Trigger:', e.trigger);
+// });
+
 </script>
+
+
 
 
 </body></html>
