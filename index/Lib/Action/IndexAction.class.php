@@ -146,6 +146,8 @@
 				$this -> display('en_code');
 			}else if ($_GET['lang'] == 'ko') {
 				$this -> display('ko_code');
+			}else if ($_GET['lang'] == 'ru') {
+				$this -> display('ru_code');
 			}else{
 				$this -> display();
 			}
@@ -301,6 +303,8 @@
 				$this -> display('en_dashboard');
 			}else if ($_GET['lang'] == 'ko') {
 				$this -> display('ko_dashboard');
+			}else if ($_GET['lang'] == 'ru') {
+				$this -> display('ru_dashboard');
 			}else{
 				$this -> display();
 			}
