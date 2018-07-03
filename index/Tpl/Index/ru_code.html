@@ -123,7 +123,7 @@
                     //alert()
                     //alert($("#g-recaptcha-response").val());
                     if ($("#g-recaptcha-response").val() == undefined) {
-                        layer.msg('请验证谷歌验证!', {
+                        layer.msg('Пожалуйста, проверьте аутентификация Google! ', {
                                 shade: [0.8, '#000'],
                                 time: 1500
                             }
@@ -139,7 +139,7 @@
                     });
 
                     if ($("#g-recaptcha-response").val() == "") {
-                        layer.msg('请验证谷歌验证!', {
+                        layer.msg('Пожалуйста, проверьте аутентификация Google! ', {
                                 shade: [0.8, '#000'],
                                 time: 1500
                             }
@@ -164,7 +164,7 @@
                            //     return false;
                            // }
                             if (!data.wallet) {
-                                layer.msg('钱包地址为空!', {
+                                layer.msg('адрес бумажника свободен! ', {
                                     shade: [0.8, '#000'],
                                     time: 1500
                                 });
@@ -185,9 +185,9 @@
                             }
                             var msg = '';
                             if (res.code == 101) {
-                                msg = '钱包地址错误!';
+                                msg = 'ошибка в бумажнике!';
                             } else {
-                                msg = '服务忙 请重试!'
+                                msg = 'услуга услуга за услугу, пожалуйста! '
                             }
                             layer.msg(msg, {
                                 shade: [0.8, '#000'],
