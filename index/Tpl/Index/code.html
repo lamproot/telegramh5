@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html data-dpr="2" style="font-size: 37.5px;">
+
+    <head lang="zh">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{$group_activity['title']}</title>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
+        <link rel="stylesheet" href="__PUBLIC__/telegram/bootstrap.min.css">
+
+        <script src="__PUBLIC__/telegram/flexible_css.js"></script>
+        <style>@charset "utf-8";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}a:hover{text-decoration:underline}ins,a{text-decoration:none}</style>
+        <script src="__PUBLIC__/telegram/flexible.js"></script>
+        <link rel="icon" href="__PUBLIC__/assets/img/logo/logo.ico">
+        <link rel="stylesheet" href="__PUBLIC__/telegram/ladda-themeless.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/telegram/index.css?t=<?php echo time();?>">
+        <style>input::-webkit-input-placeholder { /* placeholder颜色 */ color: #ffffff; /* placeholder字体大小 */ font-size: 20px; /* placeholder位置 */ text-align: left; } input { border: 1px solid red; }</style>
+        <style type="text/css">
+            .g-recaptcha div{
+                width: 100% !important;
+            }
+        </style>
+        <script src="http://sdk.talkingdata.com/app/h5/v1?appid=F4C453A76D72473CB426C688397BE09D&vn=0.001&vc=0.001"></script>
+        <link rel="stylesheet" href="__PUBLIC__/telegram/layer.css" id="layuicss-layer">
+        <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2'
+        });
+      };
+    </script>
+    </head>
+
+    <body style="font-size: 24px;background-image:url({$group_activity['bglogo']}); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
+        <div class="container">
+            <form class="row">
+                <div class="col-sm-12 text-right lang-box">
+                    <a href="javascript:void(0);" class="lang">English</a></div>
+                <div class="col-sm-12 text-center">
+                    <img class="logo" src="{$group_activity['logo']}" alt=""></div>
+               <!--  <div class="col-sm-12 text-center">
+                    <a href="{$group_activity['join_button_url']}" class="join border-radius" style="text-decoration:none;">{$group_activity['join_button_text']}</a></div> -->
+                <div class="col-sm-12 text-center">
+                    <div class="desc">{$group_activity['message']}</div>
+                    <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
+                </div>
+                <div class="col-sm-12 text-center">
+                    <if condition ="$group_activity['placeholder_text'] neq ''">
+                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}">
+                    <else/>
+                        <input name="wallet" class="address border-radius text-center" placeholder="请输入你的 ETH 钱包地址">
+                    </if>
+                    <input type="hidden" name="code" value="{$code}">
+                    <input type="hidden" name="chat_bot_id" value="{$chat_bot['id']}">
+                    <input type="hidden" name="activity_id" value="{$group_activity['id']}">
+                </div>
+
+                <div class="col-sm-12 text-center" style="margin-top:15px;">
+                    <!-- <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div> -->
+                    <div id="html_element"></div>
+                </div>
+
+                <div class="col-sm-12 text-center">
+                    <button type="button" href="javascript:void(0);" id="usernameID" class="submit border-radius text-center ladda-button" data-style="zoom-in">
+                        <span class="ladda-label">提交</span></button>
+                </div>
+                <div class="col-sm-12 text-center rule-box">
+                    <a class="link" data-toggle="modal" data-target="#myModal" href="" onclick="return false;">
+                        <u>活动详情</u>
+                    </a>
+                </div>
+
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" style="color:#000" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <!-- <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4> -->
+                            </div>
+                            <div class="modal-body" style="white-space:pre-wrap;font-size:16px">
+                                {$group_activity['rule']|htmlspecialchars_decode}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <!-- <button type="button" class="btn btn-primary">提交更改</button> -->
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+
+
+                <div class="col-sm-12 text-center link-box">
+                    <!-- <p class="link">由于监管原因，我们不接受来自中国，美国，加拿大，韩国和 OFAC 限制国的参与者<a href="https://www.treasury.gov/resource-center/sanctions/Programs/Pages/Programs.aspx" class="link">
+                        (<u>OFAC</u>)</a></p> -->
+                    <p class="link">提示：中国区用户，<br>
+                        请开启VPN完成谷歌验证，谢谢配合。</p>
+                </div>
+                <div class="col-sm-12 text-center link-box">
+                   <!--  <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a> -->
+                   <a href="https://twitter.com/IamTokenMan" title="TokenMan"><img style="width:35px;height:35px;" src="__PUBLIC__/img/tokenman.png"></a>
+                </div>
+            </form>
+        </div>
+     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+    <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
+    <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/telegram/spin.min.js"></script>
+    <script src="__PUBLIC__/telegram/ladda.min.js"></script>
+    <script src="__PUBLIC__/telegram/layer.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+        <script>$(function() {
+                $('.submit').click(function() {
+                    if ($(this).prop("disabled")) {
+                        return false;
+                    }
+
+
+                    //获取
+                    //alert($("#g-recaptcha-response").val());
+                    //alert()
+                    //alert($("#g-recaptcha-response").val());
+                    if ($("#g-recaptcha-response").val() == undefined) {
+                        layer.msg('请验证谷歌验证!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    };
+
+                    var ladda, data = {},
+                    _this = this;
+                    $.each($('form').serializeArray(),
+                    function() {
+                        data[this.name] = this.value;
+                    });
+
+                    if ($("#g-recaptcha-response").val() == "") {
+                        layer.msg('请验证谷歌验证!', {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            }
+                        );
+                        return false;
+                    }else{
+                        data.googleauth = $("#g-recaptcha-response").val();
+                    }
+
+                    var web3 = new Web3();
+                    $.ajax({
+                        type: "post",
+                        url: "__APP__/Api/code",
+                        data: data,
+                        timeout: 30000,
+                        beforeSend: function() {
+
+                            if (!data.wallet) {
+                                layer.msg('钱包地址为空!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            } else if (!web3.isAddress(data.wallet)) {
+                                layer.msg('钱包地址错误!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            } else {
+                                ladda = Ladda.create(_this);
+                                ladda.start();
+                            }
+                        },
+                        dataType: 'json'
+                    }).done(function(res) {
+
+                        if (res && res.success) {
+                            window.location.href = '/Index/dashboard/' + res.usercode;
+                        } else {
+                            if (ladda) {
+                                ladda.stop();
+                            }
+                            var msg = '';
+                            if (res.code == 101) {
+                                msg = '钱包地址错误!';
+                            } else {
+                                msg = '服务忙 请重试!'
+                            }
+                            layer.msg(msg, {
+                                shade: [0.8, '#000'],
+                                time: 1500
+                            });
+                        }
+                    });
+                });
+
+                $('.lang').click(function() {
+                    location.href = location.protocol + '//' + location.host + location.pathname + '?lang=en' + ('' ? '&code=': '')
+                });
+            });</script>
+
+    </body>
+
+</html>
+关闭
+温馨提示：可以使用快捷键进行操作哦
+专辑
+默认专辑
+描述
+标签
+ 收集收集者：还未登录，点此登录堆糖
