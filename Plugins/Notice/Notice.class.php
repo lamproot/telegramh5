@@ -15,7 +15,7 @@
             //添加加入用户记录
             $groupUserModel = new GroupUserModel;
             $groupUserModel->create($chat_bot_id, $chat['id'], 1, $from_id, $first_name, $last_name, $username);
-
+             $errorModel->sendError (MASTER, print_r($new_member, true));
             $chatBotList = $chatBotModel->getChatList();
             $chatBotArray = [];
             foreach ($chatBotList as $key => $value) {
