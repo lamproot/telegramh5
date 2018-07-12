@@ -10,7 +10,7 @@
                 'from_id' => $from_id,
                 'first_name' => $first_name,
                 'last_name' => $last_name,
-                'username' => $username,
+                'from_username' => $username,
                 'created_at' => time()
             ]);
         }
