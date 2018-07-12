@@ -8,7 +8,7 @@
             $errorModel = new ErrorModel;
 
             $username = isset($new_member['username']) ? $new_member['username'] : "";
-            $from_id = isset($new_member['from_id']) ? $new_member['from_id'] : "";
+            $from_id = isset($new_member['id']) ? $new_member['id'] : "";
             $first_name = isset($new_member['first_name']) ? $new_member['first_name'] : "";
             $last_name = isset($new_member['last_name']) ? $new_member['last_name'] : "";
 
