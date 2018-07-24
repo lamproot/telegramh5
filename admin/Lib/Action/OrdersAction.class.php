@@ -45,8 +45,113 @@ class OrdersAction extends CommonAction {
 	 */
     public function index()
     {
-    	$this -> display();
+		$start = $_GET['start'] ? strtotime($_GET['start']) : strtotime(date('Y-m-d', time()));
+
+        $stop = $_GET['stop'] ? strtotime($_GET['stop']) + 24 * 60 * 60 : time() + 24 * 60 * 60 ;
+
+        $where = "1";
+
+        // if($start && $stop){
+		//
+        //     $where = "created_at >= {$start} AND created_at <= {$stop}";
+		//
+        // }
+
+    	$params = array(
+
+    		'table_name' => 'fa_orders',
+
+    		'where' => $where,
+
+    		'order' => 'id desc'
+    	);
+
+    	$result = $this -> model -> order_select($params);
+
+		foreach ($result['result'] as $key => $value) {
+			$params = array(
+
+	    		'table_name' => 'fa_user',
+
+	    		'where' => "id = ".$value['uid']
+	    	);
+
+	    	$find = $this -> model -> my_find($params);
+
+			$result['result'][$key]['nickname'] = ($find && $find['nickname']) ? $find['nickname'] : "";
+			$result['result'][$key]['email'] = ($find && $find['email']) ? $find['email'] : "";
+
+		}
+		//echo json_encode($result);exit;
+    	$this -> assign('result', $result);
+
+		$this -> display();
     }
+
+	/**
+	 * 编辑
+	 *
+	 * 参数描述：
+	 *
+	 *
+	 *
+	 * 返回值：
+	 *
+	 */
+	public function edit()
+	{
+		$id = isset($_POST['id']) ? intval($_POST['id']) : intval($_GET['id']);
+
+		if (!$id)
+		{
+			$this -> _back('错误的参数');
+		}
+
+		$form_key = htmlspecialchars($_POST['form_key']);
+
+		if ($form_key == 'yes')
+		{
+			$data = $_POST;
+			$data['updated_at'] = time();
+			$params = array(
+
+				'table_name' => 'fa_orders',
+
+				'where' => "id = {$_POST['id']}",
+
+				'data' => $data
+			);
+
+			$chat_bot_save = $this -> model -> my_save($params);
+
+			if ($chat_bot_save)
+			{
+				$this -> _alert('保存成功');
+
+				redirect(__APP__.'/Orders/index', 0);
+			}
+			else
+			{
+				$this -> _back('保存失败 请稍后重试');
+			}
+		}
+
+		$order_params = array(
+
+			'table_name' => 'fa_orders',
+
+			'order' => 'id desc',
+
+			'where' => "id = {$id}"
+		);
+
+		$result = $this -> model -> my_find($order_params);
+
+		$this -> assign('result', $result);
+
+		$this -> display();
+	}
+
 
     /**
 	 * 待发货订单
