@@ -78,6 +78,12 @@
                     $message_id
                 );
             }
+
+            //删除入群消息
+            $this->telegram->deleteMessage (
+                $chat['id'],
+                $message_id
+            );
         }
         public function left_member ($left_member, $message_id, $from, $chat, $date) {
             //获取退群处理
