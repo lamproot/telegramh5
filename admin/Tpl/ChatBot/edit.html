@@ -105,6 +105,28 @@
                        </div>
 
                        <div class="form-group">
+                          <label class="col-sm-3 control-label">是否开启屏蔽群成员新入群提醒消息:</label>
+                          <div class="col-sm-6">
+                              <select class="form-control" name="new_member_switch">
+                                  <option  <if condition="$result['new_member_switch'] == 0">selected="selected"</if> value="0">不开启</option>
+                                  <option  <if condition="$result['new_member_switch'] == 1">selected="selected"</if> value="1">开启</option>
+                              </select>
+
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                         <label class="col-sm-3 control-label">是否开启屏蔽群成员退出群提醒消息:</label>
+                         <div class="col-sm-6">
+                             <select class="form-control" name="left_member_switch">
+                                 <option  <if condition="$result['left_member_switch'] == 0">selected="selected"</if> value="0">不开启</option>
+                                 <option  <if condition="$result['left_member_switch'] == 1">selected="selected"</if> value="1">开启</option>
+                             </select>
+
+                         </div>
+                     </div>
+                     
+                       <div class="form-group">
                            <label class="col-sm-3 control-label">机器人运行时间</label>
                            <div class="col-sm-3">
                                <input id="started_at"  placeholder="格式例如: 2018-03-21 10:35:29"  name="started_at" value="{$result['started_at']|date="Y-m-d H:i:s",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd hh:ii:ss" >

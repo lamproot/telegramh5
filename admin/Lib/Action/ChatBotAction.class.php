@@ -311,7 +311,10 @@
 				$data['started_at'] = strtotime($_POST['started_at']);
 	    		$data['stoped_at'] = strtotime($_POST['stoped_at']);
 
-	    		$data['updated_at'] = time();
+				$data['new_member_switch'] = isset($_POST['new_member_switch']) ? $_POST['new_member_switch'] : 0;
+				$data['left_member_switch'] = isset($_POST['left_member_switch']) ? $_POST['left_member_switch'] : 0;
+
+				$data['updated_at'] = time();
 
 	    		$params = array(
 

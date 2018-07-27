@@ -506,7 +506,7 @@ DROP TABLE IF EXISTS `zx_order_items`;
 
 CREATE TABLE `balancesseq` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  
+
   `preamount` int(10) NOT NULL DEFAULT '0' COMMENT '更新前金额',
   `is_del` tinyint(4) NOT NULL DEFAULT '0' COMMENT '更新金额',
   `newamount` tinyint(4) NOT NULL DEFAULT '0' COMMENT '更新后金额',
@@ -595,5 +595,3 @@ CREATE TABLE `scene_collections` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商户信息采集';
 
 ALTER TABLE circle.scenes ADD is_choice TINYINT(2) NOT NULL DEFAULT 0 COMMENT '是否精选 0 - 否 1 - 精选';
-
-choice

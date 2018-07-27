@@ -39,3 +39,6 @@ CREATE TABLE `user_tokenman_log` (
 ALTER TABLE group_activity ADD activate_type TINYINT(2) NOT NULL DEFAULT 0 COMMENT '激活类型';
 ALTER TABLE group_activity ADD activity_tinyurl varchar(255) NOT NULL DEFAULT '' COMMENT '邀请地址配置';
 
+
+ALTER TABLE chat_bot ADD new_member_switch TINYINT(2) NOT NULL DEFAULT 0 COMMENT '新加入用户消息开关';
+ALTER TABLE chat_bot ADD left_member_switch TINYINT(2) NOT NULL DEFAULT 0 COMMENT '踢出用户消息开关';

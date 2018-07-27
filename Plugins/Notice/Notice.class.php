@@ -79,11 +79,15 @@
                 );
             }
 
-            //删除入群消息
-            $this->telegram->deleteMessage (
-                $chat['id'],
-                $message_id
-            );
+            $chatBot = $chatBotModel->getById($chat_bot_id);
+            if ($chatBot && isset($chatBot['new_member_switch']) && intval($chatBot['new_member_switch']) == 1) {
+                //删除入群消息
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
+
         }
         public function left_member ($left_member, $message_id, $from, $chat, $date) {
             //获取退群处理

@@ -55,13 +55,13 @@
                     $(buttonThis).attr("disabled", "disabled");
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo APP_URL ?>/index.php/login/ajaxLogin",
+                        url: "<?php echo APP_URL ?>/callback.php/login/ajaxLogin",
                         data: {
                             "password": $("input#loginBox-password").val()
                         },
                         success: function(data, textStatus, jqXHR){
                             if(data.code == '0'){
-                                location.href = "<?php echo APP_URL ?>/index.php";
+                                location.href = "<?php echo APP_URL ?>/callback.php";
                             }else{
                                 textOld = $(buttonThis).text();
                                 $(buttonThis).text(data.msg);
@@ -79,16 +79,16 @@
             ?>
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo APP_URL ?>/index.php/login/fastLogin",
+                    url: "<?php echo APP_URL ?>/callback.php/login/fastLogin",
                     success: function(data, textStatus, jqXHR){
                         if(data.code == '0'){
                             setInterval(function(){
                                 $.ajax({
                                     type: "POST",
-                                    url: "<?php echo APP_URL ?>/index.php/login/fastLoginVerify",
+                                    url: "<?php echo APP_URL ?>/callback.php/login/fastLoginVerify",
                                     success: function(data, textStatus, jqXHR){
                                         if(data.code == '0'){
-                                            location.href = "<?php echo APP_URL ?>/index.php";
+                                            location.href = "<?php echo APP_URL ?>/callback.php";
                                         }
                                     },
                                     dataType: "json"
@@ -101,7 +101,7 @@
             <?php
         }
     ?>
-    
+
 </script>
 
 <?php if ($pjax == false) echo '</div>' ?>

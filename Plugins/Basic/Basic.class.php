@@ -488,14 +488,20 @@
             // $chatBotModel = new ChatBotModel;
             // $chatBot = $chatBotModel->getcommand($chat['id']);
             // //$chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
-            
+
 
             $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
-            //删除退群消息
-            $this->telegram->deleteMessage (
-                $chat['id'],
-                $message_id
-            );
+
+            $chatBotModel = new ChatBotModel;
+            $chatBot = $chatBotModel->getById($chat_bot_id);
+            if ($chatBot && isset($chatBot['left_member_switch']) && intval($chatBot['left_member_switch']) == 1) {
+                //删除退群消息
+                $this->telegram->deleteMessage (
+                    $chat['id'],
+                    $message_id
+                );
+            }
+
             $codeModel = new CodeModel;
             $codeModel->updateByFromId($chat_bot_id, @$from['id']);
 
