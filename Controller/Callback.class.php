@@ -88,10 +88,10 @@
         private function parseMessage ()
         {
             $data = json_decode (file_get_contents ("php://input"), true);
-            // $errorModel = new ErrorModel;
-            // $errorModel->sendError (MASTER, print_r($data, true));
-
-
+//             $errorModel = new ErrorModel;
+//             $errorModel->sendError (MASTER, print_r($data, true));
+//
+// exit;
 		    if (isset ($data['message'])) {
                 //更新消息处理数
                 // if ($data['message']['chat'] && isset($data['message']['chat']['id'])) {
@@ -211,6 +211,21 @@
                     $func = 'document';
                     $param = [
                         $data['message']['document'],
+                        $data['message']['message_id'],
+                        $data['message']['from'],
+                        $data['message']['chat'],
+                        $data['message']['date'],
+                    ];
+                    $initParam = [
+                        $func,
+                        $data['message']['from'],
+                        $data['message']['chat'],
+                        $data['message']['date'],
+                    ];
+                } else if (isset ($data['message']['voice'])) {
+                    $func = 'voice';
+                    $param = [
+                        $data['message']['voice'],
                         $data['message']['message_id'],
                         $data['message']['from'],
                         $data['message']['chat'],

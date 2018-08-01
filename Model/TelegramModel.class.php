@@ -274,6 +274,16 @@
             return $this->ret;
         }
 
+        
+        public function restrictChatMember ($chat_id, $user_id, $time) {
+            $this->ret = $this->callMethod ('restrictChatMember', [
+                'chat_id' => $chat_id,
+                'user_id' => $user_id,
+                'until_date' => $time
+            ]);
+            return $this->ret;
+        }
+
         public function getMaster () {
             return MASTER;
         }
