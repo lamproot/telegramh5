@@ -9,10 +9,11 @@
 
                 $errorModel = new ErrorModel;
                 $chatBotModel = new ChatBotModel;
-                $chatBot = $chatBotModel->getcommand($chat['id']);
-                $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : $chatBot['id'];
+                //$chatBot = $chatBotModel->getcommand($chat['id']);
+                $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
 
                 //查询是否开启防止活动刷屏 规则  group_bot_config_机器人ID_群ID group_bot_config_2_-1001249040089
+                //当用户指令超过两个进行禁言
 
                 //查询命令是否有回复
                 $commandModel = new CommandModel;
@@ -192,19 +193,111 @@
             // $chat_bot_id = ($chatBot && isset($chatBot['id'])) ? $chatBot['id'] : "";
             //$chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
             $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
-
             $chatBot = $chatBotModel->getById($chat_bot_id);
-            $whiteModel = new WhiteModel;
 
+
+            $chatBotConfigModel = new ChatBotConfigModel;
+            $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
+            $errorModel = new ErrorModel;
+            // $errorModel->sendError (MASTER, print_r($chatBotConfig, true));exit;
+
+            //根据关键词自动应答
+            if ($chatBotConfig && isset($chatBotConfig['is_keyword_cmd']) && $chatBotConfig['is_keyword_cmd']) {
+                //keyword_cmd_config
+                if ($chatBotConfig && isset($chatBotConfig['keyword_cmd_config']) && $chatBotConfig['keyword_cmd_config']) {
+                    $chatBotConfig['keyword_cmd_config'] = json_decode($chatBotConfig['keyword_cmd_config'], true);
+                    foreach ($chatBotConfig['keyword_cmd_config'] as $key => $value) {
+                        //包含关键词
+                        if ($value['type'] == 1 && isset($value['keyword'])) {
+                            foreach ($value['keyword'] as $kkey => $kvalue) {
+                                $pos = stripos($message, $kvalue);
+                                if ($pos !== false) {
+                                    $this->telegram->sendMessage (
+                                        $chat['id'],
+                                        $value['content'],
+                                        $message_id
+                                    );
+                                    return true;
+                                }
+                            }
+                        }
+
+                        //等于关键词
+                        if ($value['type'] == 2) {
+                            foreach ($value['keyword'] as $kkey => $kvalue) {
+                                if ($message == $kvalue) {
+                                    $this->telegram->sendMessage (
+                                        $chat['id'],
+                                        $value['content'],
+                                        $message_id
+                                    );
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                //包含关键词
+                // [
+                //     {
+                //         "keyword":["111","222","3333"],
+                //         "content":"回复内容111",
+                //         "type":1
+                //     },
+                //     {
+                //         "keyword":["111","222","3333"],
+                //         "content":"回复内容2222",
+                //         "type":2
+                //     }
+                // ]
+                //等于关键词
+            }
+            //如果是管理员 或 白名单 - 不做任何限制
+            $whiteModel = new WhiteModel;
             $find = $whiteModel->my_find($chat_bot_id, $from['id']);
             if ($find) {
                 return true;
             }
 
-            //判断是否清除链接 （链接白名单 TODO）
-            $chatBotConfigModel = new ChatBotConfigModel;
-            $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
+            //判断是否开启群禁言 is_clear_all_news  禁言时长 clear_all_news_time
+            //禁言期間，群内普通成员仍被允许发送以下文字内容: clear_all_news_white
+            //禁言期間，群内普通成员仍被允许发送包含以下关键词的内容: clear_all_news_reg_white
+            if ($chatBotConfig && isset($chatBotConfig['is_clear_all_news']) && $chatBotConfig['is_clear_all_news']) {
 
+                //禁言期間，群内普通成员仍被允许发送以下文字内容
+                if ($chatBotConfig && isset($chatBotConfig['clear_all_news_white']) && $chatBotConfig['clear_all_news_white']) {
+
+                    $clear_all_news_white = explode(",", $chatBotConfig['clear_all_news_white']);
+                    foreach ($clear_all_news_white as $key => $value) {
+                        if ($message == $value) {
+                            return true;
+                        }
+                    }
+                }
+
+                if ($chatBotConfig && isset($chatBotConfig['clear_all_news_reg_white']) && $chatBotConfig['clear_all_news_reg_white']) {
+
+                    $clear_all_news_reg_white = explode(",", $chatBotConfig['clear_all_news_reg_white']);
+                    foreach ($clear_all_news_reg_white as $key => $value) {
+                        $pos = stripos($message, $value);
+                        if ($pos !== false) {
+                            return true;
+                        }
+                    }
+                }
+
+                //禁言期间进行处理
+                if ($chatBotConfig && isset($chatBotConfig['clear_all_news_stop_time']) && $chatBotConfig['clear_all_news_stop_time'] && time() < $chatBotConfig['clear_all_news_stop_time']) {
+                    $this->telegram->deleteMessage (
+                        $chat['id'],
+                        $message_id
+                    );
+                    return true;
+                }
+            }
+
+
+            //判断是否清除链接 （链接白名单 TODO）
             //进行链接搜索和数据清理 警告两次禁言 禁言两次直接封禁
             if ($chatBotConfig && isset($chatBotConfig['is_delete_link']) && $chatBotConfig['is_delete_link']) {
                 //链接  关键字（敏感词）过滤
@@ -217,19 +310,12 @@
                 }
             }
 
-            //根据关键词自动应答
-            if ($chatBotConfig && isset($chatBotConfig['is_keyword_cmd']) && $chatBotConfig['is_keyword_cmd']) {
-                //包含关键词
-                //等于关键词
-            }
             //根据敏感词封禁成员
             if ($chatBotConfig && isset($chatBotConfig['is_words_ban']) && $chatBotConfig['is_words_ban']) {
 
                 //获取封禁关键词
                 if ($chatBotConfig && isset($chatBotConfig['set_ban_words']) && $chatBotConfig['set_ban_words']) {
-                    
                     $set_ban_words = explode(",", $chatBotConfig['set_ban_words']);
-                    
                     foreach ($set_ban_words as $key => $value) {
                         $pos = stripos($message, $value);
                         if ($pos !== false) {
@@ -580,9 +666,18 @@
 
             $chat_bot_id = $_GET['bot_id'] ? intval($_GET['bot_id']) : 0;
 
-            $chatBotModel = new ChatBotModel;
-            $chatBot = $chatBotModel->getById($chat_bot_id);
-            if ($chatBot && isset($chatBot['left_member_switch']) && intval($chatBot['left_member_switch']) == 1) {
+            // $chatBotModel = new ChatBotModel;
+            // $chatBot = $chatBotModel->getById($chat_bot_id);
+            // if ($chatBot && isset($chatBot['left_member_switch']) && intval($chatBot['left_member_switch']) == 1) {
+            //     //删除退群消息
+            //     $this->telegram->deleteMessage (
+            //         $chat['id'],
+            //         $message_id
+            //     );
+            // }
+            $chatBotConfigModel = new ChatBotConfigModel;
+            $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
+            if ($chatBotConfig && isset($chatBotConfig['is_clear_left_member']) && $chatBotConfig['is_clear_left_member']) {
                 //删除退群消息
                 $this->telegram->deleteMessage (
                     $chat['id'],
@@ -691,7 +786,7 @@
             $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
             $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
 
-            
+
 
             //优化代码
             $IllegalLogModel = new IllegalLogModel;
@@ -705,7 +800,7 @@
                 $codeModel = new CodeModel;
                 $codeModel->updateByFromId($chat_bot_id, $from['id']);
             }
-            
+
             //封禁成员前先进行警告 - 发送警告消息 删除消息 两次警告无效进行封禁
             if ($chatBotConfig && isset($chatBotConfig['is_ban_warn']) && $chatBotConfig['is_ban_warn']) {
                 $this->telegram->sendMessage (
@@ -727,7 +822,7 @@
                     $from['id'],
                     time() + $chatBotConfig['set_ban_time']
                 );
-                
+
             }
 
             //封禁同时踢除成员 - T出成员
@@ -746,7 +841,7 @@
             $last_name = isset($from['last_name']) ? $from['last_name'] : "";
             $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
 
-           
-            
+
+
         }
     }

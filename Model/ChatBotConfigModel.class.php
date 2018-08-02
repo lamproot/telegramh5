@@ -77,6 +77,10 @@
                 if ($value['data']) {
                     $result[$value['rule']] = $value['data'];
                 }
+
+                if ($value['rule'] == 'clear_all_news_time') {
+                    $result['clear_all_news_stop_time'] = $value['updated_at'] + $value['value'];
+                }
             }
             return $result;
         }
