@@ -328,225 +328,225 @@
 
 
 
-            // if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-            //
-            //     //链接  关键字（敏感词）过滤
-            //     $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
-            //     $needle= 'http';
-            //     $pos = strripos($message, $needle);
-            //     if (preg_match($regex, $message) || $pos !== false) {
-            //         $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
-            //         $command = "/datacleaning";
-            //         //查询数据清除返回文案
-            //         $commandModel = new CommandModel;
-            //         $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
-            //         $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
-            //
-            //         $IllegalLogModel = new IllegalLogModel;
-            //
-            //         //查询违规数据是否大于3次
-            //         $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-            //         if ($count >= 1) {
-            //             $this->telegram->kickChatMember (
-            //                 $chat['id'],
-            //                 $from['id']
-            //             );
-            //             $username = isset($from['username']) ? $from['username'] : "";
-            //             $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //             $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //             $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //             $codeModel = new CodeModel;
-            //             $codeModel->updateByFromId($chat_bot_id, $from['id']);
-            //
-            //             $this->telegram->sendMessage (
-            //                 $chat['id'],
-            //                 $sendmessage,
-            //                 $message_id
-            //             );
-            //
-            //             $this->telegram->deleteMessage (
-            //                 $chat['id'],
-            //                 $message_id
-            //             );
-            //
-            //             return;
-            //         }
-            //
-            //         //记录相关违规数据
-            //         $username = isset($from['username']) ? $from['username'] : "";
-            //         $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //         $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //         $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //         $this->telegram->sendMessage (
-            //             $chat['id'],
-            //             $sendmessage,
-            //             $message_id
-            //         );
-            //
-            //         $this->telegram->deleteMessage (
-            //             $chat['id'],
-            //             $message_id
-            //         );
-            //
-            //     }else{
-            //         $result = $this->get_tags_arr($message);
-            //         $sensitiveWordsModel = new SensitiveWordsModel;
-            //
-            //         if ($result) {
-            //
-            //             $wordresult = false;
-            //             foreach ($result as $key => $value) {
-            //                 $sensitiveWord = $sensitiveWordsModel->find($value);
-            //                 if ($sensitiveWord) {
-            //                     $wordresult = true;
-            //                 }
-            //             }
-            //
-            //             if ($wordresult) {
-            //                 $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
-            //                 $command = "/datacleaning";
-            //                 //查询数据清除返回文案
-            //                 $commandModel = new CommandModel;
-            //                 $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
-            //                 $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
-            //
-            //                 $IllegalLogModel = new IllegalLogModel;
-            //
-            //                 //查询违规数据是否大于3次
-            //                 $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-            //                 if ($count >= 1) {
-            //                     $this->telegram->kickChatMember (
-            //                         $chat['id'],
-            //                         $from['id']
-            //                     );
-            //                     $username = isset($from['username']) ? $from['username'] : "";
-            //                     $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                     $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                     $codeModel = new CodeModel;
-            //                     $codeModel->updateByFromId($chat_bot_id, $from['id']);
-            //                     return;
-            //                 }
-            //
-            //                 //记录相关违规数据
-            //                 $username = isset($from['username']) ? $from['username'] : "";
-            //                 $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                 $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                 $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                 $this->telegram->sendMessage (
-            //                     $chat['id'],
-            //                     $sendmessage,
-            //                     $message_id
-            //                 );
-            //
-            //                 $this->telegram->deleteMessage (
-            //                     $chat['id'],
-            //                     $message_id
-            //                 );
-            //             }else{
-            //                 $word = $sensitiveWordsModel->find([$message]);
-            //                 if ($word) {
-            //                     $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
-            //                     $command = "/datacleaning";
-            //                     //查询数据清除返回文案
-            //                     $commandModel = new CommandModel;
-            //                     $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
-            //                     $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
-            //
-            //                     $IllegalLogModel = new IllegalLogModel;
-            //
-            //                     //查询违规数据是否大于3次
-            //                     $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-            //                     if ($count >= 1) {
-            //                         $this->telegram->kickChatMember (
-            //                             $chat['id'],
-            //                             $from['id']
-            //                         );
-            //                         $username = isset($from['username']) ? $from['username'] : "";
-            //                         $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                         $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                         $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                         $codeModel = new CodeModel;
-            //                         $codeModel->updateByFromId($chat_bot_id, $from['id']);
-            //                         return;
-            //                     }
-            //
-            //                     //记录相关违规数据
-            //                     $username = isset($from['username']) ? $from['username'] : "";
-            //                     $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                     $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                     $this->telegram->sendMessage (
-            //                         $chat['id'],
-            //                         $sendmessage,
-            //                         $message_id
-            //                     );
-            //
-            //                     $this->telegram->deleteMessage (
-            //                         $chat['id'],
-            //                         $message_id
-            //                     );
-            //                 }
-            //             }
-            //
-            //         }else{
-            //             $word = $sensitiveWordsModel->find([$message]);
-            //             if ($word) {
-            //                 $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
-            //                 $command = "/datacleaning";
-            //                 //查询数据清除返回文案
-            //                 $commandModel = new CommandModel;
-            //                 $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
-            //                 $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
-            //
-            //                 $IllegalLogModel = new IllegalLogModel;
-            //
-            //                 //查询违规数据是否大于3次
-            //                 $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-            //                 if ($count >= 1) {
-            //                     $this->telegram->kickChatMember (
-            //                         $chat['id'],
-            //                         $from['id']
-            //                     );
-            //                     $username = isset($from['username']) ? $from['username'] : "";
-            //                     $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                     $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                     $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                     $codeModel = new CodeModel;
-            //                     $codeModel->updateByFromId($chat_bot_id, $from['id']);
-            //                     return;
-            //                 }
-            //
-            //                 //记录相关违规数据
-            //                 $username = isset($from['username']) ? $from['username'] : "";
-            //                 $first_name = isset($from['first_name']) ? $from['first_name'] : "";
-            //                 $last_name = isset($from['last_name']) ? $from['last_name'] : "";
-            //                 $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
-            //
-            //                 $this->telegram->sendMessage (
-            //                     $chat['id'],
-            //                     $sendmessage,
-            //                     $message_id
-            //                 );
-            //
-            //                 $this->telegram->deleteMessage (
-            //                     $chat['id'],
-            //                     $message_id
-            //                 );
-            //             }
-            //         }
-            //     }
-            //
-            //
-            //
-            // }
+            if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
+
+                //链接  关键字（敏感词）过滤
+                $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+                $needle= 'http';
+                $pos = strripos($message, $needle);
+                if (preg_match($regex, $message) || $pos !== false) {
+                    $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                    $command = "/datacleaning";
+                    //查询数据清除返回文案
+                    $commandModel = new CommandModel;
+                    $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                    $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+            
+                    $IllegalLogModel = new IllegalLogModel;
+
+                    //查询违规数据是否大于3次
+                    $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                    if ($count >= 1) {
+                        $this->telegram->kickChatMember (
+                            $chat['id'],
+                            $from['id']
+                        );
+                        $username = isset($from['username']) ? $from['username'] : "";
+                        $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                        $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                        $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                        $codeModel = new CodeModel;
+                        $codeModel->updateByFromId($chat_bot_id, $from['id']);
+
+                        $this->telegram->sendMessage (
+                            $chat['id'],
+                            $sendmessage,
+                            $message_id
+                        );
+
+                        $this->telegram->deleteMessage (
+                            $chat['id'],
+                            $message_id
+                        );
+
+                        return;
+                    }
+
+                    //记录相关违规数据
+                    $username = isset($from['username']) ? $from['username'] : "";
+                    $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                    $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                    $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                    $this->telegram->sendMessage (
+                        $chat['id'],
+                        $sendmessage,
+                        $message_id
+                    );
+
+                    $this->telegram->deleteMessage (
+                        $chat['id'],
+                        $message_id
+                    );
+
+                }else{
+                    $result = $this->get_tags_arr($message);
+                    $sensitiveWordsModel = new SensitiveWordsModel;
+
+                    if ($result) {
+
+                        $wordresult = false;
+                        foreach ($result as $key => $value) {
+                            $sensitiveWord = $sensitiveWordsModel->find($value);
+                            if ($sensitiveWord) {
+                                $wordresult = true;
+                            }
+                        }
+
+                        if ($wordresult) {
+                            $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                            $command = "/datacleaning";
+                            //查询数据清除返回文案
+                            $commandModel = new CommandModel;
+                            $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                            $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
+                            $IllegalLogModel = new IllegalLogModel;
+
+                            //查询违规数据是否大于3次
+                            $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                            if ($count >= 1) {
+                                $this->telegram->kickChatMember (
+                                    $chat['id'],
+                                    $from['id']
+                                );
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                                $codeModel = new CodeModel;
+                                $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                return;
+                            }
+
+                            //记录相关违规数据
+                            $username = isset($from['username']) ? $from['username'] : "";
+                            $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                            $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $sendmessage,
+                                $message_id
+                            );
+
+                            $this->telegram->deleteMessage (
+                                $chat['id'],
+                                $message_id
+                            );
+                        }else{
+                            $word = $sensitiveWordsModel->find([$message]);
+                            if ($word) {
+                                $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                                $command = "/datacleaning";
+                                //查询数据清除返回文案
+                                $commandModel = new CommandModel;
+                                $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                                $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
+                                $IllegalLogModel = new IllegalLogModel;
+
+                                //查询违规数据是否大于3次
+                                $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                                if ($count >= 1) {
+                                    $this->telegram->kickChatMember (
+                                        $chat['id'],
+                                        $from['id']
+                                    );
+                                    $username = isset($from['username']) ? $from['username'] : "";
+                                    $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                    $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                    $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                                    $codeModel = new CodeModel;
+                                    $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                    return;
+                                }
+
+                                //记录相关违规数据
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                                $this->telegram->sendMessage (
+                                    $chat['id'],
+                                    $sendmessage,
+                                    $message_id
+                                );
+
+                                $this->telegram->deleteMessage (
+                                    $chat['id'],
+                                    $message_id
+                                );
+                            }
+                        }
+
+                    }else{
+                        $word = $sensitiveWordsModel->find([$message]);
+                        if ($word) {
+                            $sendmessage = "Warning！Please don't send unofficial links and pictures here，or you will be taken out of the group.";
+                            $command = "/datacleaning";
+                            //查询数据清除返回文案
+                            $commandModel = new CommandModel;
+                            $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
+                            $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
+
+                            $IllegalLogModel = new IllegalLogModel;
+
+                            //查询违规数据是否大于3次
+                            $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
+                            if ($count >= 1) {
+                                $this->telegram->kickChatMember (
+                                    $chat['id'],
+                                    $from['id']
+                                );
+                                $username = isset($from['username']) ? $from['username'] : "";
+                                $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                                $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                                $IllegalLogModel->add ($chat_bot_id, $message_id, "已被管理员T出群", $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                                $codeModel = new CodeModel;
+                                $codeModel->updateByFromId($chat_bot_id, $from['id']);
+                                return;
+                            }
+
+                            //记录相关违规数据
+                            $username = isset($from['username']) ? $from['username'] : "";
+                            $first_name = isset($from['first_name']) ? $from['first_name'] : "";
+                            $last_name = isset($from['last_name']) ? $from['last_name'] : "";
+                            $IllegalLogModel->add ($chat_bot_id, $message_id, $message, $from['id'], $username, $first_name, $last_name, $chat['id']);
+
+                            $this->telegram->sendMessage (
+                                $chat['id'],
+                                $sendmessage,
+                                $message_id
+                            );
+
+                            $this->telegram->deleteMessage (
+                                $chat['id'],
+                                $message_id
+                            );
+                        }
+                    }
+                }
+
+
+
+            }
         }
 
         public function document ($document, $message_id, $from, $chat, $date) {
