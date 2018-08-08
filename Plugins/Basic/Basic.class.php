@@ -208,9 +208,10 @@
                     $chatBotConfig['keyword_cmd_config'] = json_decode($chatBotConfig['keyword_cmd_config'], true);
                     foreach ($chatBotConfig['keyword_cmd_config'] as $key => $value) {
                         //包含关键词
-                        if ($value['type'] == 1 && isset($value['keyword'])) {
+                        if ((int)$value['type'] == 1 && isset($value['keyword'])) {
+
                             foreach ($value['keyword'] as $kkey => $kvalue) {
-                                $pos = stripos($message, $kvalue);
+                                $pos = stripos((string)$message, (string)$kvalue);
                                 if ($pos !== false) {
                                     $this->telegram->sendMessage (
                                         $chat['id'],
@@ -221,9 +222,10 @@
                                 }
                             }
                         }
-
+                        //$errorModel->sendError (MASTER, print_r($value['keyword'], true));exit;
                         //等于关键词
-                        if ($value['type'] == 2 && isset($value['keyword'])) {
+                        if ((int)$value['type'] == 2 && isset($value['keyword']) && !empty($value['keyword'])) {
+                            //$errorModel->sendError (MASTER, print_r($value['keyword'], true));exit;
                             foreach ($value['keyword'] as $kkey => $kvalue) {
                                 if ($message == $kvalue) {
                                     $this->telegram->sendMessage (
