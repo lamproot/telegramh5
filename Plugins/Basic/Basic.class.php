@@ -794,7 +794,7 @@
             $IllegalLogModel = new IllegalLogModel;
             //查询违规数据是否大于3次 T出用户
             $count = $IllegalLogModel->getcount($chat_bot_id, $from['id']);
-            if ($count >= 2) {
+            if ($count >= 3) {
                 $this->telegram->kickChatMember (
                     $chat['id'],
                     $from['id']
