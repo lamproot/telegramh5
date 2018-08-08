@@ -223,7 +223,7 @@
                         }
 
                         //等于关键词
-                        if ($value['type'] == 2) {
+                        if ($value['type'] == 2 && isset($value['keyword'])) {
                             foreach ($value['keyword'] as $kkey => $kvalue) {
                                 if ($message == $kvalue) {
                                     $this->telegram->sendMessage (
@@ -341,7 +341,7 @@
                     $commandModel = new CommandModel;
                     $commandInfo = $commandModel->find($chat_bot_id, $command, 1, 1);
                     $sendmessage = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : $sendmessage;
-            
+
                     $IllegalLogModel = new IllegalLogModel;
 
                     //查询违规数据是否大于3次
