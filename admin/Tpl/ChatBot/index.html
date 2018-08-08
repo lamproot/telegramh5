@@ -59,7 +59,7 @@
 										<td><if condition="$data.master_id neq ''">{$data.master_id}<else/><a  data-toggle="modal" href="#myModal5">获取master_id</a></if></td>
 										<td>
 											<if condition="$data.admin_id eq '' || $data.admin_id eq 0">
-												<a href="__APP__/ChatBot/admin/id/{$data.id}">添加管理员</a>
+												<a href="__APP__/ChatBot/admin/id/{$data.id}">开通客户端账号</a>
 											<else/>
 												{$data.admin_id}
 											</if>
