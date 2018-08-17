@@ -822,7 +822,7 @@
                 $this->telegram->restrictChatMember (
                     $chat['id'],
                     $from['id'],
-                    time() + $chatBotConfig['set_ban_time']
+                    time() + $chatBotConfig['set_ban_time'] * $count
                 );
 
             }

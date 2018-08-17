@@ -88,9 +88,9 @@
         private function parseMessage ()
         {
             $data = json_decode (file_get_contents ("php://input"), true);
-//             $errorModel = new ErrorModel;
-//             $errorModel->sendError (MASTER, print_r($data, true));
-//
+            $errorModel = new ErrorModel;
+            $errorModel->sendError (MASTER, print_r($data, true));
+
 // exit;
 		    if (isset ($data['message'])) {
                 //更新消息处理数
@@ -101,6 +101,11 @@
 
 		        if (isset ($data['message']['text'])) {
 		            if ($data['message']['text'][0] == '/') {
+
+
+		            	//查询该用户是否1分钟之内发了超过30次 将用户禁言
+		            	
+
 		                $data['message']['text'] = str_replace ("\n", " ", $data['message']['text']);
 		                $messageExplode = explode (' ', $data['message']['text']);
 		                $commandExplode = explode ('@', $messageExplode[0]);
