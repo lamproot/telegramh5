@@ -89,7 +89,7 @@
         {
             $data = json_decode (file_get_contents ("php://input"), true);
             $errorModel = new ErrorModel;
-            $errorModel->sendError (MASTER, print_r($data, true));
+            //$errorModel->sendError (MASTER, print_r($data, true));
 
 // exit;
 		    if (isset ($data['message'])) {
@@ -104,7 +104,7 @@
 
 
 		            	//查询该用户是否1分钟之内发了超过30次 将用户禁言
-		            	
+
 
 		                $data['message']['text'] = str_replace ("\n", " ", $data['message']['text']);
 		                $messageExplode = explode (' ', $data['message']['text']);
