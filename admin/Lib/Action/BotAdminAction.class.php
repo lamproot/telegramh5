@@ -264,13 +264,12 @@
 
 	    	$params = array(
 
-	    		'table_name' => 'chat_bot',
+	    		'table_name' => 'fa_admin',
 
-	    		'where' => "id = {$id} AND is_del = 0"
+	    		'where' => "id = {$id}"
 	    	);
 
 	    	$result = $this -> model -> my_find($params);
-
 	    	if (!$result)
 	    	{
 	    		$this -> _back('没有符合的记录');
@@ -280,23 +279,20 @@
 
 	    	if ($form_key == 'yes')
 	    	{
-				$data['token'] = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : $this -> _back('请填写token');
-				$data['chat_id'] = isset($_POST['chat_id']) ? htmlspecialchars($_POST['chat_id']) : $this -> _back('请填写chat_id');
-				$data['master_id'] = isset($_POST['master_id']) ? htmlspecialchars($_POST['master_id']) : $this -> _back('请填写master_id');
-				$data['code_cmd'] = isset($_POST['code_cmd']) ? htmlspecialchars($_POST['code_cmd']) : $this -> _back('请填写code_cmd');
-				$data['name'] = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
-				$data['remark'] = isset($_POST['remark']) ? htmlspecialchars($_POST['remark']) : "";
-				$data['is_shield'] = isset($_POST['is_shield']) ? $_POST['is_shield'] : 0;
-				$data['is_currency'] = isset($_POST['is_currency']) ? $_POST['is_currency'] : 0;
-				$data['tokenman_name'] = isset($_POST['tokenman_name']) ? $_POST['tokenman_name'] : "";
-				$data['started_at'] = strtotime($_POST['started_at']);
-	    		$data['stoped_at'] = strtotime($_POST['stoped_at']);
+				
+				$data = $_POST;
 
-	    		$data['updated_at'] = time();
+				if ($_POST['password']) {
+					$data['password'] = md5(md5($_POST['password']).$_POST['salt']);
+				}else{
+					unset($data['password']);
+				}
+
+	    		$data['updatetime'] = time();
 
 	    		$params = array(
 
-	    			'table_name' => 'chat_bot',
+	    			'table_name' => 'fa_admin',
 
 	    			'where' => "id = {$id}",
 
@@ -307,11 +303,6 @@
 
 	    		if ($chat_bot_save)
 	    		{
-					//初始化回调
-					$url = 'https://api.telegram.org/bot' . $data['token'] . '/setWebhook';
-					$param = ["url" => "https://m.name-technology.fun/callback.php/Callback/run?bot_id=".$id."&t=".time()];
-
-					$ret = $this->fetch ($url, $param);
 	    			redirect(__APP__.'/BotAdmin/index', 0);
 	    		}
 	    		else

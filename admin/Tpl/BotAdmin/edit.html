@@ -20,7 +20,7 @@
                 <a href="__URL__">首页</a>
             </li>
             <li>
-                <a>群管理</a>
+                <a>客户端账号管理</a>
             </li>
             <li>
                 <strong>修改</strong>
@@ -39,94 +39,68 @@
                 <div class="ibox-content">
 					<form class="form-horizontal m-t" id="signupForm" method="post" action="__ACTION__">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">*token:</label>
+                            <label class="col-sm-3 control-label">*账号:</label>
                             <div class="col-sm-6">
-                                <input id="token" name="token" value="{$result['token']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input id="username" name="username" value="{$result['username']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                                 <input type="hidden" name="form_key" value="yes" />
+
+                                <input type="hidden" name="salt" value="{$result['salt']}" />
+
+                                
 								<input type="hidden" name="id" value="{$result['id']}" />
                             </div>
                         </div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">名称:</label>
+							<label class="col-sm-3 control-label">昵称:</label>
 							<div class="col-sm-6">
-								<input id="name" name="name" value="{$result['name']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+								<input id="nickname" name="nickname" value="{$result['nickname']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
 							</div>
 						</div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">邮箱:</label>
+              <div class="col-sm-6">
+                <input id="email" name="email" value="{$result['email']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+              </div>
+            </div>
+                       
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">TokanMan名称:</label>
+                            <label class="col-sm-3 control-label">密码:</label>
                             <div class="col-sm-6">
-                                <input id="tokenman_name" name="tokenman_name" value="{$result['tokenman_name']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input id="password" name="password" value="" class="form-control" type="text" class="error" placeholder="为空不修改">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">chat_id:</label>
-                            <div class="col-sm-6">
-                                <input id="chat_id" name="chat_id" value="{$result['chat_id']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
-                            </div>
-                        </div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">master_id:</label>
-							<div class="col-sm-6">
-								<input id="master_id" name="master_id" value="{$result['master_id']}" class="form-control" type="text">
-							</div>
-						</div>
-
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">code_cmd(code默认回复开头命令):</label>
-							<div class="col-sm-6">
-								<input id="code_cmd" name="code_cmd" value="{$result['code_cmd']}" class="form-control" type="text">
-							</div>
-						</div>
-
+					
 
 
                         <div class="form-group">
-                           <label class="col-sm-3 control-label">是否开启消息过滤:</label>
+                           <label class="col-sm-3 control-label">账户类型:</label>
                            <div class="col-sm-6">
-                               <select class="form-control" name="is_shield">
-                                   <option  <if condition="$result['is_shield'] == 0">selected="selected"</if> value="0">不开启</option>
-                                   <option  <if condition="$result['is_shield'] == 1">selected="selected"</if> value="1">开启</option>
+                               <select class="form-control" name="type">
+                                   <!-- <option  <if condition="$result['type'] == 1">selected="selected"</if> value="1">普通账户</option> -->
+                                   <option  <if condition="$result['type'] == 2">selected="selected"</if> value="2">VIP账户</option>
+                                    <option  <if condition="$result['type'] == 3">selected="selected"</if> value="3">SVIP账户</option>
                                </select>
-                               <p>开启过滤 标签 图片 文件 敏感词</p>
                            </div>
                         </div>
 
 
+                       
+
+
+                     
                         <div class="form-group">
-                           <label class="col-sm-3 control-label">是否开启实时报价:</label>
-                           <div class="col-sm-6">
-                               <select class="form-control" name="is_currency">
-                                   <option  <if condition="$result['is_currency'] == 0">selected="selected"</if> value="0">不开启</option>
-                                   <option  <if condition="$result['is_currency'] == 1">selected="selected"</if> value="1">开启</option>
-                               </select>
-
-                           </div>
-                       </div>
-
-                       <div class="form-group">
-                           <label class="col-sm-3 control-label">机器人运行时间</label>
-                           <div class="col-sm-3">
-                               <input id="started_at"  placeholder="格式例如: 2018-03-21 10:35:29"  name="started_at" value="{$result['started_at']|date="Y-m-d H:i:s",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd hh:ii:ss" >
-
-                           </div>
-                           <div class="col-sm-3">
-                               <input id="stoped_at"  placeholder="格式例如: 2018-03-21 10:35:29"  name="stoped_at" value="{$result['stoped_at']|date="Y-m-d H:i:s",###}" class="form_datetime form-control" data-date="" data-date-format="yyyy-mm-dd hh:ii:ss" >
-                           </div>
-                       </div>
-
-
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">备注</label>
+							<label class="col-sm-3 control-label">机器人</label>
 							<div class="col-sm-6">
-								<input id="remark" name="remark" value="{$result['remark']}" class="form-control" type="text">
-							</div>
-						</div>
+                <if condition="$result['chat_bot_id'] == 0">
+                  <a href="__APP__/ChatBot/add">创建机器人</a>
+                <else/>
+                  <a href="__APP__/ChatBot/edit/id/{$result['chat_bot_id']}">管理机器人</a>
+                </if>
 
-                        <div class="form-group">
-							<label class="col-sm-3 control-label">吟唱魔法命令</label>
-							<div class="col-sm-6">
-								<input name="" value="/ZoobiDoobi<?php echo base64_encode($result['id']);?>" class="form-control" type="text">
+
+								
 							</div>
 						</div>
 
