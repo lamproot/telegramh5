@@ -13,7 +13,13 @@
             if ($limit != 0) {
                 $where['LIMIT'] = $limit;
             }
-            $ret = $this->db->select ('bot_currency', '*', $where);
+            $ret = $this->db->get ('bot_currency', '*', $where);
             return $ret;
+
+            // return $this->db->get ('bot_currency', '*', [
+            //     'chat_bot_id' => $chat_bot_id,
+            //     'is_del' => 0,
+            //     'currency' => $currency
+            // ]);
         }
     }

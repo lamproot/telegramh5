@@ -13,6 +13,7 @@
             $search = "/^\//i";
 
             if ($command != "/start") {
+                $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
                 // $errorModel = new ErrorModel;
                 // $errorModel->sendError (MASTER,$search);exit;
                 if(preg_match($search,$command,$result)) {
@@ -36,6 +37,51 @@
                         $currencyName = $currency;
                     }
 
+
+                    $errorModel = new ErrorModel;
+                    
+                   //获取数据
+                    $BotCurrencyModel = new BotCurrencyModel;
+                    $BotCurrency = $BotCurrencyModel->getByChatBotId($chat_bot_id, strtolower($currencyName));
+
+                    if (!$BotCurrency) {
+                        $msg = "Invalid！";
+                        $this->telegram->sendMessage (
+                            $chat['id'],
+                            $msg,
+                            $message_id
+                        );
+                        exit;
+                    }
+                    
+
+                    if ($BotCurrency) {
+                        //对接第三方API - Lbank
+                        if ($BotCurrency['exchange'] == 2) {
+                            $content = file_get_contents($BotCurrency['api_url']);
+                            if ($content && $BotCurrency['api_content']) {
+                                $content_arr = json_decode($content, true);
+                                $data = $content_arr['ticker'];
+
+                                $BotCurrency['api_content'] = str_replace('{currency}', $BotCurrency['currency'],$BotCurrency['api_content']);
+                                foreach ($data as $key => $value) {
+                                    $BotCurrency['api_content'] = str_replace('{'.$key.'}', number_format($value,8), $BotCurrency['api_content']);
+                                }
+                                $errorModel->sendError (MASTER, $BotCurrency['api_content']);exit;
+                            }
+
+                            //{"symbol": "ptt_eth", "ticker": {"change": 5.714285714285716, "high": 2.41e-06, "latest": 2.22e-06, "low": 2.08e-06, "turnover": 230.87123964428304, "vol": 105706939.19419985}, "timestamp": 1535448236200}
+
+
+                        }
+
+                        $errorModel->sendError (MASTER, print_r($content, true));exit;
+
+                    }
+
+                   
+
+
                     //查询币的数据
                     $array = json_decode (file_get_contents (__DIR__ . '/currency.json'), true);
                     $result = array_filter($array['data'], function($t) use ($currencyName) { return $t['symbol'] == $currencyName; });
@@ -52,7 +98,7 @@
 
 
                     if ($result) {
-                        $chat_bot_id = $_GET['bot_id'] ? $_GET['bot_id'] : 1;
+                        
                         $chatBotModel = new chatBotModel;
                         $chatBot = $chatBotModel->getById($chat_bot_id);
 

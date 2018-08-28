@@ -93,7 +93,7 @@
             //查询是否配置-删除图片类消息
             $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
             if ($chatBotConfig && isset($chatBotConfig['is_delete_photo']) && $chatBotConfig['is_delete_photo']) {
-                $message = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+                $message = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
                 $command = "/datacleaning";
                 //查询数据清除返回文案
                 $commandModel = new CommandModel;
@@ -131,7 +131,7 @@
             //查询是否配置-删除图片类消息
             $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
             if ($chatBotConfig && isset($chatBotConfig['is_delete_voice']) && $chatBotConfig['is_delete_voice']) {
-                $message = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+                $message = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
                 $command = "/datacleaning";
                 //查询数据清除返回文案
                 $commandModel = new CommandModel;
@@ -169,7 +169,7 @@
             $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
             if ($chatBotConfig && isset($chatBotConfig['is_delete_sticker']) && $chatBotConfig['is_delete_sticker']) {
             //if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+                $message = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
 
                 $this->telegram->sendMessage (
                     $chat['id'],
@@ -337,7 +337,7 @@
             //     $needle= 'http';
             //     $pos = strripos($message, $needle);
             //     if (preg_match($regex, $message) || $pos !== false) {
-            //         $sendmessage = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+            //         $sendmessage = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
             //         $command = "/datacleaning";
             //         //查询数据清除返回文案
             //         $commandModel = new CommandModel;
@@ -407,7 +407,7 @@
             //             }
             //
             //             if ($wordresult) {
-            //                 $sendmessage = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+            //                 $sendmessage = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
             //                 $command = "/datacleaning";
             //                 //查询数据清除返回文案
             //                 $commandModel = new CommandModel;
@@ -452,7 +452,7 @@
             //             }else{
             //                 $word = $sensitiveWordsModel->find([$message]);
             //                 if ($word) {
-            //                     $sendmessage = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+            //                     $sendmessage = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
             //                     $command = "/datacleaning";
             //                     //查询数据清除返回文案
             //                     $commandModel = new CommandModel;
@@ -500,7 +500,7 @@
             //         }else{
             //             $word = $sensitiveWordsModel->find([$message]);
             //             if ($word) {
-            //                 $sendmessage = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+            //                 $sendmessage = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
             //                 $command = "/datacleaning";
             //                 //查询数据清除返回文案
             //                 $commandModel = new CommandModel;
@@ -571,7 +571,7 @@
             $chatBotConfig = $chatBotConfigModel->getGroupBotConfig($chat_bot_id, $chat['id']);
             if ($chatBotConfig && isset($chatBotConfig['is_delete_document']) && $chatBotConfig['is_delete_document']) {
             //if ($chatBot && isset($chatBot['is_shield']) && intval($chatBot['is_shield']) == 1) {
-                $message = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+                $message = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
                 $command = "/datacleaning";
                 //查询数据清除返回文案
                 $commandModel = new CommandModel;
@@ -781,7 +781,7 @@
 
         function clearChatMessage($chat_bot_id, $message, $message_id, $from, $chat, $chatBotConfig)
         {
-            $sendmessage = "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
+            $sendmessage = isset($chatBotConfig['del_msg_warn_content']) ? ($chatBotConfig['del_msg_warn_content']) : "Sorry you have no authority to  publish the contents above.To obtain the authority, please contact the administrator.";
             $command = "/datacleaning";
             //查询数据清除返回文案
             $commandModel = new CommandModel;

@@ -3,7 +3,7 @@
 
         function getcommand ($chat_id, $limit = 0)
         {
-            return $this->db->get ('chat_bot_', '*', [
+            return $this->db->get ('chat_bot', '*', [
                 'chat_id' => $chat_id
             ]);
             /** 查询 */
