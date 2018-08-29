@@ -67,11 +67,22 @@
                                 foreach ($data as $key => $value) {
                                     $BotCurrency['api_content'] = str_replace('{'.$key.'}', number_format($value,8), $BotCurrency['api_content']);
                                 }
+                                $button_text = "Click here to know more about the currency market";
+                                $button = json_encode (array (
+                                    'inline_keyboard' => array (
+                                        array (array (
+
+                                            'text' => $button_text,
+                                            'url' => 'http://t.me/TokenManBot'
+                                        ))
+                                    )
+                                ));
                                 $msg = $BotCurrency['api_content'];
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     $msg,
-                                    $message_id
+                                    $message_id,
+                                    $button
                                 );
                             }
 
