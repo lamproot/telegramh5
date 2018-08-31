@@ -81,14 +81,11 @@
                 if ($value['rule'] == 'clear_all_news_time') {
                     $result['clear_all_news_stop_time'] = $value['updated_at'] + $value['value'];
                 }
-                
+
                 if ($value['rule'] == 'del_msg_warn_content') {
                     $result["del_msg_warn_content"] = json_decode($value['data'], true);
 
                 }
-
-
-                json_decode($chatBotConfig['keyword_cmd_config'], true)
             }
             return $result;
         }
