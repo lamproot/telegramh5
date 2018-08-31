@@ -45,12 +45,12 @@
                     $BotCurrency = $BotCurrencyModel->getByChatBotId($chat_bot_id, strtolower($currencyName));
 
                     if (!$BotCurrency) {
-                        $msg = "Invalid！";
-                        $this->telegram->sendMessage (
-                            $chat['id'],
-                            $msg,
-                            $message_id
-                        );
+                        // $msg = "Invalid！";
+                        // $this->telegram->sendMessage (
+                        //     $chat['id'],
+                        //     $msg,
+                        //     $message_id
+                        // );
                         exit;
                     }
                     
