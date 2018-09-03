@@ -143,13 +143,22 @@
 			$this -> assign('code', $code);
 
 			if ($_GET['lang'] == 'en') {
-				$this -> display('en_code');
+				if ($_GET['verify'] == 'mobile') {
+					$this -> display('en_mobile');
+				}else{
+					$this -> display('en_code');
+				}
 			}else if ($_GET['lang'] == 'ko') {
 				$this -> display('ko_code');
 			}else if ($_GET['lang'] == 'ru') {
 				$this -> display('ru_code');
 			}else{
-				$this -> display();
+				if ($_GET['verify'] == 'mobile') {
+					$this -> display('mobile');
+				}else{
+					$this -> display();
+				}
+				
 			}
 	    }
 
