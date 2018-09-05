@@ -45,7 +45,30 @@
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
-                    <select style="font-size: 18px;position: absolute;top: 0;left: 14px;display: inline-block;height: 56px;line-height: 56px;color: #fff;background: #a69bd5;-webkit-border-radius: 100px 0 0 100px;-moz-border-radius: 100px 0 0 100px;border-radius: 100px 0 0 100px;font-weight: bold;width: 70px;border: none;" name="areanum">
+                    <select style="font-size: 18px;
+    position: absolute;
+    top: 0;
+    left: 14px;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    color: #fff;
+    background: #a69bd5;
+    -webkit-border-radius: 100px 0 0 100px;
+    -moz-border-radius: 100px 0 0 100px;
+    border-radius: 100px 0 0 100px;
+    font-weight: bold;
+    width: 90px;
+    border: none;
+    background-image: url(/Public/img/手机.png);
+    background-size: 15px;
+    /* -webkit-background-size: cover; */
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 38px;
+    background-position: 21px;" name="areanum">
                        <option value="+1">+1</option>
 <option value="+7">+7</option>
 <option value="+20">+20</option>
@@ -239,9 +262,9 @@
 <option value="+1890">+1890</option>
            </select>
                     <if condition ="$group_activity['placeholder_text'] neq ''">
-                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}" style="padding-left:80px;width:100%;">
+                        <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['placeholder_text']}" style="padding-left: 89px;width:100%;">
                     <else/>
-                        <input name="wallet" class="address border-radius text-center" placeholder="请输入你的手机号" style="padding: 0 80px;width:80%;">
+                        <input name="wallet" class="address border-radius text-center" placeholder="请输入你的手机号" style="padding-left: 89px;width:80%;">
                     </if>
 
                     <input type="hidden" name="code" value="{$code}">
