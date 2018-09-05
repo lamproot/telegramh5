@@ -34,7 +34,8 @@ a, a:hover, a:active {
 }
 .desc {
     font-size: 18px;
-    margin: 46px auto 25px;
+    /*margin: 46px auto 25px;*/
+    margin:34px auto 5px;
 }
 .border-radius {
     -webkit-border-radius: 100px;
