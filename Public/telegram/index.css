@@ -22,7 +22,7 @@ a, a:hover, a:active {
     font-size: 18px;
 }
 .logo {
-    height: 166px;
+    max-height: 166px;
     margin-bottom: 40px;
 }
 .join {
@@ -120,7 +120,7 @@ a, a:hover, a:active {
         margin: 0.5925925925925926rem auto 0.46296296296296297rem;
     }
     .logo {
-        height: 1.314815rem;
+        max-height: 1.314815rem;
         margin-bottom: 0.7407407407407407rem;
     }
     .join {
