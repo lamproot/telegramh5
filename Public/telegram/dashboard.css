@@ -65,7 +65,8 @@ p {
     background: rgba(255,255,255,.3);
     text-align: left;
     font-size: 20px;
-    margin: 20px auto 30px;
+    /*margin: 20px auto 30px;*/
+    margin:12pt auto 12pt;
 }
 .submit {
     color: #fff;
