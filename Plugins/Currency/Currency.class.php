@@ -51,7 +51,7 @@
                         //     $msg,
                         //     $message_id
                         // );
-                        exit;
+                        //exit;
                     }
                     
 
