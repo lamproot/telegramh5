@@ -48,7 +48,7 @@
                 <p class="text-left"><empty name="group_activity['en_step1']">1.Copy the exclusive invitation code.<else /> {$group_activity['en_step1']}</empty></p>
                 <div class="input-box">
                     <input class="address border-radius text-center" value="/{$chat_bot['code_cmd']}{$code}"/>
-                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address" style="color:#301a8d">COPY</a>
+                    <a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address">COPY</a>
                 </div>
             </div>
             <div class="col-sm-12 text-left">
@@ -75,19 +75,29 @@
                 <div class="input-box">
                     <input class="submit border-radius" value="{$group_activity['activity_tinyurl']}{$code}?lang=en"/>
                     <input type="text" name="" value="{$group_activity['share_msg']}{$group_activity['activity_tinyurl']}{$code}" class="submit_text" style="opacity:0;">
-                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit_text" style="color:#301a8d">COPY</a>
+                    <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit_text">COPY</a>
                 </div>
             </div>
         </if>
 
-       
+         <div class="col-sm-12 text-left">
+            <p class="text-left"><empty name="group_activity['en_step4']">4.Share Airdrop and follow official social platforms<else /> {$group_activity['en_step4']}</empty></p>
+            <div class="input-box" style="margin:20px 0px;">
+                <a href="{$group_activity['telegram']}" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
 
-        <!-- <div class="col-sm-12 text-left">
+                <a href="{$group_activity['twitter']}" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
+                <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
+                <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
+                <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/4.pic.jpg" style="height:35px;width:35px"></a>
+            </div>
+        </div>
+
+        <div class="col-sm-12 text-left">
             <p class="text-left">5.Chat with TokenMan to get more latest candy drop information.</p>
             <div class="input-box" style="margin:20px 0px;">
                  <a target="_blank" href="http://t.me/TokenManBot" class="join border-radius text-nowrap">Chat with TokenMan</a>
             </div>
-        </div> -->
+        </div>
 
         <div class="col-sm-6 text-center">
             <div class="data-box">
@@ -99,17 +109,6 @@
             <div class="data-box">
                 <p>Earned {$group_activity['rate_unit']}</p>
                 <h3>{$code_rate}</h3>
-            </div>
-        </div>
-          <div class="col-sm-12 text-center">
-            
-            <div class="input-box" style="margin:20px 0px;">
-                <a href="{$group_activity['telegram']}" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
-
-                <a href="{$group_activity['twitter']}" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
-                <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
-                <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
-                <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a>
             </div>
         </div>
         <div class="col-sm-12 text-center link-box">
