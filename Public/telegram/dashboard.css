@@ -25,8 +25,8 @@ p {
     font-size: 18px;
 }
 .logo {
-    height: 166px;
-    margin-bottom: 40px;
+    max-height: 166px;
+    /*margin-bottom: 40px;*/
 }
 .join {
     display: inline-block;
@@ -139,8 +139,8 @@ p {
         margin: 0.5925925925925926rem auto 0.46296296296296297rem;
     }
     .logo {
-        height: 1.314815rem;
-        margin-bottom: 0.7407407407407407rem;
+        max-height: 1.314815rem;
+        /*margin-bottom: 0.7407407407407407rem;*/
     }
     .join {
         padding: 0 0.5555555555555556rem;
