@@ -45,7 +45,7 @@
                     <!-- <p class="desc">每邀请一个好友加入，你将额外获得 <strong style="font-size: 1.5em">{$group_activity['rate']}</strong> 个 {$group_activity['rate_unit']}，邀请越多，奖励越多，赶快行动!</p> -->
                 </div>
                 <div class="col-sm-12 text-center">
-                    <select style="font-size: 16px;
+                  <!--   <select style="font-size: 16px;
     position: absolute;
     top: 0;
     left: 14px;
@@ -260,7 +260,7 @@
 <option value="+1809">+1809</option>
 <option value="+1876">+1876</option>
 <option value="+1890">+1890</option>
-           </select>
+           </select> -->
                     <if condition ="$group_activity['en_placeholder_text'] neq ''">
                         <input name="wallet" class="address border-radius text-center" placeholder="{$group_activity['en_placeholder_text']}" style="padding-left: 89px;width:100%;">
                     <else/>
@@ -355,7 +355,7 @@
                         data[this.name] = this.value;
                     });
 
-                    data.wallet = data.areanum + " " + data.wallet;
+                    //data.wallet = data.areanum + " " + data.wallet;
 
                     // if ($("#g-recaptcha-response").val() == "") {
                     //     layer.msg('请验证谷歌验证!', {
@@ -378,24 +378,24 @@
                         timeout: 30000,
                         beforeSend: function() {
 
-                            // if (!data.wallet) {
-                            //     layer.msg('钱包地址为空!', {
-                            //         shade: [0.8, '#000'],
-                            //         time: 1500
-                            //     });
-                            //     return false;
-                            // } else if (!web3.isAddress(data.wallet)) {
-                            //     layer.msg('钱包地址错误!', {
-                            //         shade: [0.8, '#000'],
-                            //         time: 1500
-                            //     });
-                            //     return false;
-                            // } else {
-                            //     ladda = Ladda.create(_this);
-                            //     ladda.start();
-                            // }
-                            ladda = Ladda.create(_this);
-                            ladda.start();
+                            if (!data.wallet) {
+                                layer.msg('钱包地址为空!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            } else if (!web3.isAddress(data.wallet)) {
+                                layer.msg('钱包地址错误!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            } else {
+                                ladda = Ladda.create(_this);
+                                ladda.start();
+                            }
+                            // ladda = Ladda.create(_this);
+                            // ladda.start();
                         },
                         dataType: 'json'
                     }).done(function(res) {
