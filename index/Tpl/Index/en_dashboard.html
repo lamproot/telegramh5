@@ -80,6 +80,18 @@
                     <a href="javascript:void(0);"  class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".submit_text" style="color:#301a8d">COPY</a>
                 </div>
             </div>
+
+            <div class="col-sm-12 text-center">
+                <p class="text-left"><empty name="group_activity['step4']">4.分享活动并关注官方社交平台<else /> {$group_activity['step4']}</empty></p>
+                <div class="input-box" style="margin:20px 0px;">
+                    <a href="{$group_activity['telegram']}" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
+
+                    <a href="{$group_activity['twitter']}" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
+                    <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/2_27.png" style="height:35px;width:35px"></a>
+                    <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
+                    <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a>
+                </div>
+            </div>
         </if>
 
        
@@ -103,17 +115,7 @@
                 <h3>{$code_rate}</h3>
             </div>
         </div>
-          <div class="col-sm-12 text-center">
-            
-            <div class="input-box" style="margin:20px 0px;">
-                <a href="{$group_activity['telegram']}" class="input-box-a"><img src="__PUBLIC__/img/2_25.png" style="height:35px;width:35px"></a>
-
-                <a href="{$group_activity['twitter']}" class="input-box-a"><img src="__PUBLIC__/img/2_23.png" style="height:35px;width:35px"></a>
-                <a href="{$group_activity['web']}" class="input-box-a"><img src="__PUBLIC__/img/椭圆 2.png" style="height:35px;width:35px"></a>
-                <!-- <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a> -->
-                <a href="{$group_activity['facebook']}" class="input-box-a"><img src="__PUBLIC__/img/2_21.png" style="height:35px;width:35px"></a>
-            </div>
-        </div>
+        
         <div class="col-sm-12 text-center link-box">
            <div class="col-sm-12 text-center link-box">
            <!-- <a class="link" href="{$group_activity['bottom_text_url']}">{$group_activity['bottom_text']}</a> -->
