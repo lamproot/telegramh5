@@ -210,11 +210,11 @@
                                 });
                                 return false;
                             } else if (!web3.isAddress(data.wallet)) {
-                                layer.msg('The address of the wallet is invalid!', {
-                                    shade: [0.8, '#000'],
-                                    time: 1500
-                                });
-                                return false;
+                                // layer.msg('The address of the wallet is invalid!', {
+                                //     shade: [0.8, '#000'],
+                                //     time: 1500
+                                // });
+                                // return false;
                             } else {
                                 ladda = Ladda.create(_this);
                                 ladda.start();
