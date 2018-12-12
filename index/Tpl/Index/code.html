@@ -54,10 +54,10 @@
                     <input type="hidden" name="activity_id" value="{$group_activity['id']}">
                 </div>
 
-                <div class="col-sm-12 text-center" style="margin-top:15px;">
-                    <!-- <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div> -->
+               <!--  <div class="col-sm-12 text-center" style="margin-top:15px;">
+                    <div class="g-recaptcha" data-sitekey="6LfwBVkUAAAAAHxeW99277_nBzVD6PWqqyz3tax2"></div>
                     <div id="html_element"></div>
-                </div>
+                </div> -->
 
                 <div class="col-sm-12 text-center">
                     <button type="button" href="javascript:void(0);" id="usernameID" class="submit border-radius text-center ladda-button" data-style="zoom-in">
@@ -101,8 +101,8 @@
                 </div>
             </form>
         </div>
-     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>-->
     </script>
     <script src="__PUBLIC__/telegram/jquery-3.2.1.min.js"></script>
     <script src="__PUBLIC__/telegram/bootstrap.min.js"></script>
@@ -138,16 +138,16 @@
                         data[this.name] = this.value;
                     });
 
-                    if ($("#g-recaptcha-response").val() == "") {
-                        layer.msg('请验证谷歌验证!', {
-                                shade: [0.8, '#000'],
-                                time: 1500
-                            }
-                        );
-                        return false;
-                    }else{
-                        data.googleauth = $("#g-recaptcha-response").val();
-                    }
+                    // if ($("#g-recaptcha-response").val() == "") {
+                    //     layer.msg('请验证谷歌验证!', {
+                    //             shade: [0.8, '#000'],
+                    //             time: 1500
+                    //         }
+                    //     );
+                    //     return false;
+                    // }else{
+                    //     data.googleauth = $("#g-recaptcha-response").val();
+                    // }
 
                     var web3 = new Web3();
                     $.ajax({
