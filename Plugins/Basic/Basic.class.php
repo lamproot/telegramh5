@@ -51,7 +51,7 @@
                                         array (array (
 
                                             'text' => $advertFind[0]['content'],
-                                            'url' => $advertFind[0]['url'] ? $advertFind[0]['url'] : ""
+                                            'url' => $advertFind[0]['url']
                                         ))
                                     )
                                 ));
