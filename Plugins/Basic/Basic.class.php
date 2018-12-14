@@ -39,18 +39,27 @@
                             $advertModel = new AdvertModel;
                             $advertFind = $advertModel->my_find($chat_bot_id,1);
                             if ($advertFind && $advertFind[0] && $advertFind[0]['content']) {
+                                // $button = json_encode (array (
+                                //     'inline_keyboard' => array (
+                                //         array (array (
+                                //             'text' => "asdasd"
+                                //         ))
+                                //     )
+                                // ));
                                 $button = json_encode (array (
                                     'inline_keyboard' => array (
                                         array (array (
-                                            'text' => "asdasd"
+
+                                            'text' => "Click here to send code to TokenMan",
+                                            'url' => 'http://t.me/asda'
                                         ))
                                     )
                                 ));
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     $message,
-                                    $message_id
-                                    // $button
+                                    $message_id,
+                                    $button
                                 );
                             }else{
                               $this->telegram->sendMessage (
