@@ -49,8 +49,8 @@
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     $message,
-                                    $message_id,
-                                    $button
+                                    $message_id
+                                    // $button
                                 );
                             }else{
                               $this->telegram->sendMessage (
