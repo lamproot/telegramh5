@@ -43,21 +43,20 @@
                                     'inline_keyboard' => array (
                                         array (array (
                                             'text' => "{$advertFind[0]['content']}",
-                                            // 'url' => 'http://t.me/'.$chatBot['tokenman_name']
+                                            'url' => ''
                                         ))
                                     )
                                 ));
-
                                 $this->telegram->sendMessage (
                                     $chat['id'],
-                                    json_encode($advertFind),
-
-                                    $message_id
+                                    $message,
+                                    $message_id,
+                                    $button
                                 );
                             }else{
                               $this->telegram->sendMessage (
                                   $chat['id'],
-                                  json_encode($advertFind),
+                                  $message,
                                   $message_id
                               );
                             }
