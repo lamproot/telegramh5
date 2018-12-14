@@ -47,6 +47,7 @@
                                         ))
                                     )
                                 ));
+                                
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     json_encode($advertFind),
