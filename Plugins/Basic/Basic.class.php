@@ -50,8 +50,8 @@
                                     'inline_keyboard' => array (
                                         array (array (
 
-                                            'text' => "Click here to send code to TokenMan",
-                                            'url' => 'http://t.me/asda'
+                                            'text' => $advertFind[0]['content'],
+                                            'url' => $advertFind[0]['url'] ? $advertFind[0]['url'] : ""
                                         ))
                                     )
                                 ));
