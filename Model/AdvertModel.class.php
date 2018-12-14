@@ -3,7 +3,7 @@
 
         function add ($bot_id, $from_id, $from_username)
         {
-            return $this->db->insert ('white', [
+            return $this->db->insert ('bot_advert', [
                 'bot_id' => $bot_id,
                 'from_id' => $from_id,
                 'from_username' => $from_username,
@@ -14,7 +14,7 @@
 
         function find ($bot_id, $from_id)
         {
-            return $this->db->get ('white', '*', [
+            return $this->db->get ('bot_advert', '*', [
                 'type' => 1,
                 'bot_id' => $bot_id,
                 'from_id' => $from_id
@@ -33,7 +33,7 @@
             if ($limit != 0) {
                 $where['LIMIT'] = $limit;
             }
-            $ret = $this->db->select ('white', '*', $where);
+            $ret = $this->db->select ('bot_advert', '*', $where);
             return $ret;
         }
     }
