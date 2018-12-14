@@ -51,9 +51,8 @@
                                 $this->telegram->sendMessage (
                                     $chat['id'],
                                     json_encode($advertFind),
-                                    
-                                    $message_id,
-                                    $button
+
+                                    $message_id
                                 );
                             }else{
                               $this->telegram->sendMessage (
