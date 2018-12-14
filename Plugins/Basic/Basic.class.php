@@ -42,8 +42,7 @@
                                 $button = json_encode (array (
                                     'inline_keyboard' => array (
                                         array (array (
-                                            'text' => "{$advertFind[0]['content']}",
-                                            'url' => ''
+                                            'text' => "asdasd"
                                         ))
                                     )
                                 ));
