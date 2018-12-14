@@ -25,11 +25,42 @@
                     if ($commandInfo[0]['type'] == 1) {
                         $message = ($commandInfo && $commandInfo[0] && isset($commandInfo[0]['content']) && !empty($commandInfo[0]['content'])) ? $commandInfo[0]['content'] : "";
                         if ($message) {
-                            $this->telegram->sendMessage (
-                                $chat['id'],
-                                $message,
-                                $message_id
-                            );
+
+                            // $button = json_encode (array (
+                            //     'inline_keyboard' => array (
+                            //         array (array (
+                            //
+                            //             'text' => "Click here to send code to TokenMan",
+                            //             'url' => 'http://t.me/'.$chatBot['tokenman_name']
+                            //         ))
+                            //     )
+                            // ));
+                            //查询是否有广告
+                            $advertModel = new AdvertModel;
+                            $advertFind = $advertModel->my_find($chat_bot_id,1);
+                            if ($advertFind && $advertFind[0] && $advertFind[0]['content']) {
+                                $button = json_encode (array (
+                                    'inline_keyboard' => array (
+                                        array (array (
+                                            'text' => "{$advertFind[0]['content']}",
+                                            // 'url' => 'http://t.me/'.$chatBot['tokenman_name']
+                                        ))
+                                    )
+                                ));
+                                $this->telegram->sendMessage (
+                                    $chat['id'],
+                                    $message,
+                                    $message_id,
+                                    $button
+                                );
+                            }else{
+                              $this->telegram->sendMessage (
+                                  $chat['id'],
+                                  $message,
+                                  $message_id
+                              );
+                            }
+
                         }
                     }
 
