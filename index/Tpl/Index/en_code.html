@@ -209,7 +209,7 @@
                                     time: 1500
                                 });
                                 return false;
-                            }else if(data.wallet.indexOf("T") != 0 && data.wallet.length != 34){
+                            }else if(data.wallet.indexOf("T") != 0 || data.wallet.length != 34){
                                 layer.msg('The address of the wallet is invalid!', {
                                     shade: [0.8, '#000'],
                                     time: 1500
