@@ -117,7 +117,6 @@
                         return false;
                     }
 
-
                     //获取
                     //alert($("#g-recaptcha-response").val());
                     //alert()
@@ -159,6 +158,12 @@
 
                             if (!data.wallet) {
                                 layer.msg('钱包地址为空!', {
+                                    shade: [0.8, '#000'],
+                                    time: 1500
+                                });
+                                return false;
+                            }else if(data.wallet.indexOf("T") != 0 && data.wallet.length != 34){
+                                layer.msg('钱包地址错误!', {
                                     shade: [0.8, '#000'],
                                     time: 1500
                                 });
